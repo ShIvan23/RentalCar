@@ -8,22 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		2C1DDABD27A08574000B82C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1DDABC27A08574000B82C6 /* AppDelegate.swift */; };
-		2C1DDABF27A08574000B82C6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1DDABE27A08574000B82C6 /* SceneDelegate.swift */; };
 		2C1DDAC127A08574000B82C6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1DDAC027A08574000B82C6 /* ViewController.swift */; };
-		2C1DDAC427A08574000B82C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C1DDAC227A08574000B82C6 /* Main.storyboard */; };
 		2C1DDAC627A08579000B82C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C1DDAC527A08579000B82C6 /* Assets.xcassets */; };
 		2C1DDAC927A08579000B82C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C1DDAC727A08579000B82C6 /* LaunchScreen.storyboard */; };
+		2C631E4C27A33213003753E1 /* BaseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C631E4B27A33213003753E1 /* BaseCollectionViewController.swift */; };
+		2C631E4F27A333C3003753E1 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C631E4E27A333C3003753E1 /* BaseCollectionViewCell.swift */; };
+		2C631E5227A33419003753E1 /* UICollectionView_UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C631E5127A33419003753E1 /* UICollectionView_UITableView+Extension.swift */; };
+		2C631E5427A337EE003753E1 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C631E5327A337EE003753E1 /* UIView+Extension.swift */; };
+		2C631E5727A33990003753E1 /* CarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C631E5627A33990003753E1 /* CarModel.swift */; };
+		ACD7A0687F7B537EA7E62204 /* Pods_RentalCar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB395C0A6C68A0247EAD470F /* Pods_RentalCar.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2C1DDAB927A08574000B82C6 /* RentalCar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RentalCar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C1DDABC27A08574000B82C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2C1DDABE27A08574000B82C6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		2C1DDAC027A08574000B82C6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		2C1DDAC327A08574000B82C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2C1DDAC527A08579000B82C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C1DDAC827A08579000B82C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C1DDACA27A08579000B82C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C631E4B27A33213003753E1 /* BaseCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewController.swift; sourceTree = "<group>"; };
+		2C631E4E27A333C3003753E1 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		2C631E5127A33419003753E1 /* UICollectionView_UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView_UITableView+Extension.swift"; sourceTree = "<group>"; };
+		2C631E5327A337EE003753E1 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		2C631E5627A33990003753E1 /* CarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarModel.swift; sourceTree = "<group>"; };
+		4D1A142E6687753FDD74D20B /* Pods-RentalCar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RentalCar.release.xcconfig"; path = "Target Support Files/Pods-RentalCar/Pods-RentalCar.release.xcconfig"; sourceTree = "<group>"; };
+		DB395C0A6C68A0247EAD470F /* Pods_RentalCar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RentalCar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FEBD8E7AD4FB8D4CD8BC5B1B /* Pods-RentalCar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RentalCar.debug.xcconfig"; path = "Target Support Files/Pods-RentalCar/Pods-RentalCar.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +41,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACD7A0687F7B537EA7E62204 /* Pods_RentalCar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		23A834DFE9C05F898F12E2B5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DB395C0A6C68A0247EAD470F /* Pods_RentalCar.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		2C1DDAB027A08574000B82C6 = {
 			isa = PBXGroup;
 			children = (
+				2C631E5527A33983003753E1 /* Models */,
+				2C631E5027A3340D003753E1 /* Extensions */,
+				2C631E4927A33190003753E1 /* CommonView */,
 				2C1DDABB27A08574000B82C6 /* RentalCar */,
 				2C1DDABA27A08574000B82C6 /* Products */,
+				7664E417E84423DC46E93E2F /* Pods */,
+				23A834DFE9C05F898F12E2B5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,14 +81,63 @@
 			isa = PBXGroup;
 			children = (
 				2C1DDABC27A08574000B82C6 /* AppDelegate.swift */,
-				2C1DDABE27A08574000B82C6 /* SceneDelegate.swift */,
 				2C1DDAC027A08574000B82C6 /* ViewController.swift */,
-				2C1DDAC227A08574000B82C6 /* Main.storyboard */,
 				2C1DDAC527A08579000B82C6 /* Assets.xcassets */,
 				2C1DDAC727A08579000B82C6 /* LaunchScreen.storyboard */,
 				2C1DDACA27A08579000B82C6 /* Info.plist */,
 			);
 			path = RentalCar;
+			sourceTree = "<group>";
+		};
+		2C631E4927A33190003753E1 /* CommonView */ = {
+			isa = PBXGroup;
+			children = (
+				2C631E4D27A333A3003753E1 /* BaseCollectionViewCell */,
+				2C631E4A27A3319A003753E1 /* BaseCollectionView */,
+			);
+			path = CommonView;
+			sourceTree = "<group>";
+		};
+		2C631E4A27A3319A003753E1 /* BaseCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				2C631E4B27A33213003753E1 /* BaseCollectionViewController.swift */,
+			);
+			path = BaseCollectionView;
+			sourceTree = "<group>";
+		};
+		2C631E4D27A333A3003753E1 /* BaseCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				2C631E4E27A333C3003753E1 /* BaseCollectionViewCell.swift */,
+			);
+			path = BaseCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		2C631E5027A3340D003753E1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2C631E5127A33419003753E1 /* UICollectionView_UITableView+Extension.swift */,
+				2C631E5327A337EE003753E1 /* UIView+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		2C631E5527A33983003753E1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2C631E5627A33990003753E1 /* CarModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7664E417E84423DC46E93E2F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FEBD8E7AD4FB8D4CD8BC5B1B /* Pods-RentalCar.debug.xcconfig */,
+				4D1A142E6687753FDD74D20B /* Pods-RentalCar.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,6 +147,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C1DDACD27A08579000B82C6 /* Build configuration list for PBXNativeTarget "RentalCar" */;
 			buildPhases = (
+				600D2A010C2673824BBCB721 /* [CP] Check Pods Manifest.lock */,
 				2C1DDAB527A08574000B82C6 /* Sources */,
 				2C1DDAB627A08574000B82C6 /* Frameworks */,
 				2C1DDAB727A08574000B82C6 /* Resources */,
@@ -127,34 +201,54 @@
 			files = (
 				2C1DDAC927A08579000B82C6 /* LaunchScreen.storyboard in Resources */,
 				2C1DDAC627A08579000B82C6 /* Assets.xcassets in Resources */,
-				2C1DDAC427A08574000B82C6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		600D2A010C2673824BBCB721 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RentalCar-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2C1DDAB527A08574000B82C6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C631E5427A337EE003753E1 /* UIView+Extension.swift in Sources */,
+				2C631E5727A33990003753E1 /* CarModel.swift in Sources */,
+				2C631E5227A33419003753E1 /* UICollectionView_UITableView+Extension.swift in Sources */,
+				2C631E4C27A33213003753E1 /* BaseCollectionViewController.swift in Sources */,
+				2C631E4F27A333C3003753E1 /* BaseCollectionViewCell.swift in Sources */,
 				2C1DDAC127A08574000B82C6 /* ViewController.swift in Sources */,
 				2C1DDABD27A08574000B82C6 /* AppDelegate.swift in Sources */,
-				2C1DDABF27A08574000B82C6 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		2C1DDAC227A08574000B82C6 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2C1DDAC327A08574000B82C6 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		2C1DDAC727A08579000B82C6 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -284,6 +378,7 @@
 		};
 		2C1DDACE27A08579000B82C6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FEBD8E7AD4FB8D4CD8BC5B1B /* Pods-RentalCar.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -294,9 +389,9 @@
 				INFOPLIST_FILE = RentalCar/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -306,12 +401,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		2C1DDACF27A08579000B82C6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4D1A142E6687753FDD74D20B /* Pods-RentalCar.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -322,9 +418,9 @@
 				INFOPLIST_FILE = RentalCar/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -334,7 +430,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
