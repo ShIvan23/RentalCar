@@ -10,12 +10,14 @@ import UIKit
 class BaseCollectionViewController: UIViewController {
     
     enum CollectionStyle {
-        case defaultStyle
-        case twoCellsStyle
+        case listStyle
+        case categoryStyle
     }
     
     private let collectionStyle: CollectionStyle
-    private let model: [CarModel]
+    private let model: [Model]
+    private let categoryPrice: CategoryPrice?
+    private let isChooseLegal: Bool
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -25,13 +27,21 @@ class BaseCollectionViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(cell: BaseCollectionViewCell.self)
+        collectionView.register(cell: LegalCollectionViewCell.self)
         collectionView.backgroundColor = .white
         return collectionView
     }()
     
-    init(collectionStyle: CollectionStyle, model: [CarModel]) {
+    init(
+        collectionStyle: CollectionStyle,
+        categoryPrice: CategoryPrice? = nil,
+        model: [Model],
+        isChooseLegal: Bool = false
+    ) {
         self.collectionStyle = collectionStyle
+        self.categoryPrice = categoryPrice
         self.model = model
+        self.isChooseLegal = isChooseLegal
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -41,7 +51,12 @@ class BaseCollectionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        customizeView()
         setLayout()
+    }
+    
+    private func customizeView() {
+        view.backgroundColor = .white
     }
     
     private func setLayout() {
@@ -54,25 +69,35 @@ class BaseCollectionViewController: UIViewController {
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
-    
 }
 
 // MARK: - UICollectionViewDataSource
 
 extension BaseCollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch collectionStyle {
-        case .twoCellsStyle:
-            return 2
-        case .defaultStyle:
-            return 10
-//            return model.count
-        }
+        return model.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: BaseCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-        return cell
+        switch collectionStyle {
+            /// Ячейка для отображения всех машин
+        case .listStyle:
+            guard let model = model as? [CarModel] else { fatalError() }
+            let cell: BaseCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+            cell.setupCell(
+                model: model[indexPath.item],
+                categoryPrice: categoryPrice!
+            )
+            return cell
+            
+            /// Ячейка для отображения категорий юр лица и категорий машин
+        case .categoryStyle:
+            guard let model = model as? [CarClass] else { fatalError() }
+            let cell: LegalCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+            cell.setupCell(model: model[indexPath.item])
+            return cell
+            
+        }
     }
 }
 
@@ -97,11 +122,58 @@ extension BaseCollectionViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         switch collectionStyle {
-        case .twoCellsStyle:
-            let midlleHeightScreen = (UIScreen.main.bounds.height - cellHeight) / 2
-            return UIEdgeInsets(top: midlleHeightScreen, left: sideInset, bottom: sideInset, right: sideInset)
-        case .defaultStyle:
+            
+        case .categoryStyle:
+            switch model.count {
+                /// Если всего 2 ячейки, то это выбор юр лица и ячейки будут посередине экрана
+                // TODO: - протестить на разных экранах
+            case 2:
+                let middleHeightScreen = (UIScreen.main.bounds.height - cellHeight) / 3
+                return UIEdgeInsets(top: middleHeightScreen, left: sideInset, bottom: sideInset, right: sideInset)
+            default :
+                return UIEdgeInsets(top: sideInset, left: sideInset, bottom: sideInset, right: sideInset)
+            }
+
+        case .listStyle:
             return UIEdgeInsets(top: sideInset, left: sideInset, bottom: sideInset, right: sideInset)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch collectionStyle {
+        case .listStyle:
+            guard let model = model as? [CarModel] else { fatalError() }
+            /// Экран с детальной информацией
+            let currentCar = model[indexPath.item]
+            let detailViewController = DetailCarViewController(carModel: currentCar)
+            detailViewController.title = currentCar.marka + " " + currentCar.model
+            navigationController?.pushViewController(detailViewController, animated: true)
+
+            
+        case .categoryStyle:
+            /// При выборе категории должна быть такая модель
+            guard let model = model as? [CarClass] else { fatalError() }
+            
+            /// Если выбирается вид юр лица, то нужно показать категории машин
+            if isChooseLegal {
+                let collectionViewController = BaseCollectionViewController(
+                    collectionStyle: .categoryStyle,
+                    categoryPrice: indexPath.item == 0 ? .commercialPriceWithNDS : .commercialPriceWithoutNDS,
+                    model: CarClass.makeMockModel()
+                )
+                collectionViewController.title = model[indexPath.item].className
+                navigationController?.pushViewController(collectionViewController, animated: true)
+                /// Если вид юр лица выбран, то показывает категории машин
+            } else {
+                let cars = model[indexPath.item].carList
+                let collectionViewController = BaseCollectionViewController(
+                    collectionStyle: .listStyle,
+                    categoryPrice: categoryPrice,
+                    model: cars
+                )
+                collectionViewController.title = model[indexPath.item].className
+                navigationController?.pushViewController(collectionViewController, animated: true)
+            }
         }
     }
 }
