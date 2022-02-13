@@ -23,8 +23,13 @@ class DescriptionTableViewCell: UITableViewCell {
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0))
     }
     
-    func setupCell(_ description: NSMutableAttributedString) {
-        descriptionLabel.attributedText = description
+    func setupCell(_ mutableDescription: NSMutableAttributedString) {
+        descriptionLabel.attributedText = mutableDescription
+        layout()
+    }
+    
+    func setupCell(_ stringDescription: String) {
+        descriptionLabel.text = stringDescription
         layout()
     }
     

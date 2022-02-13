@@ -126,13 +126,13 @@ extension ImageAndButtonTableViewCell: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
+        return CGSize(width: ScreenSize.width, height: ScreenSize.width)
     }
     
     /// Для плавного перелистывания фотографий
     ///  https://stackoverflow.com/questions/22895465/paging-uicollectionview-by-cells-not-screen
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        let pageWidth = UIScreen.main.bounds.width
+        let pageWidth = ScreenSize.width
         let proportionalOffset = carsCollectionView.contentOffset.x / pageWidth
         indexOfCellBeforeDragging = Int(round(proportionalOffset))
     }
@@ -143,7 +143,7 @@ extension ImageAndButtonTableViewCell: UICollectionViewDelegateFlowLayout {
         targetContentOffset.pointee = scrollView.contentOffset
         
         // Calculate conditions
-        let pageWidth = UIScreen.main.bounds.width
+        let pageWidth = ScreenSize.width
         let collectionViewItemCount = allImages.count
         let proportionalOffset = carsCollectionView.contentOffset.x / pageWidth
         let indexOfMajorCell = Int(round(proportionalOffset))

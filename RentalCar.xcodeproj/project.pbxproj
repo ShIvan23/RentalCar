@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2C1DDABD27A08574000B82C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1DDABC27A08574000B82C6 /* AppDelegate.swift */; };
-		2C1DDAC127A08574000B82C6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1DDAC027A08574000B82C6 /* ViewController.swift */; };
 		2C1DDAC627A08579000B82C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C1DDAC527A08579000B82C6 /* Assets.xcassets */; };
 		2C1DDAC927A08579000B82C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C1DDAC727A08579000B82C6 /* LaunchScreen.storyboard */; };
 		2C6295B727A465E3003521D9 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6295B627A465E3003521D9 /* UIColor+Extension.swift */; };
@@ -21,19 +20,21 @@
 		2C631E5227A33419003753E1 /* UICollectionView_UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C631E5127A33419003753E1 /* UICollectionView_UITableView+Extension.swift */; };
 		2C631E5427A337EE003753E1 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C631E5327A337EE003753E1 /* UIView+Extension.swift */; };
 		2C631E5727A33990003753E1 /* CarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C631E5627A33990003753E1 /* CarModel.swift */; };
+		2C6E4DCD27B91F1E00FBE7E8 /* PopoverLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6E4DCC27B91F1E00FBE7E8 /* PopoverLocationTableViewController.swift */; };
+		2C6E4DD027B9349500FBE7E8 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6E4DCF27B9349500FBE7E8 /* ScreenSize.swift */; };
 		2CF197E427AE768800E82C6C /* DetailCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF197E327AE768800E82C6C /* DetailCarViewController.swift */; };
 		2CF197E627AE81C800E82C6C /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF197E527AE81C800E82C6C /* UIViewController+Extension.swift */; };
 		2CF197E927AE88E800E82C6C /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF197E827AE88E800E82C6C /* ImageCollectionViewCell.swift */; };
 		2CF197EC27B4180800E82C6C /* ImageAndButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF197EB27B4180800E82C6C /* ImageAndButtonTableViewCell.swift */; };
 		2CF197EF27B41A4800E82C6C /* DescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF197EE27B41A4800E82C6C /* DescriptionTableViewCell.swift */; };
 		2CF197F127B5072600E82C6C /* NSMutableAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF197F027B5072600E82C6C /* NSMutableAttributedString+Extension.swift */; };
+		2CF197F427B5190100E82C6C /* OrderUnauthorizedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF197F327B5190100E82C6C /* OrderUnauthorizedViewController.swift */; };
 		ACD7A0687F7B537EA7E62204 /* Pods_RentalCar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB395C0A6C68A0247EAD470F /* Pods_RentalCar.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2C1DDAB927A08574000B82C6 /* RentalCar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RentalCar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C1DDABC27A08574000B82C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2C1DDAC027A08574000B82C6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2C1DDAC527A08579000B82C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C1DDAC827A08579000B82C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C1DDACA27A08579000B82C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -47,12 +48,15 @@
 		2C631E5127A33419003753E1 /* UICollectionView_UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView_UITableView+Extension.swift"; sourceTree = "<group>"; };
 		2C631E5327A337EE003753E1 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		2C631E5627A33990003753E1 /* CarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarModel.swift; sourceTree = "<group>"; };
+		2C6E4DCC27B91F1E00FBE7E8 /* PopoverLocationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverLocationTableViewController.swift; sourceTree = "<group>"; };
+		2C6E4DCF27B9349500FBE7E8 /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
 		2CF197E327AE768800E82C6C /* DetailCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCarViewController.swift; sourceTree = "<group>"; };
 		2CF197E527AE81C800E82C6C /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		2CF197E827AE88E800E82C6C /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		2CF197EB27B4180800E82C6C /* ImageAndButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAndButtonTableViewCell.swift; sourceTree = "<group>"; };
 		2CF197EE27B41A4800E82C6C /* DescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		2CF197F027B5072600E82C6C /* NSMutableAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Extension.swift"; sourceTree = "<group>"; };
+		2CF197F327B5190100E82C6C /* OrderUnauthorizedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderUnauthorizedViewController.swift; sourceTree = "<group>"; };
 		4D1A142E6687753FDD74D20B /* Pods-RentalCar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RentalCar.release.xcconfig"; path = "Target Support Files/Pods-RentalCar/Pods-RentalCar.release.xcconfig"; sourceTree = "<group>"; };
 		DB395C0A6C68A0247EAD470F /* Pods_RentalCar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RentalCar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEBD8E7AD4FB8D4CD8BC5B1B /* Pods-RentalCar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RentalCar.debug.xcconfig"; path = "Target Support Files/Pods-RentalCar/Pods-RentalCar.debug.xcconfig"; sourceTree = "<group>"; };
@@ -81,11 +85,13 @@
 		2C1DDAB027A08574000B82C6 = {
 			isa = PBXGroup;
 			children = (
-				2CF197E227AE766D00E82C6C /* DetailCar */,
 				2C6295B827A48A73003521D9 /* TabBarController */,
-				2C631E5527A33983003753E1 /* Models */,
-				2C631E5027A3340D003753E1 /* Extensions */,
 				2C631E4927A33190003753E1 /* CommonView */,
+				2CF197E227AE766D00E82C6C /* DetailCar */,
+				2CF197F227B5183D00E82C6C /* OrderUnauthorized */,
+				2C631E5527A33983003753E1 /* Models */,
+				2C6E4DCE27B9347700FBE7E8 /* ScreenSize */,
+				2C631E5027A3340D003753E1 /* Extensions */,
 				2C1DDABB27A08574000B82C6 /* RentalCar */,
 				2C1DDABA27A08574000B82C6 /* Products */,
 				7664E417E84423DC46E93E2F /* Pods */,
@@ -105,7 +111,6 @@
 			isa = PBXGroup;
 			children = (
 				2C1DDABC27A08574000B82C6 /* AppDelegate.swift */,
-				2C1DDAC027A08574000B82C6 /* ViewController.swift */,
 				2C1DDAC527A08579000B82C6 /* Assets.xcassets */,
 				2C1DDAC727A08579000B82C6 /* LaunchScreen.storyboard */,
 				2C1DDACA27A08579000B82C6 /* Info.plist */,
@@ -177,6 +182,22 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		2C6E4DCB27B91EE700FBE7E8 /* PopoverLocation */ = {
+			isa = PBXGroup;
+			children = (
+				2C6E4DCC27B91F1E00FBE7E8 /* PopoverLocationTableViewController.swift */,
+			);
+			path = PopoverLocation;
+			sourceTree = "<group>";
+		};
+		2C6E4DCE27B9347700FBE7E8 /* ScreenSize */ = {
+			isa = PBXGroup;
+			children = (
+				2C6E4DCF27B9349500FBE7E8 /* ScreenSize.swift */,
+			);
+			path = ScreenSize;
+			sourceTree = "<group>";
+		};
 		2CF197E227AE766D00E82C6C /* DetailCar */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,6 +223,15 @@
 				2CF197E827AE88E800E82C6C /* ImageCollectionViewCell.swift */,
 			);
 			path = ImageCollectionVewCell;
+			sourceTree = "<group>";
+		};
+		2CF197F227B5183D00E82C6C /* OrderUnauthorized */ = {
+			isa = PBXGroup;
+			children = (
+				2CF197F327B5190100E82C6C /* OrderUnauthorizedViewController.swift */,
+				2C6E4DCB27B91EE700FBE7E8 /* PopoverLocation */,
+			);
+			path = OrderUnauthorized;
 			sourceTree = "<group>";
 		};
 		7664E417E84423DC46E93E2F /* Pods */ = {
@@ -319,10 +349,12 @@
 				2C631E4C27A33213003753E1 /* BaseCollectionViewController.swift in Sources */,
 				2CF197F127B5072600E82C6C /* NSMutableAttributedString+Extension.swift in Sources */,
 				2CF197E927AE88E800E82C6C /* ImageCollectionViewCell.swift in Sources */,
+				2C6E4DD027B9349500FBE7E8 /* ScreenSize.swift in Sources */,
 				2C631E4F27A333C3003753E1 /* BaseCollectionViewCell.swift in Sources */,
-				2C1DDAC127A08574000B82C6 /* ViewController.swift in Sources */,
 				2C6295BF27A499B8003521D9 /* LegalCollectionViewCell.swift in Sources */,
+				2C6E4DCD27B91F1E00FBE7E8 /* PopoverLocationTableViewController.swift in Sources */,
 				2C6295C127A49C54003521D9 /* UICollectionViewCell+Extension.swift in Sources */,
+				2CF197F427B5190100E82C6C /* OrderUnauthorizedViewController.swift in Sources */,
 				2C1DDABD27A08574000B82C6 /* AppDelegate.swift in Sources */,
 				2C6295B727A465E3003521D9 /* UIColor+Extension.swift in Sources */,
 				2CF197E427AE768800E82C6C /* DetailCarViewController.swift in Sources */,

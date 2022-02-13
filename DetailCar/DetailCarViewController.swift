@@ -66,7 +66,7 @@ final class DetailCarViewController: UIViewController {
         stringArray.append(carModel.transmission)
         stringArray.append("\(carModel.numberOfDoors)")
         stringArray.append(carModel.hasConditioner ? "Да" : "Нет")
-        stringArray.append(carModel.description)
+        stringArray.append(carModel.description + "\n")
         descriptions = stringArray.makeAttributedString(stringArray: stringArray)
     }
 }
@@ -113,6 +113,7 @@ extension DetailCarViewController: UITableViewDelegate {
 
 extension DetailCarViewController: ImageAndButtonTableViewCellDelegate {
     func orderButtonTapped() {
-        print("tap")
+        let orderUnauthorizesVC = OrderUnauthorizedViewController()
+        navigationController?.pushViewController(orderUnauthorizesVC, animated: true)
     }
 }

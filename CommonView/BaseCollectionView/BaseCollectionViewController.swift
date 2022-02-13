@@ -128,7 +128,7 @@ extension BaseCollectionViewController: UICollectionViewDelegateFlowLayout {
                 /// Если всего 2 ячейки, то это выбор юр лица и ячейки будут посередине экрана
                 // TODO: - протестить на разных экранах
             case 2:
-                let middleHeightScreen = (UIScreen.main.bounds.height - cellHeight) / 3
+                let middleHeightScreen = (ScreenSize.height - cellHeight) / 3
                 return UIEdgeInsets(top: middleHeightScreen, left: sideInset, bottom: sideInset, right: sideInset)
             default :
                 return UIEdgeInsets(top: sideInset, left: sideInset, bottom: sideInset, right: sideInset)

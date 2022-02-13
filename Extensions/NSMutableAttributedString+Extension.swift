@@ -29,4 +29,20 @@ extension Array {
         }
         return mutableAttributedStrings
     }
+    
+    func makeAttributedPlaceString(stringArray: [String]) -> [NSMutableAttributedString] {
+        let mutableWord = "*Бесплатно"
+        var mutableAttributedStrings = [NSMutableAttributedString]()
+        for string in stringArray {
+            if string.contains(mutableWord) {
+                let mutableAttributedString = NSMutableAttributedString(string: string)
+                mutableAttributedString.setFont(font: .systemFont(ofSize: 12), forText: mutableWord)
+                mutableAttributedStrings.append(mutableAttributedString)
+            } else {
+                let mutableAttributedString = NSMutableAttributedString(string: string)
+                mutableAttributedStrings.append(mutableAttributedString)
+            }
+        }
+        return mutableAttributedStrings
+    }
 }
