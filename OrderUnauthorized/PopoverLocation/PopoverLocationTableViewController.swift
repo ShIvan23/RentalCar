@@ -11,7 +11,7 @@ protocol PopoverLocationTableViewControllerDelegate: AnyObject {
     func selectedLocation(place: String)
 }
 
-class PopoverLocationTableViewController: UIViewController {
+final class PopoverLocationTableViewController: UIViewController {
     
     private let model: [String]
     weak var delegate: PopoverLocationTableViewControllerDelegate?

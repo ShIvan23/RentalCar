@@ -44,7 +44,7 @@ class ImageAndButtonTableViewCell: UITableViewCell {
         return pageControl
     }()
     
-    private let orderButton: UIButton = {
+    private lazy var orderButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         let attributedText = NSAttributedString(string: "Заказать", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 18)])

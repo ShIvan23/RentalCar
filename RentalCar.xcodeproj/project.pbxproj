@@ -22,6 +22,7 @@
 		2C631E5727A33990003753E1 /* CarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C631E5627A33990003753E1 /* CarModel.swift */; };
 		2C6E4DCD27B91F1E00FBE7E8 /* PopoverLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6E4DCC27B91F1E00FBE7E8 /* PopoverLocationTableViewController.swift */; };
 		2C6E4DD027B9349500FBE7E8 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6E4DCF27B9349500FBE7E8 /* ScreenSize.swift */; };
+		2C6E4DD327B9377E00FBE7E8 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6E4DD227B9377E00FBE7E8 /* CalendarViewController.swift */; };
 		2CF197E427AE768800E82C6C /* DetailCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF197E327AE768800E82C6C /* DetailCarViewController.swift */; };
 		2CF197E627AE81C800E82C6C /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF197E527AE81C800E82C6C /* UIViewController+Extension.swift */; };
 		2CF197E927AE88E800E82C6C /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF197E827AE88E800E82C6C /* ImageCollectionViewCell.swift */; };
@@ -29,7 +30,7 @@
 		2CF197EF27B41A4800E82C6C /* DescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF197EE27B41A4800E82C6C /* DescriptionTableViewCell.swift */; };
 		2CF197F127B5072600E82C6C /* NSMutableAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF197F027B5072600E82C6C /* NSMutableAttributedString+Extension.swift */; };
 		2CF197F427B5190100E82C6C /* OrderUnauthorizedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF197F327B5190100E82C6C /* OrderUnauthorizedViewController.swift */; };
-		ACD7A0687F7B537EA7E62204 /* Pods_RentalCar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB395C0A6C68A0247EAD470F /* Pods_RentalCar.framework */; };
+		A1B504237C3861AE647A5F96 /* Pods_RentalCar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E948B7270624368EE75A7045 /* Pods_RentalCar.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		2C631E5627A33990003753E1 /* CarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarModel.swift; sourceTree = "<group>"; };
 		2C6E4DCC27B91F1E00FBE7E8 /* PopoverLocationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverLocationTableViewController.swift; sourceTree = "<group>"; };
 		2C6E4DCF27B9349500FBE7E8 /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
+		2C6E4DD227B9377E00FBE7E8 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		2CF197E327AE768800E82C6C /* DetailCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCarViewController.swift; sourceTree = "<group>"; };
 		2CF197E527AE81C800E82C6C /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		2CF197E827AE88E800E82C6C /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -58,7 +60,7 @@
 		2CF197F027B5072600E82C6C /* NSMutableAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Extension.swift"; sourceTree = "<group>"; };
 		2CF197F327B5190100E82C6C /* OrderUnauthorizedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderUnauthorizedViewController.swift; sourceTree = "<group>"; };
 		4D1A142E6687753FDD74D20B /* Pods-RentalCar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RentalCar.release.xcconfig"; path = "Target Support Files/Pods-RentalCar/Pods-RentalCar.release.xcconfig"; sourceTree = "<group>"; };
-		DB395C0A6C68A0247EAD470F /* Pods_RentalCar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RentalCar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E948B7270624368EE75A7045 /* Pods_RentalCar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RentalCar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEBD8E7AD4FB8D4CD8BC5B1B /* Pods-RentalCar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RentalCar.debug.xcconfig"; path = "Target Support Files/Pods-RentalCar/Pods-RentalCar.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,7 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ACD7A0687F7B537EA7E62204 /* Pods_RentalCar.framework in Frameworks */,
+				A1B504237C3861AE647A5F96 /* Pods_RentalCar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,7 +79,7 @@
 		23A834DFE9C05F898F12E2B5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DB395C0A6C68A0247EAD470F /* Pods_RentalCar.framework */,
+				E948B7270624368EE75A7045 /* Pods_RentalCar.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -116,6 +118,14 @@
 				2C1DDACA27A08579000B82C6 /* Info.plist */,
 			);
 			path = RentalCar;
+			sourceTree = "<group>";
+		};
+		2C20B13327BABCEA0050F72C /* DescriptionCell */ = {
+			isa = PBXGroup;
+			children = (
+				2CF197EE27B41A4800E82C6C /* DescriptionTableViewCell.swift */,
+			);
+			path = DescriptionCell;
 			sourceTree = "<group>";
 		};
 		2C6295B827A48A73003521D9 /* TabBarController */ = {
@@ -198,10 +208,19 @@
 			path = ScreenSize;
 			sourceTree = "<group>";
 		};
+		2C6E4DD127B9375400FBE7E8 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				2C6E4DD227B9377E00FBE7E8 /* CalendarViewController.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
 		2CF197E227AE766D00E82C6C /* DetailCar */ = {
 			isa = PBXGroup;
 			children = (
 				2CF197E327AE768800E82C6C /* DetailCarViewController.swift */,
+				2C20B13327BABCEA0050F72C /* DescriptionCell */,
 				2CF197EA27B417C200E82C6C /* ImagesAndButtonCell */,
 			);
 			path = DetailCar;
@@ -210,7 +229,6 @@
 		2CF197EA27B417C200E82C6C /* ImagesAndButtonCell */ = {
 			isa = PBXGroup;
 			children = (
-				2CF197EE27B41A4800E82C6C /* DescriptionTableViewCell.swift */,
 				2CF197EB27B4180800E82C6C /* ImageAndButtonTableViewCell.swift */,
 				2CF197ED27B419E700E82C6C /* ImageCollectionVewCell */,
 			);
@@ -230,6 +248,7 @@
 			children = (
 				2CF197F327B5190100E82C6C /* OrderUnauthorizedViewController.swift */,
 				2C6E4DCB27B91EE700FBE7E8 /* PopoverLocation */,
+				2C6E4DD127B9375400FBE7E8 /* Calendar */,
 			);
 			path = OrderUnauthorized;
 			sourceTree = "<group>";
@@ -254,6 +273,7 @@
 				2C1DDAB527A08574000B82C6 /* Sources */,
 				2C1DDAB627A08574000B82C6 /* Frameworks */,
 				2C1DDAB727A08574000B82C6 /* Resources */,
+				007F94DD80944E72AECE432E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -310,6 +330,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		007F94DD80944E72AECE432E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RentalCar/Pods-RentalCar-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RentalCar/Pods-RentalCar-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RentalCar/Pods-RentalCar-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		600D2A010C2673824BBCB721 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -351,6 +388,7 @@
 				2CF197E927AE88E800E82C6C /* ImageCollectionViewCell.swift in Sources */,
 				2C6E4DD027B9349500FBE7E8 /* ScreenSize.swift in Sources */,
 				2C631E4F27A333C3003753E1 /* BaseCollectionViewCell.swift in Sources */,
+				2C6E4DD327B9377E00FBE7E8 /* CalendarViewController.swift in Sources */,
 				2C6295BF27A499B8003521D9 /* LegalCollectionViewCell.swift in Sources */,
 				2C6E4DCD27B91F1E00FBE7E8 /* PopoverLocationTableViewController.swift in Sources */,
 				2C6295C127A49C54003521D9 /* UICollectionViewCell+Extension.swift in Sources */,
@@ -427,7 +465,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -482,7 +520,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
