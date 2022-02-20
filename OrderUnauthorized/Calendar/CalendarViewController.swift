@@ -82,7 +82,7 @@ final class CalendarViewController: UIViewController {
         
         switch datesRange.count {
         case 0:
-            delegate?.dateSelected("", daysCount: 0)
+            delegate?.dateSelected("", daysCount: 1)
             return
         case 1:
             guard let firstDate = firstDate else { return }

@@ -11,9 +11,13 @@ import UIKit
 final class OrderUnauthorizedViewController: UIViewController {
     
     private var carModel: CarModel
+    private var categoryPrice: CategoryPrice 
     private let locationModel = ["Офис(Волгоградский пр-т) *Бесплатно", "Аэропорт/Вокзал", "Другое место"]
     private var selectedLocation = ""
     private var selectedDate = ""
+    private var selectedDaysCount = 1
+    private var currentPrice = 0
+    private var isNeedDriver = false
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -89,12 +93,22 @@ final class OrderUnauthorizedViewController: UIViewController {
     
     private lazy var telephoneTextField = TextField(placeholder: "Ваш номер телефона", keyboardType: .numberPad)
     
+    private let driverLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Нужен водитель"
+        label.font = .boldSystemFont(ofSize: 18)
+        return label
+    }()
+    
+    private let driverSwitcher: UISwitch = {
+        let switcher = UISwitch()
+        switcher.addTarget(self, action: #selector(driverSwitcherAction), for: .valueChanged)
+        return switcher
+    }()
+    
     private lazy var priceOneDay: UILabel = {
         let label = UILabel()
-        let text = "Цена за сутки:"
-        let mutableText = NSMutableAttributedString(string: text + " " + "\(carModel.personPrice) ₽")
-        mutableText.setFont(font: .boldSystemFont(ofSize: 18), forText: text)
-        label.attributedText = mutableText
+        label.attributedText = makeOneDayPrice()
         return label
     }()
     
@@ -114,9 +128,11 @@ final class OrderUnauthorizedViewController: UIViewController {
         return button
     }()
     
-    init(carModel: CarModel) {
+    init(carModel: CarModel, categoryPrice: CategoryPrice) {
         self.carModel = carModel
+        self.categoryPrice = categoryPrice
         super.init(nibName: nil, bundle: nil)
+        currentPrice = makeCurrentPriceWith(categoryPrice, car: carModel)
     }
     
     required init?(coder: NSCoder) {
@@ -171,6 +187,13 @@ final class OrderUnauthorizedViewController: UIViewController {
     
     @objc private func orderButtonAction() {
         print("Отправить письмо на бэк")
+        print("car = \(carModel.marka + " " + carModel.model)")
+        print("selectedLocation = \(selectedLocation)")
+        print("selectedDate = \(selectedDate)")
+        print("Name = \(nameTextField.text!)")
+        print("priceDay = \(priceOneDay.text!)")
+        print("pricePeriod = \(pricePeriodLabel.text!)")
+        print("needDriver = \(isNeedDriver ? "Да" : "Нет")")
     }
     
     private func addTextFieldsDelegate() {
@@ -178,12 +201,36 @@ final class OrderUnauthorizedViewController: UIViewController {
         telephoneTextField.delegate = self
     }
     
-    private func makePeriodPrice(_ daysCount: Int = 1, price: Int? = nil) -> NSMutableAttributedString {
-        let text = "Цена за весь период:"
-        let currentPrice = (price ?? carModel.personPrice) * daysCount
+    private func makeOneDayPrice() -> NSMutableAttributedString {
+        let text = "Цена за сутки:"
+        let currentPrice = isNeedDriver ? currentPrice + carModel.driverPriceImMoscow : currentPrice
         let mutableText = NSMutableAttributedString(string: text + " " + "\(currentPrice) ₽")
         mutableText.setFont(font: .boldSystemFont(ofSize: 18), forText: text)
         return mutableText
+    }
+    
+    private func makePeriodPrice(_ daysCount: Int = 1) -> NSMutableAttributedString {
+        let text = "Цена за весь период:"
+        let price = isNeedDriver ? currentPrice + carModel.driverPriceImMoscow : currentPrice
+        let sum = price * daysCount
+        let mutableText = NSMutableAttributedString(string: text + " " + "\(sum) ₽")
+        mutableText.setFont(font: .boldSystemFont(ofSize: 18), forText: text)
+        return mutableText
+    }
+    
+    private func makeCurrentPriceForDay(daysCount: Int) -> Int {
+        var currentPrice = 0
+        switch daysCount {
+            // - TODO: Добавить логику по изменению прайса в зависимости от количества дней
+        default:
+            currentPrice = carModel.personPrice
+        }
+        return currentPrice
+    }
+    
+    private func updateCoast() {
+        priceOneDay.attributedText = makeOneDayPrice()
+        pricePeriodLabel.attributedText = makePeriodPrice(selectedDaysCount)
     }
     
     private func addGestureToHideKeyboard() {
@@ -241,6 +288,9 @@ final class OrderUnauthorizedViewController: UIViewController {
          /// Telephone number
          numberLabel,
          telephoneTextField,
+         /// Driver
+         driverLabel,
+         driverSwitcher,
          /// Price
          priceOneDay,
          pricePeriodLabel,
@@ -306,9 +356,21 @@ final class OrderUnauthorizedViewController: UIViewController {
             make.height.equalTo(40)
         }
         
+        /// Driver
+        driverSwitcher.snp.makeConstraints { make in
+            make.top.equalTo(telephoneTextField.snp.bottomMargin).offset(25)
+            make.right.equalTo(contentView.snp.right).inset(30)
+        }
+        
+        driverLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(driverSwitcher.snp.centerY)
+            make.left.equalTo(contentView).inset(16)
+            make.right.equalTo(driverSwitcher.snp.left).inset(8)
+        }
+        
         /// Price
         priceOneDay.snp.makeConstraints { make in
-            make.top.equalTo(telephoneTextField.snp.bottom).offset(20)
+            make.top.equalTo(driverLabel.snp.bottom).offset(20)
             make.left.right.equalTo(contentView).inset(16)
         }
         
@@ -349,6 +411,11 @@ final class OrderUnauthorizedViewController: UIViewController {
         resignResponders()
         present(calendarVC, animated: true)
     }
+    
+    @objc private func driverSwitcherAction() {
+        isNeedDriver.toggle()
+        updateCoast()
+    }
 }
 
 // MARK: - UIPopoverPresentationControllerDelegate
@@ -376,20 +443,15 @@ extension OrderUnauthorizedViewController: CalendarViewControllerDelegate {
         if dateString.isEmpty {
             placeholderDateLabel.text = "Выберите даты"
             placeholderDateLabel.textColor = UIColor(hexString: "#C7C7CD")
-            pricePeriodLabel.attributedText = makePeriodPrice()
             selectedDate = ""
+            selectedDaysCount = daysCount
+            updateCoast()
         } else {
             placeholderDateLabel.textColor = .black
             placeholderDateLabel.text = dateString
-            
-            // - TODO: Добавить логику по изменению прайса в зависимости от количества дней
-            var currentPice = 0
-            switch daysCount {
-            default:
-                currentPice = carModel.personPrice
-            }
-            pricePeriodLabel.attributedText = makePeriodPrice(daysCount, price: currentPice)
             selectedDate = dateString
+            selectedDaysCount = daysCount
+            updateCoast()
         }
     }
 }

@@ -9,7 +9,9 @@ import UIKit
 
 final class DetailCarViewController: UIViewController {
     
-    private var carModel: CarModel
+    private let carModel: CarModel
+    private var categoryPrice: CategoryPrice 
+    private var currentPrice = 0
     private var descriptions = [NSMutableAttributedString]()
     
     private lazy var tableView: UITableView = {
@@ -26,9 +28,11 @@ final class DetailCarViewController: UIViewController {
         return tableView
     }()
     
-    init(carModel: CarModel) {
+    init(carModel: CarModel, categoryPrice: CategoryPrice) {
         self.carModel = carModel
+        self.categoryPrice = categoryPrice
         super.init(nibName: nil, bundle: nil)
+        currentPrice = makeCurrentPriceWith(categoryPrice, car: carModel)
         makeDescriptionArray()
     }
     
@@ -59,7 +63,7 @@ final class DetailCarViewController: UIViewController {
     
     func makeDescriptionArray() {
         var stringArray = [String]()
-        stringArray.append("\(carModel.personPrice)")
+        stringArray.append("\(currentPrice)")
         stringArray.append(carModel.engineVolume)
         stringArray.append("\(carModel.numberOfSeats)")
         stringArray.append(carModel.frontDrive)
@@ -114,7 +118,7 @@ extension DetailCarViewController: UITableViewDelegate {
 
 extension DetailCarViewController: ImageAndButtonTableViewCellDelegate {
     func orderButtonTapped() {
-        let orderUnauthorizesVC = OrderUnauthorizedViewController(carModel: carModel)
+        let orderUnauthorizesVC = OrderUnauthorizedViewController(carModel: carModel, categoryPrice: categoryPrice)
         navigationController?.pushViewController(orderUnauthorizesVC, animated: true)
     }
 }

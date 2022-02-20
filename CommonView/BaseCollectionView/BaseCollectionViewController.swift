@@ -145,7 +145,8 @@ extension BaseCollectionViewController: UICollectionViewDelegateFlowLayout {
             guard let model = model as? [CarModel] else { fatalError() }
             /// Экран с детальной информацией
             let currentCar = model[indexPath.item]
-            let detailViewController = DetailCarViewController(carModel: currentCar)
+            // TODO: - убрать force unwrap 
+            let detailViewController = DetailCarViewController(carModel: currentCar, categoryPrice: categoryPrice!)
             detailViewController.title = currentCar.marka + " " + currentCar.model
             navigationController?.pushViewController(detailViewController, animated: true)
 
