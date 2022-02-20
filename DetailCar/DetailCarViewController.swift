@@ -59,6 +59,7 @@ final class DetailCarViewController: UIViewController {
     
     func makeDescriptionArray() {
         var stringArray = [String]()
+        stringArray.append("\(carModel.personPrice)")
         stringArray.append(carModel.engineVolume)
         stringArray.append("\(carModel.numberOfSeats)")
         stringArray.append(carModel.frontDrive)
@@ -113,7 +114,7 @@ extension DetailCarViewController: UITableViewDelegate {
 
 extension DetailCarViewController: ImageAndButtonTableViewCellDelegate {
     func orderButtonTapped() {
-        let orderUnauthorizesVC = OrderUnauthorizedViewController()
+        let orderUnauthorizesVC = OrderUnauthorizedViewController(carModel: carModel)
         navigationController?.pushViewController(orderUnauthorizesVC, animated: true)
     }
 }

@@ -10,7 +10,7 @@ import SnapKit
 import FSCalendar
 
 protocol CalendarViewControllerDelegate: AnyObject {
-    func dateSelected(_ dateString: String)
+    func dateSelected(_ dateString: String, daysCount: Int)
 }
 
 final class CalendarViewController: UIViewController {
@@ -82,17 +82,18 @@ final class CalendarViewController: UIViewController {
         
         switch datesRange.count {
         case 0:
+            delegate?.dateSelected("", daysCount: 0)
             return
         case 1:
             guard let firstDate = firstDate else { return }
             let firstDateString = dateFormatter.string(from: firstDate as Date)
-            delegate?.dateSelected(firstDateString)
+            delegate?.dateSelected(firstDateString, daysCount: 1)
         default:
             guard let firstDate = firstDate,
                   let lastDate = lastDate else { return }
             let firstDateString = dateFormatter.string(from: firstDate as Date)
             let lastDateString = dateFormatter.string(from: lastDate as Date)
-            delegate?.dateSelected("C " + firstDateString + " по " + lastDateString)
+            delegate?.dateSelected("C " + firstDateString + " по " + lastDateString, daysCount: datesRange.count)
         }
     }
     

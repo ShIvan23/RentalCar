@@ -20,10 +20,10 @@ extension NSMutableAttributedString {
 
 extension Array {
     func makeAttributedString(stringArray: [String]) -> [NSMutableAttributedString] {
-        let forMutableArray = ["Объем двигателя:", "Кол-во мест:", "Привод:", "Год выпуска:", "Коробка:", "Кол-во дверей:", "Кондиционер:", "Описание автомобиля:"]
+        let forMutableArray = ["Цена:", "Объем двигателя:", "Кол-во мест:", "Привод:", "Год выпуска:", "Коробка:", "Кол-во дверей:", "Кондиционер:", "Описание автомобиля:"]
         var mutableAttributedStrings = [NSMutableAttributedString]()
         for (index, string) in stringArray.enumerated() {
-            let mutableAttributedString = NSMutableAttributedString(string: forMutableArray[index] + " " + string)
+            let mutableAttributedString = NSMutableAttributedString(string: forMutableArray[index] + " " + string + (index == 0 ? " ₽ / сутки" : ""))
             mutableAttributedString.setFont(font: .boldSystemFont(ofSize: 20), forText: forMutableArray[index])
             mutableAttributedStrings.append(mutableAttributedString)
         }
