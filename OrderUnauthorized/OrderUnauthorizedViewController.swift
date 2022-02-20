@@ -15,7 +15,12 @@ final class OrderUnauthorizedViewController: UIViewController {
     private var selectedLocation = ""
     private var selectedDate = ""
     
-    private lazy var scrollView = UIScrollView()
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.isScrollEnabled = false
+        return scrollView
+    }()
+    
     private let contentView = UIView()
     
     private let locationLabel: UILabel = {
@@ -82,6 +87,8 @@ final class OrderUnauthorizedViewController: UIViewController {
         return label
     }()
     
+    private lazy var telephoneTextField = TextField(placeholder: "Ваш номер телефона", keyboardType: .numberPad)
+    
     private lazy var priceOneDay: UILabel = {
         let label = UILabel()
         let text = "Цена за сутки:"
@@ -97,7 +104,15 @@ final class OrderUnauthorizedViewController: UIViewController {
         return label
     }()
     
-    private lazy var telephoneTextField = TextField(placeholder: "Ваш номер телефона", keyboardType: .numberPad)
+    private lazy var orderButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        let attributedText = NSAttributedString(string: "Отправить заказ", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)])
+        button.setAttributedTitle(attributedText, for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(orderButtonAction), for: .touchUpInside)
+        return button
+    }()
     
     init(carModel: CarModel) {
         self.carModel = carModel
@@ -115,6 +130,47 @@ final class OrderUnauthorizedViewController: UIViewController {
         addLocationGesture()
         addTextFieldsDelegate()
         addGestureToHideKeyboard()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        orderButton.setCustomGradient()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillHide() {
+        scrollView.contentInset.bottom = 0
+        scrollView.setContentOffset(.zero, animated: true)
+        scrollView.isScrollEnabled = false
+    }
+    
+    @objc func keyboardWillChange(notification: NSNotification) {
+        /// тут есть расчет высоты клавиатуры
+        /// Можно захардкодить высоту scrollView. И тогда из высоты экрана вычитать высоту клавиатуры, вычитать высоту scrollView. И это значение нужно будет добавить к scrollView.contentInset.bottom
+        
+//                if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+//                    if nameTextField.isFirstResponder || telephoneTextField.isFirstResponder {
+                        scrollView.contentInset.bottom = 100
+                        scrollView.isScrollEnabled = true
+//                    }
+//                }
+    }
+    
+    @objc private func orderButtonAction() {
+        print("Отправить письмо на бэк")
     }
     
     private func addTextFieldsDelegate() {
@@ -155,9 +211,10 @@ final class OrderUnauthorizedViewController: UIViewController {
     private func layout() {
         /// Scroll View
         view.addSubview(scrollView)
-
+        
         scrollView.snp.makeConstraints { make in
-            make.top.left.bottom.right.equalToSuperview()
+            make.top.equalTo(view.snp.topMargin)
+            make.bottom.left.right.equalToSuperview()
         }
         
         /// Content view
@@ -169,7 +226,7 @@ final class OrderUnauthorizedViewController: UIViewController {
             make.width.equalTo(scrollView)
             make.height.equalTo(scrollView)
         }
-
+        
         /// Location
         [locationLabel,
          locationView,
@@ -184,9 +241,11 @@ final class OrderUnauthorizedViewController: UIViewController {
          /// Telephone number
          numberLabel,
          telephoneTextField,
-        /// Price
+         /// Price
          priceOneDay,
-         pricePeriodLabel]
+         pricePeriodLabel,
+        /// Order button
+         orderButton]
             .forEach { contentView.addSubview($0) }
         
         /// Location
@@ -257,6 +316,13 @@ final class OrderUnauthorizedViewController: UIViewController {
             make.top.equalTo(priceOneDay.snp.bottom).offset(20)
             make.left.right.equalTo(contentView).inset(16)
         }
+        
+        /// Order Button
+        orderButton.snp.makeConstraints { make in
+            make.top.equalTo(pricePeriodLabel.snp.bottom).offset(20)
+            make.left.right.equalTo(contentView).inset(16)
+            make.height.equalTo(40)
+        }
     }
     
     
@@ -283,7 +349,6 @@ final class OrderUnauthorizedViewController: UIViewController {
         resignResponders()
         present(calendarVC, animated: true)
     }
-    
 }
 
 // MARK: - UIPopoverPresentationControllerDelegate
@@ -334,6 +399,47 @@ extension OrderUnauthorizedViewController: CalendarViewControllerDelegate {
 extension OrderUnauthorizedViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         telephoneTextField.becomeFirstResponder()
+        return true
+    }
+    
+    /// Если пользователь перешел на ввод номера добавляем +7
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField == telephoneTextField {
+            textField.text = "+7"
+        }
+        return true
+    }
+    
+    /// Маска для номера телефона
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == telephoneTextField {
+            let char = string.cString(using: String.Encoding.utf8)!
+            let isBackSpace = strcmp(char, "\\b")
+            
+            if (isBackSpace == -92) && (textField.text?.count)! > 0 {
+                if (textField.text?.count)! == 4 {
+                    textField.text = "+7"
+                    return false
+                }
+                if textField.text! == "+7" {
+                    return false
+                }
+                textField.text!.removeLast()
+                return false
+            }
+            
+            if (textField.text?.count)! == 5 {
+                let text = textField.text!.replacingOccurrences(of: "+7", with: "")
+                textField.text = "+7(\(text)) "  //There we are ading () and space two things
+            }
+            else if (textField.text?.count)! == 11 {
+                let text = textField.text!.replacingOccurrences(of: "+7", with: "")
+                textField.text = "+7\(text)-" //there we are ading - in textfield
+            }
+            else if (textField.text?.count)! > 15 {
+                return false
+            }
+        }
         return true
     }
 }

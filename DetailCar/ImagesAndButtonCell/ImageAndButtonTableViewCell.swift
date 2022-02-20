@@ -47,7 +47,7 @@ class ImageAndButtonTableViewCell: UITableViewCell {
     private lazy var orderButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        let attributedText = NSAttributedString(string: "Заказать", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 18)])
+        let attributedText = NSAttributedString(string: "Заказать", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)])
         button.setAttributedTitle(attributedText, for: .normal)
         button.tintColor = .white
         button.addTarget(self, action: #selector(orderButtonAction), for: .touchUpInside)
@@ -85,7 +85,7 @@ class ImageAndButtonTableViewCell: UITableViewCell {
             orderButton.topAnchor.constraint(equalTo: pageControl.bottomAnchor, constant: 8),
             orderButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             orderButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            orderButton.heightAnchor.constraint(equalToConstant: 50)
+            orderButton.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
     

@@ -25,7 +25,6 @@
 		2C6E4DD327B9377E00FBE7E8 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6E4DD227B9377E00FBE7E8 /* CalendarViewController.swift */; };
 		2CC9AF8027C188D40082D81C /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC9AF7F27C188D40082D81C /* TextField.swift */; };
 		2CF197E427AE768800E82C6C /* DetailCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF197E327AE768800E82C6C /* DetailCarViewController.swift */; };
-		2CF197E627AE81C800E82C6C /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF197E527AE81C800E82C6C /* UIViewController+Extension.swift */; };
 		2CF197E927AE88E800E82C6C /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF197E827AE88E800E82C6C /* ImageCollectionViewCell.swift */; };
 		2CF197EC27B4180800E82C6C /* ImageAndButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF197EB27B4180800E82C6C /* ImageAndButtonTableViewCell.swift */; };
 		2CF197EF27B41A4800E82C6C /* DescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF197EE27B41A4800E82C6C /* DescriptionTableViewCell.swift */; };
@@ -55,7 +54,6 @@
 		2C6E4DD227B9377E00FBE7E8 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		2CC9AF7F27C188D40082D81C /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextField.swift; path = ../../../Documents/TextField.swift; sourceTree = "<group>"; };
 		2CF197E327AE768800E82C6C /* DetailCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCarViewController.swift; sourceTree = "<group>"; };
-		2CF197E527AE81C800E82C6C /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		2CF197E827AE88E800E82C6C /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		2CF197EB27B4180800E82C6C /* ImageAndButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAndButtonTableViewCell.swift; sourceTree = "<group>"; };
 		2CF197EE27B41A4800E82C6C /* DescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionTableViewCell.swift; sourceTree = "<group>"; };
@@ -180,7 +178,6 @@
 				2C631E5327A337EE003753E1 /* UIView+Extension.swift */,
 				2C6295B627A465E3003521D9 /* UIColor+Extension.swift */,
 				2C6295C027A49C54003521D9 /* UICollectionViewCell+Extension.swift */,
-				2CF197E527AE81C800E82C6C /* UIViewController+Extension.swift */,
 				2CF197F027B5072600E82C6C /* NSMutableAttributedString+Extension.swift */,
 			);
 			path = Extensions;
@@ -394,7 +391,6 @@
 				2C631E5227A33419003753E1 /* UICollectionView_UITableView+Extension.swift in Sources */,
 				2CF197EC27B4180800E82C6C /* ImageAndButtonTableViewCell.swift in Sources */,
 				2C6295BA27A48AB7003521D9 /* MainTabBarViewController.swift in Sources */,
-				2CF197E627AE81C800E82C6C /* UIViewController+Extension.swift in Sources */,
 				2C631E4C27A33213003753E1 /* BaseCollectionViewController.swift in Sources */,
 				2CF197F127B5072600E82C6C /* NSMutableAttributedString+Extension.swift in Sources */,
 				2CF197E927AE88E800E82C6C /* ImageCollectionViewCell.swift in Sources */,
