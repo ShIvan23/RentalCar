@@ -5,6 +5,7 @@
 //  Created by Ivan on 27.01.2022.
 //
 
+import SnapKit
 import UIKit
 
 class BaseCollectionViewController: UIViewController {
@@ -12,36 +13,51 @@ class BaseCollectionViewController: UIViewController {
     enum CollectionStyle {
         case listStyle
         case categoryStyle
+        case stockStyle
+        case rentalCondition
     }
     
     private let collectionStyle: CollectionStyle
     private let model: [Model]
     private let categoryPrice: CategoryPrice?
     private let isChooseLegal: Bool
+    private let isChooseConditions: Bool
+    
+    private lazy var scrollView = UIScrollView()
+    private lazy var contentView = UIView()
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(cell: BaseCollectionViewCell.self)
         collectionView.register(cell: LegalCollectionViewCell.self)
+        collectionView.register(cell: StockCollectionViewCell.self)
         collectionView.backgroundColor = .white
         return collectionView
+    }()
+    
+    private lazy var searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.backgroundImage = UIImage()
+        searchBar.placeholder = "Поиск машины"
+        return searchBar
     }()
     
     init(
         collectionStyle: CollectionStyle,
         categoryPrice: CategoryPrice? = nil,
         model: [Model],
-        isChooseLegal: Bool = false
+        isChooseLegal: Bool = false,
+        isChooseConditions: Bool = false
     ) {
         self.collectionStyle = collectionStyle
         self.categoryPrice = categoryPrice
         self.model = model
         self.isChooseLegal = isChooseLegal
+        self.isChooseConditions = isChooseConditions
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -60,14 +76,49 @@ class BaseCollectionViewController: UIViewController {
     }
     
     private func setLayout() {
-        view.addSubview(collectionView)
-        
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
+        switch collectionStyle {
+        case .categoryStyle:
+            if !isChooseLegal {
+                view.addSubview(scrollView)
+                
+                scrollView.snp.makeConstraints { make in
+                    make.top.left.bottom.right.equalToSuperview()
+                }
+                
+                scrollView.addSubview(contentView)
+                
+                contentView.snp.makeConstraints { make in
+                    make.top.bottom.equalTo(scrollView)
+                    make.left.right.equalTo(view)
+                    make.width.equalTo(scrollView)
+                    make.height.equalTo(scrollView)
+                }
+                
+                [searchBar, collectionView].forEach { contentView.addSubview($0) }
+                
+                searchBar.snp.makeConstraints { make in
+                    make.top.equalTo(contentView.snp.top)
+                    make.left.right.equalToSuperview().inset(4)
+                }
+                
+                collectionView.snp.makeConstraints { make in
+                    make.top.equalTo(searchBar.snp.bottom).offset(8)
+                    make.left.right.equalToSuperview()
+                    make.bottom.equalTo(contentView.snp.bottom)
+                }
+            } else {
+                /// На экране с выбором типа лица не нужен поиск. поэтому идем в дефолтный кейс
+                fallthrough
+            }
+            
+        default:
+            view.addSubview(collectionView)
+            
+            collectionView.snp.makeConstraints { make in
+                make.top.left.right.equalToSuperview()
+                make.bottom.equalTo(view.snp.bottomMargin)
+            }
+        }
     }
 }
 
@@ -96,7 +147,20 @@ extension BaseCollectionViewController: UICollectionViewDataSource {
             let cell: LegalCollectionViewCell = collectionView.dequeueCell(for: indexPath)
             cell.setupCell(model: model[indexPath.item])
             return cell
+          
+            /// Ячейка для отображения условий проката
+        case .rentalCondition:
+            guard let model = model as? [InformationModel] else { fatalError() }
+            let cell: LegalCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+            cell.setupCell(model: model[indexPath.item])
+            return cell
             
+            /// Ячейка для отображения акций
+        case .stockStyle:
+            guard let model = model as? [InformationModel] else { fatalError() }
+            let cell: StockCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+            cell.setupCell(stockModel: model[indexPath.item])
+            return cell
         }
     }
 }
@@ -116,14 +180,21 @@ extension BaseCollectionViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.bounds.width - sideInset * 3) / 2
-        return CGSize(width: width, height: cellHeight)
+        switch collectionStyle {
+        case .stockStyle:
+            let width = collectionView.bounds.width - sideInset * 2
+            let height: CGFloat = 200
+            return CGSize(width: width, height: height)
+        default:
+            let width = (collectionView.bounds.width - sideInset * 3) / 2
+            return CGSize(width: width, height: cellHeight)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         switch collectionStyle {
             
-        case .categoryStyle:
+        case .categoryStyle, .rentalCondition:
             switch model.count {
                 /// Если всего 2 ячейки, то это выбор юр лица и ячейки будут посередине экрана
                 // TODO: - протестить на разных экранах
@@ -134,7 +205,7 @@ extension BaseCollectionViewController: UICollectionViewDelegateFlowLayout {
                 return UIEdgeInsets(top: sideInset, left: sideInset, bottom: sideInset, right: sideInset)
             }
 
-        case .listStyle:
+        default:
             return UIEdgeInsets(top: sideInset, left: sideInset, bottom: sideInset, right: sideInset)
         }
     }
@@ -175,6 +246,13 @@ extension BaseCollectionViewController: UICollectionViewDelegateFlowLayout {
                 collectionViewController.title = model[indexPath.item].className
                 navigationController?.pushViewController(collectionViewController, animated: true)
             }
+            
+        case .stockStyle:
+            print("Открыть детальный экран с акцией?")
+            
+            /// Если выбирается условие проката, то показывает детальный экран с условиями
+        case .rentalCondition:
+            print("Показать экран с условиями")
         }
     }
 }

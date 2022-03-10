@@ -61,6 +61,11 @@ final class LegalCollectionViewCell: UICollectionViewCell {
         legalImage.image = model.imageGroup
     }
     
+    func setupCell(model: InformationModel) {
+        titleLabel.text = model.name
+        legalImage.image = model.image
+    }
+    
     private func setupLayout() {
         [titleLabel, legalImage, gradientView, chooseLabel].forEach {
             contentView.addSubview($0)

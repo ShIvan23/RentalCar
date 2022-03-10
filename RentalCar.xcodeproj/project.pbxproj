@@ -25,6 +25,8 @@
 		2C6E4DD327B9377E00FBE7E8 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6E4DD227B9377E00FBE7E8 /* CalendarViewController.swift */; };
 		2CC9AF8027C188D40082D81C /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC9AF7F27C188D40082D81C /* TextField.swift */; };
 		2CC9AF8427C2BE690082D81C /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC9AF8327C2BE690082D81C /* UIViewController+Extension.swift */; };
+		2CC9AF8627C2C6630082D81C /* InformationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC9AF8527C2C6630082D81C /* InformationModel.swift */; };
+		2CC9AF8927C2C9E20082D81C /* StockCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC9AF8827C2C9E20082D81C /* StockCollectionViewCell.swift */; };
 		2CF197E427AE768800E82C6C /* DetailCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF197E327AE768800E82C6C /* DetailCarViewController.swift */; };
 		2CF197E927AE88E800E82C6C /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF197E827AE88E800E82C6C /* ImageCollectionViewCell.swift */; };
 		2CF197EC27B4180800E82C6C /* ImageAndButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF197EB27B4180800E82C6C /* ImageAndButtonTableViewCell.swift */; };
@@ -55,6 +57,8 @@
 		2C6E4DD227B9377E00FBE7E8 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		2CC9AF7F27C188D40082D81C /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextField.swift; path = ../../../Documents/TextField.swift; sourceTree = "<group>"; };
 		2CC9AF8327C2BE690082D81C /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		2CC9AF8527C2C6630082D81C /* InformationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationModel.swift; sourceTree = "<group>"; };
+		2CC9AF8827C2C9E20082D81C /* StockCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockCollectionViewCell.swift; sourceTree = "<group>"; };
 		2CF197E327AE768800E82C6C /* DetailCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCarViewController.swift; sourceTree = "<group>"; };
 		2CF197E827AE88E800E82C6C /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		2CF197EB27B4180800E82C6C /* ImageAndButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAndButtonTableViewCell.swift; sourceTree = "<group>"; };
@@ -90,7 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				2C6295B827A48A73003521D9 /* TabBarController */,
-				2C631E4927A33190003753E1 /* CommonView */,
+				2C631E4927A33190003753E1 /* CommonCollectionView */,
 				2CF197E227AE766D00E82C6C /* DetailCar */,
 				2CF197F227B5183D00E82C6C /* OrderUnauthorized */,
 				2C631E5527A33983003753E1 /* Models */,
@@ -147,18 +151,19 @@
 			path = LegalCollectionViewCell;
 			sourceTree = "<group>";
 		};
-		2C631E4927A33190003753E1 /* CommonView */ = {
+		2C631E4927A33190003753E1 /* CommonCollectionView */ = {
 			isa = PBXGroup;
 			children = (
 				2C631E4A27A3319A003753E1 /* BaseCollectionView */,
 			);
-			path = CommonView;
+			path = CommonCollectionView;
 			sourceTree = "<group>";
 		};
 		2C631E4A27A3319A003753E1 /* BaseCollectionView */ = {
 			isa = PBXGroup;
 			children = (
 				2C631E4B27A33213003753E1 /* BaseCollectionViewController.swift */,
+				2CC9AF8727C2C9BC0082D81C /* StockCollectionViewCell */,
 				2C631E4D27A333A3003753E1 /* BaseCollectionViewCell */,
 				2C6295BD27A4999F003521D9 /* LegalCollectionViewCell */,
 			);
@@ -191,6 +196,7 @@
 			children = (
 				2C631E5627A33990003753E1 /* CarModel.swift */,
 				2C6295C227ABBADC003521D9 /* CategoryPrice.swift */,
+				2CC9AF8527C2C6630082D81C /* InformationModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -225,6 +231,14 @@
 				2CC9AF7F27C188D40082D81C /* TextField.swift */,
 			);
 			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		2CC9AF8727C2C9BC0082D81C /* StockCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				2CC9AF8827C2C9E20082D81C /* StockCollectionViewCell.swift */,
+			);
+			path = StockCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		2CF197E227AE766D00E82C6C /* DetailCar */ = {
@@ -390,6 +404,7 @@
 				2C631E5427A337EE003753E1 /* UIView+Extension.swift in Sources */,
 				2CC9AF8027C188D40082D81C /* TextField.swift in Sources */,
 				2C631E5727A33990003753E1 /* CarModel.swift in Sources */,
+				2CC9AF8927C2C9E20082D81C /* StockCollectionViewCell.swift in Sources */,
 				2CF197EF27B41A4800E82C6C /* DescriptionTableViewCell.swift in Sources */,
 				2C631E5227A33419003753E1 /* UICollectionView_UITableView+Extension.swift in Sources */,
 				2CF197EC27B4180800E82C6C /* ImageAndButtonTableViewCell.swift in Sources */,
@@ -401,6 +416,7 @@
 				2C631E4F27A333C3003753E1 /* BaseCollectionViewCell.swift in Sources */,
 				2CC9AF8427C2BE690082D81C /* UIViewController+Extension.swift in Sources */,
 				2C6E4DD327B9377E00FBE7E8 /* CalendarViewController.swift in Sources */,
+				2CC9AF8627C2C6630082D81C /* InformationModel.swift in Sources */,
 				2C6295BF27A499B8003521D9 /* LegalCollectionViewCell.swift in Sources */,
 				2C6E4DCD27B91F1E00FBE7E8 /* PopoverLocationTableViewController.swift in Sources */,
 				2C6295C127A49C54003521D9 /* UICollectionViewCell+Extension.swift in Sources */,

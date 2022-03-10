@@ -128,6 +128,15 @@ final class OrderUnauthorizedViewController: UIViewController {
         return button
     }()
     
+    private lazy var registerButton: UIButton = {
+        let button = UIButton(type: .system)
+        let attributedText = NSAttributedString(string: "Зарегистрироваться и оплатить", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)])
+        button.setAttributedTitle(attributedText, for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(registerButtonAction), for: .touchUpInside)
+        return button
+    }()
+    
     init(carModel: CarModel, categoryPrice: CategoryPrice) {
         self.carModel = carModel
         self.categoryPrice = categoryPrice
@@ -151,6 +160,7 @@ final class OrderUnauthorizedViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         orderButton.setCustomGradient()
+        registerButton.setCustomGradient()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -194,6 +204,10 @@ final class OrderUnauthorizedViewController: UIViewController {
         print("priceDay = \(priceOneDay.text!)")
         print("pricePeriod = \(pricePeriodLabel.text!)")
         print("needDriver = \(isNeedDriver ? "Да" : "Нет")")
+    }
+    
+    @objc private func registerButtonAction() {
+        print("register")
     }
     
     private func addTextFieldsDelegate() {
@@ -295,7 +309,10 @@ final class OrderUnauthorizedViewController: UIViewController {
          priceOneDay,
          pricePeriodLabel,
         /// Order button
-         orderButton]
+         orderButton,
+        /// Register button
+         registerButton
+         ]
             .forEach { contentView.addSubview($0) }
         
         /// Location
@@ -382,6 +399,13 @@ final class OrderUnauthorizedViewController: UIViewController {
         /// Order Button
         orderButton.snp.makeConstraints { make in
             make.top.equalTo(pricePeriodLabel.snp.bottom).offset(20)
+            make.left.right.equalTo(contentView).inset(16)
+            make.height.equalTo(40)
+        }
+        
+        /// Register button
+        registerButton.snp.makeConstraints { make in
+            make.top.equalTo(orderButton.snp.bottom).offset(20)
             make.left.right.equalTo(contentView).inset(16)
             make.height.equalTo(40)
         }

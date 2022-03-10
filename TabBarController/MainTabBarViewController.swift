@@ -20,7 +20,19 @@ class MainTabBarViewController: UITabBarController {
         model: CarClass.makeMockLegalModel(),
         isChooseLegal: true
     )
-
+    
+    private lazy var stockVC = BaseCollectionViewController(
+        collectionStyle: .stockStyle,
+        model: InformationModel.makeMockStocks(),
+        isChooseLegal: true
+    )
+    
+    private lazy var rentalConditionsVC = BaseCollectionViewController(
+        collectionStyle: .rentalCondition,
+        model: InformationModel.makeMockConditions(),
+        isChooseConditions: true
+    )
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTabBar()
@@ -37,7 +49,10 @@ class MainTabBarViewController: UITabBarController {
     private func setControllers() {
         viewControllers = [
             createNavController(for: allCars, title: "Физ лица", image: UIImage(named: "car2")!),
-            createNavController(for: legalEntity, title: "Юр лица", image:  UIImage(named: "car2")!)
+            createNavController(for: legalEntity, title: "Юр лица", image:  UIImage(named: "car2")!),
+            createNavController(for: stockVC, title: "Акции", image: UIImage(named: "stock")!),
+            // TODO: - Картинка для условий
+            createNavController(for: rentalConditionsVC, title: "Условия", image: UIImage())
         ]
     }
     
