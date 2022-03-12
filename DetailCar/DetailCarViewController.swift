@@ -19,6 +19,7 @@ final class DetailCarViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(cell: ImageAndButtonTableViewCell.self)
         tableView.register(cell: DescriptionTableViewCell.self)
+        tableView.register(cell: CallUsTableViewCell.self)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
@@ -80,7 +81,7 @@ final class DetailCarViewController: UIViewController {
 
 extension DetailCarViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        descriptions.count + 1
+        descriptions.count + 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -88,6 +89,12 @@ extension DetailCarViewController: UITableViewDataSource {
         case 0:
             let cell: ImageAndButtonTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.setupCell(images: carModel.allImages)
+            cell.delegate = self
+            return cell
+            
+            /// Позвонить нам
+        case descriptions.count + 1:
+            let cell: CallUsTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.delegate = self
             return cell
             
@@ -108,17 +115,33 @@ extension DetailCarViewController: UITableViewDelegate {
         case 0:
             return view.frame.width + 26 + 8 + 50 // коллекция, pageControl, отступ, кнопка
             // на iOS 14 pageControl 27.5
+            
+            /// Большое описание машины
         case descriptions.count:
             return UITableView.automaticDimension
+            
+            /// Позвонить нам
+        case descriptions.count + 1:
+            return 40 + 16 * 2
         default:
             return 40
         }
     }
 }
 
+// MARK: - ImageAndButtonTableViewCellDelegate
+
 extension DetailCarViewController: ImageAndButtonTableViewCellDelegate {
     func orderButtonTapped() {
         let orderUnauthorizesVC = OrderUnauthorizedViewController(carModel: carModel, categoryPrice: categoryPrice)
         navigationController?.pushViewController(orderUnauthorizesVC, animated: true)
+    }
+}
+
+// MARK: - CallUsDelegate
+
+extension DetailCarViewController: CallUsDelegate {
+    func callUs() {
+        print("Позвонить в прокат")
     }
 }

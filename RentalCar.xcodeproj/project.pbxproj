@@ -27,6 +27,7 @@
 		2C9DF80227DB5B9600C176AC /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9DF80127DB5B9600C176AC /* ContactsViewController.swift */; };
 		2C9DF80427DB95C600C176AC /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9DF80327DB95C600C176AC /* RequestManager.swift */; };
 		2C9DF80627DB98B300C176AC /* RentalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9DF80527DB98B300C176AC /* RentalManager.swift */; };
+		2C9DF85227DCD5F000C176AC /* CallUsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9DF85127DCD5F000C176AC /* CallUsTableViewCell.swift */; };
 		2CC9AF8027C188D40082D81C /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC9AF7F27C188D40082D81C /* TextField.swift */; };
 		2CC9AF8427C2BE690082D81C /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC9AF8327C2BE690082D81C /* UIViewController+Extension.swift */; };
 		2CC9AF8627C2C6630082D81C /* InformationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC9AF8527C2C6630082D81C /* InformationModel.swift */; };
@@ -63,6 +64,7 @@
 		2C9DF80127DB5B9600C176AC /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		2C9DF80327DB95C600C176AC /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		2C9DF80527DB98B300C176AC /* RentalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentalManager.swift; sourceTree = "<group>"; };
+		2C9DF85127DCD5F000C176AC /* CallUsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallUsTableViewCell.swift; sourceTree = "<group>"; };
 		2CC9AF7F27C188D40082D81C /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextField.swift; path = ../../../Documents/TextField.swift; sourceTree = "<group>"; };
 		2CC9AF8327C2BE690082D81C /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		2CC9AF8527C2C6630082D81C /* InformationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationModel.swift; sourceTree = "<group>"; };
@@ -101,7 +103,6 @@
 		2C1DDAB027A08574000B82C6 = {
 			isa = PBXGroup;
 			children = (
-				2C9DF84D27DCC00700C176AC /* SearchTableView */,
 				2C6295B827A48A73003521D9 /* TabBarController */,
 				2C631E4927A33190003753E1 /* CommonCollectionView */,
 				2CF197E227AE766D00E82C6C /* DetailCar */,
@@ -254,11 +255,12 @@
 			path = Contacts;
 			sourceTree = "<group>";
 		};
-		2C9DF84D27DCC00700C176AC /* SearchTableView */ = {
+		2C9DF85027DCD5CF00C176AC /* CallUsCell */ = {
 			isa = PBXGroup;
 			children = (
+				2C9DF85127DCD5F000C176AC /* CallUsTableViewCell.swift */,
 			);
-			path = SearchTableView;
+			path = CallUsCell;
 			sourceTree = "<group>";
 		};
 		2CC9AF7E27C1889C0082D81C /* CustomViews */ = {
@@ -282,6 +284,7 @@
 			children = (
 				2CF197E327AE768800E82C6C /* DetailCarViewController.swift */,
 				2C20B13327BABCEA0050F72C /* DescriptionCell */,
+				2C9DF85027DCD5CF00C176AC /* CallUsCell */,
 				2CF197EA27B417C200E82C6C /* ImagesAndButtonCell */,
 			);
 			path = DetailCar;
@@ -457,6 +460,7 @@
 				2CC9AF8627C2C6630082D81C /* InformationModel.swift in Sources */,
 				2C6295BF27A499B8003521D9 /* LegalCollectionViewCell.swift in Sources */,
 				2C9DF80627DB98B300C176AC /* RentalManager.swift in Sources */,
+				2C9DF85227DCD5F000C176AC /* CallUsTableViewCell.swift in Sources */,
 				2C6E4DCD27B91F1E00FBE7E8 /* PopoverTableViewController.swift in Sources */,
 				2C6295C127A49C54003521D9 /* UICollectionViewCell+Extension.swift in Sources */,
 				2CF197F427B5190100E82C6C /* OrderUnauthorizedViewController.swift in Sources */,
