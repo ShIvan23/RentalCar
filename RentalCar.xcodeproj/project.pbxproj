@@ -23,6 +23,10 @@
 		2C6E4DCD27B91F1E00FBE7E8 /* PopoverLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6E4DCC27B91F1E00FBE7E8 /* PopoverLocationTableViewController.swift */; };
 		2C6E4DD027B9349500FBE7E8 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6E4DCF27B9349500FBE7E8 /* ScreenSize.swift */; };
 		2C6E4DD327B9377E00FBE7E8 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6E4DD227B9377E00FBE7E8 /* CalendarViewController.swift */; };
+		2C9DF7DF27D9F45A00C176AC /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9DF7DE27D9F45A00C176AC /* NetworkManager.swift */; };
+		2C9DF80227DB5B9600C176AC /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9DF80127DB5B9600C176AC /* ContactsViewController.swift */; };
+		2C9DF80427DB95C600C176AC /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9DF80327DB95C600C176AC /* RequestManager.swift */; };
+		2C9DF80627DB98B300C176AC /* RentalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9DF80527DB98B300C176AC /* RentalManager.swift */; };
 		2CC9AF8027C188D40082D81C /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC9AF7F27C188D40082D81C /* TextField.swift */; };
 		2CC9AF8427C2BE690082D81C /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC9AF8327C2BE690082D81C /* UIViewController+Extension.swift */; };
 		2CC9AF8627C2C6630082D81C /* InformationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC9AF8527C2C6630082D81C /* InformationModel.swift */; };
@@ -55,6 +59,10 @@
 		2C6E4DCC27B91F1E00FBE7E8 /* PopoverLocationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverLocationTableViewController.swift; sourceTree = "<group>"; };
 		2C6E4DCF27B9349500FBE7E8 /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
 		2C6E4DD227B9377E00FBE7E8 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		2C9DF7DE27D9F45A00C176AC /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		2C9DF80127DB5B9600C176AC /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
+		2C9DF80327DB95C600C176AC /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
+		2C9DF80527DB98B300C176AC /* RentalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentalManager.swift; sourceTree = "<group>"; };
 		2CC9AF7F27C188D40082D81C /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextField.swift; path = ../../../Documents/TextField.swift; sourceTree = "<group>"; };
 		2CC9AF8327C2BE690082D81C /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		2CC9AF8527C2C6630082D81C /* InformationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationModel.swift; sourceTree = "<group>"; };
@@ -96,9 +104,11 @@
 				2C6295B827A48A73003521D9 /* TabBarController */,
 				2C631E4927A33190003753E1 /* CommonCollectionView */,
 				2CF197E227AE766D00E82C6C /* DetailCar */,
+				2C9DF80027DB5B7A00C176AC /* Contacts */,
 				2CF197F227B5183D00E82C6C /* OrderUnauthorized */,
 				2C631E5527A33983003753E1 /* Models */,
 				2C6E4DCE27B9347700FBE7E8 /* ScreenSize */,
+				2C9DF7DD27D9F42C00C176AC /* Networking */,
 				2CC9AF7E27C1889C0082D81C /* CustomViews */,
 				2C631E5027A3340D003753E1 /* Extensions */,
 				2C1DDABB27A08574000B82C6 /* RentalCar */,
@@ -223,6 +233,24 @@
 				2C6E4DD227B9377E00FBE7E8 /* CalendarViewController.swift */,
 			);
 			path = Calendar;
+			sourceTree = "<group>";
+		};
+		2C9DF7DD27D9F42C00C176AC /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				2C9DF7DE27D9F45A00C176AC /* NetworkManager.swift */,
+				2C9DF80327DB95C600C176AC /* RequestManager.swift */,
+				2C9DF80527DB98B300C176AC /* RentalManager.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		2C9DF80027DB5B7A00C176AC /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				2C9DF80127DB5B9600C176AC /* ContactsViewController.swift */,
+			);
+			path = Contacts;
 			sourceTree = "<group>";
 		};
 		2CC9AF7E27C1889C0082D81C /* CustomViews */ = {
@@ -402,10 +430,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C631E5427A337EE003753E1 /* UIView+Extension.swift in Sources */,
+				2C9DF80227DB5B9600C176AC /* ContactsViewController.swift in Sources */,
 				2CC9AF8027C188D40082D81C /* TextField.swift in Sources */,
 				2C631E5727A33990003753E1 /* CarModel.swift in Sources */,
 				2CC9AF8927C2C9E20082D81C /* StockCollectionViewCell.swift in Sources */,
 				2CF197EF27B41A4800E82C6C /* DescriptionTableViewCell.swift in Sources */,
+				2C9DF80427DB95C600C176AC /* RequestManager.swift in Sources */,
 				2C631E5227A33419003753E1 /* UICollectionView_UITableView+Extension.swift in Sources */,
 				2CF197EC27B4180800E82C6C /* ImageAndButtonTableViewCell.swift in Sources */,
 				2C6295BA27A48AB7003521D9 /* MainTabBarViewController.swift in Sources */,
@@ -418,11 +448,13 @@
 				2C6E4DD327B9377E00FBE7E8 /* CalendarViewController.swift in Sources */,
 				2CC9AF8627C2C6630082D81C /* InformationModel.swift in Sources */,
 				2C6295BF27A499B8003521D9 /* LegalCollectionViewCell.swift in Sources */,
+				2C9DF80627DB98B300C176AC /* RentalManager.swift in Sources */,
 				2C6E4DCD27B91F1E00FBE7E8 /* PopoverLocationTableViewController.swift in Sources */,
 				2C6295C127A49C54003521D9 /* UICollectionViewCell+Extension.swift in Sources */,
 				2CF197F427B5190100E82C6C /* OrderUnauthorizedViewController.swift in Sources */,
 				2C1DDABD27A08574000B82C6 /* AppDelegate.swift in Sources */,
 				2C6295B727A465E3003521D9 /* UIColor+Extension.swift in Sources */,
+				2C9DF7DF27D9F45A00C176AC /* NetworkManager.swift in Sources */,
 				2CF197E427AE768800E82C6C /* DetailCarViewController.swift in Sources */,
 				2C6295C327ABBADC003521D9 /* CategoryPrice.swift in Sources */,
 			);

@@ -9,6 +9,16 @@ import UIKit
 
 protocol Model {}
 
+struct CarsModel: Decodable {
+    let data: [CarClass2]
+}
+
+struct CarClass2: Model, Decodable {
+    let name: String?
+    let image: String?
+    let auto: [CarModel2]?
+}
+
 struct CarClass: Model {
     let className: String
     let imageGroup: UIImage
@@ -65,6 +75,37 @@ struct CarClass: Model {
         )
         
         return model
+    }
+}
+
+struct CarModel2: Model, Codable {
+    let name: String?
+    let thumb: String?
+//    let images: [String]?
+    let description: String?
+    let model: String?
+    let brand: String?
+    let year: Int?
+    let engineVolume: Double?
+    let enginePower: Int?
+//    let engineType: Bool
+    let driveType: String?
+    let gearboxType: String?
+    let countSeats: Int?
+    let countDoors: Int?
+    let conditioner: Bool?
+    let price: Int?
+   // let price_3_6: Int
+    
+    private enum CodingKeys: String, CodingKey {
+        case name, thumb, description, model, brand, year, conditioner, price
+        case engineVolume = "engine_volume"
+        case enginePower = "engine_power"
+//        case engineType = "engine_type"
+        case driveType = "drive_type"
+        case gearboxType = "gearbox_type"
+        case countSeats = "count_seats"
+        case countDoors = "count_doors"
     }
 }
 

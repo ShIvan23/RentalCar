@@ -12,7 +12,7 @@ final class OrderUnauthorizedViewController: UIViewController {
     
     private var carModel: CarModel
     private var categoryPrice: CategoryPrice 
-    private let locationModel = ["Офис(Волгоградский пр-т) *Бесплатно", "Аэропорт/Вокзал", "Другое место"]
+    private let locationModel = ["Офис", "Аэропорт/Вокзал", "Другое место"]
     private var selectedLocation = ""
     private var selectedDate = ""
     private var selectedDaysCount = 1
