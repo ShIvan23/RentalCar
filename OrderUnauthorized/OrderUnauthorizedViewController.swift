@@ -413,7 +413,7 @@ final class OrderUnauthorizedViewController: UIViewController {
     
     
     @objc private func tapLocationGestureAction() {
-        let popoverLocationTableVC = PopoverLocationTableViewController(model: locationModel)
+        let popoverLocationTableVC = PopoverTableViewController(model: locationModel)
         popoverLocationTableVC.modalPresentationStyle = .popover
         popoverLocationTableVC.popoverPresentationController?.delegate = self
         popoverLocationTableVC.popoverPresentationController?.sourceView = locationView
@@ -452,11 +452,11 @@ extension OrderUnauthorizedViewController: UIPopoverPresentationControllerDelega
 
 // MARK: - PopoverLocationTableViewControllerDelegate
 
-extension OrderUnauthorizedViewController: PopoverLocationTableViewControllerDelegate {
-    func selectedLocation(place: String) {
+extension OrderUnauthorizedViewController: PopoverTableViewControllerDelegate {
+    func selectedValue(text: String) {
         placeholderLocationLabel.textColor = .black
-        placeholderLocationLabel.text = place
-        selectedLocation = place
+        placeholderLocationLabel.text = text
+        selectedLocation = text
     }
 }
 

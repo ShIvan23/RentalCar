@@ -20,7 +20,7 @@
 		2C631E5227A33419003753E1 /* UICollectionView_UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C631E5127A33419003753E1 /* UICollectionView_UITableView+Extension.swift */; };
 		2C631E5427A337EE003753E1 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C631E5327A337EE003753E1 /* UIView+Extension.swift */; };
 		2C631E5727A33990003753E1 /* CarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C631E5627A33990003753E1 /* CarModel.swift */; };
-		2C6E4DCD27B91F1E00FBE7E8 /* PopoverLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6E4DCC27B91F1E00FBE7E8 /* PopoverLocationTableViewController.swift */; };
+		2C6E4DCD27B91F1E00FBE7E8 /* PopoverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6E4DCC27B91F1E00FBE7E8 /* PopoverTableViewController.swift */; };
 		2C6E4DD027B9349500FBE7E8 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6E4DCF27B9349500FBE7E8 /* ScreenSize.swift */; };
 		2C6E4DD327B9377E00FBE7E8 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6E4DD227B9377E00FBE7E8 /* CalendarViewController.swift */; };
 		2C9DF7DF27D9F45A00C176AC /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9DF7DE27D9F45A00C176AC /* NetworkManager.swift */; };
@@ -56,7 +56,7 @@
 		2C631E5127A33419003753E1 /* UICollectionView_UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView_UITableView+Extension.swift"; sourceTree = "<group>"; };
 		2C631E5327A337EE003753E1 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		2C631E5627A33990003753E1 /* CarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarModel.swift; sourceTree = "<group>"; };
-		2C6E4DCC27B91F1E00FBE7E8 /* PopoverLocationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverLocationTableViewController.swift; sourceTree = "<group>"; };
+		2C6E4DCC27B91F1E00FBE7E8 /* PopoverTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverTableViewController.swift; sourceTree = "<group>"; };
 		2C6E4DCF27B9349500FBE7E8 /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
 		2C6E4DD227B9377E00FBE7E8 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		2C9DF7DE27D9F45A00C176AC /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -101,6 +101,7 @@
 		2C1DDAB027A08574000B82C6 = {
 			isa = PBXGroup;
 			children = (
+				2C9DF84D27DCC00700C176AC /* SearchTableView */,
 				2C6295B827A48A73003521D9 /* TabBarController */,
 				2C631E4927A33190003753E1 /* CommonCollectionView */,
 				2CF197E227AE766D00E82C6C /* DetailCar */,
@@ -214,7 +215,7 @@
 		2C6E4DCB27B91EE700FBE7E8 /* PopoverLocation */ = {
 			isa = PBXGroup;
 			children = (
-				2C6E4DCC27B91F1E00FBE7E8 /* PopoverLocationTableViewController.swift */,
+				2C6E4DCC27B91F1E00FBE7E8 /* PopoverTableViewController.swift */,
 			);
 			path = PopoverLocation;
 			sourceTree = "<group>";
@@ -251,6 +252,13 @@
 				2C9DF80127DB5B9600C176AC /* ContactsViewController.swift */,
 			);
 			path = Contacts;
+			sourceTree = "<group>";
+		};
+		2C9DF84D27DCC00700C176AC /* SearchTableView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SearchTableView;
 			sourceTree = "<group>";
 		};
 		2CC9AF7E27C1889C0082D81C /* CustomViews */ = {
@@ -449,7 +457,7 @@
 				2CC9AF8627C2C6630082D81C /* InformationModel.swift in Sources */,
 				2C6295BF27A499B8003521D9 /* LegalCollectionViewCell.swift in Sources */,
 				2C9DF80627DB98B300C176AC /* RentalManager.swift in Sources */,
-				2C6E4DCD27B91F1E00FBE7E8 /* PopoverLocationTableViewController.swift in Sources */,
+				2C6E4DCD27B91F1E00FBE7E8 /* PopoverTableViewController.swift in Sources */,
 				2C6295C127A49C54003521D9 /* UICollectionViewCell+Extension.swift in Sources */,
 				2CF197F427B5190100E82C6C /* OrderUnauthorizedViewController.swift in Sources */,
 				2C1DDABD27A08574000B82C6 /* AppDelegate.swift in Sources */,

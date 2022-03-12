@@ -7,14 +7,14 @@
 
 import UIKit
 
-protocol PopoverLocationTableViewControllerDelegate: AnyObject {
-    func selectedLocation(place: String)
+protocol PopoverTableViewControllerDelegate: AnyObject {
+    func selectedValue(text: String)
 }
 
-final class PopoverLocationTableViewController: UIViewController {
+final class PopoverTableViewController: UIViewController {
     
     private let model: [String]
-    weak var delegate: PopoverLocationTableViewControllerDelegate?
+    weak var delegate: PopoverTableViewControllerDelegate?
     
     private lazy var popoverLocationTableView: UITableView = {
         let tableView = UITableView()
@@ -56,7 +56,7 @@ final class PopoverLocationTableViewController: UIViewController {
 
 // MARK: - UITableViewDataSource
 
-extension PopoverLocationTableViewController: UITableViewDataSource {
+extension PopoverTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         model.count
     }
@@ -71,14 +71,14 @@ extension PopoverLocationTableViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 
-extension PopoverLocationTableViewController: UITableViewDelegate {
+extension PopoverTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         40
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        delegate?.selectedLocation(place: model[indexPath.row])
+        delegate?.selectedValue(text: model[indexPath.row])
         dismiss(animated: true, completion: nil)
     }
 }

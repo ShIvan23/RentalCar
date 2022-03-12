@@ -39,11 +39,26 @@ class BaseCollectionViewController: UIViewController {
         return collectionView
     }()
     
-    private lazy var searchBar: UISearchBar = {
-        let searchBar = UISearchBar()
-        searchBar.backgroundImage = UIImage()
-        searchBar.placeholder = "Поиск машины"
-        return searchBar
+    private lazy var searchView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray6
+        view.layer.cornerRadius = 8
+        view.layer.borderColor = UIColor(hexString: "#000000", alpha: 0.65).cgColor
+        view.layer.borderWidth = 1
+        return view
+    }()
+    
+    private lazy var searchImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "search")
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
+    private lazy var searchLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Найти машину"
+        return label
     }()
     
     init(
@@ -94,15 +109,29 @@ class BaseCollectionViewController: UIViewController {
                     make.height.equalTo(scrollView)
                 }
                 
-                [searchBar, collectionView].forEach { contentView.addSubview($0) }
+                [searchView, searchImageView, searchLabel, collectionView].forEach { contentView.addSubview($0) }
                 
-                searchBar.snp.makeConstraints { make in
+                searchView.snp.makeConstraints { make in
                     make.top.equalTo(contentView.snp.top)
-                    make.left.right.equalToSuperview().inset(4)
+                    make.left.right.equalToSuperview().inset(8)
+                    make.height.equalTo(34)
                 }
                 
+                searchImageView.snp.makeConstraints { make in
+                    make.left.equalTo(searchView.snp.left).offset(10)
+                    make.height.width.equalTo(16)
+                    make.centerY.equalTo(searchView.snp.centerY)
+                }
+                
+                searchLabel.snp.makeConstraints { make in
+                    make.left.equalTo(searchImageView.snp.right).offset(6)
+                    make.centerY.equalTo(searchView.snp.centerY)
+                }
+                
+                addSearchGesture()
+                
                 collectionView.snp.makeConstraints { make in
-                    make.top.equalTo(searchBar.snp.bottom).offset(8)
+                    make.top.equalTo(searchView.snp.bottom).offset(8)
                     make.left.right.equalToSuperview()
                     make.bottom.equalTo(contentView.snp.bottom)
                 }
@@ -119,6 +148,22 @@ class BaseCollectionViewController: UIViewController {
                 make.bottom.equalTo(view.snp.bottomMargin)
             }
         }
+    }
+    
+    private func addSearchGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(searchTapGesture))
+        searchView.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func searchTapGesture() {
+        let popoverTableView = PopoverTableViewController(model: ["BMW", "Lada", "Opel", "Skoda"])
+        popoverTableView.modalPresentationStyle = .popover
+        popoverTableView.popoverPresentationController?.delegate = self
+        popoverTableView.popoverPresentationController?.sourceView = searchView
+        popoverTableView.popoverPresentationController?.sourceRect = CGRect(x: searchView.bounds.midX, y: searchView.bounds.maxY, width: 0, height: 0)
+        popoverTableView.preferredContentSize = CGSize(width: ScreenSize.width, height: CGFloat(4 * 40))
+        popoverTableView.delegate = self
+        present(popoverTableView, animated: true)
     }
 }
 
@@ -254,5 +299,21 @@ extension BaseCollectionViewController: UICollectionViewDelegateFlowLayout {
         case .rentalCondition:
             print("Показать экран с условиями")
         }
+    }
+}
+
+// MARK: - UIPopoverPresentationControllerDelegate
+
+extension BaseCollectionViewController: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
+    }
+}
+
+// MARK: - PopoverTableViewControllerDelegate
+
+extension BaseCollectionViewController: PopoverTableViewControllerDelegate {
+    func selectedValue(text: String) {
+        print("Открыть все машины марки = \(text)")
     }
 }
