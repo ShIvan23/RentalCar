@@ -58,7 +58,26 @@ class BaseCollectionViewController: UIViewController {
     private lazy var searchLabel: UILabel = {
         let label = UILabel()
         label.text = "Найти машину"
+        label.textColor = .systemGray
         return label
+    }()
+    
+    private lazy var loginButton: UIButton = {
+        let button = UIButton(type: .system)
+        let attributedText = NSAttributedString(string: "Войти", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)])
+        button.setAttributedTitle(attributedText, for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(loginButtonAction), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var callUsButton: UIButton = {
+        let button = UIButton(type: .system)
+        let attributedText = NSAttributedString(string: "Позвонить нам", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)])
+        button.setAttributedTitle(attributedText, for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(callUsButtonAction), for: .touchUpInside)
+        return button
     }()
     
     init(
@@ -86,6 +105,19 @@ class BaseCollectionViewController: UIViewController {
         setLayout()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        switch collectionStyle {
+        case .categoryStyle:
+            if !isChooseLegal {
+                loginButton.setCustomGradient()
+                callUsButton.setCustomGradient()
+            }
+        default:
+            break
+        }
+    }
+    
     private func customizeView() {
         view.backgroundColor = .white
     }
@@ -109,11 +141,11 @@ class BaseCollectionViewController: UIViewController {
                     make.height.equalTo(scrollView)
                 }
                 
-                [searchView, searchImageView, searchLabel, collectionView].forEach { contentView.addSubview($0) }
+                [searchView, searchImageView, searchLabel, loginButton, collectionView, callUsButton].forEach { contentView.addSubview($0) }
                 
                 searchView.snp.makeConstraints { make in
                     make.top.equalTo(contentView.snp.top)
-                    make.left.right.equalToSuperview().inset(8)
+                    make.left.equalToSuperview().inset(8)
                     make.height.equalTo(34)
                 }
                 
@@ -130,11 +162,26 @@ class BaseCollectionViewController: UIViewController {
                 
                 addSearchGesture()
                 
+                loginButton.snp.makeConstraints { make in
+                    make.left.equalTo(searchView.snp.right).offset(8)
+                    make.right.equalToSuperview().inset(8)
+                    make.height.equalTo(searchView.snp.height)
+                    make.width.equalTo(100)
+                }
+                
                 collectionView.snp.makeConstraints { make in
                     make.top.equalTo(searchView.snp.bottom).offset(8)
                     make.left.right.equalToSuperview()
-                    make.bottom.equalTo(contentView.snp.bottom)
+                    make.height.equalTo(cellHeight * 2 + sideInset * 3)
                 }
+                
+                callUsButton.snp.makeConstraints { make in
+                    make.top.equalTo(collectionView.snp.bottom).offset(20)
+                    make.left.right.equalToSuperview().inset(16)
+                    make.height.equalTo(40)
+                }
+                
+                
             } else {
                 /// На экране с выбором типа лица не нужен поиск. поэтому идем в дефолтный кейс
                 fallthrough
@@ -164,6 +211,14 @@ class BaseCollectionViewController: UIViewController {
         popoverTableView.preferredContentSize = CGSize(width: ScreenSize.width, height: CGFloat(4 * 40))
         popoverTableView.delegate = self
         present(popoverTableView, animated: true)
+    }
+    
+    @objc private func loginButtonAction() {
+        print("Войти")
+    }
+    
+    @objc private func callUsButtonAction() {
+        print("Позвонить")
     }
 }
 
