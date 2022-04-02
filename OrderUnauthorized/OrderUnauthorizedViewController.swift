@@ -285,7 +285,7 @@ final class OrderUnauthorizedViewController: UIViewController {
             make.top.bottom.equalTo(scrollView)
             make.left.right.equalTo(view)
             make.width.equalTo(scrollView)
-            make.height.equalTo(scrollView)
+//            make.height.equalTo(scrollView)
         }
         
         /// Location
@@ -408,6 +408,7 @@ final class OrderUnauthorizedViewController: UIViewController {
             make.top.equalTo(orderButton.snp.bottom).offset(20)
             make.left.right.equalTo(contentView).inset(16)
             make.height.equalTo(40)
+            make.bottom.equalTo(contentView.snp.bottom).inset(20)
         }
     }
     

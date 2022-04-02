@@ -77,14 +77,6 @@ class BaseCollectionViewController: UIViewController {
         return label
     }()
     
-    private lazy var clearSearchButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
-        button.tintColor = .systemGray2
-        button.addTarget(self, action: #selector(clearSearchAction), for: .touchUpInside)
-        return button
-    }()
-    
     private lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)
         let attributedText = NSAttributedString(string: "Войти", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)])
@@ -152,7 +144,7 @@ class BaseCollectionViewController: UIViewController {
                 view.addSubview(scrollView)
                 
                 scrollView.snp.makeConstraints { make in
-                    make.top.left.bottom.right.equalToSuperview()
+                    make.top.bottomMargin.left.right.equalToSuperview()
                 }
                 
                 scrollView.addSubview(contentView)
@@ -161,13 +153,12 @@ class BaseCollectionViewController: UIViewController {
                     make.top.bottom.equalTo(scrollView)
                     make.left.right.equalTo(view)
                     make.width.equalTo(scrollView)
-                    make.height.equalTo(scrollView)
                 }
                 
-                [searchView, searchImageView, searchLabel, clearSearchButton, loginButton, collectionView, callUsButton].forEach { contentView.addSubview($0) }
+                [searchView, searchImageView, searchLabel, loginButton, collectionView, callUsButton].forEach { contentView.addSubview($0) }
                 
                 searchView.snp.makeConstraints { make in
-                    make.top.equalTo(contentView.snp.top)
+                    make.top.equalTo(contentView.snp.top).offset(8)
                     make.left.equalToSuperview().inset(8)
                     make.height.equalTo(34)
                 }
@@ -183,17 +174,13 @@ class BaseCollectionViewController: UIViewController {
                     make.centerY.equalTo(searchView.snp.centerY)
                 }
                 
-                clearSearchButton.snp.makeConstraints { make in
-                    make.centerY.equalTo(searchView.snp.centerY)
-                    make.right.equalTo(searchView.snp.right).inset(10)
-                }
-                
                 addSearchGesture()
                 
                 loginButton.snp.makeConstraints { make in
                     make.left.equalTo(searchView.snp.right).offset(8)
                     make.right.equalToSuperview().inset(8)
                     make.height.equalTo(searchView.snp.height)
+                    make.centerY.equalTo(searchView.snp.centerY)
                     make.width.equalTo(100)
                 }
                 
@@ -207,6 +194,7 @@ class BaseCollectionViewController: UIViewController {
                     make.top.equalTo(collectionView.snp.bottom).offset(20)
                     make.left.right.equalToSuperview().inset(16)
                     make.height.equalTo(40)
+                    make.bottom.equalTo(contentView.snp.bottom).inset(20)
                 }
                 
                 
@@ -233,7 +221,7 @@ class BaseCollectionViewController: UIViewController {
                 setCars.insert(car.brand ?? "")
             }
         }
-        carBrands = Array(setCars)
+        carBrands = Array(setCars).sorted()
     }
     
     private func addSearchGesture() {
@@ -258,17 +246,6 @@ class BaseCollectionViewController: UIViewController {
     
     @objc private func callUsButtonAction() {
         print("Позвонить")
-    }
-    
-    @objc private func clearSearchAction() {
-        searchLabel.text = "Найти машину"
-        UIView.animate(withDuration: 0.1) {
-            self.clearSearchButton.alpha = 0.4
-        } completion: { _ in
-            UIView.animate(withDuration: 0.1) {
-                self.clearSearchButton.alpha = 1.0
-            }
-        }
     }
 }
 
@@ -440,7 +417,23 @@ extension BaseCollectionViewController: UIPopoverPresentationControllerDelegate 
 
 extension BaseCollectionViewController: PopoverTableViewControllerDelegate {
     func selectedValue(text: String) {
-        searchLabel.text = text
-        print("Открыть все машины марки = \(text)")
+        guard let model = model as? [CarClass2] else { fatalError() }
+
+        var filteredCars = [CarModel2]()
+        model.forEach { carClass in
+            let filteredBrands = carClass.auto?.filter { car in
+                car.brand == text
+            }
+            guard let filteredBrands = filteredBrands else { return }
+            filteredCars.append(contentsOf: filteredBrands)
+        }
+        
+        let brandCollectionView = BaseCollectionViewController(
+            collectionStyle: .listStyle,
+            categoryPrice: categoryPrice
+        )
+        brandCollectionView.model = filteredCars
+        brandCollectionView.title = text
+        navigationController?.pushViewController(brandCollectionView, animated: true)
     }
 }
