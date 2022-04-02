@@ -259,6 +259,13 @@ class BaseCollectionViewController: UIViewController {
     
     @objc private func clearSearchAction() {
         searchLabel.text = "Найти машину"
+        UIView.animate(withDuration: 0.1) {
+            self.clearSearchButton.alpha = 0.4
+        } completion: { _ in
+            UIView.animate(withDuration: 0.1) {
+                self.clearSearchButton.alpha = 1.0
+            }
+        }
     }
 }
 
