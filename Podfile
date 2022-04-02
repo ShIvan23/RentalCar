@@ -12,6 +12,7 @@ target 'RentalCar' do
 pod 'SnapKit'
 pod 'FSCalendar'
 pod 'Kingfisher', '~> 7.0'
+pod 'YandexMapsMobile', '4.0.0-lite'
 
 end
 
