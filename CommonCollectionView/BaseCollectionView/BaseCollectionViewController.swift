@@ -36,6 +36,7 @@ class BaseCollectionViewController: UIViewController {
     private let categoryPrice: CategoryPrice?
     private let isChooseLegal: Bool
     private let isChooseConditions: Bool
+    private let isChooseStock: Bool
     
     private lazy var scrollView = UIScrollView()
     private lazy var contentView = UIView()
@@ -106,12 +107,14 @@ class BaseCollectionViewController: UIViewController {
         collectionStyle: CollectionStyle,
         categoryPrice: CategoryPrice? = nil,
         isChooseLegal: Bool = false,
-        isChooseConditions: Bool = false
+        isChooseConditions: Bool = false,
+        isChooseStock: Bool = false
     ) {
         self.collectionStyle = collectionStyle
         self.categoryPrice = categoryPrice
         self.isChooseLegal = isChooseLegal
         self.isChooseConditions = isChooseConditions
+        self.isChooseStock = isChooseStock
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -288,8 +291,16 @@ extension BaseCollectionViewController: UICollectionViewDataSource {
             )
             return cell
             
-            /// Ячейка для отображения категорий юр лица и категорий машин
+            /// Ячейка для отображения категорий юр лица, видов акций и категорий машин
         case .categoryStyle:
+            // если выбор акции
+            if isChooseStock {
+                guard let model = model as? [InformationModel] else { fatalError() }
+                let cell: LegalCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+                cell.setupCell(model: model[indexPath.item])
+                return cell
+            }
+            
             guard let model = model as? [CarClass2] else { fatalError() }
             let cell: LegalCollectionViewCell = collectionView.dequeueCell(for: indexPath)
             cell.setupCell(model: model[indexPath.item])
@@ -371,6 +382,16 @@ extension BaseCollectionViewController: UICollectionViewDelegateFlowLayout {
 
             
         case .categoryStyle:
+            /// При выборе акции
+            if isChooseStock {
+                guard let model = model as? [InformationModel] else { fatalError() }
+                let collectionViewController = BaseCollectionViewController(collectionStyle: .stockStyle)
+                collectionViewController.model = InformationModel.makeMockStocks()
+                collectionViewController.title = model[indexPath.item].name
+                navigationController?.pushViewController(collectionViewController, animated: true)
+                return
+            }
+            
             /// При выборе категории должна быть такая модель
             guard let model = model as? [CarClass2] else { fatalError() }
             

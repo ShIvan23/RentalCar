@@ -19,6 +19,14 @@ struct InformationModel: Model {
         return model
     }
     
+    static func makeMockStockList() -> [InformationModel]{
+        var model = [InformationModel]()
+        model.append(InformationModel(name: "Постоянные", image: UIImage()))
+        model.append(InformationModel(name: "Авто дня", image: UIImage()))
+        model.append(InformationModel(name: "Месяца", image: UIImage()))
+        return model
+    }
+    
     static func makeMockConditions() -> [InformationModel] {
         var model = [InformationModel]()
         model.append(InformationModel(name: "Физ лица", image: UIImage(named: "person")!))

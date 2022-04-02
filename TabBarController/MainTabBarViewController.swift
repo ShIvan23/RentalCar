@@ -30,9 +30,8 @@ class MainTabBarViewController: UITabBarController {
     
     /// Акции
     private lazy var stockVC = BaseCollectionViewController(
-        collectionStyle: .stockStyle,
-//        model: InformationModel.makeMockStocks(),
-        isChooseLegal: true
+        collectionStyle: .categoryStyle,
+        isChooseStock: true
     )
     
     /// Условия
@@ -61,9 +60,13 @@ class MainTabBarViewController: UITabBarController {
     
     private func setModelIntoControllers() {
         allCars.model = model?.data
+        
         legalEntity.model = CarClass.makeMockLegalModel()
         legalEntity.modelForPresenting = model?.data
-        stockVC.model = InformationModel.makeMockStocks()
+        
+        stockVC.model = InformationModel.makeMockStockList()
+        stockVC.modelForPresenting = InformationModel.makeMockStocks()
+       
         rentalConditionsVC.model = InformationModel.makeMockConditions()
     }
     
