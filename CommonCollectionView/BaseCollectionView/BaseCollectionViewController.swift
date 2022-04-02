@@ -23,11 +23,15 @@ class BaseCollectionViewController: UIViewController {
         didSet {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
+                self.makeCarBrands()
             }
         }
     }
     /// Модель после выбора категории
     var modelForPresenting: [Model]?
+    
+    /// Список марок машин для поиска
+    private var carBrands = [String]()
     
     private let categoryPrice: CategoryPrice?
     private let isChooseLegal: Bool
@@ -70,6 +74,14 @@ class BaseCollectionViewController: UIViewController {
         label.text = "Найти машину"
         label.textColor = .systemGray
         return label
+    }()
+    
+    private lazy var clearSearchButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
+        button.tintColor = .systemGray2
+        button.addTarget(self, action: #selector(clearSearchAction), for: .touchUpInside)
+        return button
     }()
     
     private lazy var loginButton: UIButton = {
@@ -149,7 +161,7 @@ class BaseCollectionViewController: UIViewController {
                     make.height.equalTo(scrollView)
                 }
                 
-                [searchView, searchImageView, searchLabel, loginButton, collectionView, callUsButton].forEach { contentView.addSubview($0) }
+                [searchView, searchImageView, searchLabel, clearSearchButton, loginButton, collectionView, callUsButton].forEach { contentView.addSubview($0) }
                 
                 searchView.snp.makeConstraints { make in
                     make.top.equalTo(contentView.snp.top)
@@ -166,6 +178,11 @@ class BaseCollectionViewController: UIViewController {
                 searchLabel.snp.makeConstraints { make in
                     make.left.equalTo(searchImageView.snp.right).offset(6)
                     make.centerY.equalTo(searchView.snp.centerY)
+                }
+                
+                clearSearchButton.snp.makeConstraints { make in
+                    make.centerY.equalTo(searchView.snp.centerY)
+                    make.right.equalTo(searchView.snp.right).inset(10)
                 }
                 
                 addSearchGesture()
@@ -205,18 +222,29 @@ class BaseCollectionViewController: UIViewController {
         }
     }
     
+    private func makeCarBrands() {
+        guard let model = model as? [CarClass2] else { return }
+        var setCars = Set<String>()
+        model.forEach { carClass in
+            carClass.auto?.forEach { car in
+                setCars.insert(car.brand ?? "")
+            }
+        }
+        carBrands = Array(setCars)
+    }
+    
     private func addSearchGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(searchTapGesture))
         searchView.addGestureRecognizer(tapGesture)
     }
     
     @objc private func searchTapGesture() {
-        let popoverTableView = PopoverTableViewController(model: ["BMW", "Lada", "Opel", "Skoda"])
+        let popoverTableView = PopoverTableViewController(model: carBrands)
         popoverTableView.modalPresentationStyle = .popover
         popoverTableView.popoverPresentationController?.delegate = self
         popoverTableView.popoverPresentationController?.sourceView = searchView
         popoverTableView.popoverPresentationController?.sourceRect = CGRect(x: searchView.bounds.midX, y: searchView.bounds.maxY, width: 0, height: 0)
-        popoverTableView.preferredContentSize = CGSize(width: ScreenSize.width, height: CGFloat(4 * 40))
+        popoverTableView.preferredContentSize = CGSize(width: ScreenSize.width, height: CGFloat(carBrands.count * 40))
         popoverTableView.delegate = self
         present(popoverTableView, animated: true)
     }
@@ -227,6 +255,10 @@ class BaseCollectionViewController: UIViewController {
     
     @objc private func callUsButtonAction() {
         print("Позвонить")
+    }
+    
+    @objc private func clearSearchAction() {
+        searchLabel.text = "Найти машину"
     }
 }
 
@@ -380,6 +412,7 @@ extension BaseCollectionViewController: UIPopoverPresentationControllerDelegate 
 
 extension BaseCollectionViewController: PopoverTableViewControllerDelegate {
     func selectedValue(text: String) {
+        searchLabel.text = text
         print("Открыть все машины марки = \(text)")
     }
 }
