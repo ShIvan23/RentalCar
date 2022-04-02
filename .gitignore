@@ -105,6 +105,7 @@ xcuserdata/
 Pods/
 Podfile.lock
 *.xcworkspacedata
+*.xcworkspace
 
 iOSInjectionProject/
 
