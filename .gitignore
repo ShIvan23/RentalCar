@@ -119,3 +119,4 @@ Search/.idea
 
 # AppCode
 .idea/*
+*.xcuserstate
