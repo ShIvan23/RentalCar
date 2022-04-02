@@ -18,7 +18,13 @@ class BaseCollectionViewController: UIViewController {
     }
     
     private let collectionStyle: CollectionStyle
-    private let model: [Model]
+    var model: [Model]? {
+        didSet {
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+    }
     private let categoryPrice: CategoryPrice?
     private let isChooseLegal: Bool
     private let isChooseConditions: Bool
@@ -83,13 +89,11 @@ class BaseCollectionViewController: UIViewController {
     init(
         collectionStyle: CollectionStyle,
         categoryPrice: CategoryPrice? = nil,
-        model: [Model],
         isChooseLegal: Bool = false,
         isChooseConditions: Bool = false
     ) {
         self.collectionStyle = collectionStyle
         self.categoryPrice = categoryPrice
-        self.model = model
         self.isChooseLegal = isChooseLegal
         self.isChooseConditions = isChooseConditions
         super.init(nibName: nil, bundle: nil)
@@ -226,7 +230,7 @@ class BaseCollectionViewController: UIViewController {
 
 extension BaseCollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return model.count
+        return model?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -243,7 +247,7 @@ extension BaseCollectionViewController: UICollectionViewDataSource {
             
             /// Ячейка для отображения категорий юр лица и категорий машин
         case .categoryStyle:
-            guard let model = model as? [CarClass] else { fatalError() }
+            guard let model = model as? [CarClass2] else { fatalError() }
             let cell: LegalCollectionViewCell = collectionView.dequeueCell(for: indexPath)
             cell.setupCell(model: model[indexPath.item])
             return cell
@@ -295,6 +299,7 @@ extension BaseCollectionViewController: UICollectionViewDelegateFlowLayout {
         switch collectionStyle {
             
         case .categoryStyle, .rentalCondition:
+            guard let model = model else { return .zero}
             switch model.count {
                 /// Если всего 2 ячейки, то это выбор юр лица и ячейки будут посередине экрана
                 // TODO: - протестить на разных экранах
@@ -330,8 +335,8 @@ extension BaseCollectionViewController: UICollectionViewDelegateFlowLayout {
             if isChooseLegal {
                 let collectionViewController = BaseCollectionViewController(
                     collectionStyle: .categoryStyle,
-                    categoryPrice: indexPath.item == 0 ? .commercialPriceWithNDS : .commercialPriceWithoutNDS,
-                    model: CarClass.makeMockModel()
+                    categoryPrice: indexPath.item == 0 ? .commercialPriceWithNDS : .commercialPriceWithoutNDS
+//                    model: CarClass.makeMockModel()
                 )
                 collectionViewController.title = model[indexPath.item].className
                 navigationController?.pushViewController(collectionViewController, animated: true)
@@ -340,8 +345,8 @@ extension BaseCollectionViewController: UICollectionViewDelegateFlowLayout {
                 let cars = model[indexPath.item].carList
                 let collectionViewController = BaseCollectionViewController(
                     collectionStyle: .listStyle,
-                    categoryPrice: categoryPrice,
-                    model: cars
+                    categoryPrice: categoryPrice
+//                    model: cars
                 )
                 collectionViewController.title = model[indexPath.item].className
                 navigationController?.pushViewController(collectionViewController, animated: true)

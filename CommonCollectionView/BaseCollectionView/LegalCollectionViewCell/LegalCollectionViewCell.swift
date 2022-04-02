@@ -56,9 +56,9 @@ final class LegalCollectionViewCell: UICollectionViewCell {
         gradientView.setCustomGradient()
     }
     
-    func setupCell(model: CarClass) {
-        titleLabel.text = model.className
-        legalImage.image = model.imageGroup
+    func setupCell(model: CarClass2) {
+        titleLabel.text = model.name
+//        legalImage.image = model.image
     }
     
     func setupCell(model: InformationModel) {

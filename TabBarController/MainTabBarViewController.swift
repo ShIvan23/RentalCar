@@ -10,28 +10,32 @@ import UIKit
 class MainTabBarViewController: UITabBarController {
     
     private let rentalManager = RentalManager()
+    private var model: CarsModel? {
+        didSet {
+            setModelIntoControllers()
+        }
+    }
     
     private lazy var allCars = BaseCollectionViewController(
         collectionStyle: .categoryStyle,
-        categoryPrice: .personPrice,
-        model: CarClass.makeMockModel()
+        categoryPrice: .personPrice
     )
     
     private lazy var legalEntity = BaseCollectionViewController(
         collectionStyle: .categoryStyle,
-        model: CarClass.makeMockLegalModel(),
+//        model: CarClass.makeMockLegalModel(),
         isChooseLegal: true
     )
     
     private lazy var stockVC = BaseCollectionViewController(
         collectionStyle: .stockStyle,
-        model: InformationModel.makeMockStocks(),
+//        model: InformationModel.makeMockStocks(),
         isChooseLegal: true
     )
     
     private lazy var rentalConditionsVC = BaseCollectionViewController(
         collectionStyle: .rentalCondition,
-        model: InformationModel.makeMockConditions(),
+//        model: InformationModel.makeMockConditions(),
         isChooseConditions: true
     )
     
@@ -41,14 +45,19 @@ class MainTabBarViewController: UITabBarController {
         super.viewDidLoad()
         setupTabBar()
         setControllers()
-        rentalManager.fetchCars { result in
+        rentalManager.fetchCars { [weak self] result in
             switch result {
             case .success(let model):
-                print(model)
+                self?.model = model
             case .failure(let error):
-                print(error.localizedDescription)
+                fatalError(error.localizedDescription)
+//                print(error.localizedDescription)
             }
         }
+    }
+    
+    private func setModelIntoControllers() {
+        allCars.model = model?.data
     }
     
     private func setupTabBar() {

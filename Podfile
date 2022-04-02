@@ -11,6 +11,7 @@ target 'RentalCar' do
 
 pod 'SnapKit'
 pod 'FSCalendar'
+pod 'Kingfisher', '~> 7.0'
 
 end
 
