@@ -72,7 +72,7 @@ final class DetailCarViewController: UIViewController {
         stringArray.append(carModel.gearboxType ?? "")
         stringArray.append("\(carModel.countDoors ?? 0)")
         stringArray.append((carModel.conditioner ?? false) ? "Да" : "Нет")
-        stringArray.append((carModel.description ?? "") + "\n")
+        stringArray.append((carModel.description ?? ""))
         descriptions = stringArray.makeAttributedString(stringArray: stringArray)
     }
 }

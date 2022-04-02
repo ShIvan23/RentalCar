@@ -21,7 +21,6 @@ final class OrderUnauthorizedViewController: UIViewController {
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.isScrollEnabled = false
         return scrollView
     }()
     
@@ -180,19 +179,12 @@ final class OrderUnauthorizedViewController: UIViewController {
     @objc func keyboardWillHide() {
         scrollView.contentInset.bottom = 0
         scrollView.setContentOffset(.zero, animated: true)
-        scrollView.isScrollEnabled = false
     }
     
     @objc func keyboardWillChange(notification: NSNotification) {
-        /// тут есть расчет высоты клавиатуры
-        /// Можно захардкодить высоту scrollView. И тогда из высоты экрана вычитать высоту клавиатуры, вычитать высоту scrollView. И это значение нужно будет добавить к scrollView.contentInset.bottom
-        
-//                if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-//                    if nameTextField.isFirstResponder || telephoneTextField.isFirstResponder {
-                        scrollView.contentInset.bottom = 100
-                        scrollView.isScrollEnabled = true
-//                    }
-//                }
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            scrollView.contentInset.bottom = keyboardSize.height
+        }
     }
     
     @objc private func orderButtonAction() {
@@ -285,7 +277,6 @@ final class OrderUnauthorizedViewController: UIViewController {
             make.top.bottom.equalTo(scrollView)
             make.left.right.equalTo(view)
             make.width.equalTo(scrollView)
-//            make.height.equalTo(scrollView)
         }
         
         /// Location
