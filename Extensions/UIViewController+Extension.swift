@@ -8,14 +8,16 @@
 import UIKit
 
 extension UIViewController {
-    func makeCurrentPriceWith(_ category: CategoryPrice, car: CarModel) -> Int {
+    func makeCurrentPriceWith(_ category: CategoryPrice, car: CarModel2) -> Int {
         switch category {
         case .personPrice:
-            return car.personPrice
+            return car.price ?? 0
+            
+            // TODO: - Переделать на коммерческие прайсы
         case.commercialPriceWithNDS:
-            return car.commercialPriceWithNDS
+            return car.price ?? 0
         case .commercialPriceWithoutNDS:
-            return car.commercialPriceWithoutNDS
+            return car.price ?? 0
         }
     }
 }

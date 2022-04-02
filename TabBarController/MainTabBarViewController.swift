@@ -16,29 +16,32 @@ class MainTabBarViewController: UITabBarController {
         }
     }
     
+    /// Физ лица
     private lazy var allCars = BaseCollectionViewController(
         collectionStyle: .categoryStyle,
         categoryPrice: .personPrice
     )
     
+    /// Юр лица
     private lazy var legalEntity = BaseCollectionViewController(
         collectionStyle: .categoryStyle,
-//        model: CarClass.makeMockLegalModel(),
         isChooseLegal: true
     )
     
+    /// Акции
     private lazy var stockVC = BaseCollectionViewController(
         collectionStyle: .stockStyle,
 //        model: InformationModel.makeMockStocks(),
         isChooseLegal: true
     )
     
+    /// Условия
     private lazy var rentalConditionsVC = BaseCollectionViewController(
         collectionStyle: .rentalCondition,
-//        model: InformationModel.makeMockConditions(),
         isChooseConditions: true
     )
     
+    /// Контакты
     private lazy var contactsVC = ContactsViewController()
     
     override func viewDidLoad() {
@@ -58,6 +61,10 @@ class MainTabBarViewController: UITabBarController {
     
     private func setModelIntoControllers() {
         allCars.model = model?.data
+        legalEntity.model = CarClass.makeMockLegalModel()
+        legalEntity.modelForPresenting = model?.data
+        stockVC.model = InformationModel.makeMockStocks()
+        rentalConditionsVC.model = InformationModel.makeMockConditions()
     }
     
     private func setupTabBar() {

@@ -10,7 +10,7 @@ import UIKit
 
 final class OrderUnauthorizedViewController: UIViewController {
     
-    private var carModel: CarModel
+    private var carModel: CarModel2
     private var categoryPrice: CategoryPrice 
     private let locationModel = ["Офис", "Аэропорт/Вокзал", "Другое место"]
     private var selectedLocation = ""
@@ -137,7 +137,7 @@ final class OrderUnauthorizedViewController: UIViewController {
         return button
     }()
     
-    init(carModel: CarModel, categoryPrice: CategoryPrice) {
+    init(carModel: CarModel2, categoryPrice: CategoryPrice) {
         self.carModel = carModel
         self.categoryPrice = categoryPrice
         super.init(nibName: nil, bundle: nil)
@@ -197,7 +197,7 @@ final class OrderUnauthorizedViewController: UIViewController {
     
     @objc private func orderButtonAction() {
         print("Отправить письмо на бэк")
-        print("car = \(carModel.marka + " " + carModel.model)")
+        print("car = \(carModel.name)")
         print("selectedLocation = \(selectedLocation)")
         print("selectedDate = \(selectedDate)")
         print("Name = \(nameTextField.text!)")
@@ -217,7 +217,7 @@ final class OrderUnauthorizedViewController: UIViewController {
     
     private func makeOneDayPrice() -> NSMutableAttributedString {
         let text = "Цена за сутки:"
-        let currentPrice = isNeedDriver ? currentPrice + carModel.driverPriceImMoscow : currentPrice
+        let currentPrice = isNeedDriver ? currentPrice + (carModel.priceDriver ?? 0) : currentPrice
         let mutableText = NSMutableAttributedString(string: text + " " + "\(currentPrice) ₽")
         mutableText.setFont(font: .boldSystemFont(ofSize: 18), forText: text)
         return mutableText
@@ -225,7 +225,7 @@ final class OrderUnauthorizedViewController: UIViewController {
     
     private func makePeriodPrice(_ daysCount: Int = 1) -> NSMutableAttributedString {
         let text = "Цена за весь период:"
-        let price = isNeedDriver ? currentPrice + carModel.driverPriceImMoscow : currentPrice
+        let price = isNeedDriver ? currentPrice + (carModel.priceDriver ?? 0) : currentPrice
         let sum = price * daysCount
         let mutableText = NSMutableAttributedString(string: text + " " + "\(sum) ₽")
         mutableText.setFont(font: .boldSystemFont(ofSize: 18), forText: text)
@@ -237,7 +237,7 @@ final class OrderUnauthorizedViewController: UIViewController {
         switch daysCount {
             // - TODO: Добавить логику по изменению прайса в зависимости от количества дней
         default:
-            currentPrice = carModel.personPrice
+            currentPrice = carModel.price ?? 0
         }
         return currentPrice
     }
@@ -258,7 +258,7 @@ final class OrderUnauthorizedViewController: UIViewController {
     
     private func customizeView() {
         view.backgroundColor = .white
-        navigationItem.title = "Заказ " + carModel.marka + " " + carModel.model
+        navigationItem.title = "Заказ " + (carModel.name ?? "")
     }
     
     private func addLocationGesture() {

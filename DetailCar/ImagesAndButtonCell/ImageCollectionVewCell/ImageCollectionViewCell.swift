@@ -5,6 +5,7 @@
 //  Created by Ivan on 05.02.2022.
 //
 
+import Kingfisher
 import UIKit
 
 final class ImageCollectionViewCell: UICollectionViewCell {
@@ -16,9 +17,10 @@ final class ImageCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    func setupCellWith(image: UIImage) {
+    func setupCellWith(image: String) {
         layout()
-        carImageView.image = image
+        let urlImage = URL(string: image)
+        carImageView.kf.setImage(with: urlImage)
     }
     
     private func layout() {

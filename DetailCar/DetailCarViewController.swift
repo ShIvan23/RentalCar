@@ -9,7 +9,7 @@ import UIKit
 
 final class DetailCarViewController: UIViewController {
     
-    private let carModel: CarModel
+    private let carModel: CarModel2
     private var categoryPrice: CategoryPrice 
     private var currentPrice = 0
     private var descriptions = [NSMutableAttributedString]()
@@ -29,7 +29,7 @@ final class DetailCarViewController: UIViewController {
         return tableView
     }()
     
-    init(carModel: CarModel, categoryPrice: CategoryPrice) {
+    init(carModel: CarModel2, categoryPrice: CategoryPrice) {
         self.carModel = carModel
         self.categoryPrice = categoryPrice
         super.init(nibName: nil, bundle: nil)
@@ -65,14 +65,14 @@ final class DetailCarViewController: UIViewController {
     func makeDescriptionArray() {
         var stringArray = [String]()
         stringArray.append("\(currentPrice)")
-        stringArray.append(carModel.engineVolume)
-        stringArray.append("\(carModel.numberOfSeats)")
-        stringArray.append(carModel.frontDrive)
-        stringArray.append("\(carModel.age)")
-        stringArray.append(carModel.transmission)
-        stringArray.append("\(carModel.numberOfDoors)")
-        stringArray.append(carModel.hasConditioner ? "Да" : "Нет")
-        stringArray.append(carModel.description + "\n")
+        stringArray.append("\(carModel.engineVolume ?? 0)")
+        stringArray.append("\(carModel.countSeats ?? 0)")
+        stringArray.append(carModel.driveType ?? "")
+        stringArray.append("\(carModel.year ?? 0)")
+        stringArray.append(carModel.gearboxType ?? "")
+        stringArray.append("\(carModel.countDoors ?? 0)")
+        stringArray.append((carModel.conditioner ?? false) ? "Да" : "Нет")
+        stringArray.append((carModel.description ?? "") + "\n")
         descriptions = stringArray.makeAttributedString(stringArray: stringArray)
     }
 }
@@ -88,7 +88,7 @@ extension DetailCarViewController: UITableViewDataSource {
         switch indexPath.row {
         case 0:
             let cell: ImageAndButtonTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.setupCell(images: carModel.allImages)
+            cell.setupCell(images: carModel.images)
             cell.delegate = self
             return cell
             

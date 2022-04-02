@@ -5,6 +5,7 @@
 //  Created by Ivan on 29.01.2022.
 //
 
+import Kingfisher
 import UIKit
 
 /// Ячейка для отображения категорий юр лица и категорий машин
@@ -58,7 +59,8 @@ final class LegalCollectionViewCell: UICollectionViewCell {
     
     func setupCell(model: CarClass2) {
         titleLabel.text = model.name
-//        legalImage.image = model.image
+        let urlImage = URL(string: model.image ?? "")
+        legalImage.kf.setImage(with: urlImage)
     }
     
     func setupCell(model: InformationModel) {

@@ -13,7 +13,7 @@ protocol ImageAndButtonTableViewCellDelegate: AnyObject {
 
 class ImageAndButtonTableViewCell: UITableViewCell {
     
-    private var allImages = [UIImage]()
+    private var allImages = [String]()
     private var indexOfCellBeforeDragging = 0
     
     weak var delegate: ImageAndButtonTableViewCellDelegate?
@@ -59,8 +59,8 @@ class ImageAndButtonTableViewCell: UITableViewCell {
         orderButton.setCustomGradient()
     }
     
-    func setupCell(images: [UIImage]) {
-        allImages = images
+    func setupCell(images: [String]?) {
+        allImages = images ?? []
         layout()
     }
     

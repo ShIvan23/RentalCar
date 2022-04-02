@@ -5,6 +5,7 @@
 //  Created by Ivan on 27.01.2022.
 //
 
+import Kingfisher
 import UIKit
 
 /// Ячейка для отображения всех машин
@@ -65,19 +66,21 @@ final class BaseCollectionViewCell: UICollectionViewCell {
         gradientView.setCustomGradient()
     }
     
-    func setupCell(model: CarModel, categoryPrice: CategoryPrice) {
-        nameCarLabel.text = model.marka + model.model
-        carImage.image = model.previewImage
+    func setupCell(model: CarModel2, categoryPrice: CategoryPrice) {
+        nameCarLabel.text = model.name
+        let urlImage = URL(string: model.thumb ?? "")
+        carImage.kf.setImage(with: urlImage)
         
         switch categoryPrice {
         case .personPrice:
-            priceLabel.text = "\(model.personPrice) ₽ / сутки"
+            priceLabel.text = "\(model.price ?? 0) ₽ / сутки"
             
+            // TODO: - Поменять здесь цены на коммерческие
         case .commercialPriceWithNDS:
-            priceLabel.text = "\(model.commercialPriceWithNDS) ₽ / сутки"
+            priceLabel.text = "\(model.price ?? 0) ₽ / сутки"
             
         case .commercialPriceWithoutNDS:
-            priceLabel.text = "\(model.commercialPriceWithoutNDS) ₽ / сутки"
+            priceLabel.text = "\(model.price ?? 0) ₽ / сутки"
         }
         
     }

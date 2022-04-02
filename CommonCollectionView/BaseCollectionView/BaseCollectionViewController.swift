@@ -18,6 +18,7 @@ class BaseCollectionViewController: UIViewController {
     }
     
     private let collectionStyle: CollectionStyle
+    /// Модель для показа
     var model: [Model]? {
         didSet {
             DispatchQueue.main.async {
@@ -25,6 +26,9 @@ class BaseCollectionViewController: UIViewController {
             }
         }
     }
+    /// Модель после выбора категории
+    var modelForPresenting: [Model]?
+    
     private let categoryPrice: CategoryPrice?
     private let isChooseLegal: Bool
     private let isChooseConditions: Bool
@@ -237,7 +241,7 @@ extension BaseCollectionViewController: UICollectionViewDataSource {
         switch collectionStyle {
             /// Ячейка для отображения всех машин
         case .listStyle:
-            guard let model = model as? [CarModel] else { fatalError() }
+            guard let model = model as? [CarModel2] else { fatalError() }
             let cell: BaseCollectionViewCell = collectionView.dequeueCell(for: indexPath)
             cell.setupCell(
                 model: model[indexPath.item],
@@ -318,18 +322,18 @@ extension BaseCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch collectionStyle {
         case .listStyle:
-            guard let model = model as? [CarModel] else { fatalError() }
+            guard let model = model as? [CarModel2] else { fatalError() }
             /// Экран с детальной информацией
             let currentCar = model[indexPath.item]
             // TODO: - убрать force unwrap 
             let detailViewController = DetailCarViewController(carModel: currentCar, categoryPrice: categoryPrice!)
-            detailViewController.title = currentCar.marka + " " + currentCar.model
+            detailViewController.title = currentCar.name
             navigationController?.pushViewController(detailViewController, animated: true)
 
             
         case .categoryStyle:
             /// При выборе категории должна быть такая модель
-            guard let model = model as? [CarClass] else { fatalError() }
+            guard let model = model as? [CarClass2] else { fatalError() }
             
             /// Если выбирается вид юр лица, то нужно показать категории машин
             if isChooseLegal {
@@ -338,17 +342,19 @@ extension BaseCollectionViewController: UICollectionViewDelegateFlowLayout {
                     categoryPrice: indexPath.item == 0 ? .commercialPriceWithNDS : .commercialPriceWithoutNDS
 //                    model: CarClass.makeMockModel()
                 )
-                collectionViewController.title = model[indexPath.item].className
+                collectionViewController.model = modelForPresenting
+                collectionViewController.title = model[indexPath.item].name
                 navigationController?.pushViewController(collectionViewController, animated: true)
                 /// Если вид юр лица выбран, то показывает категории машин
             } else {
-                let cars = model[indexPath.item].carList
+                let cars = model[indexPath.item].auto
                 let collectionViewController = BaseCollectionViewController(
                     collectionStyle: .listStyle,
                     categoryPrice: categoryPrice
 //                    model: cars
                 )
-                collectionViewController.title = model[indexPath.item].className
+                collectionViewController.model = cars
+                collectionViewController.title = model[indexPath.item].name
                 navigationController?.pushViewController(collectionViewController, animated: true)
             }
             
