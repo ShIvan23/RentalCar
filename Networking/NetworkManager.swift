@@ -9,7 +9,11 @@ import Foundation
 
 typealias JSONCompletionHandler = (Data?, HTTPURLResponse?, Error?) -> Void
 
-final class NetworkManager {
+protocol NetworkManager {
+    func fetch<T: Decodable>(request: URLRequest, completion: @escaping (Result<T, Error>) -> Void)
+}
+
+final class NetworkManagerImp: NetworkManager {
     
     private let sessionConfiguration = URLSessionConfiguration.default
     private lazy var session = URLSession(configuration: sessionConfiguration)

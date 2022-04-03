@@ -23,6 +23,7 @@
 		2C6E4DCD27B91F1E00FBE7E8 /* PopoverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6E4DCC27B91F1E00FBE7E8 /* PopoverTableViewController.swift */; };
 		2C6E4DD027B9349500FBE7E8 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6E4DCF27B9349500FBE7E8 /* ScreenSize.swift */; };
 		2C6E4DD327B9377E00FBE7E8 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6E4DD227B9377E00FBE7E8 /* CalendarViewController.swift */; };
+		2C8C980D27FA2A83003D9D68 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C980C27FA2A83003D9D68 /* OrderModel.swift */; };
 		2C9DF7DF27D9F45A00C176AC /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9DF7DE27D9F45A00C176AC /* NetworkManager.swift */; };
 		2C9DF80227DB5B9600C176AC /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9DF80127DB5B9600C176AC /* ContactsViewController.swift */; };
 		2C9DF80427DB95C600C176AC /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9DF80327DB95C600C176AC /* RequestManager.swift */; };
@@ -60,6 +61,7 @@
 		2C6E4DCC27B91F1E00FBE7E8 /* PopoverTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverTableViewController.swift; sourceTree = "<group>"; };
 		2C6E4DCF27B9349500FBE7E8 /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
 		2C6E4DD227B9377E00FBE7E8 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		2C8C980C27FA2A83003D9D68 /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
 		2C9DF7DE27D9F45A00C176AC /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		2C9DF80127DB5B9600C176AC /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		2C9DF80327DB95C600C176AC /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 				2C631E5627A33990003753E1 /* CarModel.swift */,
 				2C6295C227ABBADC003521D9 /* CategoryPrice.swift */,
 				2CC9AF8527C2C6630082D81C /* InformationModel.swift */,
+				2C8C980C27FA2A83003D9D68 /* OrderModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 				2C9DF80627DB98B300C176AC /* RentalManager.swift in Sources */,
 				2C9DF85227DCD5F000C176AC /* CallUsTableViewCell.swift in Sources */,
 				2C6E4DCD27B91F1E00FBE7E8 /* PopoverTableViewController.swift in Sources */,
+				2C8C980D27FA2A83003D9D68 /* OrderModel.swift in Sources */,
 				2C6295C127A49C54003521D9 /* UICollectionViewCell+Extension.swift in Sources */,
 				2CF197F427B5190100E82C6C /* OrderUnauthorizedViewController.swift in Sources */,
 				2C1DDABD27A08574000B82C6 /* AppDelegate.swift in Sources */,

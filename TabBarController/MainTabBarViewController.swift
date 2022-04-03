@@ -9,7 +9,7 @@ import UIKit
 
 class MainTabBarViewController: UITabBarController {
     
-    private let rentalManager = RentalManager()
+    private let rentalManager: RentalManager = RentalManagerImp()
     private var model: CarsModel? {
         didSet {
             setModelIntoControllers()

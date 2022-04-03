@@ -10,6 +10,7 @@ import UIKit
 
 final class OrderUnauthorizedViewController: UIViewController {
     
+    private lazy var rentalManager: RentalManager = RentalManagerImp()
     private var carModel: CarModel2
     private var categoryPrice: CategoryPrice 
     private let locationModel = ["Офис", "Аэропорт/Вокзал", "Другое место"]
@@ -188,14 +189,25 @@ final class OrderUnauthorizedViewController: UIViewController {
     }
     
     @objc private func orderButtonAction() {
-        print("Отправить письмо на бэк")
-        print("car = \(carModel.name)")
-        print("selectedLocation = \(selectedLocation)")
-        print("selectedDate = \(selectedDate)")
-        print("Name = \(nameTextField.text!)")
-        print("priceDay = \(priceOneDay.text!)")
-        print("pricePeriod = \(pricePeriodLabel.text!)")
-        print("needDriver = \(isNeedDriver ? "Да" : "Нет")")
+//        print("Отправить письмо на бэк")
+//        print("car = \(carModel.name)")
+//        print("selectedLocation = \(selectedLocation)")
+//        print("selectedDate = \(selectedDate)")
+//        print("Name = \(nameTextField.text!)")
+//        print("priceDay = \(priceOneDay.text!)")
+//        print("pricePeriod = \(pricePeriodLabel.text!)")
+//        print("needDriver = \(isNeedDriver ? "Да" : "Нет")")
+        let order = Order()
+        rentalManager.postOrder(order: order) { result in
+            switch result {
+            case .success(let success):
+                print("success = \(success.success)")
+                // TODO: - Вывести сообщение, что заказ отправлен на почту
+            case .failure(let error):
+                // TODO: - Сюда не залетаю, потому что в NetworkManagerImp на 28 строчке попадаю в return, так как ответ от сервера приходит 422. Нужно обработать этот кейс и вывести на экран ошибку
+                print(error.localizedDescription)
+            }
+        }
     }
     
     @objc private func registerButtonAction() {
