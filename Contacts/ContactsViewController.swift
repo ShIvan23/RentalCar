@@ -14,6 +14,12 @@ final class ContactsViewController: UIViewController {
     private let scrollView = UIScrollView()
     private let contentView = UIView()
     private let mapView = YMKMapView()
+    /// Для тестов на реальном устройстве
+//    private let mapView: UIView = {
+//        let view = UIView()
+//        view.backgroundColor = .red
+//        return view
+//    }()
     
     private var mapObjects: YMKMapObjectCollection {
         return mapView.mapWindow.map.mapObjects
@@ -109,6 +115,7 @@ final class ContactsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        customizeView()
         layout()
         setupMap()
     }
@@ -121,22 +128,22 @@ final class ContactsViewController: UIViewController {
     }
     
     @objc private func callUsButtonAction() {
-        print("Позвонить")
+        call()
     }
     
     @objc private func openMessenger(button: UIButton) {
         let number = "+79035116111"
         switch button {
         case writeWhatsAppButton:
-            guard let url = URL(string: "https://api.whatsapp.com/send?phone=\(number)") else {
-                print("Не получилось перейти в Whats App")
-                return
-            }
+            guard let url = URL(string: "https://api.whatsapp.com/send?phone=\(number)") else { return }
             if UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         case writeTelegramButton:
-            print("Telegram")
+            guard let url = URL(string: "https://t.me/\(number)") else { return }
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
         default:
             break
         }
@@ -156,8 +163,12 @@ final class ContactsViewController: UIViewController {
     private func setupMap() {
         let point = YMKPoint(latitude: 55.723828, longitude: 37.688591)
         mapView.mapWindow.map.move(with: YMKCameraPosition(target: point, zoom: 15.5, azimuth: 0, tilt: 0))
-        
+
         mapObjects.addPlacemark(with: point) //, image: <#T##UIImage#>)
+    }
+    
+    private func customizeView() {
+        view.backgroundColor = .white
     }
     
     private func layout() {

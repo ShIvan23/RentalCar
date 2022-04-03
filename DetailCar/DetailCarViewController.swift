@@ -142,6 +142,6 @@ extension DetailCarViewController: ImageAndButtonTableViewCellDelegate {
 
 extension DetailCarViewController: CallUsDelegate {
     func callUs() {
-        print("Позвонить в прокат")
+        call()
     }
 }

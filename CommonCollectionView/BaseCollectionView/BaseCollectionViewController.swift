@@ -245,7 +245,7 @@ class BaseCollectionViewController: UIViewController {
     }
     
     @objc private func callUsButtonAction() {
-        print("Позвонить")
+        call()
     }
 }
 

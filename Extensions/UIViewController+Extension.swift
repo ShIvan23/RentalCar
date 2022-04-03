@@ -20,4 +20,13 @@ extension UIViewController {
             return car.price ?? 0
         }
     }
+    
+    func call() {
+        /// Телефон Реймера
+        let number = "+79265587363"
+        guard let url = URL(string: "tel://\(number)") else { return }
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
 }
