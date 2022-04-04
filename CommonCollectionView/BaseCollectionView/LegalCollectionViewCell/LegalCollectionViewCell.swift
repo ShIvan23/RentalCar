@@ -15,7 +15,7 @@ final class LegalCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.font = .boldSystemFont(ofSize: 24)
+        label.font = .boldSystemFont(ofSize: 22)
         return label
     }()
     
@@ -63,9 +63,10 @@ final class LegalCollectionViewCell: UICollectionViewCell {
         legalImage.kf.setImage(with: urlImage)
     }
     
-    func setupCell(model: InformationModel) {
+    func setupCell(model: PromoData) {
         titleLabel.text = model.name
-        legalImage.image = model.image
+//        let urlImage = URL(string: model.thumb)
+//        legalImage.kf.setImage(with: urlImage)
     }
     
     private func setupLayout() {
@@ -75,8 +76,8 @@ final class LegalCollectionViewCell: UICollectionViewCell {
         
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8)
         ])
         
         NSLayoutConstraint.activate([

@@ -10,6 +10,7 @@ import Foundation
 protocol RentalManager {
     func fetchCars(completion: @escaping (Result<CarsModel, Error>) -> Void)
     func postOrder(order: Order, completion: @escaping (Result<OrderResult, Error>) -> Void)
+    func fetchPromos(completion: @escaping (Result<Promos, Error>) -> Void)
 }
 
 final class RentalManagerImp: RentalManager {
@@ -24,6 +25,11 @@ final class RentalManagerImp: RentalManager {
     
     func postOrder(order: Order, completion: @escaping (Result<OrderResult, Error>) -> Void) {
         guard let request = requestManager.postOrder(body: order) else { return }
+        networkManager.fetch(request: request, completion: completion)
+    }
+    
+    func fetchPromos(completion: @escaping (Result<Promos, Error>) -> Void) {
+        guard let request = requestManager.getPromos() else { return }
         networkManager.fetch(request: request, completion: completion)
     }
 }

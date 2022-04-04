@@ -16,6 +16,12 @@ class MainTabBarViewController: UITabBarController {
         }
     }
     
+    private var promoModel: Promos? {
+        didSet {
+            setPromoModelIntoController()
+        }
+    }
+    
     /// Физ лица
     private lazy var allCars = BaseCollectionViewController(
         collectionStyle: .categoryStyle,
@@ -29,9 +35,9 @@ class MainTabBarViewController: UITabBarController {
     )
     
     /// Акции
-    private lazy var stockVC = BaseCollectionViewController(
+    private lazy var promoVC = BaseCollectionViewController(
         collectionStyle: .categoryStyle,
-        isChooseStock: true
+        isChoosePromo: true
     )
     
     /// Условия
@@ -47,6 +53,11 @@ class MainTabBarViewController: UITabBarController {
         super.viewDidLoad()
         setupTabBar()
         setControllers()
+        fetchCars()
+        fetchPromos()
+    }
+    
+    private func fetchCars() {
         rentalManager.fetchCars { [weak self] result in
             switch result {
             case .success(let model):
@@ -58,16 +69,29 @@ class MainTabBarViewController: UITabBarController {
         }
     }
     
+    private func fetchPromos() {
+        rentalManager.fetchPromos { [weak self] result in
+            switch result {
+            case .success(let promos):
+                self?.promoModel = promos
+//                print("promos = \(promos)")
+            case .failure(let error):
+                fatalError(error.localizedDescription)
+            }
+        }
+    }
+    
     private func setModelIntoControllers() {
         allCars.model = model?.data
         
         legalEntity.model = CarClass.makeMockLegalModel()
         legalEntity.modelForPresenting = model?.data
-        
-        stockVC.model = InformationModel.makeMockStockList()
-        stockVC.modelForPresenting = InformationModel.makeMockStocks()
        
-        rentalConditionsVC.model = InformationModel.makeMockConditions()
+//        rentalConditionsVC.model = ??
+    }
+    
+    private func setPromoModelIntoController() {
+        promoVC.model = promoModel?.data
     }
     
     private func setupTabBar() {
@@ -82,7 +106,7 @@ class MainTabBarViewController: UITabBarController {
             createNavController(for: contactsVC, title: "Контакты", image: UIImage(named: "phone")!),
             createNavController(for: allCars, title: "Физ лица", image: UIImage(named: "car2")!),
             createNavController(for: legalEntity, title: "Юр лица", image:  UIImage(named: "car2")!),
-            createNavController(for: stockVC, title: "Акции", image: UIImage(named: "stock")!),
+            createNavController(for: promoVC, title: "Акции", image: UIImage(named: "stock")!),
             createNavController(for: rentalConditionsVC, title: "Условия", image: UIImage(named: "accept")!),
 //            createNavController(for: contactsVC, title: "Контакты", image: UIImage(named: "phone")!)
         ]

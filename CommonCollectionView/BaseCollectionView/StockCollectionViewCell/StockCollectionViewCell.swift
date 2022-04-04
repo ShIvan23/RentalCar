@@ -5,6 +5,7 @@
 //  Created by Ivan on 20.02.2022.
 //
 
+import Kingfisher
 import SnapKit
 import UIKit
 
@@ -50,9 +51,10 @@ final class StockCollectionViewCell: UICollectionViewCell {
         
     }
     
-    func setupCell(stockModel: InformationModel) {
-        stockImageView.image = stockModel.image
-        nameStockLabel.text = stockModel.name
+    func setupCell(promoModel: Promo) {
+        nameStockLabel.text = promoModel.title
+        let urlImage = URL(string: promoModel.thumb)
+        stockImageView.kf.setImage(with: urlImage)
     }
     
     private func layout() {

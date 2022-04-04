@@ -13,7 +13,7 @@ class BaseCollectionViewController: UIViewController {
     enum CollectionStyle {
         case listStyle
         case categoryStyle
-        case stockStyle
+        case promoStyle
         case rentalCondition
     }
     
@@ -36,7 +36,7 @@ class BaseCollectionViewController: UIViewController {
     private let categoryPrice: CategoryPrice?
     private let isChooseLegal: Bool
     private let isChooseConditions: Bool
-    private let isChooseStock: Bool
+    private let isChoosePromo: Bool
     
     private lazy var scrollView = UIScrollView()
     private lazy var contentView = UIView()
@@ -100,13 +100,13 @@ class BaseCollectionViewController: UIViewController {
         categoryPrice: CategoryPrice? = nil,
         isChooseLegal: Bool = false,
         isChooseConditions: Bool = false,
-        isChooseStock: Bool = false
+        isChoosePromo: Bool = false
     ) {
         self.collectionStyle = collectionStyle
         self.categoryPrice = categoryPrice
         self.isChooseLegal = isChooseLegal
         self.isChooseConditions = isChooseConditions
-        self.isChooseStock = isChooseStock
+        self.isChoosePromo = isChoosePromo
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -271,8 +271,8 @@ extension BaseCollectionViewController: UICollectionViewDataSource {
             /// Ячейка для отображения категорий юр лица, видов акций и категорий машин
         case .categoryStyle:
             // если выбор акции
-            if isChooseStock {
-                guard let model = model as? [InformationModel] else { fatalError() }
+            if isChoosePromo {
+                guard let model = model as? [PromoData] else { fatalError() }
                 let cell: LegalCollectionViewCell = collectionView.dequeueCell(for: indexPath)
                 cell.setupCell(model: model[indexPath.item])
                 return cell
@@ -285,16 +285,16 @@ extension BaseCollectionViewController: UICollectionViewDataSource {
           
             /// Ячейка для отображения условий проката
         case .rentalCondition:
-            guard let model = model as? [InformationModel] else { fatalError() }
+            guard let model = model as? [PromoData] else { fatalError() }
             let cell: LegalCollectionViewCell = collectionView.dequeueCell(for: indexPath)
             cell.setupCell(model: model[indexPath.item])
             return cell
             
             /// Ячейка для отображения акций
-        case .stockStyle:
-            guard let model = model as? [InformationModel] else { fatalError() }
+        case .promoStyle:
+            guard let model = model as? [Promo] else { fatalError() }
             let cell: StockCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-            cell.setupCell(stockModel: model[indexPath.item])
+            cell.setupCell(promoModel: model[indexPath.item])
             return cell
         }
     }
@@ -316,7 +316,7 @@ extension BaseCollectionViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch collectionStyle {
-        case .stockStyle:
+        case .promoStyle:
             let width = collectionView.bounds.width - sideInset * 2
             let height: CGFloat = 200
             return CGSize(width: width, height: height)
@@ -360,10 +360,10 @@ extension BaseCollectionViewController: UICollectionViewDelegateFlowLayout {
             
         case .categoryStyle:
             /// При выборе акции
-            if isChooseStock {
-                guard let model = model as? [InformationModel] else { fatalError() }
-                let collectionViewController = BaseCollectionViewController(collectionStyle: .stockStyle)
-                collectionViewController.model = InformationModel.makeMockStocks()
+            if isChoosePromo {
+                guard let model = model as? [PromoData] else { fatalError() }
+                let collectionViewController = BaseCollectionViewController(collectionStyle: .promoStyle)
+                collectionViewController.model = model[indexPath.item].promos
                 collectionViewController.title = model[indexPath.item].name
                 navigationController?.pushViewController(collectionViewController, animated: true)
                 return
@@ -395,7 +395,7 @@ extension BaseCollectionViewController: UICollectionViewDelegateFlowLayout {
                 navigationController?.pushViewController(collectionViewController, animated: true)
             }
             
-        case .stockStyle:
+        case .promoStyle:
             print("Открыть детальный экран с акцией?")
             
             /// Если выбирается условие проката, то показывает детальный экран с условиями
