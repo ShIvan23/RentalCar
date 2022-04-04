@@ -43,6 +43,7 @@ struct CarClass: Model {
 }
 
 struct CarModel2: Model, Codable {
+    let id: Int?
     let name: String?
     let thumb: String?
     let images: [String]?
@@ -63,7 +64,7 @@ struct CarModel2: Model, Codable {
     let priceDriver: Int?
     
     private enum CodingKeys: String, CodingKey {
-        case name, thumb, images, description, model, brand, year, conditioner, price
+        case id, name, thumb, images, description, model, brand, year, conditioner, price
         case engineVolume = "engine_volume"
         case enginePower = "engine_power"
 //        case engineType = "engine_type"

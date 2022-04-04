@@ -8,22 +8,19 @@
 import Foundation
 
 struct Order: Encodable {
-    // TODO: - изменить id на название машины
-    let autoId: Int = 2
-    let name: String = "Иван Иванов"
-    let location: String = "Офис"
-    let startRental: String = "2022-03-01"
-    let endRental: String = "2022-03-01"
+    let autoId: Int
+    let name: String
+    let location: String
+    let rentalDate: String
     let email: String? = nil
-    let phone: String = "+79998887766"
-    let needDriver: Bool = true
-    let cost: Int = 100500
+    let phone: String
+    let needDriver: Bool
+    let cost: Int
     
     private enum CodingKeys: String, CodingKey {
         case name, location, phone, cost, email
         case autoId = "auto_id"
-        case startRental = "start_rental"
-        case endRental = "end_rental"
+        case rentalDate = "rental_date"
         case needDriver = "need_driver"
     }
 }

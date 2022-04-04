@@ -197,7 +197,13 @@ final class OrderUnauthorizedViewController: UIViewController {
 //        print("priceDay = \(priceOneDay.text!)")
 //        print("pricePeriod = \(pricePeriodLabel.text!)")
 //        print("needDriver = \(isNeedDriver ? "Да" : "Нет")")
-        let order = Order()
+        let order = Order(autoId: carModel.id ?? 0,
+                          name: nameTextField.text ?? "",
+                          location: selectedLocation,
+                          rentalDate: selectedDate,
+                          phone: telephoneTextField.text ?? "",
+                          needDriver: isNeedDriver,
+                          cost: Int(pricePeriodLabel.text ?? "") ?? 0)
         rentalManager.postOrder(order: order) { result in
             switch result {
             case .success(let success):
