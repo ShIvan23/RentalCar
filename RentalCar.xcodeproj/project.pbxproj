@@ -24,6 +24,8 @@
 		2C6E4DD027B9349500FBE7E8 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6E4DCF27B9349500FBE7E8 /* ScreenSize.swift */; };
 		2C6E4DD327B9377E00FBE7E8 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6E4DD227B9377E00FBE7E8 /* CalendarViewController.swift */; };
 		2C8C980D27FA2A83003D9D68 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C980C27FA2A83003D9D68 /* OrderModel.swift */; };
+		2C8C981427FB695F003D9D68 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C981327FB695F003D9D68 /* ToastView.swift */; };
+		2C8C981627FB6DCE003D9D68 /* ToastViewShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C981527FB6DCE003D9D68 /* ToastViewShowable.swift */; };
 		2C9DF7DF27D9F45A00C176AC /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9DF7DE27D9F45A00C176AC /* NetworkManager.swift */; };
 		2C9DF80227DB5B9600C176AC /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9DF80127DB5B9600C176AC /* ContactsViewController.swift */; };
 		2C9DF80427DB95C600C176AC /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9DF80327DB95C600C176AC /* RequestManager.swift */; };
@@ -62,6 +64,8 @@
 		2C6E4DCF27B9349500FBE7E8 /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
 		2C6E4DD227B9377E00FBE7E8 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		2C8C980C27FA2A83003D9D68 /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
+		2C8C981327FB695F003D9D68 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		2C8C981527FB6DCE003D9D68 /* ToastViewShowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastViewShowable.swift; sourceTree = "<group>"; };
 		2C9DF7DE27D9F45A00C176AC /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		2C9DF80127DB5B9600C176AC /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		2C9DF80327DB95C600C176AC /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
@@ -110,6 +114,7 @@
 				2CF197E227AE766D00E82C6C /* DetailCar */,
 				2C9DF80027DB5B7A00C176AC /* Contacts */,
 				2CF197F227B5183D00E82C6C /* OrderUnauthorized */,
+				2C8C981227FB6891003D9D68 /* ToastToast */,
 				2C631E5527A33983003753E1 /* Models */,
 				2C6E4DCE27B9347700FBE7E8 /* ScreenSize */,
 				2C9DF7DD27D9F42C00C176AC /* Networking */,
@@ -238,6 +243,15 @@
 				2C6E4DD227B9377E00FBE7E8 /* CalendarViewController.swift */,
 			);
 			path = Calendar;
+			sourceTree = "<group>";
+		};
+		2C8C981227FB6891003D9D68 /* ToastToast */ = {
+			isa = PBXGroup;
+			children = (
+				2C8C981327FB695F003D9D68 /* ToastView.swift */,
+				2C8C981527FB6DCE003D9D68 /* ToastViewShowable.swift */,
+			);
+			path = ToastToast;
 			sourceTree = "<group>";
 		};
 		2C9DF7DD27D9F42C00C176AC /* Networking */ = {
@@ -463,6 +477,7 @@
 			files = (
 				2C631E5427A337EE003753E1 /* UIView+Extension.swift in Sources */,
 				2C9DF80227DB5B9600C176AC /* ContactsViewController.swift in Sources */,
+				2C8C981427FB695F003D9D68 /* ToastView.swift in Sources */,
 				2CC9AF8027C188D40082D81C /* TextField.swift in Sources */,
 				2C631E5727A33990003753E1 /* CarModel.swift in Sources */,
 				2CC9AF8927C2C9E20082D81C /* StockCollectionViewCell.swift in Sources */,
@@ -473,6 +488,7 @@
 				2C6295BA27A48AB7003521D9 /* MainTabBarViewController.swift in Sources */,
 				2C631E4C27A33213003753E1 /* BaseCollectionViewController.swift in Sources */,
 				2CF197F127B5072600E82C6C /* NSMutableAttributedString+Extension.swift in Sources */,
+				2C8C981627FB6DCE003D9D68 /* ToastViewShowable.swift in Sources */,
 				2CF197E927AE88E800E82C6C /* ImageCollectionViewCell.swift in Sources */,
 				2C6E4DD027B9349500FBE7E8 /* ScreenSize.swift in Sources */,
 				2C631E4F27A333C3003753E1 /* BaseCollectionViewCell.swift in Sources */,

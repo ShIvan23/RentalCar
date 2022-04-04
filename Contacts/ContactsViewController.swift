@@ -9,7 +9,9 @@ import YandexMapsMobile
 import SnapKit
 import UIKit
 
-final class ContactsViewController: UIViewController {
+final class ContactsViewController: UIViewController, ToastViewShowable {
+   
+    var showingToast: ToastView?
     
     private let scrollView = UIScrollView()
     private let contentView = UIView()
@@ -153,10 +155,24 @@ final class ContactsViewController: UIViewController {
         switch button {
         case copyAddressButton:
             UIPasteboard.general.string = "Москва, Волгоградский проспект, д. 32, корпус 1"
+            animate(copyButton: copyAddressButton)
+            showCopyToast(with: "Адрес скопирован")
         case copyEmailButton:
             UIPasteboard.general.string = emailLabel.text
+            animate(copyButton: copyEmailButton)
+            showCopyToast(with: "Почта скопирована")
         default:
             break
+        }
+    }
+    
+    private func animate(copyButton: UIButton) {
+        UIView.animate(withDuration: 0.1) {
+            copyButton.alpha = 0.3
+        } completion: { _ in
+            UIView.animate(withDuration: 0.1) {
+                copyButton.alpha = 1.0
+            }
         }
     }
     
