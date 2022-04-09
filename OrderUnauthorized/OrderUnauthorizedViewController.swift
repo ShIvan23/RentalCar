@@ -244,10 +244,16 @@ final class OrderUnauthorizedViewController: UIViewController {
     
     private func makeCurrentPriceForDay(daysCount: Int) -> Int {
         var currentPrice = 0
-        switch daysCount {
-            // - TODO: Добавить логику по изменению прайса в зависимости от количества дней
-        default:
+        if daysCount < 3 {
             currentPrice = carModel.price ?? 0
+        } else if daysCount >= 3 && daysCount <= 6 {
+            currentPrice = carModel.priceFrom3To6Days ?? 0
+        } else if daysCount >= 7 && daysCount <= 13 {
+            currentPrice = carModel.priceFrom7To13Days ?? 0
+        } else if daysCount >= 14 && daysCount <= 29 {
+            currentPrice = carModel.priceFrom14To29Days ?? 0
+        } else if daysCount >= 30 {
+            currentPrice = carModel.priceMonth ?? 0
         }
         return currentPrice
     }
@@ -479,12 +485,14 @@ extension OrderUnauthorizedViewController: CalendarViewControllerDelegate {
             placeholderDateLabel.textColor = UIColor(hexString: "#C7C7CD")
             selectedDate = ""
             selectedDaysCount = daysCount
+            currentPrice =  makeCurrentPriceForDay(daysCount: daysCount)
             updateCoast()
         } else {
             placeholderDateLabel.textColor = .black
             placeholderDateLabel.text = dateString
             selectedDate = dateString
             selectedDaysCount = daysCount
+            currentPrice = makeCurrentPriceForDay(daysCount: daysCount)
             updateCoast()
         }
     }

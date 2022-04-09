@@ -103,12 +103,11 @@ class MainTabBarViewController: UITabBarController {
     
     private func setControllers() {
         viewControllers = [
-            createNavController(for: contactsVC, title: "Контакты", image: UIImage(named: "phone")!),
             createNavController(for: allCars, title: "Физ лица", image: UIImage(named: "car2")!),
             createNavController(for: legalEntity, title: "Юр лица", image:  UIImage(named: "car2")!),
             createNavController(for: promoVC, title: "Акции", image: UIImage(named: "stock")!),
             createNavController(for: rentalConditionsVC, title: "Условия", image: UIImage(named: "accept")!),
-//            createNavController(for: contactsVC, title: "Контакты", image: UIImage(named: "phone")!)
+            createNavController(for: contactsVC, title: "Контакты", image: UIImage(named: "phone")!)
         ]
     }
     

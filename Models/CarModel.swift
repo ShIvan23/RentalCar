@@ -60,7 +60,11 @@ struct CarModel2: Model, Codable {
     let countDoors: Int?
     let conditioner: Bool?
     let price: Int?
-   // let price_3_6: Int
+    let priceFrom3To6Days: Int?
+    let priceFrom7To13Days: Int?
+    let priceFrom14To29Days: Int?
+    let priceMonth: Int?
+    let priceWorkday: Int?
     let priceDriver: Int?
     
     private enum CodingKeys: String, CodingKey {
@@ -73,5 +77,10 @@ struct CarModel2: Model, Codable {
         case countSeats = "count_seats"
         case countDoors = "count_doors"
         case priceDriver = "price_driver"
+        case priceFrom3To6Days = "price_3_6"
+        case priceFrom7To13Days = "price_7_13"
+        case priceFrom14To29Days = "price_14_29"
+        case priceMonth = "price_30"
+        case priceWorkday = "price_workday"
     }
 }
