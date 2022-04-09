@@ -9,6 +9,11 @@ import UIKit
 
 class MainTabBarViewController: UITabBarController {
     
+    private enum FetchError {
+        case cars
+        case promo
+    }
+    
     private let rentalManager: RentalManager = RentalManagerImp()
     private var model: CarsModel? {
         didSet {
@@ -62,9 +67,10 @@ class MainTabBarViewController: UITabBarController {
             switch result {
             case .success(let model):
                 self?.model = model
-            case .failure(let error):
-                fatalError(error.localizedDescription)
-//                print(error.localizedDescription)
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self?.showAlert(error: .cars)
+                }
             }
         }
     }
@@ -74,9 +80,10 @@ class MainTabBarViewController: UITabBarController {
             switch result {
             case .success(let promos):
                 self?.promoModel = promos
-//                print("promos = \(promos)")
-            case .failure(let error):
-                fatalError(error.localizedDescription)
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self?.showAlert(error: .promo)
+                }
             }
         }
     }
@@ -86,12 +93,24 @@ class MainTabBarViewController: UITabBarController {
         
         legalEntity.model = CarClass.makeMockLegalModel()
         legalEntity.modelForPresenting = model?.data
-       
-//        rentalConditionsVC.model = ??
     }
     
     private func setPromoModelIntoController() {
         promoVC.model = promoModel?.data
+    }
+    
+    private func showAlert(error: FetchError) {
+        let alert = UIAlertController(title: "Не получилось загрузить данные", message: "Возможно, нет подключения к интернету. Попробуйте еще раз.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Обновить", style: .default) { [weak self] _ in
+            switch error {
+            case .cars:
+                self?.fetchCars()
+            case .promo:
+                self?.fetchPromos()
+            }
+        }
+        alert.addAction(okAction)
+        present(alert, animated: true)
     }
     
     private func setupTabBar() {
