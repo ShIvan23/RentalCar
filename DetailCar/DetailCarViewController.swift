@@ -13,6 +13,7 @@ final class DetailCarViewController: UIViewController {
     private var categoryPrice: CategoryPrice 
     private var currentPrice = 0
     private var descriptions = [NSMutableAttributedString]()
+    private lazy var transition = ImageTransition()
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -132,6 +133,13 @@ extension DetailCarViewController: UITableViewDelegate {
 // MARK: - ImageAndButtonTableViewCellDelegate
 
 extension DetailCarViewController: ImageAndButtonTableViewCellDelegate {
+    func photoTapped(item: Int) {
+        let fullImageVC = FullImageViewController(image: carModel.images?[item] ?? "")
+        fullImageVC.modalPresentationStyle = .custom
+        fullImageVC.transitioningDelegate = self
+        present(fullImageVC, animated: true)
+    }
+    
     func orderButtonTapped() {
         let orderUnauthorizesVC = OrderUnauthorizedViewController(carModel: carModel, categoryPrice: categoryPrice)
         navigationController?.pushViewController(orderUnauthorizesVC, animated: true)
@@ -143,5 +151,19 @@ extension DetailCarViewController: ImageAndButtonTableViewCellDelegate {
 extension DetailCarViewController: CallUsDelegate {
     func callUs() {
         call()
+    }
+}
+
+// MARK: - UIViewControllerTransitioningDelegate
+
+extension DetailCarViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.presenting = true
+        return transition
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.presenting = false
+        return transition
     }
 }

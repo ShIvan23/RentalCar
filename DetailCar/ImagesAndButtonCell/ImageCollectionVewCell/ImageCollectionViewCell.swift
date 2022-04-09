@@ -13,19 +13,24 @@ final class ImageCollectionViewCell: UICollectionViewCell {
     private let carImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         return imageView
     }()
     
     func setupCellWith(image: String) {
         layout()
+        setupCell()
         let urlImage = URL(string: image)
         carImageView.kf.setImage(with: urlImage)
     }
     
+    private func setupCell() {
+        contentView.backgroundColor = .white
+    }
+    
     private func layout() {
         contentView.addSubview(carImageView)
-//        contentView.backgroundColor = .yellow
         
         NSLayoutConstraint.activate([
             carImageView.topAnchor.constraint(equalTo: contentView.topAnchor),

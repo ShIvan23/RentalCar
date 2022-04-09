@@ -10,6 +10,9 @@
 		2C1DDABD27A08574000B82C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1DDABC27A08574000B82C6 /* AppDelegate.swift */; };
 		2C1DDAC627A08579000B82C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C1DDAC527A08579000B82C6 /* Assets.xcassets */; };
 		2C1DDAC927A08579000B82C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C1DDAC727A08579000B82C6 /* LaunchScreen.storyboard */; };
+		2C60ACFE28019EAE00C5A1A0 /* FullImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60ACFD28019EAE00C5A1A0 /* FullImageViewController.swift */; };
+		2C60AD012801A28700C5A1A0 /* ImageTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AD002801A28700C5A1A0 /* ImageTransition.swift */; };
+		2C60AD032801CCFD00C5A1A0 /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AD022801CCFD00C5A1A0 /* ImageScrollView.swift */; };
 		2C6295B727A465E3003521D9 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6295B627A465E3003521D9 /* UIColor+Extension.swift */; };
 		2C6295BA27A48AB7003521D9 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6295B927A48AB7003521D9 /* MainTabBarViewController.swift */; };
 		2C6295BF27A499B8003521D9 /* LegalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6295BE27A499B8003521D9 /* LegalCollectionViewCell.swift */; };
@@ -50,6 +53,9 @@
 		2C1DDAC527A08579000B82C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C1DDAC827A08579000B82C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C1DDACA27A08579000B82C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C60ACFD28019EAE00C5A1A0 /* FullImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullImageViewController.swift; sourceTree = "<group>"; };
+		2C60AD002801A28700C5A1A0 /* ImageTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTransition.swift; sourceTree = "<group>"; };
+		2C60AD022801CCFD00C5A1A0 /* ImageScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageScrollView.swift; sourceTree = "<group>"; };
 		2C6295B627A465E3003521D9 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		2C6295B927A48AB7003521D9 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		2C6295BE27A499B8003521D9 /* LegalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -117,6 +123,7 @@
 				2C8C981227FB6891003D9D68 /* ToastToast */,
 				2C631E5527A33983003753E1 /* Models */,
 				2C6E4DCE27B9347700FBE7E8 /* ScreenSize */,
+				2C60ACFF2801A25F00C5A1A0 /* ImageTransition */,
 				2C9DF7DD27D9F42C00C176AC /* Networking */,
 				2CC9AF7E27C1889C0082D81C /* CustomViews */,
 				2C631E5027A3340D003753E1 /* Extensions */,
@@ -152,6 +159,23 @@
 				2CF197EE27B41A4800E82C6C /* DescriptionTableViewCell.swift */,
 			);
 			path = DescriptionCell;
+			sourceTree = "<group>";
+		};
+		2C60ACFC28019E8400C5A1A0 /* FullImageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2C60ACFD28019EAE00C5A1A0 /* FullImageViewController.swift */,
+				2C60AD022801CCFD00C5A1A0 /* ImageScrollView.swift */,
+			);
+			path = FullImageViewController;
+			sourceTree = "<group>";
+		};
+		2C60ACFF2801A25F00C5A1A0 /* ImageTransition */ = {
+			isa = PBXGroup;
+			children = (
+				2C60AD002801A28700C5A1A0 /* ImageTransition.swift */,
+			);
+			path = ImageTransition;
 			sourceTree = "<group>";
 		};
 		2C6295B827A48A73003521D9 /* TabBarController */ = {
@@ -311,6 +335,7 @@
 			isa = PBXGroup;
 			children = (
 				2CF197EB27B4180800E82C6C /* ImageAndButtonTableViewCell.swift */,
+				2C60ACFC28019E8400C5A1A0 /* FullImageViewController */,
 				2CF197ED27B419E700E82C6C /* ImageCollectionVewCell */,
 			);
 			path = ImagesAndButtonCell;
@@ -355,7 +380,7 @@
 				2C1DDAB627A08574000B82C6 /* Frameworks */,
 				2C1DDAB727A08574000B82C6 /* Resources */,
 				007F94DD80944E72AECE432E /* [CP] Embed Pods Frameworks */,
-				D0BD297231F1EC5F4C552CBC /* [CP] Copy Pods Resources */,
+				3A13057F560D262C126A1E76 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -429,6 +454,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RentalCar/Pods-RentalCar-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		3A13057F560D262C126A1E76 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RentalCar/Pods-RentalCar-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RentalCar/Pods-RentalCar-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RentalCar/Pods-RentalCar-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		600D2A010C2673824BBCB721 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -449,23 +491,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D0BD297231F1EC5F4C552CBC /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RentalCar/Pods-RentalCar-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RentalCar/Pods-RentalCar-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RentalCar/Pods-RentalCar-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -491,11 +516,13 @@
 				2CF197F127B5072600E82C6C /* NSMutableAttributedString+Extension.swift in Sources */,
 				2C8C981627FB6DCE003D9D68 /* ToastViewShowable.swift in Sources */,
 				2CF197E927AE88E800E82C6C /* ImageCollectionViewCell.swift in Sources */,
+				2C60AD012801A28700C5A1A0 /* ImageTransition.swift in Sources */,
 				2C6E4DD027B9349500FBE7E8 /* ScreenSize.swift in Sources */,
 				2C631E4F27A333C3003753E1 /* BaseCollectionViewCell.swift in Sources */,
 				2CC9AF8427C2BE690082D81C /* UIViewController+Extension.swift in Sources */,
 				2C6E4DD327B9377E00FBE7E8 /* CalendarViewController.swift in Sources */,
 				2C6295BF27A499B8003521D9 /* LegalCollectionViewCell.swift in Sources */,
+				2C60AD032801CCFD00C5A1A0 /* ImageScrollView.swift in Sources */,
 				2C9DF80627DB98B300C176AC /* RentalManager.swift in Sources */,
 				2C9DF85227DCD5F000C176AC /* CallUsTableViewCell.swift in Sources */,
 				2C6E4DCD27B91F1E00FBE7E8 /* PopoverTableViewController.swift in Sources */,
@@ -504,6 +531,7 @@
 				2CF197F427B5190100E82C6C /* OrderUnauthorizedViewController.swift in Sources */,
 				2C1DDABD27A08574000B82C6 /* AppDelegate.swift in Sources */,
 				2C6295B727A465E3003521D9 /* UIColor+Extension.swift in Sources */,
+				2C60ACFE28019EAE00C5A1A0 /* FullImageViewController.swift in Sources */,
 				2C9DF7DF27D9F45A00C176AC /* NetworkManager.swift in Sources */,
 				2CF197E427AE768800E82C6C /* DetailCarViewController.swift in Sources */,
 				2C6295C327ABBADC003521D9 /* CategoryPrice.swift in Sources */,

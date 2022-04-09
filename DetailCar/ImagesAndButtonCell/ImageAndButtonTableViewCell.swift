@@ -9,6 +9,7 @@ import UIKit
 
 protocol ImageAndButtonTableViewCellDelegate: AnyObject {
     func orderButtonTapped()
+    func photoTapped(item: Int)
 }
 
 class ImageAndButtonTableViewCell: UITableViewCell {
@@ -177,5 +178,9 @@ extension ImageAndButtonTableViewCell: UICollectionViewDelegateFlowLayout {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let pageNumber = round(scrollView.contentOffset.x / scrollView.frame.size.width)
         pageControl.currentPage = Int(pageNumber)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.photoTapped(item: indexPath.item)
     }
 }
