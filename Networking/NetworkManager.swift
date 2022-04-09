@@ -25,6 +25,8 @@ final class NetworkManagerImp: NetworkManager {
                 if let error = error {
                     completion(.failure(error))
                 }
+                let unownedError = NSError()
+                completion(.failure(unownedError))
                 return
             }
             
@@ -51,6 +53,8 @@ final class NetworkManagerImp: NetworkManager {
             switch HTTPResponse.statusCode {
             case 200:
                 completion(data, HTTPResponse, nil)
+            case 422:
+                completion(nil, HTTPResponse, error)
             default:
                 completion(nil, HTTPResponse, error)
             }

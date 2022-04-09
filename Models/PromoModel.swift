@@ -13,6 +13,7 @@ struct Promos: Model, Decodable {
 
 struct PromoData: Model, Decodable {
     let name: String
+    let thumb: String
     let promos: [Promo]
 }
 

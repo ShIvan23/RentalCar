@@ -10,9 +10,13 @@ import UIKit
 
 final class ToastView: UIView {
     
+    enum ToastType {
+        case success
+        case failure
+    }
+    
     private let iconImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "success")
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -21,12 +25,15 @@ final class ToastView: UIView {
         let label = UILabel()
         label.textColor = .white
         label.font = .boldSystemFont(ofSize: 15)
+        label.numberOfLines = 0
         return label
     }()
     
-    init(text: String) {
+    init(text: String,
+         type: ToastType
+    ) {
         super.init(frame: .zero)
-        customizeView(text: text)
+        customizeView(text: text, type: type)
         layout()
     }
     
@@ -57,23 +64,30 @@ final class ToastView: UIView {
         }
     }
     
-    private func customizeView(text: String) {
+    private func customizeView(text: String, type: ToastType) {
         backgroundColor = .black
         layer.cornerRadius = 12
         textLabel.text = text
+        
+        switch type {
+        case .success:
+            iconImageView.image = UIImage(named: "success")
+        case .failure:
+            iconImageView.image = UIImage(named: "failure")
+        }
     }
     
     private func layout() {
         [iconImageView, textLabel].forEach { addSubview($0) }
 
         iconImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(9)
+            make.centerY.equalTo(textLabel.snp.centerY)
             make.left.equalToSuperview().inset(12)
             make.width.height.equalTo(20)
         }
         
         textLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(9)
+            make.top.bottom.equalToSuperview().inset(9)
             make.left.equalTo(iconImageView.snp.right).offset(10)
             make.right.equalToSuperview().inset(9)
         }

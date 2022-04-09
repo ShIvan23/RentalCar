@@ -8,7 +8,9 @@
 import SnapKit
 import UIKit
 
-final class OrderUnauthorizedViewController: UIViewController {
+final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable {
+    
+    var showingToast: ToastView?
     
     private lazy var rentalManager: RentalManager = RentalManagerImp()
     private var carModel: CarModel2
@@ -204,16 +206,7 @@ final class OrderUnauthorizedViewController: UIViewController {
                           phone: telephoneTextField.text ?? "",
                           needDriver: isNeedDriver,
                           cost: Int(pricePeriodLabel.text ?? "") ?? 0)
-        rentalManager.postOrder(order: order) { result in
-            switch result {
-            case .success(let success):
-                print("success = \(success.success)")
-                // TODO: - Вывести сообщение, что заказ отправлен на почту
-            case .failure(let error):
-                // TODO: - Сюда не залетаю, потому что в NetworkManagerImp на 28 строчке попадаю в return, так как ответ от сервера приходит 422. Нужно обработать этот кейс и вывести на экран ошибку
-                print(error.localizedDescription)
-            }
-        }
+        sendOrder(order)
     }
     
     @objc private func registerButtonAction() {
@@ -256,6 +249,22 @@ final class OrderUnauthorizedViewController: UIViewController {
             currentPrice = carModel.priceMonth ?? 0
         }
         return currentPrice
+    }
+    
+    private func sendOrder(_ order: Order) {
+        rentalManager.postOrder(order: order) { [weak self] result in
+            switch result {
+            case .success(let success):
+                DispatchQueue.main.async {
+                    self?.showSuccessToast(with: "Ваш заказ отправлен.\nМенеджер Вам перезвонит.")
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self?.showFailureToast(with: "Произошла ошибка.\nПопробуйте отправить еще раз!")
+                }
+//                debugPrint(error.localizedDescription)
+            }
+        }
     }
     
     private func updateCoast() {

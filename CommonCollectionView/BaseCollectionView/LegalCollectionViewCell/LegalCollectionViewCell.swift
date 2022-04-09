@@ -65,8 +65,8 @@ final class LegalCollectionViewCell: UICollectionViewCell {
     
     func setupCell(model: PromoData) {
         titleLabel.text = model.name
-//        let urlImage = URL(string: model.thumb)
-//        legalImage.kf.setImage(with: urlImage)
+        let urlImage = URL(string: model.thumb)
+        legalImage.kf.setImage(with: urlImage)
     }
     
     private func setupLayout() {

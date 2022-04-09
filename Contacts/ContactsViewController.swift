@@ -156,11 +156,11 @@ final class ContactsViewController: UIViewController, ToastViewShowable {
         case copyAddressButton:
             UIPasteboard.general.string = "Москва, Волгоградский проспект, д. 32, корпус 1"
             animate(copyButton: copyAddressButton)
-            showCopyToast(with: "Адрес скопирован")
+            showSuccessToast(with: "Адрес скопирован")
         case copyEmailButton:
             UIPasteboard.general.string = emailLabel.text
             animate(copyButton: copyEmailButton)
-            showCopyToast(with: "Почта скопирована")
+            showSuccessToast(with: "Почта скопирована")
         default:
             break
         }
