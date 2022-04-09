@@ -7,6 +7,8 @@
 
 import Foundation
 
+// Модель отправки заказа
+
 struct Order: Encodable {
     let autoId: Int
     let name: String

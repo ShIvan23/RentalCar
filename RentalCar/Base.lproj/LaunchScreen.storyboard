@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,17 +17,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="TO7-IL-Yfp">
-                                <rect key="frame" x="80" y="203" width="254" height="200"/>
+                                <rect key="frame" x="20" y="203" width="374" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="emj-GF-4Ps"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="TO7-IL-Yfp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="80" id="5ke-eR-j6b"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="TO7-IL-Yfp" secondAttribute="trailing" constant="80" id="jU9-Dj-pfe"/>
+                            <constraint firstItem="TO7-IL-Yfp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="5ke-eR-j6b"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="TO7-IL-Yfp" secondAttribute="trailing" constant="20" id="jU9-Dj-pfe"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="centerY" secondItem="TO7-IL-Yfp" secondAttribute="bottom" constant="50" id="pQg-Ud-2Rm"/>
                         </constraints>
                     </view>
@@ -39,9 +38,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo" width="89" height="47"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="logo" width="610" height="139"/>
     </resources>
 </document>

@@ -60,6 +60,7 @@ class MainTabBarViewController: UITabBarController {
         setControllers()
         fetchCars()
         fetchPromos()
+        setConditionsModel()
     }
     
     private func fetchCars() {
@@ -97,6 +98,10 @@ class MainTabBarViewController: UITabBarController {
     
     private func setPromoModelIntoController() {
         promoVC.model = promoModel?.data
+    }
+    
+    private func setConditionsModel() {
+        rentalConditionsVC.model = ConditionsModel.makeConditionsModel()
     }
     
     private func showAlert(error: FetchError) {

@@ -7,6 +7,8 @@
 
 import Foundation
 
+// Модель акций
+
 struct Promos: Model, Decodable {
     let data: [PromoData]
 }

@@ -9,6 +9,8 @@ import UIKit
 
 protocol Model {}
 
+// Модель списка машин
+
 struct CarsModel: Decodable {
     let data: [CarClass2]
 }
