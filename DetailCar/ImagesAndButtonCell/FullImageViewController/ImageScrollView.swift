@@ -65,19 +65,8 @@ final class ImageScrollView: UIScrollView, UIScrollViewDelegate {
         let yScale = boundsSize.height / imageSize.height
         let minScale = min(xScale, yScale)
         
-        var maxScale: CGFloat = 1.0
-        if minScale < 0.1 {
-            maxScale = 0.3
-        }
-        if minScale >= 0.1 && minScale < 0.5 {
-            maxScale = 0.7
-        }
-        if minScale >= 0.5 {
-            maxScale = max(1.0, minScale)
-        }
-        
         self.minimumZoomScale = minScale
-        self.maximumZoomScale = maxScale
+        self.maximumZoomScale = 3.0
     }
     
     func centerImage() {

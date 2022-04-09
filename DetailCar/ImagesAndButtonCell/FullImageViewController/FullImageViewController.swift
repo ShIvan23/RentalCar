@@ -9,7 +9,7 @@ import Kingfisher
 import UIKit
 import SnapKit
 
-class FullImageViewController: UIViewController {
+final class FullImageViewController: UIViewController {
     
     private var currentImage: UIImage? {
         didSet {

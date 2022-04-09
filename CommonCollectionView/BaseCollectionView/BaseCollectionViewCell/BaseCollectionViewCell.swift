@@ -44,7 +44,7 @@ final class BaseCollectionViewCell: UICollectionViewCell {
     private let orderLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Заказать"
+        label.text = "Выбрать"
         label.textAlignment = .center
         label.font = .boldSystemFont(ofSize: 18)
         label.textColor = .white

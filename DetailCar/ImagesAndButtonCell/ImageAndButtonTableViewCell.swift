@@ -12,7 +12,7 @@ protocol ImageAndButtonTableViewCellDelegate: AnyObject {
     func photoTapped(item: Int)
 }
 
-class ImageAndButtonTableViewCell: UITableViewCell {
+final class ImageAndButtonTableViewCell: UITableViewCell {
     
     private var allImages = [String]()
     private var indexOfCellBeforeDragging = 0

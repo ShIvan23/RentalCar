@@ -8,7 +8,7 @@
 import SnapKit
 import UIKit
 
-class BaseCollectionViewController: UIViewController {
+final class BaseCollectionViewController: UIViewController {
     
     enum CollectionStyle {
         case personal
@@ -416,7 +416,11 @@ extension BaseCollectionViewController: UICollectionViewDelegateFlowLayout {
             
             /// Если выбирается условие проката, то показывает детальный экран с условиями
         case .conditions:
-            print("Показать экран с условиями")
+            guard let model = model as? [ConditionsModel] else { fatalError() }
+            let conditionVC = ConditionViewController(model: model[indexPath.item].conditions)
+            conditionVC.title = model[indexPath.item].title
+            navigationController?.pushViewController(conditionVC, animated: true)
+            return
         }
     }
 }

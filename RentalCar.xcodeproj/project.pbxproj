@@ -15,6 +15,9 @@
 		2C60AD032801CCFD00C5A1A0 /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AD022801CCFD00C5A1A0 /* ImageScrollView.swift */; };
 		2C60AD052801F71000C5A1A0 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AD042801F71000C5A1A0 /* String+Extension.swift */; };
 		2C60AD072802093B00C5A1A0 /* ConditionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AD062802093B00C5A1A0 /* ConditionModel.swift */; };
+		2C60AD0A2802399600C5A1A0 /* ConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AD092802399600C5A1A0 /* ConditionViewController.swift */; };
+		2C60AD0D28023A6700C5A1A0 /* ConditionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AD0C28023A6700C5A1A0 /* ConditionTableViewCell.swift */; };
+		2C60AD0F28023CFB00C5A1A0 /* ConditionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AD0E28023CFB00C5A1A0 /* ConditionHeaderView.swift */; };
 		2C6295B727A465E3003521D9 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6295B627A465E3003521D9 /* UIColor+Extension.swift */; };
 		2C6295BA27A48AB7003521D9 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6295B927A48AB7003521D9 /* MainTabBarViewController.swift */; };
 		2C6295BF27A499B8003521D9 /* LegalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6295BE27A499B8003521D9 /* LegalCollectionViewCell.swift */; };
@@ -60,6 +63,9 @@
 		2C60AD022801CCFD00C5A1A0 /* ImageScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageScrollView.swift; sourceTree = "<group>"; };
 		2C60AD042801F71000C5A1A0 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		2C60AD062802093B00C5A1A0 /* ConditionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionModel.swift; sourceTree = "<group>"; };
+		2C60AD092802399600C5A1A0 /* ConditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionViewController.swift; sourceTree = "<group>"; };
+		2C60AD0C28023A6700C5A1A0 /* ConditionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionTableViewCell.swift; sourceTree = "<group>"; };
+		2C60AD0E28023CFB00C5A1A0 /* ConditionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionHeaderView.swift; sourceTree = "<group>"; };
 		2C6295B627A465E3003521D9 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		2C6295B927A48AB7003521D9 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		2C6295BE27A499B8003521D9 /* LegalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -122,6 +128,7 @@
 				2C6295B827A48A73003521D9 /* TabBarController */,
 				2C631E4927A33190003753E1 /* CommonCollectionView */,
 				2CF197E227AE766D00E82C6C /* DetailCar */,
+				2C60AD082802396000C5A1A0 /* ConditionViewController */,
 				2C9DF80027DB5B7A00C176AC /* Contacts */,
 				2CF197F227B5183D00E82C6C /* OrderUnauthorized */,
 				2C8C981227FB6891003D9D68 /* ToastToast */,
@@ -180,6 +187,24 @@
 				2C60AD002801A28700C5A1A0 /* ImageTransition.swift */,
 			);
 			path = ImageTransition;
+			sourceTree = "<group>";
+		};
+		2C60AD082802396000C5A1A0 /* ConditionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2C60AD092802399600C5A1A0 /* ConditionViewController.swift */,
+				2C60AD0B28023A2E00C5A1A0 /* ConditionCell */,
+			);
+			path = ConditionViewController;
+			sourceTree = "<group>";
+		};
+		2C60AD0B28023A2E00C5A1A0 /* ConditionCell */ = {
+			isa = PBXGroup;
+			children = (
+				2C60AD0C28023A6700C5A1A0 /* ConditionTableViewCell.swift */,
+				2C60AD0E28023CFB00C5A1A0 /* ConditionHeaderView.swift */,
+			);
+			path = ConditionCell;
 			sourceTree = "<group>";
 		};
 		2C6295B827A48A73003521D9 /* TabBarController */ = {
@@ -515,11 +540,13 @@
 				2CC9AF8927C2C9E20082D81C /* StockCollectionViewCell.swift in Sources */,
 				2CF197EF27B41A4800E82C6C /* DescriptionTableViewCell.swift in Sources */,
 				2C9DF80427DB95C600C176AC /* RequestManager.swift in Sources */,
+				2C60AD0D28023A6700C5A1A0 /* ConditionTableViewCell.swift in Sources */,
 				2C631E5227A33419003753E1 /* UICollectionView_UITableView+Extension.swift in Sources */,
 				2CF197EC27B4180800E82C6C /* ImageAndButtonTableViewCell.swift in Sources */,
 				2C6295BA27A48AB7003521D9 /* MainTabBarViewController.swift in Sources */,
 				2C631E4C27A33213003753E1 /* BaseCollectionViewController.swift in Sources */,
 				2CF197F127B5072600E82C6C /* NSMutableAttributedString+Extension.swift in Sources */,
+				2C60AD0F28023CFB00C5A1A0 /* ConditionHeaderView.swift in Sources */,
 				2C8C981627FB6DCE003D9D68 /* ToastViewShowable.swift in Sources */,
 				2CF197E927AE88E800E82C6C /* ImageCollectionViewCell.swift in Sources */,
 				2C60AD012801A28700C5A1A0 /* ImageTransition.swift in Sources */,
@@ -540,6 +567,7 @@
 				2C1DDABD27A08574000B82C6 /* AppDelegate.swift in Sources */,
 				2C6295B727A465E3003521D9 /* UIColor+Extension.swift in Sources */,
 				2C60ACFE28019EAE00C5A1A0 /* FullImageViewController.swift in Sources */,
+				2C60AD0A2802399600C5A1A0 /* ConditionViewController.swift in Sources */,
 				2C9DF7DF27D9F45A00C176AC /* NetworkManager.swift in Sources */,
 				2CF197E427AE768800E82C6C /* DetailCarViewController.swift in Sources */,
 				2C6295C327ABBADC003521D9 /* CategoryPrice.swift in Sources */,

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DescriptionTableViewCell: UITableViewCell {
+final class DescriptionTableViewCell: UITableViewCell {
 
     private let descriptionLabel: UILabel = {
         let label = UILabel()
