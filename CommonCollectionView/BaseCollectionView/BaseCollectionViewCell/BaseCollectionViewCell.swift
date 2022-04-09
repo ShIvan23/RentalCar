@@ -73,14 +73,14 @@ final class BaseCollectionViewCell: UICollectionViewCell {
         
         switch categoryPrice {
         case .personPrice:
-            priceLabel.text = "\(model.price ?? 0) ₽ / сутки"
+            priceLabel.text = "\(model.price?.withoutNDS?.price ?? 0) ₽ / сутки"
             
             // TODO: - Поменять здесь цены на коммерческие
         case .commercialPriceWithNDS:
-            priceLabel.text = "\(model.price ?? 0) ₽ / сутки"
+            priceLabel.text = "\(model.price?.withNDS?.price ?? 0) ₽ / сутки"
             
         case .commercialPriceWithoutNDS:
-            priceLabel.text = "\(model.price ?? 0) ₽ / сутки"
+            priceLabel.text = "\(model.price?.withoutNDS?.price ?? 0) ₽ / сутки"
         }
         
     }

@@ -21,30 +21,7 @@ struct CarClass2: Model, Decodable {
     let auto: [CarModel2]?
 }
 
-struct CarClass: Model {
-    
-    static func makeMockLegalModel() -> [CarClass2] {
-        var model = [CarClass2]()
-        model.append(
-            CarClass2(
-                name: "С НДС",
-                image: "withNDS",
-                auto: []
-            )
-        )
-        model.append(
-            CarClass2(
-                name: "Без НДС",
-                image: "withoutNDS",
-                auto: []
-            )
-        )
-        
-        return model
-    }
-}
-
-struct CarModel2: Model, Codable {
+struct CarModel2: Model, Decodable {
     let id: Int?
     let name: String?
     let thumb: String?
@@ -61,13 +38,7 @@ struct CarModel2: Model, Codable {
     let countSeats: Int?
     let countDoors: Int?
     let conditioner: Bool?
-    let price: Int?
-    let priceFrom3To6Days: Int?
-    let priceFrom7To13Days: Int?
-    let priceFrom14To29Days: Int?
-    let priceMonth: Int?
-    let priceWorkday: Int?
-    let priceDriver: Int?
+    let price: Prices?
     
     private enum CodingKeys: String, CodingKey {
         case id, name, thumb, images, description, model, brand, year, conditioner, price
@@ -78,11 +49,58 @@ struct CarModel2: Model, Codable {
         case gearboxType = "gearbox_type"
         case countSeats = "count_seats"
         case countDoors = "count_doors"
-        case priceDriver = "price_driver"
+    }
+}
+
+struct Prices: Model, Decodable {
+    let withNDS: Price?
+    let withoutNDS: Price?
+}
+
+struct Price: Model, Decodable {
+    let price: Int?
+    let priceFrom3To6Days: Int?
+    let priceFrom7To13Days: Int?
+    let priceFrom14To29Days: Int?
+    let priceMonth: Int?
+    let priceWorkday: Int?
+    let priceDriver: Int?
+    
+    private enum CodingKeys: String, CodingKey {
+        case price
         case priceFrom3To6Days = "price_3_6"
         case priceFrom7To13Days = "price_7_13"
         case priceFrom14To29Days = "price_14_29"
         case priceMonth = "price_30"
         case priceWorkday = "price_workday"
+        case priceDriver = "price_driver"
+    }
+}
+
+struct CommercialModel: Model {
+    
+    let name: String
+    let image: UIImage
+    let carClass: [CarClass2]?
+    
+    static func makeCommercialModel(cars: [CarClass2]?) -> [CommercialModel] {
+        var model = [CommercialModel]()
+
+        model.append(
+            CommercialModel(
+                name: "С НДС",
+                image: UIImage(named: "withNDS")!,
+                carClass: cars
+            )
+        )
+        model.append(
+            CommercialModel(
+                name: "Без НДС",
+                image: UIImage(named: "withoutNDS")!,
+                carClass: cars
+            )
+        )
+        
+        return model
     }
 }

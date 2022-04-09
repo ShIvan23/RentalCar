@@ -19,7 +19,8 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
     private var selectedLocation = ""
     private var selectedDate = ""
     private var selectedDaysCount = 1
-    private var currentPrice = 0
+    private var currentPrice: Price?
+    private var currentCoast = 0
     private var isNeedDriver = false
     
     private lazy var scrollView: UIScrollView = {
@@ -139,11 +140,16 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
         return button
     }()
     
-    init(carModel: CarModel2, categoryPrice: CategoryPrice) {
+    init(
+        carModel: CarModel2,
+        categoryPrice: CategoryPrice,
+        currentPrice: Price?
+    ) {
         self.carModel = carModel
         self.categoryPrice = categoryPrice
+        self.currentPrice = currentPrice
         super.init(nibName: nil, bundle: nil)
-        currentPrice = makeCurrentPriceWith(categoryPrice, car: carModel)
+        currentCoast = currentPrice?.price ?? 0
     }
     
     required init?(coder: NSCoder) {
@@ -220,7 +226,7 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
     
     private func makeOneDayPrice() -> NSMutableAttributedString {
         let text = "Цена за сутки:"
-        let currentPrice = isNeedDriver ? currentPrice + (carModel.priceDriver ?? 0) : currentPrice
+        let currentPrice = isNeedDriver ? currentCoast + (currentPrice?.priceDriver ?? 0) : currentCoast
         let mutableText = NSMutableAttributedString(string: text + " " + "\(currentPrice) ₽")
         mutableText.setFont(font: .boldSystemFont(ofSize: 18), forText: text)
         return mutableText
@@ -228,7 +234,7 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
     
     private func makePeriodPrice(_ daysCount: Int = 1) -> NSMutableAttributedString {
         let text = "Цена за весь период:"
-        let price = isNeedDriver ? currentPrice + (carModel.priceDriver ?? 0) : currentPrice
+        let price = isNeedDriver ? currentCoast + (currentPrice?.priceDriver ?? 0) : currentCoast
         let sum = price * daysCount
         let mutableText = NSMutableAttributedString(string: text + " " + "\(sum) ₽")
         mutableText.setFont(font: .boldSystemFont(ofSize: 18), forText: text)
@@ -236,19 +242,19 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
     }
     
     private func makeCurrentPriceForDay(daysCount: Int) -> Int {
-        var currentPrice = 0
+        var currentPriceForDay = 0
         if daysCount < 3 {
-            currentPrice = carModel.price ?? 0
+            currentPriceForDay = currentPrice?.price ?? 0
         } else if daysCount >= 3 && daysCount <= 6 {
-            currentPrice = carModel.priceFrom3To6Days ?? 0
+            currentPriceForDay = currentPrice?.priceFrom3To6Days ?? 0
         } else if daysCount >= 7 && daysCount <= 13 {
-            currentPrice = carModel.priceFrom7To13Days ?? 0
+            currentPriceForDay = currentPrice?.priceFrom7To13Days ?? 0
         } else if daysCount >= 14 && daysCount <= 29 {
-            currentPrice = carModel.priceFrom14To29Days ?? 0
+            currentPriceForDay = currentPrice?.priceFrom14To29Days ?? 0
         } else if daysCount >= 30 {
-            currentPrice = carModel.priceMonth ?? 0
+            currentPriceForDay = currentPrice?.priceMonth ?? 0
         }
-        return currentPrice
+        return currentPriceForDay
     }
     
     private func sendOrder(_ order: Order) {
@@ -494,14 +500,14 @@ extension OrderUnauthorizedViewController: CalendarViewControllerDelegate {
             placeholderDateLabel.textColor = UIColor(hexString: "#C7C7CD")
             selectedDate = ""
             selectedDaysCount = daysCount
-            currentPrice =  makeCurrentPriceForDay(daysCount: daysCount)
+            currentCoast =  makeCurrentPriceForDay(daysCount: daysCount)
             updateCoast()
         } else {
             placeholderDateLabel.textColor = .black
             placeholderDateLabel.text = dateString
             selectedDate = dateString
             selectedDaysCount = daysCount
-            currentPrice = makeCurrentPriceForDay(daysCount: daysCount)
+            currentCoast = makeCurrentPriceForDay(daysCount: daysCount)
             updateCoast()
         }
     }

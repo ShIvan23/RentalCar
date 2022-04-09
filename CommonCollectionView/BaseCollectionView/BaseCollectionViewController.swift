@@ -11,10 +11,10 @@ import UIKit
 class BaseCollectionViewController: UIViewController {
     
     enum CollectionStyle {
-        case listStyle
-        case categoryStyle
-        case promoStyle
-        case rentalCondition
+        case personal
+        case commercial
+        case promo
+        case conditions
     }
     
     private let collectionStyle: CollectionStyle
@@ -27,16 +27,17 @@ class BaseCollectionViewController: UIViewController {
             }
         }
     }
-    /// Модель после выбора категории
-    var modelForPresenting: [Model]?
     
     /// Список марок машин для поиска
     private var carBrands = [String]()
     
+    /// Категория прайса: для физ лиц, либо с ндс или без
+    // TODO: - Изменить категории на 2. Для юриков без НДС не будет == для физиков
     private let categoryPrice: CategoryPrice?
-    private let isChooseLegal: Bool
-    private let isChooseConditions: Bool
-    private let isChoosePromo: Bool
+    /// Идет ли выбор категории
+    private let isChoose: Bool
+    /// Нужно ли показать поисковую строку
+    private let isNeedSearchBar: Bool
     
     private lazy var scrollView = UIScrollView()
     private lazy var contentView = UIView()
@@ -98,15 +99,13 @@ class BaseCollectionViewController: UIViewController {
     init(
         collectionStyle: CollectionStyle,
         categoryPrice: CategoryPrice? = nil,
-        isChooseLegal: Bool = false,
-        isChooseConditions: Bool = false,
-        isChoosePromo: Bool = false
+        isChoose: Bool = false,
+        isNeedSearchBar: Bool = false
     ) {
         self.collectionStyle = collectionStyle
         self.categoryPrice = categoryPrice
-        self.isChooseLegal = isChooseLegal
-        self.isChooseConditions = isChooseConditions
-        self.isChoosePromo = isChoosePromo
+        self.isChoose = isChoose
+        self.isNeedSearchBar = isNeedSearchBar
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -123,8 +122,8 @@ class BaseCollectionViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         switch collectionStyle {
-        case .categoryStyle:
-            if !isChooseLegal {
+        case .personal, .commercial:
+            if isNeedSearchBar {
                 loginButton.setCustomGradient()
                 callUsButton.setCustomGradient()
             }
@@ -139,8 +138,8 @@ class BaseCollectionViewController: UIViewController {
     
     private func setLayout() {
         switch collectionStyle {
-        case .categoryStyle:
-            if !isChooseLegal {
+        case .personal, .commercial:
+            if isNeedSearchBar {
                 view.addSubview(scrollView)
                 
                 scrollView.snp.makeConstraints { make in
@@ -259,42 +258,53 @@ extension BaseCollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch collectionStyle {
             /// Ячейка для отображения всех машин
-        case .listStyle:
-            guard let model = model as? [CarModel2] else { fatalError() }
-            let cell: BaseCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-            cell.setupCell(
-                model: model[indexPath.item],
-                categoryPrice: categoryPrice!
-            )
-            return cell
+        case .personal:
             
-            /// Ячейка для отображения категорий юр лица, видов акций и категорий машин
-        case .categoryStyle:
-            // если выбор акции
-            if isChoosePromo {
-                guard let model = model as? [PromoData] else { fatalError() }
+            if isChoose {
+                guard let model = model as? [CarClass2] else { fatalError() }
+                let cell: LegalCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+                cell.setupCell(model: model[indexPath.item])
+                return cell
+            } else {
+                guard let model = model as? [CarModel2] else { fatalError() }
+                let cell: BaseCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+                cell.setupCell(model: model[indexPath.item],categoryPrice: categoryPrice!)
+                return cell
+            }
+            
+        case .commercial:
+            if isChoose {
+                guard let model = model as? [CommercialModel] else { fatalError() }
+                let cell: LegalCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+                cell.setupCell(model: model[indexPath.item])
+                return cell
+            } else {
+                guard let model = model as? [CarClass2] else { fatalError() }
                 let cell: LegalCollectionViewCell = collectionView.dequeueCell(for: indexPath)
                 cell.setupCell(model: model[indexPath.item])
                 return cell
             }
             
-            guard let model = model as? [CarClass2] else { fatalError() }
-            let cell: LegalCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-            cell.setupCell(model: model[indexPath.item])
-            return cell
-          
-            /// Ячейка для отображения условий проката
-        case .rentalCondition:
-            guard let model = model as? [PromoData] else { fatalError() }
-            let cell: LegalCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-            cell.setupCell(model: model[indexPath.item])
-            return cell
-            
             /// Ячейка для отображения акций
-        case .promoStyle:
-            guard let model = model as? [Promo] else { fatalError() }
-            let cell: StockCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-            cell.setupCell(promoModel: model[indexPath.item])
+        case .promo:
+            // если выбор акции
+            if isChoose {
+                guard let model = model as? [PromoData] else { fatalError() }
+                let cell: LegalCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+                cell.setupCell(model: model[indexPath.item])
+                return cell
+            } else {
+                guard let model = model as? [Promo] else { fatalError() }
+                let cell: StockCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+                cell.setupCell(promoModel: model[indexPath.item])
+                return cell
+            }
+            
+            /// Ячейка для отображения условий проката
+        case .conditions:
+            guard let model = model as? [ConditionsModel] else { fatalError() }
+            let cell: LegalCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+            cell.setupCell(model: model[indexPath.item])
             return cell
         }
     }
@@ -316,10 +326,15 @@ extension BaseCollectionViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch collectionStyle {
-        case .promoStyle:
-            let width = collectionView.bounds.width - sideInset * 2
-            let height: CGFloat = 200
-            return CGSize(width: width, height: height)
+        case .promo:
+            if !isChoose {
+                /// Для детального экрана акций ячейки длинные
+                let width = collectionView.bounds.width - sideInset * 2
+                let height: CGFloat = 200
+                return CGSize(width: width, height: height)
+            } else {
+                fallthrough
+            }
         default:
             let width = (collectionView.bounds.width - sideInset * 3) / 2
             return CGSize(width: width, height: cellHeight)
@@ -328,8 +343,8 @@ extension BaseCollectionViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         switch collectionStyle {
-            
-        case .categoryStyle, .rentalCondition:
+
+        case .personal, .commercial, .conditions, .promo:
             guard let model = model else { return .zero}
             switch model.count {
                 /// Если всего 2 ячейки, то это выбор юр лица и ячейки будут посередине экрана
@@ -340,66 +355,67 @@ extension BaseCollectionViewController: UICollectionViewDelegateFlowLayout {
             default :
                 return UIEdgeInsets(top: sideInset, left: sideInset, bottom: sideInset, right: sideInset)
             }
-
-        default:
-            return UIEdgeInsets(top: sideInset, left: sideInset, bottom: sideInset, right: sideInset)
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch collectionStyle {
-        case .listStyle:
-            guard let model = model as? [CarModel2] else { fatalError() }
-            /// Экран с детальной информацией
-            let currentCar = model[indexPath.item]
-            // TODO: - убрать force unwrap 
-            let detailViewController = DetailCarViewController(carModel: currentCar, categoryPrice: categoryPrice!)
-            detailViewController.title = currentCar.name
-            navigationController?.pushViewController(detailViewController, animated: true)
+        case .personal:
+            if isChoose {
+                /// При выборе категории должна быть такая модель
+                guard let model = model as? [CarClass2] else { fatalError() }
+                let collectionViewController = BaseCollectionViewController(
+                    collectionStyle: .personal,
+                    categoryPrice: .commercialPriceWithoutNDS)
+                collectionViewController.model = model[indexPath.item].auto
+                collectionViewController.title = model[indexPath.item].name
+                navigationController?.pushViewController(collectionViewController, animated: true)
+                return
+            } else {
+                guard let model = model as? [CarModel2] else { fatalError() }
+                /// Экран с детальной информацией
+                let currentCar = model[indexPath.item]
+                // TODO: - убрать force unwrap
+                let detailViewController = DetailCarViewController(carModel: currentCar, categoryPrice: categoryPrice!)
+                detailViewController.title = currentCar.name
+                navigationController?.pushViewController(detailViewController, animated: true)
+                return
+            }
 
-            
-        case .categoryStyle:
-            /// При выборе акции
-            if isChoosePromo {
-                guard let model = model as? [PromoData] else { fatalError() }
-                let collectionViewController = BaseCollectionViewController(collectionStyle: .promoStyle)
-                collectionViewController.model = model[indexPath.item].promos
+        case .commercial:
+            if isChoose {
+                guard let model = model as? [CommercialModel] else { fatalError() }
+                let collectionViewController = BaseCollectionViewController(collectionStyle: .commercial, categoryPrice: indexPath.item == 0 ? .commercialPriceWithNDS : .commercialPriceWithoutNDS, isNeedSearchBar: true)
+                collectionViewController.model = model[indexPath.item].carClass
+                collectionViewController.title = model[indexPath.item].name
+                navigationController?.pushViewController(collectionViewController, animated: true)
+                return
+            } else {
+                guard let model = model as? [CarClass2] else { fatalError() }
+                let collectionViewController = BaseCollectionViewController(collectionStyle: .personal, categoryPrice: categoryPrice)
+                collectionViewController.model = model[indexPath.item].auto
                 collectionViewController.title = model[indexPath.item].name
                 navigationController?.pushViewController(collectionViewController, animated: true)
                 return
             }
             
-            /// При выборе категории должна быть такая модель
-            guard let model = model as? [CarClass2] else { fatalError() }
             
-            /// Если выбирается вид юр лица, то нужно показать категории машин
-            if isChooseLegal {
-                let collectionViewController = BaseCollectionViewController(
-                    collectionStyle: .categoryStyle,
-                    categoryPrice: indexPath.item == 0 ? .commercialPriceWithNDS : .commercialPriceWithoutNDS
-//                    model: CarClass.makeMockModel()
-                )
-                collectionViewController.model = modelForPresenting
+        case .promo:
+            /// При выборе акции
+            if isChoose {
+                guard let model = model as? [PromoData] else { fatalError() }
+                let collectionViewController = BaseCollectionViewController(collectionStyle: .promo)
+                collectionViewController.model = model[indexPath.item].promos
                 collectionViewController.title = model[indexPath.item].name
                 navigationController?.pushViewController(collectionViewController, animated: true)
-                /// Если вид юр лица выбран, то показывает категории машин
+                return
             } else {
-                let cars = model[indexPath.item].auto
-                let collectionViewController = BaseCollectionViewController(
-                    collectionStyle: .listStyle,
-                    categoryPrice: categoryPrice
-//                    model: cars
-                )
-                collectionViewController.model = cars
-                collectionViewController.title = model[indexPath.item].name
-                navigationController?.pushViewController(collectionViewController, animated: true)
+                print("Открыть детальный экран с акцией?")
+                print("Вроде не будет детального экрана")
             }
             
-        case .promoStyle:
-            print("Открыть детальный экран с акцией?")
-            
             /// Если выбирается условие проката, то показывает детальный экран с условиями
-        case .rentalCondition:
+        case .conditions:
             print("Показать экран с условиями")
         }
     }
@@ -429,7 +445,7 @@ extension BaseCollectionViewController: PopoverTableViewControllerDelegate {
         }
         
         let brandCollectionView = BaseCollectionViewController(
-            collectionStyle: .listStyle,
+            collectionStyle: .personal,
             categoryPrice: categoryPrice
         )
         brandCollectionView.model = filteredCars

@@ -63,10 +63,20 @@ final class LegalCollectionViewCell: UICollectionViewCell {
         legalImage.kf.setImage(with: urlImage)
     }
     
+    func setupCell(model: CommercialModel) {
+        titleLabel.text = model.name
+        legalImage.image = model.image
+    }
+    
     func setupCell(model: PromoData) {
         titleLabel.text = model.name
         let urlImage = URL(string: model.thumb)
         legalImage.kf.setImage(with: urlImage)
+    }
+    
+    func setupCell(model: ConditionsModel) {
+        titleLabel.text = model.title
+        legalImage.image = model.image
     }
     
     private func setupLayout() {

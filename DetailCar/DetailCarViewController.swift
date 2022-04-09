@@ -11,7 +11,7 @@ final class DetailCarViewController: UIViewController {
     
     private let carModel: CarModel2
     private var categoryPrice: CategoryPrice 
-    private var currentPrice = 0
+    private var currentPrice: Price?
     private var descriptions = [NSMutableAttributedString]()
     private lazy var transition = ImageTransition()
     
@@ -65,7 +65,7 @@ final class DetailCarViewController: UIViewController {
     
     func makeDescriptionArray() {
         var stringArray = [String]()
-        stringArray.append("\(currentPrice)")
+        stringArray.append("\(currentPrice?.price ?? 0)")
         stringArray.append("\(carModel.engineVolume ?? 0)")
         stringArray.append("\(carModel.countSeats ?? 0)")
         stringArray.append(carModel.driveType ?? "")
@@ -141,7 +141,7 @@ extension DetailCarViewController: ImageAndButtonTableViewCellDelegate {
     }
     
     func orderButtonTapped() {
-        let orderUnauthorizesVC = OrderUnauthorizedViewController(carModel: carModel, categoryPrice: categoryPrice)
+        let orderUnauthorizesVC = OrderUnauthorizedViewController(carModel: carModel, categoryPrice: categoryPrice, currentPrice: currentPrice)
         navigationController?.pushViewController(orderUnauthorizesVC, animated: true)
     }
 }

@@ -29,26 +29,28 @@ class MainTabBarViewController: UITabBarController {
     
     /// Физ лица
     private lazy var allCars = BaseCollectionViewController(
-        collectionStyle: .categoryStyle,
-        categoryPrice: .personPrice
+        collectionStyle: .personal,
+        categoryPrice: .personPrice,
+        isChoose: true,
+        isNeedSearchBar: true
     )
     
     /// Юр лица
     private lazy var legalEntity = BaseCollectionViewController(
-        collectionStyle: .categoryStyle,
-        isChooseLegal: true
+        collectionStyle: .commercial,
+        isChoose: true
     )
     
     /// Акции
     private lazy var promoVC = BaseCollectionViewController(
-        collectionStyle: .categoryStyle,
-        isChoosePromo: true
+        collectionStyle: .promo,
+        isChoose: true
     )
     
     /// Условия
     private lazy var rentalConditionsVC = BaseCollectionViewController(
-        collectionStyle: .rentalCondition,
-        isChooseConditions: true
+        collectionStyle: .conditions,
+        isChoose: true
     )
     
     /// Контакты
@@ -92,8 +94,7 @@ class MainTabBarViewController: UITabBarController {
     private func setModelIntoControllers() {
         allCars.model = model?.data
         
-        legalEntity.model = CarClass.makeMockLegalModel()
-        legalEntity.modelForPresenting = model?.data
+        legalEntity.model = CommercialModel.makeCommercialModel(cars: model?.data)
     }
     
     private func setPromoModelIntoController() {
