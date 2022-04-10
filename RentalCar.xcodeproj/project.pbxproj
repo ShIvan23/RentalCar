@@ -31,6 +31,7 @@
 		2C6E4DCD27B91F1E00FBE7E8 /* PopoverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6E4DCC27B91F1E00FBE7E8 /* PopoverTableViewController.swift */; };
 		2C6E4DD027B9349500FBE7E8 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6E4DCF27B9349500FBE7E8 /* ScreenSize.swift */; };
 		2C6E4DD327B9377E00FBE7E8 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6E4DD227B9377E00FBE7E8 /* CalendarViewController.swift */; };
+		2C7B4D2928031901000EE39D /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7B4D2828031901000EE39D /* RegisterViewController.swift */; };
 		2C8C980D27FA2A83003D9D68 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C980C27FA2A83003D9D68 /* OrderModel.swift */; };
 		2C8C981427FB695F003D9D68 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C981327FB695F003D9D68 /* ToastView.swift */; };
 		2C8C981627FB6DCE003D9D68 /* ToastViewShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C981527FB6DCE003D9D68 /* ToastViewShowable.swift */; };
@@ -80,6 +81,7 @@
 		2C6E4DCC27B91F1E00FBE7E8 /* PopoverTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverTableViewController.swift; sourceTree = "<group>"; };
 		2C6E4DCF27B9349500FBE7E8 /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
 		2C6E4DD227B9377E00FBE7E8 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		2C7B4D2828031901000EE39D /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		2C8C980C27FA2A83003D9D68 /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
 		2C8C981327FB695F003D9D68 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		2C8C981527FB6DCE003D9D68 /* ToastViewShowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastViewShowable.swift; sourceTree = "<group>"; };
@@ -303,6 +305,14 @@
 			path = Calendar;
 			sourceTree = "<group>";
 		};
+		2C7B4D27280318E8000EE39D /* RegisterViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2C7B4D2828031901000EE39D /* RegisterViewController.swift */,
+			);
+			path = RegisterViewController;
+			sourceTree = "<group>";
+		};
 		2C8C981227FB6891003D9D68 /* ToastToast */ = {
 			isa = PBXGroup;
 			children = (
@@ -324,6 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				2C925C792802F1630060C810 /* LoginViewController.swift */,
+				2C7B4D27280318E8000EE39D /* RegisterViewController */,
 			);
 			path = LoginViewController;
 			sourceTree = "<group>";
@@ -559,6 +570,7 @@
 				2C631E5727A33990003753E1 /* CarModel.swift in Sources */,
 				2CC9AF8927C2C9E20082D81C /* StockCollectionViewCell.swift in Sources */,
 				2CF197EF27B41A4800E82C6C /* DescriptionTableViewCell.swift in Sources */,
+				2C7B4D2928031901000EE39D /* RegisterViewController.swift in Sources */,
 				2C9DF80427DB95C600C176AC /* RequestManager.swift in Sources */,
 				2C60AD0D28023A6700C5A1A0 /* ConditionTableViewCell.swift in Sources */,
 				2C631E5227A33419003753E1 /* UICollectionView_UITableView+Extension.swift in Sources */,

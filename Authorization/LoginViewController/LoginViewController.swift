@@ -22,12 +22,12 @@ class LoginViewController: UIViewController {
     
     private let loginLabel: UILabel = {
         let label = UILabel()
-        label.text = "Введите логин"
+        label.text = "Введите почту"
         label.font = .boldSystemFont(ofSize: 18)
         return label
     }()
     
-    private lazy var loginTextField = TextField(placeholder: "Ваш логин")
+    private lazy var loginTextField = TextField(placeholder: "Ваша почта")
     
     private let passwordLabel: UILabel = {
         let label = UILabel()
@@ -93,7 +93,9 @@ class LoginViewController: UIViewController {
     }
     
     @objc private func registerButtonAction() {
-        print("Показать экран с регистрацией")
+        let registerVC = RegisterViewController()
+        registerVC.title = "Регистрация"
+        navigationController?.pushViewController(registerVC, animated: true)
     }
     
     @objc private func loginButtonAction() {
@@ -179,7 +181,7 @@ class LoginViewController: UIViewController {
         }
         
         registerLabel.snp.makeConstraints { make in
-            make.top.equalTo(loginButton.snp.bottom).offset(100)
+            make.top.equalTo(loginButton.snp.bottom).offset(30)
             make.left.right.equalToSuperview().inset(16)
         }
 
