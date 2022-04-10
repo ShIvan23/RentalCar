@@ -100,6 +100,8 @@ final class LoginViewController: UIViewController {
     
     @objc private func loginButtonAction() {
         print("send to backend")
+        let profileVC = ProfileViewController()
+        navigationController?.pushViewController(profileVC, animated: true)
     }
     
     @objc func keyboardWillHide() {
