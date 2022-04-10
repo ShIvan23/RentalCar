@@ -35,6 +35,7 @@
 		2C8C981427FB695F003D9D68 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C981327FB695F003D9D68 /* ToastView.swift */; };
 		2C8C981627FB6DCE003D9D68 /* ToastViewShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C981527FB6DCE003D9D68 /* ToastViewShowable.swift */; };
 		2C8C981827FB7DF4003D9D68 /* PromoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C981727FB7DF4003D9D68 /* PromoModel.swift */; };
+		2C925C7A2802F1630060C810 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C925C792802F1630060C810 /* LoginViewController.swift */; };
 		2C9DF7DF27D9F45A00C176AC /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9DF7DE27D9F45A00C176AC /* NetworkManager.swift */; };
 		2C9DF80227DB5B9600C176AC /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9DF80127DB5B9600C176AC /* ContactsViewController.swift */; };
 		2C9DF80427DB95C600C176AC /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9DF80327DB95C600C176AC /* RequestManager.swift */; };
@@ -83,6 +84,7 @@
 		2C8C981327FB695F003D9D68 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		2C8C981527FB6DCE003D9D68 /* ToastViewShowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastViewShowable.swift; sourceTree = "<group>"; };
 		2C8C981727FB7DF4003D9D68 /* PromoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoModel.swift; sourceTree = "<group>"; };
+		2C925C792802F1630060C810 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2C9DF7DE27D9F45A00C176AC /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		2C9DF80127DB5B9600C176AC /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		2C9DF80327DB95C600C176AC /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 		2C1DDAB027A08574000B82C6 = {
 			isa = PBXGroup;
 			children = (
+				2C925C772802F1170060C810 /* Authorization */,
 				2C6295B827A48A73003521D9 /* TabBarController */,
 				2C631E4927A33190003753E1 /* CommonCollectionView */,
 				2CF197E227AE766D00E82C6C /* DetailCar */,
@@ -309,6 +312,22 @@
 			path = ToastToast;
 			sourceTree = "<group>";
 		};
+		2C925C772802F1170060C810 /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				2C925C782802F14B0060C810 /* LoginViewController */,
+			);
+			path = Authorization;
+			sourceTree = "<group>";
+		};
+		2C925C782802F14B0060C810 /* LoginViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2C925C792802F1630060C810 /* LoginViewController.swift */,
+			);
+			path = LoginViewController;
+			sourceTree = "<group>";
+		};
 		2C9DF7DD27D9F42C00C176AC /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -411,7 +430,7 @@
 				2C1DDAB627A08574000B82C6 /* Frameworks */,
 				2C1DDAB727A08574000B82C6 /* Resources */,
 				007F94DD80944E72AECE432E /* [CP] Embed Pods Frameworks */,
-				3A13057F560D262C126A1E76 /* [CP] Copy Pods Resources */,
+				FC1EF1FE96D0C5E52C944110 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -485,23 +504,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RentalCar/Pods-RentalCar-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3A13057F560D262C126A1E76 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RentalCar/Pods-RentalCar-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RentalCar/Pods-RentalCar-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RentalCar/Pods-RentalCar-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		600D2A010C2673824BBCB721 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -524,6 +526,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		FC1EF1FE96D0C5E52C944110 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RentalCar/Pods-RentalCar-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RentalCar/Pods-RentalCar-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RentalCar/Pods-RentalCar-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -533,6 +552,7 @@
 			files = (
 				2C8C981827FB7DF4003D9D68 /* PromoModel.swift in Sources */,
 				2C631E5427A337EE003753E1 /* UIView+Extension.swift in Sources */,
+				2C925C7A2802F1630060C810 /* LoginViewController.swift in Sources */,
 				2C9DF80227DB5B9600C176AC /* ContactsViewController.swift in Sources */,
 				2C8C981427FB695F003D9D68 /* ToastView.swift in Sources */,
 				2CC9AF8027C188D40082D81C /* TextField.swift in Sources */,

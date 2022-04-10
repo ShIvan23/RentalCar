@@ -240,7 +240,9 @@ final class BaseCollectionViewController: UIViewController {
     }
     
     @objc private func loginButtonAction() {
-        print("Войти")
+        let loginViewController = LoginViewController()
+        loginViewController.title = "Войти"
+        navigationController?.pushViewController(loginViewController, animated: true)
     }
     
     @objc private func callUsButtonAction() {
