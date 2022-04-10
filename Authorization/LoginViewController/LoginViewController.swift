@@ -8,7 +8,7 @@
 import SnapKit
 import UIKit
 
-class LoginViewController: UIViewController {
+final class LoginViewController: UIViewController {
     
     private let scrollView = UIScrollView()
     private let contentView = UIView()
@@ -36,7 +36,7 @@ class LoginViewController: UIViewController {
         return label
     }()
     
-    private lazy var passwordTextField = TextField(placeholder: "Ваш пароль")
+    private lazy var passwordTextField = TextField(placeholder: "Ваш пароль", isSecure: true)
     
     private lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)

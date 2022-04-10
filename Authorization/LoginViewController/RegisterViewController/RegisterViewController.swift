@@ -7,9 +7,11 @@
 
 import UIKit
 
-class RegisterViewController: UIViewController {
+final class RegisterViewController: UIViewController {
     
     private enum ValidationError {
+        case name
+        case number
         case email
         case password
         case code
@@ -17,6 +19,24 @@ class RegisterViewController: UIViewController {
     
     private let scrollView = UIScrollView()
     private let contentView = UIView()
+    
+    private let nameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Введите ФИО"
+        label.font = .boldSystemFont(ofSize: 18)
+        return label
+    }()
+    
+    private lazy var nameTextField = TextField(placeholder: "Ваши ФИО")
+    
+    private let numberLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Введите номер телефона"
+        label.font = .boldSystemFont(ofSize: 18)
+        return label
+    }()
+    
+    private lazy var numberTextField = TextField(placeholder: "Ваш номер телефона", keyboardType: .numberPad)
     
     private let loginLabel: UILabel = {
         let label = UILabel()
@@ -34,7 +54,7 @@ class RegisterViewController: UIViewController {
         return label
     }()
     
-    private lazy var passwordTextField = TextField(placeholder: "Ваш пароль")
+    private lazy var passwordTextField = TextField(placeholder: "Ваш пароль", isSecure: true)
     
     private let repeatPasswordLabel: UILabel = {
         let label = UILabel()
@@ -43,7 +63,7 @@ class RegisterViewController: UIViewController {
         return label
     }()
     
-    private lazy var repeatPasswordTextField = TextField(placeholder: "Повторите пароль")
+    private lazy var repeatPasswordTextField = TextField(placeholder: "Повторите пароль", isSecure: true)
     
     private lazy var registerButton: UIButton = {
         let button = UIButton(type: .system)
@@ -63,7 +83,7 @@ class RegisterViewController: UIViewController {
         return label
     }()
     
-    private lazy var codeTextField = TextField(placeholder: "Введите код из письма")
+    private lazy var codeTextField = TextField(placeholder: "Введите код из письма", keyboardType: .numberPad)
     
     private lazy var sendCodeButton: UIButton = {
         let button = UIButton(type: .system)
@@ -102,15 +122,11 @@ class RegisterViewController: UIViewController {
     }
     
     @objc private func registerButtonAction() {
-        guard validateEmail() else {
-            showAlert(error: .email)
-            return
-        }
-        guard validatePassword() else {
-            showAlert(error: .password)
-            return
-        }
+        guard validateAllTextFields() else { return }
+
         print("Отправить на бэк")
+        print("ФИО = \(nameTextField.text!)")
+        print("Номер = \(numberTextField.text!)")
         print("Почта = \(loginTextField.text!)")
         print("Пароль = \(passwordTextField.text!)")
     }
@@ -151,9 +167,44 @@ class RegisterViewController: UIViewController {
         return codeTextField.text!.count == 6
     }
     
+    private func validateName() -> Bool {
+        return !nameTextField.text!.isEmpty
+    }
+    
+    private func validateNumber() -> Bool {
+        return !numberTextField.text!.isEmpty
+    }
+    
+    private func validateAllTextFields() -> Bool {
+        guard validateName() else {
+            showAlert(error: .name)
+            return false
+        }
+        guard validateNumber() else {
+            showAlert(error: .number)
+            return false
+        }
+        guard validateEmail() else {
+            showAlert(error: .email)
+            return false
+        }
+        guard validatePassword() else {
+            showAlert(error: .password)
+            return false
+        }
+        return true
+    }
+    
     private func showAlert(error: ValidationError) {
         var text = ""
+        var message = "Попробуйте еще раз."
         switch error {
+        case .name:
+            text = "Вы не ввели ФИО"
+            message = "Заполните все поля"
+        case .number:
+            text = "Вы не ввели номер телефона"
+            message = "Заполните все поля"
         case .email:
             text = "Вы не правильно ввели почту"
         case .password:
@@ -161,7 +212,7 @@ class RegisterViewController: UIViewController {
         case .code:
             text = "Код должен быть из 6-ти символов"
         }
-        let alert = UIAlertController(title: text, message: "Попробуйте еще раз.", preferredStyle: .alert)
+        let alert = UIAlertController(title: text, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Понятно", style: .default)
         alert.addAction(okAction)
         present(alert, animated: true)
@@ -198,11 +249,33 @@ class RegisterViewController: UIViewController {
             make.width.equalTo(scrollView)
         }
         
-        [loginLabel, loginTextField, passwordLabel, passwordTextField, repeatPasswordLabel, repeatPasswordTextField, registerButton, codeLabel, codeTextField, sendCodeButton].forEach { contentView.addSubview($0) }
-        
-        loginLabel.snp.makeConstraints { make in
+        [nameLabel, nameTextField, numberLabel, numberTextField, loginLabel, loginTextField, passwordLabel, passwordTextField, repeatPasswordLabel, repeatPasswordTextField, registerButton, codeLabel, codeTextField, sendCodeButton].forEach { contentView.addSubview($0) }
+      
+        nameLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(8)
             make.left.right.equalToSuperview().inset(16)
+        }
+        
+        nameTextField.snp.makeConstraints { make in
+            make.left.right.equalToSuperview().inset(16)
+            make.height.equalTo(40)
+            make.top.equalTo(nameLabel.snp.bottom).offset(8)
+        }
+        
+        numberLabel.snp.makeConstraints { make in
+            make.left.right.equalToSuperview().inset(16)
+            make.top.equalTo(nameTextField.snp.bottom).offset(16)
+        }
+
+        numberTextField.snp.makeConstraints { make in
+            make.left.right.equalToSuperview().inset(16)
+            make.height.equalTo(40)
+            make.top.equalTo(numberLabel.snp.bottom).offset(8)
+        }
+        
+        loginLabel.snp.makeConstraints { make in
+            make.left.right.equalToSuperview().inset(16)
+            make.top.equalTo(numberTextField.snp.bottom).offset(16)
         }
         
         loginTextField.snp.makeConstraints { make in
