@@ -10,6 +10,16 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
+    
+    private let logoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(named: "logo")
+        return imageView
+    }()
+    
     private let loginLabel: UILabel = {
         let label = UILabel()
         label.text = "Введите логин"
@@ -28,6 +38,24 @@ class LoginViewController: UIViewController {
     
     private lazy var passwordTextField = TextField(placeholder: "Ваш пароль")
     
+    private lazy var loginButton: UIButton = {
+        let button = UIButton(type: .system)
+        let attributedText = NSAttributedString(string: "Войти", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)])
+        button.setAttributedTitle(attributedText, for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(loginButtonAction), for: .touchUpInside)
+        return button
+    }()
+    
+    private let registerLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Если у Вас ещё нет профиля, то зарегистрируйтесь"
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 14)
+        label.numberOfLines = 0
+        return label
+    }()
+    
     private lazy var registerButton: UIButton = {
         let button = UIButton(type: .system)
         let attributedText = NSAttributedString(string: "Зарегистрироваться", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)])
@@ -41,10 +69,26 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         customize()
         layout()
+        addTextFieldsDelegate()
+        addGestureToHideKeyboard()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        loginButton.setCustomGradient()
         registerButton.setCustomGradient()
     }
     
@@ -52,29 +96,74 @@ class LoginViewController: UIViewController {
         print("Показать экран с регистрацией")
     }
     
+    @objc private func loginButtonAction() {
+        print("send to backend")
+    }
+    
+    @objc func keyboardWillHide() {
+        scrollView.contentInset.bottom = 0
+        scrollView.setContentOffset(.zero, animated: true)
+    }
+    
+    @objc func keyboardWillChange(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            scrollView.contentInset.bottom = keyboardSize.height
+        }
+    }
+    
     private func customize() {
         view.backgroundColor = .white
     }
     
+    private func addTextFieldsDelegate() {
+        loginTextField.delegate = self
+        passwordTextField.delegate = self
+    }
+    
+    private func addGestureToHideKeyboard() {
+        view.addTapGestureToHideKeyboard()
+    }
+    
     private func layout() {
+        view.addSubview(scrollView)
         
-        [loginLabel, loginTextField, passwordLabel, passwordTextField, registerButton].forEach { view.addSubview($0) }
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(view.snp.topMargin)
+            make.bottom.left.right.equalToSuperview()
+        }
         
-        passwordLabel.snp.makeConstraints { make in
+        scrollView.addSubview(contentView)
+        
+        contentView.snp.makeConstraints { make in
+            make.top.bottom.equalTo(scrollView)
+            make.left.right.equalTo(view)
+            make.width.equalTo(scrollView)
+        }
+        
+        [logoImageView, loginLabel, loginTextField, passwordLabel, passwordTextField, loginButton, registerLabel, registerButton].forEach { contentView.addSubview($0) }
+        
+        logoImageView.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(16)
-            make.centerY.equalToSuperview()
+            make.top.equalToSuperview().offset(20)
+            make.height.equalTo(180)
+        }
+        
+        loginLabel.snp.makeConstraints { make in
+            make.left.right.equalToSuperview().inset(16)
+            make.height.equalTo(20)
+            make.top.equalTo(logoImageView.snp.bottom).offset(20)
         }
         
         loginTextField.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(16)
             make.height.equalTo(40)
-            make.bottom.equalTo(passwordLabel.snp.top).inset(-16)
+            make.top.equalTo(loginLabel.snp.bottom).offset(8)
         }
 
-        loginLabel.snp.makeConstraints { make in
+        passwordLabel.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(16)
             make.height.equalTo(20)
-            make.bottom.equalTo(loginTextField.snp.top).inset(-8)
+            make.top.equalTo(loginTextField.snp.bottom).offset(16)
         }
 
         passwordTextField.snp.makeConstraints { make in
@@ -83,11 +172,35 @@ class LoginViewController: UIViewController {
             make.top.equalTo(passwordLabel.snp.bottom).offset(8)
         }
 
-        registerButton.snp.makeConstraints { make in
+        loginButton.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(16)
             make.height.equalTo(40)
             make.top.equalTo(passwordTextField.snp.bottom).offset(16)
         }
-    }
+        
+        registerLabel.snp.makeConstraints { make in
+            make.top.equalTo(loginButton.snp.bottom).offset(100)
+            make.left.right.equalToSuperview().inset(16)
+        }
 
+        registerButton.snp.makeConstraints { make in
+            make.left.right.equalToSuperview().inset(16)
+            make.top.equalTo(registerLabel.snp.bottom).offset(8)
+            make.bottom.equalToSuperview().inset(20)
+            make.height.equalTo(40)
+        }
+    }
+}
+
+// MARK: - UITextFieldDelegate
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == loginTextField {
+            passwordTextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        return true
+    }
 }
