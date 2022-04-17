@@ -14,6 +14,7 @@ protocol RentalManager {
     func postRegisterUser(user: UserRegister, completion: @escaping (Result<RegisterResult, Error>) -> Void)
     func postConfirmUser(user: UserConfirm, completion: @escaping (Result<UserConfirmResult, Error>) -> Void)
     func postAgainConfirmCode(user: AgainConfirmCode, completion: @escaping (Result<AgainConfirmCodeResult, Error>) -> Void)
+    func login(user: Login, completion: @escaping (Result<LoginResult, Error>) -> Void)
 }
 
 final class RentalManagerImp: RentalManager {
@@ -48,6 +49,11 @@ final class RentalManagerImp: RentalManager {
     
     func postAgainConfirmCode(user: AgainConfirmCode, completion: @escaping (Result<AgainConfirmCodeResult, Error>) -> Void) {
         guard let request = requestManager.postAgainConfirmCode(body: user) else { return }
+        networkManager.fetch(request: request, completion: completion)
+    }
+    
+    func login(user: Login, completion: @escaping (Result<LoginResult, Error>) -> Void) {
+        guard let request = requestManager.postLogin(body: user) else { return }
         networkManager.fetch(request: request, completion: completion)
     }
 }

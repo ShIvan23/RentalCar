@@ -258,6 +258,7 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
     }
     
     private func sendOrder(_ order: Order) {
+        // TODO: - Добавить валидацию отправки
         rentalManager.postOrder(order: order) { [weak self] result in
             switch result {
             case .success(_):

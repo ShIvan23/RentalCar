@@ -14,6 +14,7 @@ protocol RequestManager {
     func postUserRegister(body: UserRegister) -> URLRequest?
     func postUserConfirm(body: UserConfirm) -> URLRequest?
     func postAgainConfirmCode(body: AgainConfirmCode) -> URLRequest?
+    func postLogin(body: Login) -> URLRequest?
 }
 
 final class RequestManagerImp: RequestManager {
@@ -28,6 +29,7 @@ final class RequestManagerImp: RequestManager {
         static let userRegister = "user/register"
         static let userConfirm = "user/confirm-code"
         static let againConfirmCode = "user/send-confirm-code"
+        static let login = "user/login"
     }
 
     private lazy var defaultHeader = [
@@ -83,6 +85,18 @@ final class RequestManagerImp: RequestManager {
     
     func postAgainConfirmCode(body: AgainConfirmCode) -> URLRequest? {
         guard let url = URL(string: baseUrlString + UrlStrings.againConfirmCode) else { return nil }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.allHTTPHeaderFields = defaultHeader
+        guard let data = try? encoder.encode(body) else {
+            fatalError("НЕ получилось закодировать структуру")
+        }
+        request.httpBody = data
+        return request
+    }
+    
+    func postLogin(body: Login) -> URLRequest? {
+        guard let url = URL(string: baseUrlString + UrlStrings.login) else { return nil }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.allHTTPHeaderFields = defaultHeader

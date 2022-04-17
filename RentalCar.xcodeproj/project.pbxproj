@@ -15,6 +15,7 @@
 		2C5FBB45280AF81000F81155 /* EnterCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5FBB44280AF81000F81155 /* EnterCodeViewController.swift */; };
 		2C5FBB47280AFE4B00F81155 /* UserConfirm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5FBB46280AFE4B00F81155 /* UserConfirm.swift */; };
 		2C5FBB49280AFFEB00F81155 /* AgainConfirmCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5FBB48280AFFEB00F81155 /* AgainConfirmCode.swift */; };
+		2C5FBB4B280C893C00F81155 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5FBB4A280C893C00F81155 /* Login.swift */; };
 		2C60ACFE28019EAE00C5A1A0 /* FullImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60ACFD28019EAE00C5A1A0 /* FullImageViewController.swift */; };
 		2C60AD012801A28700C5A1A0 /* ImageTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AD002801A28700C5A1A0 /* ImageTransition.swift */; };
 		2C60AD032801CCFD00C5A1A0 /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AD022801CCFD00C5A1A0 /* ImageScrollView.swift */; };
@@ -71,6 +72,7 @@
 		2C5FBB44280AF81000F81155 /* EnterCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCodeViewController.swift; sourceTree = "<group>"; };
 		2C5FBB46280AFE4B00F81155 /* UserConfirm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserConfirm.swift; sourceTree = "<group>"; };
 		2C5FBB48280AFFEB00F81155 /* AgainConfirmCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgainConfirmCode.swift; sourceTree = "<group>"; };
+		2C5FBB4A280C893C00F81155 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		2C60ACFD28019EAE00C5A1A0 /* FullImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullImageViewController.swift; sourceTree = "<group>"; };
 		2C60AD002801A28700C5A1A0 /* ImageTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTransition.swift; sourceTree = "<group>"; };
 		2C60AD022801CCFD00C5A1A0 /* ImageScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageScrollView.swift; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 				2C5FBB3E280AD37900F81155 /* UserRegister.swift */,
 				2C5FBB46280AFE4B00F81155 /* UserConfirm.swift */,
 				2C5FBB48280AFFEB00F81155 /* AgainConfirmCode.swift */,
+				2C5FBB4A280C893C00F81155 /* Login.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -603,6 +606,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C5FBB4B280C893C00F81155 /* Login.swift in Sources */,
 				2C8C981827FB7DF4003D9D68 /* PromoModel.swift in Sources */,
 				2C631E5427A337EE003753E1 /* UIView+Extension.swift in Sources */,
 				2C925C7A2802F1630060C810 /* LoginViewController.swift in Sources */,

@@ -10,8 +10,16 @@ import UIKit
 
 final class LoginViewController: UIViewController, ToastViewShowable {
     
+    private enum AlertEvent {
+        case validateEmail
+        case validatePassword
+        case successRegister
+        case failureLogin
+    }
+    
     var showingToast: ToastView?
     private var wasSentRegisterCodeKey: Bool!
+    private lazy var rentalManager: RentalManager = RentalManagerImp()
     
     var willAppearAfterEnterCode = false
     
@@ -134,8 +142,19 @@ final class LoginViewController: UIViewController, ToastViewShowable {
     }
     
     @objc private func loginButtonAction() {
-        let profileVC = ProfileViewController()
-        navigationController?.pushViewController(profileVC, animated: true)
+        guard allLoginValidates() else { return }
+        let user = Login(email: loginTextField.text!,
+                         password: passwordTextField.text!)
+        
+        rentalManager.login(user: user) { [weak self] result in
+            switch result {
+            case.success(_):
+                let profileVC = ProfileViewController()
+                self?.navigationController?.pushViewController(profileVC, animated: true)
+            case .failure(_):
+                self?.showAlert(event: .failureLogin)
+            }
+        }
     }
     
     @objc private func enterCodeButtonAction() {
@@ -153,6 +172,49 @@ final class LoginViewController: UIViewController, ToastViewShowable {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             scrollView.contentInset.bottom = keyboardSize.height
         }
+    }
+    
+    private func showAlert(event: AlertEvent) {
+        var text = ""
+        var message = "Попробуйте еще раз."
+        switch event {
+        case .validatePassword:
+            text = "Пароль пустой"
+        case .validateEmail:
+            text = "Вы не правильно ввели почту"
+        case .successRegister:
+            text = "Регистрация завершена"
+            message = "Войдите в профиль с Вашей почтой и паролем"
+        case .failureLogin:
+            text = "Ошибка"
+            message = "Проверьте почту и пароль"
+        }
+        let alert = UIAlertController(title: text, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Понятно", style: .default)
+        alert.addAction(okAction)
+        present(alert, animated: true)
+    }
+    
+    private func allLoginValidates() -> Bool {
+        guard validateEmail() else {
+            showAlert(event: .validateEmail)
+            return false
+        }
+        guard validatePassword() else {
+            showAlert(event: .validatePassword)
+            return false
+        }
+        return true
+    }
+    
+    private func validatePassword() -> Bool {
+        return !passwordTextField.text!.isEmpty
+    }
+    
+    private func validateEmail() -> Bool {
+        let first = loginTextField.text!.contains("@")
+        let second = loginTextField.text!.contains(".")
+        return first && second
     }
     
     private func customize() {
@@ -364,9 +426,6 @@ extension LoginViewController: EnterCodeDelegate {
     }
     
     func didFinishRegistration() {
-        let alert = UIAlertController(title: "Регистрация завершена", message: "Войдите в профиль с Вашей почтой и паролем", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Хорошо", style: .default)
-        alert.addAction(okAction)
-        present(alert, animated: true)
+        showAlert(event: .successRegister)
     }
 }

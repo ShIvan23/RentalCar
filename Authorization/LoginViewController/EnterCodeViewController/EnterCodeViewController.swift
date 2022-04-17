@@ -12,7 +12,7 @@ protocol EnterCodeDelegate: AnyObject {
     func didFinishRegistration()
 }
 
-class EnterCodeViewController: UIViewController, ToastViewShowable {
+final class EnterCodeViewController: UIViewController, ToastViewShowable {
     
     private enum AlertEvent {
         case validateCode

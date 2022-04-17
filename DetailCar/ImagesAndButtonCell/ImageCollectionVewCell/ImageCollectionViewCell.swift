@@ -18,6 +18,12 @@ final class ImageCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
+    func setupCellWith(image: UIImage) {
+        layout()
+        setupCell()
+        carImageView.image = image
+    }
+    
     func setupCellWith(image: String) {
         layout()
         setupCell()
