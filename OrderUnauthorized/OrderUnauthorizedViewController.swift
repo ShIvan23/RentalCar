@@ -260,15 +260,14 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
     private func sendOrder(_ order: Order) {
         rentalManager.postOrder(order: order) { [weak self] result in
             switch result {
-            case .success(let success):
+            case .success(_):
                 DispatchQueue.main.async {
                     self?.showSuccessToast(with: "Ваш заказ отправлен.\nМенеджер Вам перезвонит.")
                 }
-            case .failure(let error):
+            case .failure(_):
                 DispatchQueue.main.async {
                     self?.showFailureToast(with: "Произошла ошибка.\nПопробуйте отправить еще раз!")
                 }
-//                debugPrint(error.localizedDescription)
             }
         }
     }

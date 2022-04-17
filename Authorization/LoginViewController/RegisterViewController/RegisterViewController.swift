@@ -7,15 +7,25 @@
 
 import UIKit
 
-final class RegisterViewController: UIViewController {
+protocol RegisterDelegate: AnyObject {
+    func completeRegister()
+}
+
+final class RegisterViewController: UIViewController, ToastViewShowable {
     
-    private enum ValidationError {
-        case name
-        case number
-        case email
-        case password
-        case code
+    private enum AlertEvent {
+        case validateName
+        case validateNumber
+        case validateEmail
+        case validatePassword
+        case failureRegister
     }
+    
+    var showingToast: ToastView?
+    
+    weak var delegate: RegisterDelegate?
+    
+    private lazy var rentalManager: RentalManager = RentalManagerImp()
     
     private let scrollView = UIScrollView()
     private let contentView = UIView()
@@ -38,14 +48,14 @@ final class RegisterViewController: UIViewController {
     
     private lazy var numberTextField = TextField(placeholder: "Ваш номер телефона", keyboardType: .numberPad)
     
-    private let loginLabel: UILabel = {
+    private let emailLabel: UILabel = {
         let label = UILabel()
         label.text = "Введите почту"
         label.font = .boldSystemFont(ofSize: 18)
         return label
     }()
     
-    private lazy var loginTextField = TextField(placeholder: "Ваша почта")
+    private lazy var emailTextField = TextField(placeholder: "Ваша почта")
     
     private let passwordLabel: UILabel = {
         let label = UILabel()
@@ -76,22 +86,11 @@ final class RegisterViewController: UIViewController {
     
     private let codeLabel: UILabel = {
         let label = UILabel()
-        label.text = "После регистрации Вам на почту придет 6-ти значный код. Его нужно будет ввести в этом поле"
+        label.text = "После регистрации Вам на почту придет 6-ти значный код"
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 16)
         label.numberOfLines = 0
         return label
-    }()
-    
-    private lazy var codeTextField = TextField(placeholder: "Введите код из письма", keyboardType: .numberPad)
-    
-    private lazy var sendCodeButton: UIButton = {
-        let button = UIButton(type: .system)
-        let attributedText = NSAttributedString(string: "Отправить код", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)])
-        button.setAttributedTitle(attributedText, for: .normal)
-        button.tintColor = .white
-        button.addTarget(self, action: #selector(sendCodeButtonAction), for: .touchUpInside)
-        return button
     }()
 
     override func viewDidLoad() {
@@ -105,7 +104,6 @@ final class RegisterViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         registerButton.setCustomGradient()
-        sendCodeButton.setCustomGradient()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -123,20 +121,26 @@ final class RegisterViewController: UIViewController {
     
     @objc private func registerButtonAction() {
         guard validateAllTextFields() else { return }
-
-        print("Отправить на бэк")
-        print("ФИО = \(nameTextField.text!)")
-        print("Номер = \(numberTextField.text!)")
-        print("Почта = \(loginTextField.text!)")
-        print("Пароль = \(passwordTextField.text!)")
-    }
-    
-    @objc private func sendCodeButtonAction() {
-        guard validateCode() else {
-            showAlert(error: .code)
-            return
+        let user = UserRegister(name: nameTextField.text!,
+                                phone: numberTextField.text!,
+                                email: emailTextField.text!,
+                                password: passwordTextField.text!)
+        
+        rentalManager.postRegisterUser(user: user) { [weak self] result in
+            switch result {
+            case .success(_):
+                DispatchQueue.main.async {
+                    AppState.shared.saveToUserDefaults(key: AppStateKeys.wasSentRegisterCodeKey, value: true)
+                    AppState.shared.userEmail = user.email
+                    self?.navigationController?.popViewController(animated: true)
+                    self?.delegate?.completeRegister()
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self?.showAlert(error: .failureRegister)
+                }
+            }
         }
-        print("Отправить на бэк код = \(codeTextField.text!) ")
     }
     
     @objc func keyboardWillHide() {
@@ -151,8 +155,8 @@ final class RegisterViewController: UIViewController {
     }
     
     private func validateEmail() -> Bool {
-        let first = loginTextField.text!.contains("@")
-        let second = loginTextField.text!.contains(".")
+        let first = emailTextField.text!.contains("@")
+        let second = emailTextField.text!.contains(".")
         return first && second
     }
     
@@ -161,10 +165,6 @@ final class RegisterViewController: UIViewController {
         let second = !repeatPasswordTextField.text!.isEmpty
         let third = passwordTextField.text! == repeatPasswordTextField.text!
         return first && second && third
-    }
-    
-    private func validateCode() -> Bool {
-        return codeTextField.text!.count == 6
     }
     
     private func validateName() -> Bool {
@@ -177,40 +177,40 @@ final class RegisterViewController: UIViewController {
     
     private func validateAllTextFields() -> Bool {
         guard validateName() else {
-            showAlert(error: .name)
+            showAlert(error: .validateName)
             return false
         }
         guard validateNumber() else {
-            showAlert(error: .number)
+            showAlert(error: .validateNumber)
             return false
         }
         guard validateEmail() else {
-            showAlert(error: .email)
+            showAlert(error: .validateEmail)
             return false
         }
         guard validatePassword() else {
-            showAlert(error: .password)
+            showAlert(error: .validatePassword)
             return false
         }
         return true
     }
     
-    private func showAlert(error: ValidationError) {
+    private func showAlert(error: AlertEvent) {
         var text = ""
         var message = "Попробуйте еще раз."
         switch error {
-        case .name:
+        case .validateName:
             text = "Вы не ввели ФИО"
             message = "Заполните все поля"
-        case .number:
+        case .validateNumber:
             text = "Вы не ввели номер телефона"
             message = "Заполните все поля"
-        case .email:
+        case .validateEmail:
             text = "Вы не правильно ввели почту"
-        case .password:
+        case .validatePassword:
             text = "Ваши пароли не совпадают"
-        case .code:
-            text = "Код должен быть из 6-ти символов"
+        case .failureRegister:
+            text = "Произошла ошибка"
         }
         let alert = UIAlertController(title: text, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Понятно", style: .default)
@@ -220,13 +220,13 @@ final class RegisterViewController: UIViewController {
     
     private func customize() {
         view.backgroundColor = .white
+        title = "Регистрация"
     }
     
     private func addTextFieldsDelegate() {
-        loginTextField.delegate = self
+        emailTextField.delegate = self
         passwordTextField.delegate = self
         repeatPasswordTextField.delegate = self
-        codeTextField.delegate = self
     }
     
     private func addGestureToHideKeyboard() {
@@ -249,7 +249,7 @@ final class RegisterViewController: UIViewController {
             make.width.equalTo(scrollView)
         }
         
-        [nameLabel, nameTextField, numberLabel, numberTextField, loginLabel, loginTextField, passwordLabel, passwordTextField, repeatPasswordLabel, repeatPasswordTextField, registerButton, codeLabel, codeTextField, sendCodeButton].forEach { contentView.addSubview($0) }
+        [nameLabel, nameTextField, numberLabel, numberTextField, emailLabel, emailTextField, passwordLabel, passwordTextField, repeatPasswordLabel, repeatPasswordTextField, registerButton, codeLabel].forEach { contentView.addSubview($0) }
       
         nameLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(8)
@@ -273,20 +273,20 @@ final class RegisterViewController: UIViewController {
             make.top.equalTo(numberLabel.snp.bottom).offset(8)
         }
         
-        loginLabel.snp.makeConstraints { make in
+        emailLabel.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(16)
             make.top.equalTo(numberTextField.snp.bottom).offset(16)
         }
         
-        loginTextField.snp.makeConstraints { make in
+        emailTextField.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(16)
             make.height.equalTo(40)
-            make.top.equalTo(loginLabel.snp.bottom).offset(8)
+            make.top.equalTo(emailLabel.snp.bottom).offset(8)
         }
         
         passwordLabel.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(16)
-            make.top.equalTo(loginTextField.snp.bottom).offset(16)
+            make.top.equalTo(emailTextField.snp.bottom).offset(16)
         }
 
         passwordTextField.snp.makeConstraints { make in
@@ -313,20 +313,8 @@ final class RegisterViewController: UIViewController {
         }
         
         codeLabel.snp.makeConstraints { make in
-            make.top.equalTo(registerButton.snp.bottom).offset(40)
+            make.top.equalTo(registerButton.snp.bottom).offset(16)
             make.left.right.equalToSuperview().inset(16)
-        }
-        
-        codeTextField.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(16)
-            make.height.equalTo(40)
-            make.top.equalTo(codeLabel.snp.bottom).offset(8)
-        }
-        
-        sendCodeButton.snp.makeConstraints { make in
-            make.top.equalTo(codeTextField.snp.bottom).offset(20)
-            make.left.right.equalToSuperview().inset(16)
-            make.height.equalTo(40)
             make.bottom.equalToSuperview().inset(20)
         }
     }
@@ -337,7 +325,7 @@ final class RegisterViewController: UIViewController {
 
 extension RegisterViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == loginTextField {
+        if textField == emailTextField {
             passwordTextField.becomeFirstResponder()
         } else if textField == passwordTextField {
             repeatPasswordTextField.becomeFirstResponder()

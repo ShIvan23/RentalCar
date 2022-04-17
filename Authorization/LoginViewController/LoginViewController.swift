@@ -8,7 +8,12 @@
 import SnapKit
 import UIKit
 
-final class LoginViewController: UIViewController {
+final class LoginViewController: UIViewController, ToastViewShowable {
+    
+    var showingToast: ToastView?
+    private var wasSentRegisterCodeKey: Bool!
+    
+    var willAppearAfterEnterCode = false
     
     private let scrollView = UIScrollView()
     private let contentView = UIView()
@@ -64,11 +69,30 @@ final class LoginViewController: UIViewController {
         button.addTarget(self, action: #selector(registerButtonAction), for: .touchUpInside)
         return button
     }()
+    
+    private lazy var enterCodeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Для завершения регистрации введите код из письма"
+        label.font = .systemFont(ofSize: 16)
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private lazy var enterCodeButton: UIButton = {
+        let button = UIButton(type: .system)
+        let attributedText = NSAttributedString(string: "Ввести код", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)])
+        button.setAttributedTitle(attributedText, for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(enterCodeButtonAction), for: .touchUpInside)
+        return button
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        customize()
+        wasSentRegisterCodeKey = AppState.shared.wasSentRegisterCode
         layout()
+        customize()
         addTextFieldsDelegate()
         addGestureToHideKeyboard()
     }
@@ -77,6 +101,14 @@ final class LoginViewController: UIViewController {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        guard !willAppearAfterEnterCode else {
+            updateLayoutAfterEnterCode()
+            return
+        }
+        
+        wasSentRegisterCodeKey = AppState.shared.wasSentRegisterCode
+        updateLayoutIfNeeded()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -90,18 +122,26 @@ final class LoginViewController: UIViewController {
         super.viewDidLayoutSubviews()
         loginButton.setCustomGradient()
         registerButton.setCustomGradient()
+        if wasSentRegisterCodeKey {
+            enterCodeButton.setCustomGradient()
+        }
     }
     
     @objc private func registerButtonAction() {
         let registerVC = RegisterViewController()
-        registerVC.title = "Регистрация"
+        registerVC.delegate = self
         navigationController?.pushViewController(registerVC, animated: true)
     }
     
     @objc private func loginButtonAction() {
-        print("send to backend")
         let profileVC = ProfileViewController()
         navigationController?.pushViewController(profileVC, animated: true)
+    }
+    
+    @objc private func enterCodeButtonAction() {
+        let enterCodeVC = EnterCodeViewController()
+        enterCodeVC.delegate = self
+        navigationController?.pushViewController(enterCodeVC, animated: true)
     }
     
     @objc func keyboardWillHide() {
@@ -181,6 +221,13 @@ final class LoginViewController: UIViewController {
             make.height.equalTo(40)
             make.top.equalTo(passwordTextField.snp.bottom).offset(16)
         }
+
+        wasSentRegisterCodeKey ? layoutForNextRegister() : layoutForFirstRegister()
+    }
+    
+    /// Если пользователь еще не отправлял на почту код подтверждения, то кнопка ввести код не нужна
+    private func layoutForFirstRegister() {
+        [registerLabel, registerButton].forEach { contentView.addSubview($0) }
         
         registerLabel.snp.makeConstraints { make in
             make.top.equalTo(loginButton.snp.bottom).offset(30)
@@ -194,6 +241,97 @@ final class LoginViewController: UIViewController {
             make.height.equalTo(40)
         }
     }
+    
+    /// Если пользователь уже отправлял на почту код подтверждения, то кнопка ввести код нужна
+    private func layoutForNextRegister() {
+        [enterCodeLabel, enterCodeButton, registerLabel, registerButton].forEach { contentView.addSubview($0) }
+        
+        registerLabel.text = "Для регистрации с новой почты, нажмите 'Зарегистрироваться'"
+        
+        enterCodeLabel.snp.makeConstraints { make in
+            make.top.equalTo(loginButton.snp.bottom).offset(30)
+            make.left.right.equalToSuperview().inset(16)
+        }
+
+        enterCodeButton.snp.makeConstraints { make in
+            make.left.right.equalToSuperview().inset(16)
+            make.top.equalTo(enterCodeLabel.snp.bottom).offset(8)
+            make.height.equalTo(40)
+        }
+        
+        registerLabel.snp.makeConstraints { make in
+            make.top.equalTo(enterCodeButton.snp.bottom).offset(30)
+            make.left.right.equalToSuperview().inset(16)
+        }
+
+        registerButton.snp.makeConstraints { make in
+            make.left.right.equalToSuperview().inset(16)
+            make.top.equalTo(registerLabel.snp.bottom).offset(8)
+            make.bottom.equalToSuperview().inset(20)
+            make.height.equalTo(40)
+        }
+    }
+    
+    /// После того как пользователь отправил на почту код подтверждения, надо показать кнопку с с вводом кода
+    private func updateLayoutIfNeeded() {
+        if wasSentRegisterCodeKey {
+            [enterCodeLabel, enterCodeButton].forEach{ contentView.addSubview($0) }
+            
+            registerLabel.text = "Для регистрации с новой почты, нажмите 'Зарегистрироваться'"
+            registerLabel.snp.removeConstraints()
+            registerButton.snp.removeConstraints()
+            
+            enterCodeLabel.snp.makeConstraints { make in
+                make.top.equalTo(loginButton.snp.bottom).offset(30)
+                make.left.right.equalToSuperview().inset(16)
+            }
+
+            enterCodeButton.snp.makeConstraints { make in
+                make.left.right.equalToSuperview().inset(16)
+                make.top.equalTo(enterCodeLabel.snp.bottom).offset(8)
+                make.height.equalTo(40)
+            }
+            
+            registerLabel.snp.makeConstraints { make in
+                make.top.equalTo(enterCodeButton.snp.bottom).offset(30)
+                make.left.right.equalToSuperview().inset(16)
+            }
+
+            registerButton.snp.makeConstraints { make in
+                make.left.right.equalToSuperview().inset(16)
+                make.top.equalTo(registerLabel.snp.bottom).offset(8)
+                make.bottom.equalToSuperview().inset(20)
+                make.height.equalTo(40)
+            }
+        }
+    }
+    
+    /// После отправки кода на бэк, кнопка с отправкой кода больше не нужна
+    private func updateLayoutAfterEnterCode() {
+        enterCodeLabel.snp.removeConstraints()
+        enterCodeButton.snp.removeConstraints()
+        registerLabel.snp.removeConstraints()
+        registerButton.snp.removeConstraints()
+        
+        enterCodeLabel.removeFromSuperview()
+        enterCodeButton.removeFromSuperview()
+        
+        registerLabel.text = "Если у Вас ещё нет профиля, то зарегистрируйтесь"
+        
+        registerLabel.snp.makeConstraints { make in
+            make.top.equalTo(loginButton.snp.bottom).offset(30)
+            make.left.right.equalToSuperview().inset(16)
+        }
+
+        registerButton.snp.makeConstraints { make in
+            make.left.right.equalToSuperview().inset(16)
+            make.top.equalTo(registerLabel.snp.bottom).offset(8)
+            make.bottom.equalToSuperview().inset(20)
+            make.height.equalTo(40)
+        }
+        
+        willAppearAfterEnterCode = false
+    }
 }
 
 // MARK: - UITextFieldDelegate
@@ -206,5 +344,29 @@ extension LoginViewController: UITextFieldDelegate {
             textField.resignFirstResponder()
         }
         return true
+    }
+}
+
+// MARK: - RegisterDelegate
+
+extension LoginViewController: RegisterDelegate {
+    func completeRegister() {
+        showSuccessToast(with: "Вам на почту оправлено письмо с кодом")
+    }
+}
+
+
+// MARK: - EnterCodeDelegate
+
+extension LoginViewController: EnterCodeDelegate {
+    func changeLayout() {
+        willAppearAfterEnterCode = true
+    }
+    
+    func didFinishRegistration() {
+        let alert = UIAlertController(title: "Регистрация завершена", message: "Войдите в профиль с Вашей почтой и паролем", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Хорошо", style: .default)
+        alert.addAction(okAction)
+        present(alert, animated: true)
     }
 }

@@ -10,6 +10,11 @@
 		2C1DDABD27A08574000B82C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1DDABC27A08574000B82C6 /* AppDelegate.swift */; };
 		2C1DDAC627A08579000B82C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C1DDAC527A08579000B82C6 /* Assets.xcassets */; };
 		2C1DDAC927A08579000B82C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C1DDAC727A08579000B82C6 /* LaunchScreen.storyboard */; };
+		2C5FBB3F280AD37900F81155 /* UserRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5FBB3E280AD37900F81155 /* UserRegister.swift */; };
+		2C5FBB42280ADEAA00F81155 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5FBB41280ADEAA00F81155 /* AppState.swift */; };
+		2C5FBB45280AF81000F81155 /* EnterCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5FBB44280AF81000F81155 /* EnterCodeViewController.swift */; };
+		2C5FBB47280AFE4B00F81155 /* UserConfirm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5FBB46280AFE4B00F81155 /* UserConfirm.swift */; };
+		2C5FBB49280AFFEB00F81155 /* AgainConfirmCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5FBB48280AFFEB00F81155 /* AgainConfirmCode.swift */; };
 		2C60ACFE28019EAE00C5A1A0 /* FullImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60ACFD28019EAE00C5A1A0 /* FullImageViewController.swift */; };
 		2C60AD012801A28700C5A1A0 /* ImageTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AD002801A28700C5A1A0 /* ImageTransition.swift */; };
 		2C60AD032801CCFD00C5A1A0 /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AD022801CCFD00C5A1A0 /* ImageScrollView.swift */; };
@@ -61,6 +66,11 @@
 		2C1DDAC527A08579000B82C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C1DDAC827A08579000B82C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C1DDACA27A08579000B82C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C5FBB3E280AD37900F81155 /* UserRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegister.swift; sourceTree = "<group>"; };
+		2C5FBB41280ADEAA00F81155 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		2C5FBB44280AF81000F81155 /* EnterCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCodeViewController.swift; sourceTree = "<group>"; };
+		2C5FBB46280AFE4B00F81155 /* UserConfirm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserConfirm.swift; sourceTree = "<group>"; };
+		2C5FBB48280AFFEB00F81155 /* AgainConfirmCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgainConfirmCode.swift; sourceTree = "<group>"; };
 		2C60ACFD28019EAE00C5A1A0 /* FullImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullImageViewController.swift; sourceTree = "<group>"; };
 		2C60AD002801A28700C5A1A0 /* ImageTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTransition.swift; sourceTree = "<group>"; };
 		2C60AD022801CCFD00C5A1A0 /* ImageScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageScrollView.swift; sourceTree = "<group>"; };
@@ -139,6 +149,7 @@
 				2C9DF80027DB5B7A00C176AC /* Contacts */,
 				2CF197F227B5183D00E82C6C /* OrderUnauthorized */,
 				2C8C981227FB6891003D9D68 /* ToastToast */,
+				2C5FBB40280ADE9800F81155 /* AppState */,
 				2C631E5527A33983003753E1 /* Models */,
 				2C6E4DCE27B9347700FBE7E8 /* ScreenSize */,
 				2C60ACFF2801A25F00C5A1A0 /* ImageTransition */,
@@ -177,6 +188,22 @@
 				2CF197EE27B41A4800E82C6C /* DescriptionTableViewCell.swift */,
 			);
 			path = DescriptionCell;
+			sourceTree = "<group>";
+		};
+		2C5FBB40280ADE9800F81155 /* AppState */ = {
+			isa = PBXGroup;
+			children = (
+				2C5FBB41280ADEAA00F81155 /* AppState.swift */,
+			);
+			path = AppState;
+			sourceTree = "<group>";
+		};
+		2C5FBB43280AF7E000F81155 /* EnterCodeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2C5FBB44280AF81000F81155 /* EnterCodeViewController.swift */,
+			);
+			path = EnterCodeViewController;
 			sourceTree = "<group>";
 		};
 		2C60ACFC28019E8400C5A1A0 /* FullImageViewController */ = {
@@ -279,6 +306,9 @@
 				2C8C980C27FA2A83003D9D68 /* OrderModel.swift */,
 				2C8C981727FB7DF4003D9D68 /* PromoModel.swift */,
 				2C60AD062802093B00C5A1A0 /* ConditionModel.swift */,
+				2C5FBB3E280AD37900F81155 /* UserRegister.swift */,
+				2C5FBB46280AFE4B00F81155 /* UserConfirm.swift */,
+				2C5FBB48280AFFEB00F81155 /* AgainConfirmCode.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -346,6 +376,7 @@
 				2C925C792802F1630060C810 /* LoginViewController.swift */,
 				2C7B4D2A28032EBB000EE39D /* ProfileViewController */,
 				2C7B4D27280318E8000EE39D /* RegisterViewController */,
+				2C5FBB43280AF7E000F81155 /* EnterCodeViewController */,
 			);
 			path = LoginViewController;
 			sourceTree = "<group>";
@@ -577,6 +608,7 @@
 				2C925C7A2802F1630060C810 /* LoginViewController.swift in Sources */,
 				2C9DF80227DB5B9600C176AC /* ContactsViewController.swift in Sources */,
 				2C8C981427FB695F003D9D68 /* ToastView.swift in Sources */,
+				2C5FBB3F280AD37900F81155 /* UserRegister.swift in Sources */,
 				2CC9AF8027C188D40082D81C /* TextField.swift in Sources */,
 				2C631E5727A33990003753E1 /* CarModel.swift in Sources */,
 				2CC9AF8927C2C9E20082D81C /* StockCollectionViewCell.swift in Sources */,
@@ -592,10 +624,12 @@
 				2C60AD0F28023CFB00C5A1A0 /* ConditionHeaderView.swift in Sources */,
 				2C8C981627FB6DCE003D9D68 /* ToastViewShowable.swift in Sources */,
 				2CF197E927AE88E800E82C6C /* ImageCollectionViewCell.swift in Sources */,
+				2C5FBB42280ADEAA00F81155 /* AppState.swift in Sources */,
 				2C60AD012801A28700C5A1A0 /* ImageTransition.swift in Sources */,
 				2C6E4DD027B9349500FBE7E8 /* ScreenSize.swift in Sources */,
 				2C60AD072802093B00C5A1A0 /* ConditionModel.swift in Sources */,
 				2C631E4F27A333C3003753E1 /* BaseCollectionViewCell.swift in Sources */,
+				2C5FBB49280AFFEB00F81155 /* AgainConfirmCode.swift in Sources */,
 				2CC9AF8427C2BE690082D81C /* UIViewController+Extension.swift in Sources */,
 				2C6E4DD327B9377E00FBE7E8 /* CalendarViewController.swift in Sources */,
 				2C6295BF27A499B8003521D9 /* LegalCollectionViewCell.swift in Sources */,
@@ -604,10 +638,12 @@
 				2C9DF85227DCD5F000C176AC /* CallUsTableViewCell.swift in Sources */,
 				2C6E4DCD27B91F1E00FBE7E8 /* PopoverTableViewController.swift in Sources */,
 				2C8C980D27FA2A83003D9D68 /* OrderModel.swift in Sources */,
+				2C5FBB47280AFE4B00F81155 /* UserConfirm.swift in Sources */,
 				2C6295C127A49C54003521D9 /* UICollectionViewCell+Extension.swift in Sources */,
 				2C60AD052801F71000C5A1A0 /* String+Extension.swift in Sources */,
 				2CF197F427B5190100E82C6C /* OrderUnauthorizedViewController.swift in Sources */,
 				2C1DDABD27A08574000B82C6 /* AppDelegate.swift in Sources */,
+				2C5FBB45280AF81000F81155 /* EnterCodeViewController.swift in Sources */,
 				2C6295B727A465E3003521D9 /* UIColor+Extension.swift in Sources */,
 				2C60ACFE28019EAE00C5A1A0 /* FullImageViewController.swift in Sources */,
 				2C60AD0A2802399600C5A1A0 /* ConditionViewController.swift in Sources */,
