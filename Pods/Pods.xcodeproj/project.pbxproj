@@ -276,7 +276,7 @@
 		984CB9C4C0E90349A20160C95E876BA6 /* Placeholder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Placeholder.swift; path = Sources/Image/Placeholder.swift; sourceTree = "<group>"; };
 		99731E27F39D1E8429985008FC03289B /* FSCalendarDelegationFactory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarDelegationFactory.h; path = FSCalendar/FSCalendarDelegationFactory.h; sourceTree = "<group>"; };
 		9B805B38A60F6CACF28BE24B334142F6 /* MemoryStorage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MemoryStorage.swift; path = Sources/Cache/MemoryStorage.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A005E78A49D9BD9F7F03BAB3A7C6AEAF /* GraphicsContext.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GraphicsContext.swift; path = Sources/Image/GraphicsContext.swift; sourceTree = "<group>"; };
 		A5C18CB2CA6DA21BB9B46C1A82223FDC /* Pods-RentalCar-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-RentalCar-dummy.m"; sourceTree = "<group>"; };
 		A6840684FE32CD71D81430A7AC8F5D8C /* ImageFormat.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageFormat.swift; path = Sources/Image/ImageFormat.swift; sourceTree = "<group>"; };
@@ -304,7 +304,7 @@
 		C498FCEC8981F709D63BB8C540486A36 /* ConstraintLayoutGuide+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ConstraintLayoutGuide+Extensions.swift"; path = "Source/ConstraintLayoutGuide+Extensions.swift"; sourceTree = "<group>"; };
 		C859277F9BEE6834AB54564802E209E3 /* ConstraintDirectionalInsets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDirectionalInsets.swift; path = Source/ConstraintDirectionalInsets.swift; sourceTree = "<group>"; };
 		CB4781E730FECEABBE95AAFB57792E4C /* FSCalendarWeekdayView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarWeekdayView.h; path = FSCalendar/FSCalendarWeekdayView.h; sourceTree = "<group>"; };
-		CC9E0DB25CCE28950EBB2FB3A41ABBD8 /* Pods_RentalCar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RentalCar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC9E0DB25CCE28950EBB2FB3A41ABBD8 /* Pods-RentalCar */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-RentalCar"; path = Pods_RentalCar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCD4FE412867CE44BB4FA1B49B0A8C15 /* FSCalendarExtensions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarExtensions.m; path = FSCalendar/FSCalendarExtensions.m; sourceTree = "<group>"; };
 		CD25DCD27F0FF430431C0E25D9F305BA /* SnapKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SnapKit-prefix.pch"; sourceTree = "<group>"; };
 		CD7D72B74C0BA446DF1DFF3A1DF06345 /* Image.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Image.swift; path = Sources/Image/Image.swift; sourceTree = "<group>"; };
@@ -444,6 +444,7 @@
 				21A5F8614C0AACB6A6F70A44E0705231 /* UILayoutSupport+Extensions.swift */,
 				BD449F4C7AD68A42C957E7BD91FCF114 /* Support Files */,
 			);
+			name = SnapKit;
 			path = SnapKit;
 			sourceTree = "<group>";
 		};
@@ -513,6 +514,7 @@
 				819092DB32C52E3DE0695522534276E1 /* WKInterfaceImage+Kingfisher.swift */,
 				EDABC6F624E3EA1A4CDDBE16A9677222 /* Support Files */,
 			);
+			name = Kingfisher;
 			path = Kingfisher;
 			sourceTree = "<group>";
 		};
@@ -569,6 +571,7 @@
 				DE0BDD9B433F11ADBDBD57D9096ED29D /* FSCalendarWeekdayView.m */,
 				009053DACBB09F374621CAC32F7830F0 /* Support Files */,
 			);
+			name = FSCalendar;
 			path = FSCalendar;
 			sourceTree = "<group>";
 		};
@@ -623,7 +626,7 @@
 			children = (
 				95209B8BB966524BC76543F99C75F5FE /* FSCalendar */,
 				C3F44C782D64D7EB20B61CE3844EBFAD /* Kingfisher */,
-				CC9E0DB25CCE28950EBB2FB3A41ABBD8 /* Pods_RentalCar.framework */,
+				CC9E0DB25CCE28950EBB2FB3A41ABBD8 /* Pods-RentalCar */,
 				979486118B3E90C08386079D57962701 /* SnapKit */,
 			);
 			name = Products;
@@ -770,7 +773,7 @@
 			);
 			name = "Pods-RentalCar";
 			productName = Pods_RentalCar;
-			productReference = CC9E0DB25CCE28950EBB2FB3A41ABBD8 /* Pods_RentalCar.framework */;
+			productReference = CC9E0DB25CCE28950EBB2FB3A41ABBD8 /* Pods-RentalCar */;
 			productType = "com.apple.product-type.framework";
 		};
 		E8022D22FAA6690B5E1C379C1BCE1491 /* Kingfisher */ = {
