@@ -30,6 +30,7 @@ final class RequestManagerImp: RequestManager {
         static let userConfirm = "user/confirm-code"
         static let againConfirmCode = "user/send-confirm-code"
         static let login = "user/login"
+        static let uploadDocument = "user/upload-document"
     }
 
     private lazy var defaultHeader = [
@@ -105,5 +106,9 @@ final class RequestManagerImp: RequestManager {
         }
         request.httpBody = data
         return request
+    }
+    
+    func postDocuments(body: String) {
+        
     }
 }

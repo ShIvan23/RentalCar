@@ -10,6 +10,8 @@
 		2C1DDABD27A08574000B82C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1DDABC27A08574000B82C6 /* AppDelegate.swift */; };
 		2C1DDAC627A08579000B82C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C1DDAC527A08579000B82C6 /* Assets.xcassets */; };
 		2C1DDAC927A08579000B82C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C1DDAC727A08579000B82C6 /* LaunchScreen.storyboard */; };
+		2C549BD428174225008C8712 /* PermissionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C549BD328174225008C8712 /* PermissionStatus.swift */; };
+		2C549BD6281743E0008C8712 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C549BD5281743E0008C8712 /* PermissionManager.swift */; };
 		2C5FBB3F280AD37900F81155 /* UserRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5FBB3E280AD37900F81155 /* UserRegister.swift */; };
 		2C5FBB42280ADEAA00F81155 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5FBB41280ADEAA00F81155 /* AppState.swift */; };
 		2C5FBB45280AF81000F81155 /* EnterCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5FBB44280AF81000F81155 /* EnterCodeViewController.swift */; };
@@ -67,6 +69,8 @@
 		2C1DDAC527A08579000B82C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C1DDAC827A08579000B82C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C1DDACA27A08579000B82C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C549BD328174225008C8712 /* PermissionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionStatus.swift; sourceTree = "<group>"; };
+		2C549BD5281743E0008C8712 /* PermissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
 		2C5FBB3E280AD37900F81155 /* UserRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegister.swift; sourceTree = "<group>"; };
 		2C5FBB41280ADEAA00F81155 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		2C5FBB44280AF81000F81155 /* EnterCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCodeViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +160,7 @@
 				2C6E4DCE27B9347700FBE7E8 /* ScreenSize */,
 				2C60ACFF2801A25F00C5A1A0 /* ImageTransition */,
 				2C9DF7DD27D9F42C00C176AC /* Networking */,
+				2C549BD228174205008C8712 /* Permissions */,
 				2CC9AF7E27C1889C0082D81C /* CustomViews */,
 				2C631E5027A3340D003753E1 /* Extensions */,
 				2C1DDABB27A08574000B82C6 /* RentalCar */,
@@ -190,6 +195,15 @@
 				2CF197EE27B41A4800E82C6C /* DescriptionTableViewCell.swift */,
 			);
 			path = DescriptionCell;
+			sourceTree = "<group>";
+		};
+		2C549BD228174205008C8712 /* Permissions */ = {
+			isa = PBXGroup;
+			children = (
+				2C549BD328174225008C8712 /* PermissionStatus.swift */,
+				2C549BD5281743E0008C8712 /* PermissionManager.swift */,
+			);
+			path = Permissions;
 			sourceTree = "<group>";
 		};
 		2C5FBB40280ADE9800F81155 /* AppState */ = {
@@ -605,9 +619,11 @@
 				2C631E5227A33419003753E1 /* UICollectionView_UITableView+Extension.swift in Sources */,
 				2CF197EC27B4180800E82C6C /* ImageAndButtonTableViewCell.swift in Sources */,
 				2C6295BA27A48AB7003521D9 /* MainTabBarViewController.swift in Sources */,
+				2C549BD6281743E0008C8712 /* PermissionManager.swift in Sources */,
 				2C631E4C27A33213003753E1 /* BaseCollectionViewController.swift in Sources */,
 				2CF197F127B5072600E82C6C /* NSMutableAttributedString+Extension.swift in Sources */,
 				2C60AD0F28023CFB00C5A1A0 /* ConditionHeaderView.swift in Sources */,
+				2C549BD428174225008C8712 /* PermissionStatus.swift in Sources */,
 				2C8C981627FB6DCE003D9D68 /* ToastViewShowable.swift in Sources */,
 				2CF197E927AE88E800E82C6C /* ImageCollectionViewCell.swift in Sources */,
 				2C5FBB42280ADEAA00F81155 /* AppState.swift in Sources */,

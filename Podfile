@@ -13,6 +13,7 @@ pod 'SnapKit'
 pod 'FSCalendar'
 pod 'Kingfisher', '~> 7.0'
 # pod 'YandexMapsMobile', '4.0.0-lite'
+pod "BSImagePicker", "~> 3.1"
 
 end
 

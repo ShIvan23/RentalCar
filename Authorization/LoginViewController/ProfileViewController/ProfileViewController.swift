@@ -7,10 +7,18 @@
 
 import SnapKit
 import UIKit
+import BSImagePicker
+import Photos
 
 final class ProfileViewController: UIViewController {
     
     // TODO: - Здесь нужно реализовать прикрепление фото
+    
+    private lazy var permissionManager = PermissionManager()
+    
+    private lazy var imagePicker = ImagePickerController()
+    
+    private var selectedAssets = [PHAsset]()
     
     private let descriptionLabel: UILabel = {
         let label = UILabel()
@@ -23,14 +31,22 @@ final class ProfileViewController: UIViewController {
     
     private lazy var photosCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
+        layout.scrollDirection = .horizontal
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(cell: ImageCollectionViewCell.self)
-//        collectionView.backgroundColor = .red
         return collectionView
+    }()
+    
+    private lazy var sendButton: UIButton = {
+        let button = UIButton(type: .system)
+        let attributedText = NSAttributedString(string: "Отправить фото", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)])
+        button.setAttributedTitle(attributedText, for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(sendPhotos), for: .touchUpInside)
+        return button
     }()
 
     override func viewDidLoad() {
@@ -39,13 +55,29 @@ final class ProfileViewController: UIViewController {
         layout()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        sendButton.setCustomGradient()
+    }
+    
+    @objc private func sendPhotos() {
+        print("send")
+    }
+    
     private func customize() {
         view.backgroundColor = .white
         title = "Профиль"
     }
+    
+    private func showGallery() {
+        presentImagePicker(imagePicker) {_ in} deselect: {_ in} cancel: {_ in} finish: { [weak self] assets in
+            self?.selectedAssets = assets
+            self?.photosCollectionView.reloadData()
+        }
+    }
 
     private func layout() {
-        [descriptionLabel, photosCollectionView].forEach { view.addSubview($0) }
+        [descriptionLabel, photosCollectionView, sendButton].forEach { view.addSubview($0) }
         
         photosCollectionView.snp.makeConstraints { make in
             make.centerY.equalTo(view.snp.centerY)
@@ -57,6 +89,12 @@ final class ProfileViewController: UIViewController {
             make.bottom.equalTo(photosCollectionView.snp.top).offset(-30)
             make.left.right.equalToSuperview().inset(16)
         }
+        
+        sendButton.snp.makeConstraints { make in
+            make.top.equalTo(photosCollectionView.snp.bottom).offset(30)
+            make.left.right.equalToSuperview().inset(16)
+            make.height.equalTo(40)
+        }
     }
 }
 
@@ -64,13 +102,19 @@ final class ProfileViewController: UIViewController {
 
 extension ProfileViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        1
+        return selectedAssets.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: ImageCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-        cell.setupCellWith(image: UIImage(named: "plus")!)
-        return cell
+        switch indexPath.item {
+        case 0:
+            cell.setupCellWith(image: UIImage(named: "plus")!)
+            return cell
+        default :
+            cell.setupCellWith(asset: selectedAssets[indexPath.item - 1])
+            return cell
+        }
     }
 }
 
@@ -86,9 +130,38 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.item {
         case 0:
-            print("Открыть пикер")
+            permissionManager.requestPhotoLibrary { [weak self] in
+                guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else { return }
+                self?.showGallery()
+            } failure: { [weak self] in
+                self?.showPermissionAlert(with: .photo)
+            }
         default:
-            print("Открыть фото")
+            break
         }
+    }
+}
+
+// MARK: - Alert
+
+private extension ProfileViewController {
+    enum AlertText: String {
+        case camera = "камере"
+        case photo = "галерии"
+    }
+    
+    func showPermissionAlert(with text: AlertText) {
+        let alert = UIAlertController(title: "Вы отключили разрешение", message: "Для правильной работы приложения, разрешите доступ к " + text.rawValue, preferredStyle: .alert)
+        
+        let declineAction = UIAlertAction(title: "Позже", style: .destructive)
+        let okAction = UIAlertAction(title: "В настройки", style: .default) { _ in
+            guard let settingUrl = URL(string: UIApplication.openSettingsURLString),
+                  UIApplication.shared.canOpenURL(settingUrl) else { return }
+            UIApplication.shared.open(settingUrl)
+        }
+        alert.addAction(declineAction)
+        alert.addAction(okAction)
+        
+        present(alert, animated: true)
     }
 }

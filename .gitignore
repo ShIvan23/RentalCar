@@ -124,3 +124,4 @@ Search/.idea
 *.md
 *.plist
 *.lock
+Pods/Target Support Files/Pods-RentalCar
