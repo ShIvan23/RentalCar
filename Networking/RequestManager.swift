@@ -15,6 +15,7 @@ protocol RequestManager {
     func postUserConfirm(body: UserConfirm) -> URLRequest?
     func postAgainConfirmCode(body: AgainConfirmCode) -> URLRequest?
     func postLogin(body: Login) -> URLRequest?
+    func postDocuments() -> String
 }
 
 final class RequestManagerImp: RequestManager {
@@ -108,7 +109,7 @@ final class RequestManagerImp: RequestManager {
         return request
     }
     
-    func postDocuments(body: String) {
-        
+    func postDocuments() -> String {
+        return baseUrlString + UrlStrings.uploadDocument
     }
 }

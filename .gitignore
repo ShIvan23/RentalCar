@@ -125,3 +125,5 @@ Search/.idea
 *.plist
 *.lock
 Pods/Target Support Files/Pods-RentalCar
+Pods/Pods.xcodeproj/project.pbxproj
+Pods

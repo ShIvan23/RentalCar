@@ -149,10 +149,14 @@ final class LoginViewController: UIViewController, ToastViewShowable {
         rentalManager.login(user: user) { [weak self] result in
             switch result {
             case.success(_):
-                let profileVC = ProfileViewController()
-                self?.navigationController?.pushViewController(profileVC, animated: true)
+                DispatchQueue.main.async {
+                    let profileVC = ProfileViewController()
+                    self?.navigationController?.pushViewController(profileVC, animated: true)
+                }
             case .failure(_):
-                self?.showAlert(event: .failureLogin)
+                DispatchQueue.main.async {
+                    self?.showAlert(event: .failureLogin)
+                }
             }
         }
     }

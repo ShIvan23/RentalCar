@@ -12,6 +12,7 @@
 		2C1DDAC927A08579000B82C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C1DDAC727A08579000B82C6 /* LaunchScreen.storyboard */; };
 		2C549BD428174225008C8712 /* PermissionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C549BD328174225008C8712 /* PermissionStatus.swift */; };
 		2C549BD6281743E0008C8712 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C549BD5281743E0008C8712 /* PermissionManager.swift */; };
+		2C549BD828187161008C8712 /* PostImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C549BD728187161008C8712 /* PostImages.swift */; };
 		2C5FBB3F280AD37900F81155 /* UserRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5FBB3E280AD37900F81155 /* UserRegister.swift */; };
 		2C5FBB42280ADEAA00F81155 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5FBB41280ADEAA00F81155 /* AppState.swift */; };
 		2C5FBB45280AF81000F81155 /* EnterCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5FBB44280AF81000F81155 /* EnterCodeViewController.swift */; };
@@ -71,6 +72,7 @@
 		2C1DDACA27A08579000B82C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C549BD328174225008C8712 /* PermissionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionStatus.swift; sourceTree = "<group>"; };
 		2C549BD5281743E0008C8712 /* PermissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
+		2C549BD728187161008C8712 /* PostImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImages.swift; sourceTree = "<group>"; };
 		2C5FBB3E280AD37900F81155 /* UserRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegister.swift; sourceTree = "<group>"; };
 		2C5FBB41280ADEAA00F81155 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		2C5FBB44280AF81000F81155 /* EnterCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCodeViewController.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 				2C5FBB46280AFE4B00F81155 /* UserConfirm.swift */,
 				2C5FBB48280AFFEB00F81155 /* AgainConfirmCode.swift */,
 				2C5FBB4A280C893C00F81155 /* Login.swift */,
+				2C549BD728187161008C8712 /* PostImages.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -629,6 +632,7 @@
 				2C5FBB42280ADEAA00F81155 /* AppState.swift in Sources */,
 				2C60AD012801A28700C5A1A0 /* ImageTransition.swift in Sources */,
 				2C6E4DD027B9349500FBE7E8 /* ScreenSize.swift in Sources */,
+				2C549BD828187161008C8712 /* PostImages.swift in Sources */,
 				2C60AD072802093B00C5A1A0 /* ConditionModel.swift in Sources */,
 				2C631E4F27A333C3003753E1 /* BaseCollectionViewCell.swift in Sources */,
 				2C5FBB49280AFFEB00F81155 /* AgainConfirmCode.swift in Sources */,

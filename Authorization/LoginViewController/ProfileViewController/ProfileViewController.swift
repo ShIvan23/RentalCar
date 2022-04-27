@@ -15,6 +15,7 @@ final class ProfileViewController: UIViewController {
     // TODO: - Здесь нужно реализовать прикрепление фото
     
     private lazy var permissionManager = PermissionManager()
+    private lazy var rentalManager = RentalManagerImp()
     
     private lazy var imagePicker = ImagePickerController()
     
@@ -61,7 +62,24 @@ final class ProfileViewController: UIViewController {
     }
     
     @objc private func sendPhotos() {
-        print("send")
+        var images = [UIImage]()
+        selectedAssets.forEach {
+            PHImageManager.default().requestImage(for: $0, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFit, options: nil) { image, _ in
+                guard let image = image else { return }
+                images.append(image)
+            }
+        }
+        print("images.count отдаем = \(images.count)")
+        print("картинки = \(images)")
+        rentalManager.postImages(images) { result in
+            switch result.result {
+            case .success(let model):
+                print("model = \(model)")
+            case .failure(let error):
+                print("error = \(error)")
+                print("error.localizedDescription = \(error.localizedDescription)")
+            }
+        }
     }
     
     private func customize() {

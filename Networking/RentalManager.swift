@@ -5,7 +5,9 @@
 //  Created by Ivan on 11.03.2022.
 //
 
+import Alamofire
 import Foundation
+import UIKit
 
 protocol RentalManager {
     func fetchCars(completion: @escaping (Result<CarsModel, Error>) -> Void)
@@ -55,5 +57,28 @@ final class RentalManagerImp: RentalManager {
     func login(user: Login, completion: @escaping (Result<LoginResult, Error>) -> Void) {
         guard let request = requestManager.postLogin(body: user) else { return }
         networkManager.fetch(request: request, completion: completion)
+    }
+    
+    func postImages(_ images: [UIImage], completion: @escaping (DataResponse<PostImagesResult, AFError>) -> Void) {
+        let stringUrl = requestManager.postDocuments()
+        let header: HTTPHeaders = [
+            "Content-Type" : "multipart/form-data",
+            "Accept" : "*/*"
+        ]
+        
+        AF.upload(multipartFormData: { multipartFormData in
+            images.forEach { image in
+                guard let imageData = image.jpegData(compressionQuality: 1.0) else { return }
+                multipartFormData.append(imageData, withName: "document", fileName: nil, mimeType: "image/jpeg")
+            }
+        },
+                  to: stringUrl,
+                  usingThreshold: UInt64(),
+                  method: .post,
+                  headers: header)
+        .uploadProgress(queue: .main, closure: { progress in
+            print("Upload progress = \(progress.fractionCompleted)")
+        })
+        .responseDecodable(completionHandler: completion)
     }
 }
