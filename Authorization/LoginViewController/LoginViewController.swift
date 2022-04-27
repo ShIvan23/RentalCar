@@ -148,7 +148,8 @@ final class LoginViewController: UIViewController, ToastViewShowable {
         
         rentalManager.login(user: user) { [weak self] result in
             switch result {
-            case.success(_):
+            case.success(let model):
+                AppState.shared.saveTokens(model: model)
                 DispatchQueue.main.async {
                     let profileVC = ProfileViewController()
                     self?.navigationController?.pushViewController(profileVC, animated: true)

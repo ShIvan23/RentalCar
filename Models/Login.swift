@@ -14,4 +14,15 @@ struct Login: Encodable {
 
 struct LoginResult: Decodable {
     let success: Bool
+    let data: LoginResultData
+}
+
+struct LoginResultData: Decodable {
+    let token: String
+    let refreshToken: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case token
+        case refreshToken = "refresh_token"
+    }
 }
