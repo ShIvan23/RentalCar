@@ -5,7 +5,7 @@
 //  Created by Ivan on 25.01.2022.
 //
 
-//import YandexMapsMobile
+import YandexMapsMobile
 import UIKit
 
 @main
@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func setupYandexMaps() {
-//        YMKMapKit.setApiKey("562570cd-9220-4b25-bca2-be3259c844d5")
+        YMKMapKit.setApiKey("562570cd-9220-4b25-bca2-be3259c844d5")
     }
 
 }

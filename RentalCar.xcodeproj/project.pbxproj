@@ -506,6 +506,7 @@
 				2C1DDAB627A08574000B82C6 /* Frameworks */,
 				2C1DDAB727A08574000B82C6 /* Resources */,
 				007F94DD80944E72AECE432E /* [CP] Embed Pods Frameworks */,
+				012C0841E35A0BEC963E229B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -577,6 +578,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RentalCar/Pods-RentalCar-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		012C0841E35A0BEC963E229B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RentalCar/Pods-RentalCar-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RentalCar/Pods-RentalCar-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RentalCar/Pods-RentalCar-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		600D2A010C2673824BBCB721 /* [CP] Check Pods Manifest.lock */ = {
@@ -806,6 +824,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RentalCar/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Прокат авто";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Это нужно, чтобы сделать фото документов";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Это нужно, что отслеживать ваше местоположение";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Это нужно, чтобы выбрать фото документов из галерии";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
@@ -814,8 +835,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rentalCar.app;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rentalCar.rus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -835,6 +856,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RentalCar/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Прокат авто";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Это нужно, чтобы сделать фото документов";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Это нужно, что отслеживать ваше местоположение";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Это нужно, чтобы выбрать фото документов из галерии";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
@@ -843,8 +867,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rentalCar.app;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rentalCar.rus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

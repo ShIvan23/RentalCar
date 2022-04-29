@@ -5,7 +5,7 @@
 //  Created by Ivan on 11.03.2022.
 //
 
-//import YandexMapsMobile
+import YandexMapsMobile
 import SnapKit
 import UIKit
 
@@ -15,17 +15,17 @@ final class ContactsViewController: UIViewController, ToastViewShowable {
     
     private let scrollView = UIScrollView()
     private let contentView = UIView()
-//    private let mapView = YMKMapView()
+    private let mapView = YMKMapView()
     /// Для тестов на реальном устройстве
-    private let mapView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .red
-        return view
-    }()
+//    private let mapView: UIView = {
+//        let view = UIView()
+//        view.backgroundColor = .red
+//        return view
+//    }()
     
-//    private var mapObjects: YMKMapObjectCollection {
-//        return mapView.mapWindow.map.mapObjects
-//    }
+    private var mapObjects: YMKMapObjectCollection {
+        return mapView.mapWindow.map.mapObjects
+    }
     
     private let addressLabel: UILabel = {
         let label = UILabel()
@@ -177,10 +177,10 @@ final class ContactsViewController: UIViewController, ToastViewShowable {
     }
     
     private func setupMap() {
-//        let point = YMKPoint(latitude: 55.723828, longitude: 37.688591)
-//        mapView.mapWindow.map.move(with: YMKCameraPosition(target: point, zoom: 15.5, azimuth: 0, tilt: 0))
-//
-//        mapObjects.addPlacemark(with: point) //, image: <#T##UIImage#>)
+        let point = YMKPoint(latitude: 55.723828, longitude: 37.688591)
+        mapView.mapWindow.map.move(with: YMKCameraPosition(target: point, zoom: 15.5, azimuth: 0, tilt: 0))
+
+        mapObjects.addPlacemark(with: point) //, image: <#T##UIImage#>)
     }
     
     private func customizeView() {
