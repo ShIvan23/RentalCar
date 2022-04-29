@@ -82,7 +82,7 @@ final class ProfileViewController: UIViewController, ToastViewShowable {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        // TODO: - После логирования, нужно выходить на главный экран
+        // TODO: - После логирования, нужно выходить на главный экран 
         if isMovingToParent,
            AppState.shared.userWasLogin {
             navigationController?.popToRootViewController(animated: true)
