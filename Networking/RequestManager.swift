@@ -16,6 +16,7 @@ protocol RequestManager {
     func postAgainConfirmCode(body: AgainConfirmCode) -> URLRequest?
     func postLogin(body: Login) -> URLRequest?
     func postDocuments() -> String
+    func postLogout() -> URLRequest?
 }
 
 final class RequestManagerImp: RequestManager {
@@ -32,11 +33,17 @@ final class RequestManagerImp: RequestManager {
         static let againConfirmCode = "user/send-confirm-code"
         static let login = "user/login"
         static let uploadDocument = "user/upload-document"
+        static let logout = "user/logout"
     }
 
     private lazy var defaultHeader = [
         "Content-Type" : "application/json",
         "Accept" : "*/*"
+    ]
+    
+    private lazy var logoutHeader = [
+        "Accept" : "*/*",
+        "Authorization" : "Bearer \(AppState.shared.token)"
     ]
     
     func getAllAuto() -> URLRequest? {
@@ -111,5 +118,13 @@ final class RequestManagerImp: RequestManager {
     
     func postDocuments() -> String {
         return baseUrlString + UrlStrings.uploadDocument
+    }
+    
+    func postLogout() -> URLRequest? {
+        guard let url = URL(string: baseUrlString + UrlStrings.logout) else { return nil }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.allHTTPHeaderFields = logoutHeader
+        return request
     }
 }

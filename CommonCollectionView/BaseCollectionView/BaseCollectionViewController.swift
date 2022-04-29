@@ -132,6 +132,11 @@ final class BaseCollectionViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        checkIsLoginUser()
+    }
+    
     private func customizeView() {
         view.backgroundColor = .white
     }
@@ -212,6 +217,16 @@ final class BaseCollectionViewController: UIViewController {
         }
     }
     
+    private func checkIsLoginUser() {
+        if AppState.shared.userWasLogin {
+            let attributedText = NSAttributedString(string: "Профиль", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)])
+            loginButton.setAttributedTitle(attributedText, for: .normal)
+        } else {
+            let attributedText = NSAttributedString(string: "Войти", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)])
+            loginButton.setAttributedTitle(attributedText, for: .normal)
+        }
+    }
+    
     private func makeCarBrands() {
         guard let model = model as? [CarClass2] else { return }
         var setCars = Set<String>()
@@ -240,9 +255,13 @@ final class BaseCollectionViewController: UIViewController {
     }
     
     @objc private func loginButtonAction() {
-        let loginViewController = LoginViewController()
-        loginViewController.title = "Войти"
-        navigationController?.pushViewController(loginViewController, animated: true)
+        if AppState.shared.userWasLogin {
+            let profileViewController = ProfileViewController()
+            navigationController?.pushViewController(profileViewController, animated: true)
+        } else {
+            let loginViewController = LoginViewController()
+            navigationController?.pushViewController(loginViewController, animated: true)
+        }
     }
     
     @objc private func callUsButtonAction() {

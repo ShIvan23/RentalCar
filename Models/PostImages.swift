@@ -9,7 +9,7 @@ import Foundation
 
 struct PostImagesResult: Decodable {
     let success : Bool
-    let data: PostImagesResultData?
+//    let data: PostImagesResultData?
 }
 
 struct PostImagesResultData: Decodable {

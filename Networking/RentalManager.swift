@@ -17,6 +17,7 @@ protocol RentalManager {
     func postConfirmUser(user: UserConfirm, completion: @escaping (Result<UserConfirmResult, Error>) -> Void)
     func postAgainConfirmCode(user: AgainConfirmCode, completion: @escaping (Result<AgainConfirmCodeResult, Error>) -> Void)
     func login(user: Login, completion: @escaping (Result<LoginResult, Error>) -> Void)
+    func logout(completion: @escaping (Result<Logout, Error>) -> Void)
 }
 
 final class RentalManagerImp: RentalManager {
@@ -63,13 +64,15 @@ final class RentalManagerImp: RentalManager {
         let stringUrl = requestManager.postDocuments()
         let header: HTTPHeaders = [
             "Content-Type" : "multipart/form-data",
-            "Accept" : "*/*"
+            "Accept" : "*/*",
+            "Authorization" : "Bearer \(AppState.shared.token)"
         ]
         
         AF.upload(multipartFormData: { multipartFormData in
             images.forEach { image in
                 guard let imageData = image.jpegData(compressionQuality: 1.0) else { return }
-                multipartFormData.append(imageData, withName: "document", fileName: nil, mimeType: "image/jpeg")
+                multipartFormData.append(imageData, withName: "documents", fileName: "brbr.jpeg", mimeType: "image/jpeg")
+                
             }
         },
                   to: stringUrl,
@@ -80,5 +83,10 @@ final class RentalManagerImp: RentalManager {
             print("Upload progress = \(progress.fractionCompleted)")
         })
         .responseDecodable(completionHandler: completion)
+    }
+    
+    func logout(completion: @escaping (Result<Logout, Error>) -> Void) {
+        guard let request = requestManager.postLogout() else { return }
+        networkManager.fetch(request: request, completion: completion)
     }
 }

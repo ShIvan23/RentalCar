@@ -150,6 +150,7 @@ final class LoginViewController: UIViewController, ToastViewShowable {
             switch result {
             case.success(let model):
                 AppState.shared.saveTokens(model: model)
+                AppState.shared.saveToUserDefaults(key: AppStateKeys.userWasLogin, value: true)
                 DispatchQueue.main.async {
                     let profileVC = ProfileViewController()
                     self?.navigationController?.pushViewController(profileVC, animated: true)
@@ -223,6 +224,7 @@ final class LoginViewController: UIViewController, ToastViewShowable {
     }
     
     private func customize() {
+        title = "Войти"
         view.backgroundColor = .white
     }
     

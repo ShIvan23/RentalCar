@@ -52,6 +52,7 @@
 		2C9DF80427DB95C600C176AC /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9DF80327DB95C600C176AC /* RequestManager.swift */; };
 		2C9DF80627DB98B300C176AC /* RentalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9DF80527DB98B300C176AC /* RentalManager.swift */; };
 		2C9DF85227DCD5F000C176AC /* CallUsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9DF85127DCD5F000C176AC /* CallUsTableViewCell.swift */; };
+		2CB57CD0281C54F0001C0B87 /* Logout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB57CCF281C54F0001C0B87 /* Logout.swift */; };
 		2CC9AF8027C188D40082D81C /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC9AF7F27C188D40082D81C /* TextField.swift */; };
 		2CC9AF8427C2BE690082D81C /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC9AF8327C2BE690082D81C /* UIViewController+Extension.swift */; };
 		2CC9AF8927C2C9E20082D81C /* StockCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC9AF8827C2C9E20082D81C /* StockCollectionViewCell.swift */; };
@@ -112,6 +113,7 @@
 		2C9DF80327DB95C600C176AC /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		2C9DF80527DB98B300C176AC /* RentalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentalManager.swift; sourceTree = "<group>"; };
 		2C9DF85127DCD5F000C176AC /* CallUsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallUsTableViewCell.swift; sourceTree = "<group>"; };
+		2CB57CCF281C54F0001C0B87 /* Logout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logout.swift; sourceTree = "<group>"; };
 		2CC9AF7F27C188D40082D81C /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextField.swift; path = ../../../Documents/TextField.swift; sourceTree = "<group>"; };
 		2CC9AF8327C2BE690082D81C /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		2CC9AF8827C2C9E20082D81C /* StockCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 				2C5FBB48280AFFEB00F81155 /* AgainConfirmCode.swift */,
 				2C5FBB4A280C893C00F81155 /* Login.swift */,
 				2C549BD728187161008C8712 /* PostImages.swift */,
+				2CB57CCF281C54F0001C0B87 /* Logout.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -644,6 +647,7 @@
 				2C9DF85227DCD5F000C176AC /* CallUsTableViewCell.swift in Sources */,
 				2C6E4DCD27B91F1E00FBE7E8 /* PopoverTableViewController.swift in Sources */,
 				2C8C980D27FA2A83003D9D68 /* OrderModel.swift in Sources */,
+				2CB57CD0281C54F0001C0B87 /* Logout.swift in Sources */,
 				2C5FBB47280AFE4B00F81155 /* UserConfirm.swift in Sources */,
 				2C6295C127A49C54003521D9 /* UICollectionViewCell+Extension.swift in Sources */,
 				2C60AD052801F71000C5A1A0 /* String+Extension.swift in Sources */,

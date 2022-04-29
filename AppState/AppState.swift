@@ -10,16 +10,22 @@ import Foundation
 protocol AppStateProtocol {
     var wasSentRegisterCode: Bool { get }
     var wasFinishedRegistration: Bool { get }
+    var userWasLogin: Bool { get }
+    
     var userEmail: String { get set }
+    
     var token: String { get }
     var refreshToken: String { get }
+    
     func saveToUserDefaults(key: AppStateKeys, value: Bool)
     func saveTokens(model: LoginResult)
+    func removeTokens()
 }
 
 enum AppStateKeys: String {
     case wasSentRegisterCodeKey
     case wasFinishedRegistration
+    case userWasLogin
 }
 
 enum TokenKeys: String {
@@ -39,6 +45,7 @@ final class AppState: AppStateProtocol {
     /// States
     var wasSentRegisterCode: Bool = false
     var wasFinishedRegistration: Bool = false
+    var userWasLogin: Bool = false
     
     /// User email
     var userEmail: String = ""
@@ -53,6 +60,15 @@ final class AppState: AppStateProtocol {
         saveTokens()
     }
     
+    func removeTokens() {
+        let userDefaults = UserDefaults.standard
+        
+        token = ""
+        refreshToken = ""
+        userDefaults.removeObject(forKey: TokenKeys.token.rawValue)
+        userDefaults.removeObject(forKey: TokenKeys.refreshToken.rawValue)
+    }
+    
     func saveToUserDefaults(key: AppStateKeys, value: Bool) {
         let userDefaults = UserDefaults.standard
         
@@ -64,6 +80,10 @@ final class AppState: AppStateProtocol {
         case .wasFinishedRegistration:
             wasFinishedRegistration = value
             userDefaults.set(value, forKey: AppStateKeys.wasFinishedRegistration.rawValue)
+            
+        case .userWasLogin:
+            userWasLogin = value
+            userDefaults.set(value, forKey: AppStateKeys.userWasLogin.rawValue)
         }
     }
     
@@ -79,6 +99,7 @@ final class AppState: AppStateProtocol {
         
         wasSentRegisterCode = userDefaults.bool(forKey: AppStateKeys.wasSentRegisterCodeKey.rawValue)
         wasFinishedRegistration = userDefaults.bool(forKey: AppStateKeys.wasFinishedRegistration.rawValue)
+        userWasLogin = userDefaults.bool(forKey: AppStateKeys.userWasLogin.rawValue)
         
         token = userDefaults.string(forKey: TokenKeys.token.rawValue) ?? ""
         refreshToken = userDefaults.string(forKey: TokenKeys.refreshToken.rawValue) ?? ""

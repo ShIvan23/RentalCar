@@ -40,6 +40,14 @@ final class FullImageViewController: UIViewController {
         setImage(name: image)
     }
     
+    init(image: UIImage) {
+        super.init(nibName: nil, bundle: nil)
+//        currentImage = image
+        layout()
+        setupView()
+        scrollView.set(image: image)
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

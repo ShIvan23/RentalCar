@@ -13,6 +13,8 @@ protocol RegisterDelegate: AnyObject {
 
 final class RegisterViewController: UIViewController, ToastViewShowable {
     
+    // TODO: - Здесь кнопка забыли пароль? И сброс пароля на почту
+    
     private enum AlertEvent {
         case validateName
         case validateNumber
