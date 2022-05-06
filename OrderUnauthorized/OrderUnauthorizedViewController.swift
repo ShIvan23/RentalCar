@@ -123,7 +123,6 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
     
     private lazy var orderButton: UIButton = {
         let button = UIButton(type: .system)
-        button.translatesAutoresizingMaskIntoConstraints = false
         let attributedText = NSAttributedString(string: "Отправить заказ", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)])
         button.setAttributedTitle(attributedText, for: .normal)
         button.tintColor = .white
@@ -131,9 +130,16 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
         return button
     }()
     
+    private let registerLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.text = "Чтобы оплатить машину из приложения, войдите в Ваш профиль"
+        return label
+    }()
+    
     private lazy var registerButton: UIButton = {
         let button = UIButton(type: .system)
-        let attributedText = NSAttributedString(string: "Зарегистрироваться и оплатить", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)])
+        let attributedText = NSAttributedString(string: "Войти в профиль", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)])
         button.setAttributedTitle(attributedText, for: .normal)
         button.tintColor = .white
         button.addTarget(self, action: #selector(registerButtonAction), for: .touchUpInside)
@@ -216,7 +222,8 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
     }
     
     @objc private func registerButtonAction() {
-        print("register")
+        let loginViewController = LoginViewController()
+        navigationController?.pushViewController(loginViewController, animated: true)
     }
     
     private func addTextFieldsDelegate() {
@@ -341,6 +348,7 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
         /// Order button
          orderButton,
         /// Register button
+         registerLabel,
          registerButton
          ]
             .forEach { contentView.addSubview($0) }
@@ -434,8 +442,13 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
         }
         
         /// Register button
+        registerLabel.snp.makeConstraints { make in
+            make.top.equalTo(orderButton.snp.bottom).offset(30)
+            make.left.right.equalTo(contentView).inset(16)
+        }
+        
         registerButton.snp.makeConstraints { make in
-            make.top.equalTo(orderButton.snp.bottom).offset(20)
+            make.top.equalTo(registerLabel.snp.bottom).offset(8)
             make.left.right.equalTo(contentView).inset(16)
             make.height.equalTo(40)
             make.bottom.equalTo(contentView.snp.bottom).inset(20)
