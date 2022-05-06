@@ -21,9 +21,7 @@ extension UIViewController {
     }
     
     func call() {
-        /// Телефон Реймера
-        // TODO: - Поменять телефон
-        let number = "+79265587363"
+        let number = "+74954311111"
         guard let url = URL(string: "tel://\(number)") else { return }
         if UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)

@@ -134,7 +134,7 @@ final class ContactsViewController: UIViewController, ToastViewShowable {
     }
     
     @objc private func openMessenger(button: UIButton) {
-        let number = "+79035116111"
+        let number = "+79163864866"
         switch button {
         case writeWhatsAppButton:
             guard let url = URL(string: "https://api.whatsapp.com/send?phone=\(number)") else { return }
