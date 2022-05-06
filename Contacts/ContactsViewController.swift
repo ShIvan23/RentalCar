@@ -180,7 +180,7 @@ final class ContactsViewController: UIViewController, ToastViewShowable {
         let point = YMKPoint(latitude: 55.723828, longitude: 37.688591)
         mapView.mapWindow.map.move(with: YMKCameraPosition(target: point, zoom: 15.5, azimuth: 0, tilt: 0))
 
-        mapObjects.addPlacemark(with: point) //, image: <#T##UIImage#>)
+        mapObjects.addPlacemark(with: point, image: UIImage(named: "120")!)
     }
     
     private func customizeView() {

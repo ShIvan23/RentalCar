@@ -6,6 +6,7 @@
 //
 
 import Kingfisher
+import SnapKit
 import UIKit
 
 /// Ячейка для отображения всех машин
@@ -13,15 +14,14 @@ final class BaseCollectionViewCell: UICollectionViewCell {
     
     private let nameCarLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .boldSystemFont(ofSize: 18)
         label.textAlignment = .center
+        label.numberOfLines = 0
         return label
     }()
     
     private let carImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.roundCornersWithRadius(20)
         imageView.contentMode = .scaleAspectFit
         return imageView
@@ -29,7 +29,6 @@ final class BaseCollectionViewCell: UICollectionViewCell {
     
     private let priceLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .boldSystemFont(ofSize: 18)
         label.textAlignment = .center
         return label
@@ -37,13 +36,11 @@ final class BaseCollectionViewCell: UICollectionViewCell {
     
     private let gradientView: UIView = {
         let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     private let orderLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Выбрать"
         label.textAlignment = .center
         label.font = .boldSystemFont(ofSize: 18)
@@ -88,37 +85,33 @@ final class BaseCollectionViewCell: UICollectionViewCell {
     private func setLayout() {
         [nameCarLabel, carImage, priceLabel, gradientView, orderLabel].forEach { contentView.addSubview($0) }
         
-        NSLayoutConstraint.activate([
-            nameCarLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            nameCarLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            nameCarLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
-        ])
+        gradientView.snp.makeConstraints { make in
+            make.bottom.equalTo(contentView.snp.bottom).inset(16)
+            make.left.right.equalToSuperview().inset(16)
+            make.height.equalTo(40)
+        }
         
-        NSLayoutConstraint.activate([
-            carImage.topAnchor.constraint(equalTo: nameCarLabel.bottomAnchor, constant: 8),
-            carImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            carImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            carImage.heightAnchor.constraint(equalToConstant: 120)
-        ])
+        orderLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(gradientView.snp.bottom)
+            make.left.equalTo(gradientView.snp.left)
+            make.right.equalTo(gradientView.snp.right)
+            make.height.equalTo(gradientView.snp.height)
+        }
         
-        NSLayoutConstraint.activate([
-            priceLabel.topAnchor.constraint(equalTo: carImage.bottomAnchor, constant: 8),
-            priceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            priceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
-        ])
+        priceLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(gradientView.snp.top).inset(-8)
+            make.left.right.equalToSuperview().inset(16)
+        }
         
-        NSLayoutConstraint.activate([
-            gradientView.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 16),
-            gradientView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            gradientView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            gradientView.heightAnchor.constraint(equalToConstant: 40)
-        ])
+        carImage.snp.makeConstraints { make in
+            make.left.right.equalToSuperview().inset(8)
+            make.height.equalTo(120)
+            make.bottom.equalTo(priceLabel.snp.top)
+        }
         
-        NSLayoutConstraint.activate([
-            orderLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 16),
-            orderLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            orderLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            orderLabel.heightAnchor.constraint(equalToConstant: 40)
-        ])
+        nameCarLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(8)
+            make.left.right.equalToSuperview().inset(8)
+        }
     }
 }
