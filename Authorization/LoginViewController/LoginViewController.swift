@@ -143,6 +143,7 @@ final class LoginViewController: UIViewController, ToastViewShowable {
     
     @objc private func loginButtonAction() {
         guard allLoginValidates() else { return }
+        lockView()
         let user = Login(email: loginTextField.text!,
                          password: passwordTextField.text!)
         
@@ -152,11 +153,13 @@ final class LoginViewController: UIViewController, ToastViewShowable {
                 AppState.shared.saveTokens(model: model)
                 AppState.shared.saveToUserDefaults(key: AppStateKeys.userWasLogin, value: true)
                 DispatchQueue.main.async {
+                    self?.unlock()
                     let profileVC = ProfileViewController()
                     self?.navigationController?.pushViewController(profileVC, animated: true)
                 }
             case .failure(_):
                 DispatchQueue.main.async {
+                    self?.unlock()
                     self?.showAlert(event: .failureLogin)
                 }
             }

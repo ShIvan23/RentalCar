@@ -266,14 +266,17 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
     
     private func sendOrder(_ order: Order) {
         // TODO: - Добавить валидацию отправки
+        lockView()
         rentalManager.postOrder(order: order) { [weak self] result in
             switch result {
             case .success(_):
                 DispatchQueue.main.async {
+                    self?.unlock()
                     self?.showSuccessToast(with: "Ваш заказ отправлен.\nМенеджер Вам перезвонит.")
                 }
             case .failure(_):
                 DispatchQueue.main.async {
+                    self?.unlock()
                     self?.showFailureToast(with: "Произошла ошибка.\nПопробуйте отправить еще раз!")
                 }
             }

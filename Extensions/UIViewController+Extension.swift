@@ -28,3 +28,31 @@ extension UIViewController {
         }
     }
 }
+
+let blackView = UIView(frame: CGRect(x: 0, y: 0, width: ScreenSize.width, height: ScreenSize.height))
+let activityIndicator = UIActivityIndicatorView(style: .medium)
+
+extension UIViewController {
+    func lockView() {
+        view.addSubview(blackView)
+        view.addSubview(activityIndicator)
+        blackView.backgroundColor = .black
+        blackView.alpha = 0.0
+        activityIndicator.center = view.center
+        activityIndicator.color = .white
+        UIView.animate(withDuration: 0.25) {
+            blackView.alpha = 0.75
+            activityIndicator.startAnimating()
+        }
+    }
+    
+    func unlock() {
+        UIView.animate(withDuration: 0.25) {
+            blackView.alpha = 0.0
+            activityIndicator.stopAnimating()
+        } completion: { _ in
+            blackView.removeFromSuperview()
+            activityIndicator.removeFromSuperview()
+        }
+    }
+}

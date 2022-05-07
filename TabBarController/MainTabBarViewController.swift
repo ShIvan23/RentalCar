@@ -66,7 +66,11 @@ final class MainTabBarViewController: UITabBarController {
     }
     
     private func fetchCars() {
+        allCars.lockView()
         rentalManager.fetchCars { [weak self] result in
+            DispatchQueue.main.async {
+                self?.allCars.unlock()
+            }
             switch result {
             case .success(let model):
                 self?.model = model

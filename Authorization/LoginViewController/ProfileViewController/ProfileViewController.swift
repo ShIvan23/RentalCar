@@ -33,7 +33,7 @@ final class ProfileViewController: UIViewController, ToastViewShowable {
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 18)
-        label.text = "Чтобы оплатить машину из приложения, необходимо прикрепить фото паспорта (2-ая и 3-ая страницы) и водительского удостоверения с двух сторон"
+        label.text = "Чтобы оплатить машину из приложения, необходимо прикрепить фото паспорта (2-ая и 3-ая страницы) и фото водительского удостоверения с двух сторон"
         label.numberOfLines = 0
         label.textAlignment = .center
         return label
@@ -188,18 +188,33 @@ final class ProfileViewController: UIViewController, ToastViewShowable {
 
 extension ProfileViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return selectedAssets.count + 1
+        if selectedPhotos.isEmpty {
+            return 4
+        } else {
+            return selectedAssets.count + 1
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: ImageCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-        switch indexPath.item {
-        case 0:
-            cell.setupCellWith(image: UIImage(named: "plus")!)
-            return cell
-        default :
-            cell.setupCellWith(asset: selectedAssets[indexPath.item - 1])
-            return cell
+        if selectedPhotos.isEmpty {
+            switch indexPath.item {
+            case 0:
+                cell.setupCellWith(image: UIImage(named: "plus")!)
+                return cell
+            default :
+                cell.setupCellWith(image: UIImage(named: "emptyPhoto")!)
+                return cell
+            }
+        } else {
+            switch indexPath.item {
+            case 0:
+                cell.setupCellWith(image: UIImage(named: "plus")!)
+                return cell
+            default :
+                cell.setupCellWith(asset: selectedAssets[indexPath.item - 1])
+                return cell
+            }
         }
     }
 }
