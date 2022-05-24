@@ -114,6 +114,17 @@ final class ContactsViewController: UIViewController, ToastViewShowable {
         button.tintColor = .systemGray2
         return button
     }()
+    
+    private let mapImageView: UIImageView = {
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        imageView.image = UIImage(named: "forMapsIcon")
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFit
+        imageView.layer.cornerRadius = 10
+        imageView.layer.borderColor = UIColor(hexString: "#4ec378").cgColor
+        imageView.layer.borderWidth = 1.5
+        return imageView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -180,7 +191,7 @@ final class ContactsViewController: UIViewController, ToastViewShowable {
         let point = YMKPoint(latitude: 55.723828, longitude: 37.688591)
         mapView.mapWindow.map.move(with: YMKCameraPosition(target: point, zoom: 15.5, azimuth: 0, tilt: 0))
 
-        mapObjects.addPlacemark(with: point, image: UIImage(named: "120")!)
+        mapObjects.addPlacemark(with: point, view: YRTViewProvider(uiView: mapImageView))
     }
     
     private func customizeView() {
