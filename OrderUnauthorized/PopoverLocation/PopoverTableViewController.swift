@@ -7,13 +7,20 @@
 
 import UIKit
 
+enum PopoverType {
+    case office
+    case location
+    case searchCar
+}
+
 protocol PopoverTableViewControllerDelegate: AnyObject {
-    func selectedValue(text: String)
+    func selectedValue(type: PopoverType, text: String)
 }
 
 final class PopoverTableViewController: UIViewController {
     
     private let model: [String]
+    private let popoverType: PopoverType
     weak var delegate: PopoverTableViewControllerDelegate?
     
     private lazy var popoverLocationTableView: UITableView = {
@@ -27,8 +34,12 @@ final class PopoverTableViewController: UIViewController {
         return tableView
     }()
     
-    init(model: [String]) {
+    init(
+        model: [String],
+        popoverType: PopoverType
+    ) {
         self.model = model
+        self.popoverType = popoverType
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -78,7 +89,7 @@ extension PopoverTableViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        delegate?.selectedValue(text: model[indexPath.row])
+        delegate?.selectedValue(type: popoverType, text: model[indexPath.row])
         dismiss(animated: true, completion: nil)
     }
 }

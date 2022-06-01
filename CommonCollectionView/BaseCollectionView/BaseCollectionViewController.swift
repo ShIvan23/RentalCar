@@ -244,7 +244,7 @@ final class BaseCollectionViewController: UIViewController {
     }
     
     @objc private func searchTapGesture() {
-        let popoverTableView = PopoverTableViewController(model: carBrands)
+        let popoverTableView = PopoverTableViewController(model: carBrands, popoverType: .searchCar)
         popoverTableView.modalPresentationStyle = .popover
         popoverTableView.popoverPresentationController?.delegate = self
         popoverTableView.popoverPresentationController?.sourceView = searchView
@@ -256,16 +256,21 @@ final class BaseCollectionViewController: UIViewController {
     
     @objc private func loginButtonAction() {
         if AppState.shared.userWasLogin {
-            let profileViewController = ProfileViewController()
-            navigationController?.pushViewController(profileViewController, animated: true)
+            showProfileViewController()
         } else {
             let loginViewController = LoginViewController()
+            loginViewController.delegate = self
             navigationController?.pushViewController(loginViewController, animated: true)
         }
     }
     
     @objc private func callUsButtonAction() {
         call()
+    }
+    
+    private func showProfileViewController() {
+        let profileViewController = ProfileViewController()
+        navigationController?.pushViewController(profileViewController, animated: true)
     }
 }
 
@@ -457,7 +462,7 @@ extension BaseCollectionViewController: UIPopoverPresentationControllerDelegate 
 // MARK: - PopoverTableViewControllerDelegate
 
 extension BaseCollectionViewController: PopoverTableViewControllerDelegate {
-    func selectedValue(text: String) {
+    func selectedValue(type: PopoverType, text: String) {
         guard let model = model as? [CarClass2] else { fatalError() }
 
         var filteredCars = [CarModel2]()
@@ -476,5 +481,13 @@ extension BaseCollectionViewController: PopoverTableViewControllerDelegate {
         brandCollectionView.model = filteredCars
         brandCollectionView.title = text
         navigationController?.pushViewController(brandCollectionView, animated: true)
+    }
+}
+
+// MARK: - LoginViewControllerDelegate
+
+extension BaseCollectionViewController: LoginViewControllerDelegate {
+    func userDidLogin() {
+        showProfileViewController()
     }
 }

@@ -10,6 +10,10 @@
 		2C1DDABD27A08574000B82C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1DDABC27A08574000B82C6 /* AppDelegate.swift */; };
 		2C1DDAC627A08579000B82C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C1DDAC527A08579000B82C6 /* Assets.xcassets */; };
 		2C1DDAC927A08579000B82C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C1DDAC727A08579000B82C6 /* LaunchScreen.storyboard */; };
+		2C4AF0E928466D1D00AA5100 /* SendDocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4AF0E828466D1D00AA5100 /* SendDocumentsViewController.swift */; };
+		2C4AF0EC284670AE00AA5100 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4AF0EB284670AE00AA5100 /* ChangePasswordViewController.swift */; };
+		2C4AF0EF2846755800AA5100 /* DropPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4AF0EE2846755800AA5100 /* DropPasswordViewController.swift */; };
+		2C4AF0F22846788A00AA5100 /* DeleteAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4AF0F12846788A00AA5100 /* DeleteAccountViewController.swift */; };
 		2C549BD428174225008C8712 /* PermissionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C549BD328174225008C8712 /* PermissionStatus.swift */; };
 		2C549BD6281743E0008C8712 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C549BD5281743E0008C8712 /* PermissionManager.swift */; };
 		2C549BD828187161008C8712 /* PostImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C549BD728187161008C8712 /* PostImages.swift */; };
@@ -52,10 +56,13 @@
 		2C9DF80427DB95C600C176AC /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9DF80327DB95C600C176AC /* RequestManager.swift */; };
 		2C9DF80627DB98B300C176AC /* RentalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9DF80527DB98B300C176AC /* RentalManager.swift */; };
 		2C9DF85227DCD5F000C176AC /* CallUsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9DF85127DCD5F000C176AC /* CallUsTableViewCell.swift */; };
+		2CA351192847C37F003F2012 /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA351182847C37F003F2012 /* PayViewController.swift */; };
 		2CB57CD0281C54F0001C0B87 /* Logout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB57CCF281C54F0001C0B87 /* Logout.swift */; };
 		2CC9AF8027C188D40082D81C /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC9AF7F27C188D40082D81C /* TextField.swift */; };
 		2CC9AF8427C2BE690082D81C /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC9AF8327C2BE690082D81C /* UIViewController+Extension.swift */; };
 		2CC9AF8927C2C9E20082D81C /* StockCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC9AF8827C2C9E20082D81C /* StockCollectionViewCell.swift */; };
+		2CCCA7E7283D66B60084055A /* ProfileSelectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCCA7E6283D66B60084055A /* ProfileSelectTableViewCell.swift */; };
+		2CCCA7E9283D68970084055A /* ProfileLogoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCCA7E8283D68970084055A /* ProfileLogoutTableViewCell.swift */; };
 		2CF197E427AE768800E82C6C /* DetailCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF197E327AE768800E82C6C /* DetailCarViewController.swift */; };
 		2CF197E927AE88E800E82C6C /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF197E827AE88E800E82C6C /* ImageCollectionViewCell.swift */; };
 		2CF197EC27B4180800E82C6C /* ImageAndButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF197EB27B4180800E82C6C /* ImageAndButtonTableViewCell.swift */; };
@@ -71,6 +78,10 @@
 		2C1DDAC527A08579000B82C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C1DDAC827A08579000B82C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C1DDACA27A08579000B82C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C4AF0E828466D1D00AA5100 /* SendDocumentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDocumentsViewController.swift; sourceTree = "<group>"; };
+		2C4AF0EB284670AE00AA5100 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		2C4AF0EE2846755800AA5100 /* DropPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropPasswordViewController.swift; sourceTree = "<group>"; };
+		2C4AF0F12846788A00AA5100 /* DeleteAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountViewController.swift; sourceTree = "<group>"; };
 		2C549BD328174225008C8712 /* PermissionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionStatus.swift; sourceTree = "<group>"; };
 		2C549BD5281743E0008C8712 /* PermissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
 		2C549BD728187161008C8712 /* PostImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImages.swift; sourceTree = "<group>"; };
@@ -113,10 +124,13 @@
 		2C9DF80327DB95C600C176AC /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		2C9DF80527DB98B300C176AC /* RentalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentalManager.swift; sourceTree = "<group>"; };
 		2C9DF85127DCD5F000C176AC /* CallUsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallUsTableViewCell.swift; sourceTree = "<group>"; };
+		2CA351182847C37F003F2012 /* PayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
 		2CB57CCF281C54F0001C0B87 /* Logout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logout.swift; sourceTree = "<group>"; };
 		2CC9AF7F27C188D40082D81C /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextField.swift; path = ../../../Documents/TextField.swift; sourceTree = "<group>"; };
 		2CC9AF8327C2BE690082D81C /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		2CC9AF8827C2C9E20082D81C /* StockCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockCollectionViewCell.swift; sourceTree = "<group>"; };
+		2CCCA7E6283D66B60084055A /* ProfileSelectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSelectTableViewCell.swift; sourceTree = "<group>"; };
+		2CCCA7E8283D68970084055A /* ProfileLogoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLogoutTableViewCell.swift; sourceTree = "<group>"; };
 		2CF197E327AE768800E82C6C /* DetailCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCarViewController.swift; sourceTree = "<group>"; };
 		2CF197E827AE88E800E82C6C /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		2CF197EB27B4180800E82C6C /* ImageAndButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAndButtonTableViewCell.swift; sourceTree = "<group>"; };
@@ -199,6 +213,38 @@
 				2CF197EE27B41A4800E82C6C /* DescriptionTableViewCell.swift */,
 			);
 			path = DescriptionCell;
+			sourceTree = "<group>";
+		};
+		2C4AF0E728466CF600AA5100 /* SendDocumentsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2C4AF0E828466D1D00AA5100 /* SendDocumentsViewController.swift */,
+			);
+			path = SendDocumentsViewController;
+			sourceTree = "<group>";
+		};
+		2C4AF0EA2846708B00AA5100 /* ChangePasswordViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2C4AF0EB284670AE00AA5100 /* ChangePasswordViewController.swift */,
+			);
+			path = ChangePasswordViewController;
+			sourceTree = "<group>";
+		};
+		2C4AF0ED2846753200AA5100 /* DrowPasswordViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2C4AF0EE2846755800AA5100 /* DropPasswordViewController.swift */,
+			);
+			path = DrowPasswordViewController;
+			sourceTree = "<group>";
+		};
+		2C4AF0F02846784C00AA5100 /* DeleteAccountViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2C4AF0F12846788A00AA5100 /* DeleteAccountViewController.swift */,
+			);
+			path = DeleteAccountViewController;
 			sourceTree = "<group>";
 		};
 		2C549BD228174205008C8712 /* Permissions */ = {
@@ -372,6 +418,7 @@
 			isa = PBXGroup;
 			children = (
 				2C7B4D2B28032ED9000EE39D /* ProfileViewController.swift */,
+				2CCCA7E5283D63220084055A /* Cells */,
 			);
 			path = ProfileViewController;
 			sourceTree = "<group>";
@@ -398,8 +445,12 @@
 			children = (
 				2C925C792802F1630060C810 /* LoginViewController.swift */,
 				2C7B4D2A28032EBB000EE39D /* ProfileViewController */,
+				2C4AF0E728466CF600AA5100 /* SendDocumentsViewController */,
 				2C7B4D27280318E8000EE39D /* RegisterViewController */,
 				2C5FBB43280AF7E000F81155 /* EnterCodeViewController */,
+				2C4AF0EA2846708B00AA5100 /* ChangePasswordViewController */,
+				2C4AF0ED2846753200AA5100 /* DrowPasswordViewController */,
+				2C4AF0F02846784C00AA5100 /* DeleteAccountViewController */,
 			);
 			path = LoginViewController;
 			sourceTree = "<group>";
@@ -430,6 +481,14 @@
 			path = CallUsCell;
 			sourceTree = "<group>";
 		};
+		2CA351172847C352003F2012 /* PayViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2CA351182847C37F003F2012 /* PayViewController.swift */,
+			);
+			path = PayViewController;
+			sourceTree = "<group>";
+		};
 		2CC9AF7E27C1889C0082D81C /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -444,6 +503,15 @@
 				2CC9AF8827C2C9E20082D81C /* StockCollectionViewCell.swift */,
 			);
 			path = StockCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		2CCCA7E5283D63220084055A /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				2CCCA7E6283D66B60084055A /* ProfileSelectTableViewCell.swift */,
+				2CCCA7E8283D68970084055A /* ProfileLogoutTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		2CF197E227AE766D00E82C6C /* DetailCar */ = {
@@ -481,6 +549,7 @@
 				2CF197F327B5190100E82C6C /* OrderUnauthorizedViewController.swift */,
 				2C6E4DCB27B91EE700FBE7E8 /* PopoverLocation */,
 				2C6E4DD127B9375400FBE7E8 /* Calendar */,
+				2CA351172847C352003F2012 /* PayViewController */,
 			);
 			path = OrderUnauthorized;
 			sourceTree = "<group>";
@@ -634,6 +703,7 @@
 				2C8C981427FB695F003D9D68 /* ToastView.swift in Sources */,
 				2C5FBB3F280AD37900F81155 /* UserRegister.swift in Sources */,
 				2CC9AF8027C188D40082D81C /* TextField.swift in Sources */,
+				2C4AF0EF2846755800AA5100 /* DropPasswordViewController.swift in Sources */,
 				2C631E5727A33990003753E1 /* CarModel.swift in Sources */,
 				2CC9AF8927C2C9E20082D81C /* StockCollectionViewCell.swift in Sources */,
 				2CF197EF27B41A4800E82C6C /* DescriptionTableViewCell.swift in Sources */,
@@ -650,16 +720,20 @@
 				2C549BD428174225008C8712 /* PermissionStatus.swift in Sources */,
 				2C8C981627FB6DCE003D9D68 /* ToastViewShowable.swift in Sources */,
 				2CF197E927AE88E800E82C6C /* ImageCollectionViewCell.swift in Sources */,
+				2C4AF0EC284670AE00AA5100 /* ChangePasswordViewController.swift in Sources */,
 				2C5FBB42280ADEAA00F81155 /* AppState.swift in Sources */,
 				2C60AD012801A28700C5A1A0 /* ImageTransition.swift in Sources */,
 				2C6E4DD027B9349500FBE7E8 /* ScreenSize.swift in Sources */,
 				2C549BD828187161008C8712 /* PostImages.swift in Sources */,
 				2C60AD072802093B00C5A1A0 /* ConditionModel.swift in Sources */,
+				2CA351192847C37F003F2012 /* PayViewController.swift in Sources */,
 				2C631E4F27A333C3003753E1 /* BaseCollectionViewCell.swift in Sources */,
 				2C5FBB49280AFFEB00F81155 /* AgainConfirmCode.swift in Sources */,
 				2CC9AF8427C2BE690082D81C /* UIViewController+Extension.swift in Sources */,
+				2CCCA7E7283D66B60084055A /* ProfileSelectTableViewCell.swift in Sources */,
 				2C6E4DD327B9377E00FBE7E8 /* CalendarViewController.swift in Sources */,
 				2C6295BF27A499B8003521D9 /* LegalCollectionViewCell.swift in Sources */,
+				2C4AF0F22846788A00AA5100 /* DeleteAccountViewController.swift in Sources */,
 				2C60AD032801CCFD00C5A1A0 /* ImageScrollView.swift in Sources */,
 				2C9DF80627DB98B300C176AC /* RentalManager.swift in Sources */,
 				2C9DF85227DCD5F000C176AC /* CallUsTableViewCell.swift in Sources */,
@@ -670,6 +744,7 @@
 				2C6295C127A49C54003521D9 /* UICollectionViewCell+Extension.swift in Sources */,
 				2C60AD052801F71000C5A1A0 /* String+Extension.swift in Sources */,
 				2CF197F427B5190100E82C6C /* OrderUnauthorizedViewController.swift in Sources */,
+				2C4AF0E928466D1D00AA5100 /* SendDocumentsViewController.swift in Sources */,
 				2C1DDABD27A08574000B82C6 /* AppDelegate.swift in Sources */,
 				2C5FBB45280AF81000F81155 /* EnterCodeViewController.swift in Sources */,
 				2C6295B727A465E3003521D9 /* UIColor+Extension.swift in Sources */,
@@ -678,6 +753,7 @@
 				2C9DF7DF27D9F45A00C176AC /* NetworkManager.swift in Sources */,
 				2C7B4D2C28032ED9000EE39D /* ProfileViewController.swift in Sources */,
 				2CF197E427AE768800E82C6C /* DetailCarViewController.swift in Sources */,
+				2CCCA7E9283D68970084055A /* ProfileLogoutTableViewCell.swift in Sources */,
 				2C6295C327ABBADC003521D9 /* CategoryPrice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

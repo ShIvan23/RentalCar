@@ -16,6 +16,9 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
     private var carModel: CarModel2
     private var categoryPrice: CategoryPrice 
     private let locationModel = ["Офис", "Аэропорт/Вокзал", "Другое место"]
+    private let officeModel = ["Москва", "Казань"]
+    
+    private var selectedOffice = ""
     private var selectedLocation = ""
     private var selectedDate = ""
     private var selectedDaysCount = 1
@@ -29,6 +32,31 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
     }()
     
     private let contentView = UIView()
+    
+    private let officeLabel: UILabel = {
+        let label = UILabel()
+        label.font = .boldSystemFont(ofSize: 18)
+        label.text = "Выберите город, в котором хотите взять машину"
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private let officeView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 10
+        view.backgroundColor = .systemGray6
+        view.layer.borderColor = UIColor.black.cgColor
+        view.layer.borderWidth = 1
+        return view
+    }()
+    
+    private let placeholderOfficeLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 16)
+        label.text = "Выберите офис"
+        label.textColor = UIColor(hexString: "#C7C7CD")
+        return label
+    }()
     
     private let locationLabel: UILabel = {
         let label = UILabel()
@@ -121,6 +149,15 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
         return label
     }()
     
+    private let commentLabel: UILabel = {
+        let label = UILabel()
+        label.font = .boldSystemFont(ofSize: 18)
+        label.text = "Оставьте комментарий, если хотите"
+        return label
+    }()
+    
+    private lazy var commentTextField = TextField(placeholder: "Ваш комментарий")
+    
     private lazy var orderButton: UIButton = {
         let button = UIButton(type: .system)
         let attributedText = NSAttributedString(string: "Отправить заказ", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)])
@@ -146,6 +183,22 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
         return button
     }()
     
+    private lazy var payLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.text = "Оплатить через Сбер Pay"
+        return label
+    }()
+    
+    private lazy var payButton: UIButton = {
+        let button = UIButton(type: .system)
+        let attributedText = NSAttributedString(string: "Оплатить", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)])
+        button.setAttributedTitle(attributedText, for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(payButtonAction), for: .touchUpInside)
+        return button
+    }()
+    
     init(
         carModel: CarModel2,
         categoryPrice: CategoryPrice,
@@ -166,7 +219,7 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
         super.viewDidLoad()
         customizeView()
         layout()
-        addLocationGesture()
+        addGestures()
         addTextFieldsDelegate()
         addGestureToHideKeyboard()
     }
@@ -175,6 +228,9 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
         super.viewDidLayoutSubviews()
         orderButton.setCustomGradient()
         registerButton.setCustomGradient()
+        if AppState.shared.userWasLogin {
+            payButton.setCustomGradient()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -203,14 +259,7 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
     }
     
     @objc private func orderButtonAction() {
-//        print("Отправить письмо на бэк")
-//        print("car = \(carModel.name)")
-//        print("selectedLocation = \(selectedLocation)")
-//        print("selectedDate = \(selectedDate)")
-//        print("Name = \(nameTextField.text!)")
-//        print("priceDay = \(priceOneDay.text!)")
-//        print("pricePeriod = \(pricePeriodLabel.text!)")
-//        print("needDriver = \(isNeedDriver ? "Да" : "Нет")")
+        // TODO: - Добавить офис и комментарий в модель
         let order = Order(autoId: carModel.id ?? 0,
                           name: nameTextField.text ?? "",
                           location: selectedLocation,
@@ -224,6 +273,11 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
     @objc private func registerButtonAction() {
         let loginViewController = LoginViewController()
         navigationController?.pushViewController(loginViewController, animated: true)
+    }
+    
+    @objc private func payButtonAction() {
+        let payVC = PayViewController()
+        navigationController?.pushViewController(payVC, animated: true)
     }
     
     private func addTextFieldsDelegate() {
@@ -302,12 +356,16 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
         navigationItem.title = "Заказ " + (carModel.name ?? "")
     }
     
-    private func addLocationGesture() {
+    private func addGestures() {
+        let tapOfficeGesture = UITapGestureRecognizer(target: self, action: #selector(tapOfficeGestureAction))
+        officeView.addGestureRecognizer(tapOfficeGesture)
+        
         let tapLocationGesture = UITapGestureRecognizer(target: self, action: #selector(tapLocationGestureAction))
         locationView.addGestureRecognizer(tapLocationGesture)
         
         let tapDateGesture = UITapGestureRecognizer(target: self, action: #selector(tapDateGestureAction))
         dateView.addGestureRecognizer(tapDateGesture)
+        
     }
     
     private func layout() {
@@ -328,37 +386,60 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
             make.width.equalTo(scrollView)
         }
         
-        /// Location
-        [locationLabel,
-         locationView,
-         placeholderLocationLabel,
-         /// Date
-         dateLabel,
-         dateView,
-         placeholderDateLabel,
-         /// Name
-         nameLabel,
-         nameTextField,
-         /// Telephone number
-         numberLabel,
-         telephoneTextField,
-         /// Driver
-         driverLabel,
-         driverSwitcher,
-         /// Price
-         priceOneDay,
-         pricePeriodLabel,
-        /// Order button
-         orderButton,
-        /// Register button
-         registerLabel,
-         registerButton
-         ]
+       
+        [
+            /// Office
+            officeLabel,
+            officeView,
+            placeholderOfficeLabel,
+            /// Location
+            locationLabel,
+            locationView,
+            placeholderLocationLabel,
+            /// Date
+            dateLabel,
+            dateView,
+            placeholderDateLabel,
+            /// Name
+            nameLabel,
+            nameTextField,
+            /// Telephone number
+            numberLabel,
+            telephoneTextField,
+            /// Driver
+            driverLabel,
+            driverSwitcher,
+            /// Price
+            priceOneDay,
+            pricePeriodLabel,
+            /// Comment
+            commentLabel,
+            commentTextField,
+            /// Order button
+            orderButton
+        ]
             .forEach { contentView.addSubview($0) }
+        
+        /// Office
+        officeLabel.snp.makeConstraints { make in
+            make.topMargin.equalToSuperview().offset(16)
+            make.left.right.equalTo(contentView).inset(16)
+        }
+        
+        officeView.snp.makeConstraints { make in
+            make.top.equalTo(officeLabel.snp.bottom).offset(8)
+            make.left.right.equalTo(contentView).inset(16)
+            make.height.equalTo(40)
+        }
+        
+        placeholderOfficeLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(officeView.snp.centerY)
+            make.left.right.equalTo(officeView).inset(8)
+        }
         
         /// Location
         locationLabel.snp.makeConstraints { make in
-            make.topMargin.equalToSuperview().offset(16)
+            make.top.equalTo(officeView.snp.bottom).offset(20)
             make.left.right.equalTo(contentView).inset(16)
         }
         
@@ -437,30 +518,71 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
             make.left.right.equalTo(contentView).inset(16)
         }
         
-        /// Order Button
-        orderButton.snp.makeConstraints { make in
+        /// Comment
+        commentLabel.snp.makeConstraints { make in
             make.top.equalTo(pricePeriodLabel.snp.bottom).offset(20)
             make.left.right.equalTo(contentView).inset(16)
+        }
+        
+        commentTextField.snp.makeConstraints { make in
+            make.top.equalTo(commentLabel.snp.bottom).offset(8)
+            make.left.right.equalTo(contentView).inset(16)
             make.height.equalTo(40)
         }
         
-        /// Register button
-        registerLabel.snp.makeConstraints { make in
-            make.top.equalTo(orderButton.snp.bottom).offset(30)
-            make.left.right.equalTo(contentView).inset(16)
-        }
-        
-        registerButton.snp.makeConstraints { make in
-            make.top.equalTo(registerLabel.snp.bottom).offset(8)
+        /// Order Button
+        orderButton.snp.makeConstraints { make in
+            make.top.equalTo(commentTextField.snp.bottom).offset(20)
             make.left.right.equalTo(contentView).inset(16)
             make.height.equalTo(40)
-            make.bottom.equalTo(contentView.snp.bottom).inset(20)
+        }
+        
+        /// Если еще не был отправлен регистрационный код или еще не завершена регистрация или пользователь не залогинен, то показать регистрационную кнопку
+        if !AppState.shared.userWasLogin {
+            [
+                /// Register button
+                registerLabel,
+                registerButton
+            ].forEach { contentView.addSubview($0) }
+            
+            /// Register button
+            registerLabel.snp.makeConstraints { make in
+                make.top.equalTo(orderButton.snp.bottom).offset(30)
+                make.left.right.equalTo(contentView).inset(16)
+            }
+            
+            registerButton.snp.makeConstraints { make in
+                make.top.equalTo(registerLabel.snp.bottom).offset(8)
+                make.left.right.equalTo(contentView).inset(16)
+                make.height.equalTo(40)
+                make.bottom.equalTo(contentView.snp.bottom).inset(20)
+            }
+            /// Если пользователь залогинился и проверка пройдена, то кнопка оплаты
+            //  TODO: - Нужна проверка, что пользователю разрешили оплачивать в админке
+        } else {
+            [
+                /// PayButton
+                payLabel,
+                payButton
+            ].forEach { contentView.addSubview($0) }
+            
+            payLabel.snp.makeConstraints { make in
+                make.top.equalTo(orderButton.snp.bottom).offset(30)
+                make.left.right.equalTo(contentView).inset(16)
+            }
+            
+            payButton.snp.makeConstraints { make in
+                make.top.equalTo(payLabel.snp.bottom).offset(8)
+                make.left.right.equalTo(contentView).inset(16)
+                make.height.equalTo(40)
+                make.bottom.equalTo(contentView.snp.bottom).inset(20)
+            }
         }
     }
     
     
     @objc private func tapLocationGestureAction() {
-        let popoverLocationTableVC = PopoverTableViewController(model: locationModel)
+        let popoverLocationTableVC = PopoverTableViewController(model: locationModel, popoverType: .location)
         popoverLocationTableVC.modalPresentationStyle = .popover
         popoverLocationTableVC.popoverPresentationController?.delegate = self
         popoverLocationTableVC.popoverPresentationController?.sourceView = locationView
@@ -483,6 +605,18 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
         present(calendarVC, animated: true)
     }
     
+    @objc private func tapOfficeGestureAction() {
+        let popoverLocationTableVC = PopoverTableViewController(model: officeModel, popoverType: .office)
+        popoverLocationTableVC.modalPresentationStyle = .popover
+        popoverLocationTableVC.popoverPresentationController?.delegate = self
+        popoverLocationTableVC.popoverPresentationController?.sourceView = officeView
+        popoverLocationTableVC.popoverPresentationController?.sourceRect = CGRect(x: officeView.bounds.midX, y: officeView.bounds.maxY, width: 0, height: 0)
+        popoverLocationTableVC.preferredContentSize = CGSize(width: ScreenSize.width - 32, height: CGFloat(officeModel.count * 40))
+        popoverLocationTableVC.delegate = self
+        resignResponders()
+        present(popoverLocationTableVC, animated: true)
+    }
+    
     @objc private func driverSwitcherAction() {
         isNeedDriver.toggle()
         updateCoast()
@@ -500,10 +634,19 @@ extension OrderUnauthorizedViewController: UIPopoverPresentationControllerDelega
 // MARK: - PopoverLocationTableViewControllerDelegate
 
 extension OrderUnauthorizedViewController: PopoverTableViewControllerDelegate {
-    func selectedValue(text: String) {
-        placeholderLocationLabel.textColor = .black
-        placeholderLocationLabel.text = text
-        selectedLocation = text
+    func selectedValue(type: PopoverType, text: String) {
+        switch type {
+        case .office:
+            placeholderOfficeLabel.textColor = .black
+            placeholderOfficeLabel.text = text
+            selectedOffice = text
+        case .location:
+            placeholderLocationLabel.textColor = .black
+            placeholderLocationLabel.text = text
+            selectedLocation = text
+        case .searchCar:
+            break
+        }
     }
 }
 

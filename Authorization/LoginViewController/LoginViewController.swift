@@ -8,6 +8,10 @@
 import SnapKit
 import UIKit
 
+protocol LoginViewControllerDelegate: AnyObject {
+    func userDidLogin()
+}
+
 final class LoginViewController: UIViewController, ToastViewShowable {
     
     private enum AlertEvent {
@@ -22,6 +26,7 @@ final class LoginViewController: UIViewController, ToastViewShowable {
     private lazy var rentalManager: RentalManager = RentalManagerImp()
     
     var willAppearAfterEnterCode = false
+    weak var delegate: LoginViewControllerDelegate?
     
     private let scrollView = UIScrollView()
     private let contentView = UIView()
@@ -153,9 +158,9 @@ final class LoginViewController: UIViewController, ToastViewShowable {
                 AppState.shared.saveTokens(model: model)
                 AppState.shared.saveToUserDefaults(key: AppStateKeys.userWasLogin, value: true)
                 DispatchQueue.main.async {
+                    self?.navigationController?.popViewController(animated: true)
                     self?.unlock()
-                    let profileVC = ProfileViewController()
-                    self?.navigationController?.pushViewController(profileVC, animated: true)
+                    self?.delegate?.userDidLogin()
                 }
             case .failure(_):
                 DispatchQueue.main.async {
