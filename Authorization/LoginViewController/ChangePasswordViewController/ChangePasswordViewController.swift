@@ -12,6 +12,10 @@ final class ChangePasswordViewController: UIViewController, ToastViewShowable {
     private enum AlertEvent {
         case validateOldAndNew
         case validateNewAndRepeat
+        case emptyOld
+        case emptyNew
+        case emptyRepeat
+        case apiError
     }
     
     var showingToast: ToastView?
@@ -84,7 +88,50 @@ final class ChangePasswordViewController: UIViewController, ToastViewShowable {
     }
     
     @objc private func changeButtonAction() {
-        print("change")
+        guard validateAllTextFields() else { return }
+        let changePassword = ChangePassword(oldPassword: oldPassTextField.text!,
+                                            newPassword: newPassTextField.text!)
+        lockView()
+        rentalManager.postChangePwassword(password: changePassword) { [weak self] result in
+            DispatchQueue.main.async {
+                self?.unlock()
+                switch result {
+                case .success(let model):
+                    self?.showSuccessToast(with: "Пароль изменён")
+                    print("model = \(model)")
+                case .failure(let error):
+                    self?.showAlert(error: .apiError, apiError: "")
+                    print("error.localizedDescription = \(error.localizedDescription)")
+                }
+            }
+        }
+    }
+    
+    private func validateAllTextFields() -> Bool {
+        guard !oldPassTextField.text!.isEmpty else {
+            showAlert(error: .emptyOld)
+            return false
+        }
+        
+        guard !newPassTextField.text!.isEmpty else {
+            showAlert(error: .emptyNew)
+            return false
+        }
+        
+        guard !repeatNewPassTextField.text!.isEmpty else {
+            showAlert(error: .emptyRepeat)
+            return false
+        }
+        
+        guard validateOldAndNewPass() else {
+            showAlert(error: .validateOldAndNew)
+            return false
+        }
+        guard validateNewAndRepeatPass() else {
+            showAlert(error: .validateNewAndRepeat)
+            return false
+        }
+        return true
     }
     
     private func validateNewAndRepeatPass() -> Bool {
@@ -108,7 +155,7 @@ final class ChangePasswordViewController: UIViewController, ToastViewShowable {
         }
     }
     
-    private func showAlert(error: AlertEvent) {
+    private func showAlert(error: AlertEvent, apiError: String = "") {
         var text = ""
         var message = "Попробуйте еще раз."
         switch error {
@@ -117,6 +164,17 @@ final class ChangePasswordViewController: UIViewController, ToastViewShowable {
             message = "Придумайте другой пароль"
         case .validateNewAndRepeat:
             text = "Вы неверно повторили пароль"
+        case .emptyOld:
+            text = "Вы не ввели старый пароль"
+            message = "Введите старый пароль"
+        case .emptyNew:
+            text = "Вы не ввели новый пароль"
+            message = "Введите новый пароль"
+        case .emptyRepeat:
+            text = "Вы не повторили новый пароль"
+            message = "Повторите новый пароль"
+        case .apiError:
+            text = apiError
         }
         let alert = UIAlertController(title: text, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Понятно", style: .default)

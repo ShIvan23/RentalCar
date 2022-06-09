@@ -54,9 +54,10 @@ final class NetworkManagerImp: NetworkManager {
             case 200:
                 completion(data, HTTPResponse, nil)
             case 422:
-                completion(nil, HTTPResponse, error)
+                print("error = \(error)")
+                completion(data, HTTPResponse, error)
             default:
-                completion(nil, HTTPResponse, error)
+                completion(data, HTTPResponse, error)
             }
         }
         return dataTask

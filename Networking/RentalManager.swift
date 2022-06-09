@@ -18,6 +18,7 @@ protocol RentalManager {
     func postAgainConfirmCode(user: AgainConfirmCode, completion: @escaping (Result<AgainConfirmCodeResult, Error>) -> Void)
     func login(user: Login, completion: @escaping (Result<LoginResult, Error>) -> Void)
     func logout(completion: @escaping (Result<Logout, Error>) -> Void)
+    func postChangePwassword(password: ChangePassword, completion: @escaping (Result<ChangePasswordResult, Error>) -> Void)
 }
 
 final class RentalManagerImp: RentalManager {
@@ -87,6 +88,11 @@ final class RentalManagerImp: RentalManager {
     
     func logout(completion: @escaping (Result<Logout, Error>) -> Void) {
         guard let request = requestManager.postLogout() else { return }
+        networkManager.fetch(request: request, completion: completion)
+    }
+    
+    func postChangePwassword(password: ChangePassword, completion: @escaping (Result<ChangePasswordResult, Error>) -> Void) {
+        guard let request = requestManager.postChangePassword(body: password) else { return }
         networkManager.fetch(request: request, completion: completion)
     }
 }

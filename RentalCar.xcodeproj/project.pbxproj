@@ -57,6 +57,7 @@
 		2C9DF80627DB98B300C176AC /* RentalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9DF80527DB98B300C176AC /* RentalManager.swift */; };
 		2C9DF85227DCD5F000C176AC /* CallUsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9DF85127DCD5F000C176AC /* CallUsTableViewCell.swift */; };
 		2CA351192847C37F003F2012 /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA351182847C37F003F2012 /* PayViewController.swift */; };
+		2CA3511B2847CA3D003F2012 /* ChangePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA3511A2847CA3D003F2012 /* ChangePassword.swift */; };
 		2CB57CD0281C54F0001C0B87 /* Logout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB57CCF281C54F0001C0B87 /* Logout.swift */; };
 		2CC9AF8027C188D40082D81C /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC9AF7F27C188D40082D81C /* TextField.swift */; };
 		2CC9AF8427C2BE690082D81C /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC9AF8327C2BE690082D81C /* UIViewController+Extension.swift */; };
@@ -125,6 +126,7 @@
 		2C9DF80527DB98B300C176AC /* RentalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentalManager.swift; sourceTree = "<group>"; };
 		2C9DF85127DCD5F000C176AC /* CallUsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallUsTableViewCell.swift; sourceTree = "<group>"; };
 		2CA351182847C37F003F2012 /* PayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
+		2CA3511A2847CA3D003F2012 /* ChangePassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePassword.swift; sourceTree = "<group>"; };
 		2CB57CCF281C54F0001C0B87 /* Logout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logout.swift; sourceTree = "<group>"; };
 		2CC9AF7F27C188D40082D81C /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextField.swift; path = ../../../Documents/TextField.swift; sourceTree = "<group>"; };
 		2CC9AF8327C2BE690082D81C /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 				2C5FBB4A280C893C00F81155 /* Login.swift */,
 				2C549BD728187161008C8712 /* PostImages.swift */,
 				2CB57CCF281C54F0001C0B87 /* Logout.swift */,
+				2CA3511A2847CA3D003F2012 /* ChangePassword.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -728,6 +731,7 @@
 				2C60AD072802093B00C5A1A0 /* ConditionModel.swift in Sources */,
 				2CA351192847C37F003F2012 /* PayViewController.swift in Sources */,
 				2C631E4F27A333C3003753E1 /* BaseCollectionViewCell.swift in Sources */,
+				2CA3511B2847CA3D003F2012 /* ChangePassword.swift in Sources */,
 				2C5FBB49280AFFEB00F81155 /* AgainConfirmCode.swift in Sources */,
 				2CC9AF8427C2BE690082D81C /* UIViewController+Extension.swift in Sources */,
 				2CCCA7E7283D66B60084055A /* ProfileSelectTableViewCell.swift in Sources */,

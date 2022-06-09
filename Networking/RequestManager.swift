@@ -17,6 +17,7 @@ protocol RequestManager {
     func postLogin(body: Login) -> URLRequest?
     func postDocuments() -> String
     func postLogout() -> URLRequest?
+    func postChangePassword(body: ChangePassword) -> URLRequest?
 }
 
 final class RequestManagerImp: RequestManager {
@@ -34,6 +35,7 @@ final class RequestManagerImp: RequestManager {
         static let login = "user/login"
         static let uploadDocument = "user/upload-document"
         static let logout = "user/logout"
+        static let changePassword = "user/change-password"
     }
 
     private lazy var defaultHeader = [
@@ -44,6 +46,12 @@ final class RequestManagerImp: RequestManager {
     private lazy var logoutHeader = [
         "Accept" : "*/*",
         "Authorization" : "Bearer \(AppState.shared.token)"
+    ]
+    
+    private lazy var changePasswordHeader = [
+        "Accept" : "*/*",
+        "Authorization" : "Bearer \(AppState.shared.token)",
+        "Content-Type" : "application/json"
     ]
     
     func getAllAuto() -> URLRequest? {
@@ -125,6 +133,18 @@ final class RequestManagerImp: RequestManager {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.allHTTPHeaderFields = logoutHeader
+        return request
+    }
+    
+    func postChangePassword(body: ChangePassword) -> URLRequest? {
+        guard let url = URL(string: baseUrlString + UrlStrings.changePassword) else { return nil }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.allHTTPHeaderFields = changePasswordHeader
+        guard let data = try? encoder.encode(body) else {
+            fatalError("НЕ получилось закодировать структуру")
+        }
+        request.httpBody = data
         return request
     }
 }
