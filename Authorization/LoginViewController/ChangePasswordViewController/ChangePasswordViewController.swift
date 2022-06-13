@@ -96,12 +96,10 @@ final class ChangePasswordViewController: UIViewController, ToastViewShowable {
             DispatchQueue.main.async {
                 self?.unlock()
                 switch result {
-                case .success(let model):
+                case .success(_):
                     self?.showSuccessToast(with: "Пароль изменён")
-                    print("model = \(model)")
                 case .failure(let error):
-                    self?.showAlert(error: .apiError, apiError: "")
-                    print("error.localizedDescription = \(error.localizedDescription)")
+                    self?.showAlert(error: .apiError, apiError: error.toString() ?? "")
                 }
             }
         }

@@ -17,12 +17,4 @@ struct ChangePassword: Encodable {
     }
 }
 
-struct ChangePasswordResult: Decodable {
-    let success: Bool
-    let data: ChangePasswordResultData?
-}
-
-struct ChangePasswordResultData: Decodable {
-    let message: String?
-    let code: Int?
-}
+struct ChangePasswordResult: Decodable {}

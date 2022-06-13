@@ -46,6 +46,9 @@
 		2C6E4DD327B9377E00FBE7E8 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6E4DD227B9377E00FBE7E8 /* CalendarViewController.swift */; };
 		2C7B4D2928031901000EE39D /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7B4D2828031901000EE39D /* RegisterViewController.swift */; };
 		2C7B4D2C28032ED9000EE39D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7B4D2B28032ED9000EE39D /* ProfileViewController.swift */; };
+		2C7E1F95285755A400E69B4D /* NetworkAlamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7E1F94285755A300E69B4D /* NetworkAlamofire.swift */; };
+		2C7E1F972857563000E69B4D /* ApiValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7E1F962857563000E69B4D /* ApiValue.swift */; };
+		2C7E1F99285757E200E69B4D /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7E1F98285757E200E69B4D /* AppError.swift */; };
 		2C8C980D27FA2A83003D9D68 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C980C27FA2A83003D9D68 /* OrderModel.swift */; };
 		2C8C981427FB695F003D9D68 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C981327FB695F003D9D68 /* ToastView.swift */; };
 		2C8C981627FB6DCE003D9D68 /* ToastViewShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C981527FB6DCE003D9D68 /* ToastViewShowable.swift */; };
@@ -115,6 +118,9 @@
 		2C6E4DD227B9377E00FBE7E8 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		2C7B4D2828031901000EE39D /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		2C7B4D2B28032ED9000EE39D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		2C7E1F94285755A300E69B4D /* NetworkAlamofire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAlamofire.swift; sourceTree = "<group>"; };
+		2C7E1F962857563000E69B4D /* ApiValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiValue.swift; sourceTree = "<group>"; };
+		2C7E1F98285757E200E69B4D /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		2C8C980C27FA2A83003D9D68 /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
 		2C8C981327FB695F003D9D68 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		2C8C981527FB6DCE003D9D68 /* ToastViewShowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastViewShowable.swift; sourceTree = "<group>"; };
@@ -381,6 +387,8 @@
 				2C549BD728187161008C8712 /* PostImages.swift */,
 				2CB57CCF281C54F0001C0B87 /* Logout.swift */,
 				2CA3511A2847CA3D003F2012 /* ChangePassword.swift */,
+				2C7E1F962857563000E69B4D /* ApiValue.swift */,
+				2C7E1F98285757E200E69B4D /* AppError.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -462,6 +470,7 @@
 			isa = PBXGroup;
 			children = (
 				2C9DF7DE27D9F45A00C176AC /* NetworkManager.swift */,
+				2C7E1F94285755A300E69B4D /* NetworkAlamofire.swift */,
 				2C9DF80327DB95C600C176AC /* RequestManager.swift */,
 				2C9DF80527DB98B300C176AC /* RentalManager.swift */,
 			);
@@ -718,6 +727,7 @@
 				2C6295BA27A48AB7003521D9 /* MainTabBarViewController.swift in Sources */,
 				2C549BD6281743E0008C8712 /* PermissionManager.swift in Sources */,
 				2C631E4C27A33213003753E1 /* BaseCollectionViewController.swift in Sources */,
+				2C7E1F99285757E200E69B4D /* AppError.swift in Sources */,
 				2CF197F127B5072600E82C6C /* NSMutableAttributedString+Extension.swift in Sources */,
 				2C60AD0F28023CFB00C5A1A0 /* ConditionHeaderView.swift in Sources */,
 				2C549BD428174225008C8712 /* PermissionStatus.swift in Sources */,
@@ -745,6 +755,7 @@
 				2C8C980D27FA2A83003D9D68 /* OrderModel.swift in Sources */,
 				2CB57CD0281C54F0001C0B87 /* Logout.swift in Sources */,
 				2C5FBB47280AFE4B00F81155 /* UserConfirm.swift in Sources */,
+				2C7E1F972857563000E69B4D /* ApiValue.swift in Sources */,
 				2C6295C127A49C54003521D9 /* UICollectionViewCell+Extension.swift in Sources */,
 				2C60AD052801F71000C5A1A0 /* String+Extension.swift in Sources */,
 				2CF197F427B5190100E82C6C /* OrderUnauthorizedViewController.swift in Sources */,
@@ -753,6 +764,7 @@
 				2C5FBB45280AF81000F81155 /* EnterCodeViewController.swift in Sources */,
 				2C6295B727A465E3003521D9 /* UIColor+Extension.swift in Sources */,
 				2C60ACFE28019EAE00C5A1A0 /* FullImageViewController.swift in Sources */,
+				2C7E1F95285755A400E69B4D /* NetworkAlamofire.swift in Sources */,
 				2C60AD0A2802399600C5A1A0 /* ConditionViewController.swift in Sources */,
 				2C9DF7DF27D9F45A00C176AC /* NetworkManager.swift in Sources */,
 				2C7B4D2C28032ED9000EE39D /* ProfileViewController.swift in Sources */,

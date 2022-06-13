@@ -11,6 +11,12 @@ typealias JSONCompletionHandler = (Data?, HTTPURLResponse?, Error?) -> Void
 
 protocol NetworkManager {
     func fetch<T: Decodable>(request: URLRequest, completion: @escaping (Result<T, Error>) -> Void)
+    func fetch<T: Decodable>(request: URLRequest, completion: @escaping (Result<T, AppError>) -> Void)
+}
+
+extension NetworkManager {
+    func fetch<T: Decodable>(request: URLRequest, completion: @escaping (Result<T, Error>) -> Void) {}
+    func fetch<T: Decodable>(request: URLRequest, completion: @escaping (Result<T, AppError>) -> Void) {}
 }
 
 final class NetworkManagerImp: NetworkManager {

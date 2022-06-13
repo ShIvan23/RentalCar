@@ -18,12 +18,13 @@ protocol RentalManager {
     func postAgainConfirmCode(user: AgainConfirmCode, completion: @escaping (Result<AgainConfirmCodeResult, Error>) -> Void)
     func login(user: Login, completion: @escaping (Result<LoginResult, Error>) -> Void)
     func logout(completion: @escaping (Result<Logout, Error>) -> Void)
-    func postChangePwassword(password: ChangePassword, completion: @escaping (Result<ChangePasswordResult, Error>) -> Void)
+    func postChangePwassword(password: ChangePassword, completion: @escaping (Result<ChangePasswordResult, AppError>) -> Void)
 }
 
 final class RentalManagerImp: RentalManager {
     
     private let networkManager: NetworkManager = NetworkManagerImp()
+    private let networkAlamofire: NetworkManager = NetworkAlamofire()
     private let requestManager: RequestManager = RequestManagerImp()
     
     func fetchCars(completion: @escaping (Result<CarsModel, Error>) -> Void) {
@@ -91,8 +92,8 @@ final class RentalManagerImp: RentalManager {
         networkManager.fetch(request: request, completion: completion)
     }
     
-    func postChangePwassword(password: ChangePassword, completion: @escaping (Result<ChangePasswordResult, Error>) -> Void) {
+    func postChangePwassword(password: ChangePassword, completion: @escaping (Result<ChangePasswordResult, AppError>) -> Void) {
         guard let request = requestManager.postChangePassword(body: password) else { return }
-        networkManager.fetch(request: request, completion: completion)
+        networkAlamofire.fetch(request: request, completion: completion)
     }
 }
