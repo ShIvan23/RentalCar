@@ -8,7 +8,14 @@
 import UIKit
 import SnapKit
 
-final class DropPasswordViewController: UIViewController {
+final class DropPasswordViewController: UIViewController, ToastViewShowable {
+    
+    private enum AlertEvent {
+        case empty
+        case notContains
+    }
+    
+    var showingToast: ToastView?
     
     private lazy var rentalManager: RentalManager = RentalManagerImp()
     
@@ -46,7 +53,32 @@ final class DropPasswordViewController: UIViewController {
     }
     
     @objc private func dropButtonAction() {
-        print("drop")
+        guard validateemailTextField() else { return }
+        let dropPassword = DropPassword(email: emailTextField.text!)
+        
+        rentalManager.postDropPassword(email: dropPassword) { [weak self] result in
+            switch result {
+            case .success(let model):
+                print("success")
+                self?.showSuccessToast(with: "Вам на почту отправлен новый пароль")
+            case .failure(let error):
+                self?.showFailureToast(with: error.toString() ?? "")
+            }
+        }
+    }
+    
+    private func validateemailTextField() -> Bool {
+        guard !emailTextField.text!.isEmpty else {
+            showAlert(error: .empty)
+            return false
+        }
+        
+        guard emailTextField.text!.contains("@"),
+              emailTextField.text!.contains(".") else {
+            showAlert(error: .notContains)
+            return false
+        }
+        return true
     }
     
     private func customize() {
@@ -81,6 +113,22 @@ final class DropPasswordViewController: UIViewController {
             make.left.right.equalToSuperview().inset(16)
             make.height.equalTo(40)
         }
+    }
+    
+    private func showAlert(error: AlertEvent, apiError: String = "") {
+        var text = ""
+        var message = "Попробуйте еще раз."
+        switch error {
+        case .empty:
+            text = "Email пустой"
+            message = "Введите Ваш email"
+        case .notContains:
+            text = "Кажется, Вы не верно указали email"
+        }
+        let alert = UIAlertController(title: text, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Понятно", style: .default)
+        alert.addAction(okAction)
+        present(alert, animated: true)
     }
 }
 

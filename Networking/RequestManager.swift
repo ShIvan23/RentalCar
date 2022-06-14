@@ -18,6 +18,7 @@ protocol RequestManager {
     func postDocuments() -> String
     func postLogout() -> URLRequest?
     func postChangePassword(body: ChangePassword) -> URLRequest?
+    func postDropPasswoed(body: DropPassword) -> URLRequest?
 }
 
 final class RequestManagerImp: RequestManager {
@@ -36,6 +37,7 @@ final class RequestManagerImp: RequestManager {
         static let uploadDocument = "user/upload-document"
         static let logout = "user/logout"
         static let changePassword = "user/change-password"
+        static let dropPassword = "user/restore-password"
     }
 
     private lazy var defaultHeader = [
@@ -138,6 +140,18 @@ final class RequestManagerImp: RequestManager {
     
     func postChangePassword(body: ChangePassword) -> URLRequest? {
         guard let url = URL(string: baseUrlString + UrlStrings.changePassword) else { return nil }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.allHTTPHeaderFields = changePasswordHeader
+        guard let data = try? encoder.encode(body) else {
+            fatalError("НЕ получилось закодировать структуру")
+        }
+        request.httpBody = data
+        return request
+    }
+    
+    func postDropPasswoed(body: DropPassword) -> URLRequest? {
+        guard let url = URL(string: baseUrlString + UrlStrings.dropPassword) else { return nil }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.allHTTPHeaderFields = changePasswordHeader

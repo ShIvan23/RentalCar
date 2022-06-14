@@ -19,6 +19,7 @@ protocol RentalManager {
     func login(user: Login, completion: @escaping (Result<LoginResult, Error>) -> Void)
     func logout(completion: @escaping (Result<Logout, Error>) -> Void)
     func postChangePwassword(password: ChangePassword, completion: @escaping (Result<ChangePasswordResult, AppError>) -> Void)
+    func postDropPassword(email: DropPassword, completion: @escaping (Result<DropPasswordResult, AppError>) -> Void)
 }
 
 final class RentalManagerImp: RentalManager {
@@ -94,6 +95,11 @@ final class RentalManagerImp: RentalManager {
     
     func postChangePwassword(password: ChangePassword, completion: @escaping (Result<ChangePasswordResult, AppError>) -> Void) {
         guard let request = requestManager.postChangePassword(body: password) else { return }
+        networkAlamofire.fetch(request: request, completion: completion)
+    }
+    
+    func postDropPassword(email: DropPassword, completion: @escaping (Result<DropPasswordResult, AppError>) -> Void) {
+        guard let request = requestManager.postDropPasswoed(body: email) else { return }
         networkAlamofire.fetch(request: request, completion: completion)
     }
 }
