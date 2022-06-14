@@ -50,6 +50,7 @@
 		2C7E1F972857563000E69B4D /* ApiValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7E1F962857563000E69B4D /* ApiValue.swift */; };
 		2C7E1F99285757E200E69B4D /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7E1F98285757E200E69B4D /* AppError.swift */; };
 		2C7E1F9B2858CD2500E69B4D /* DropPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7E1F9A2858CD2500E69B4D /* DropPassword.swift */; };
+		2C7E1F9D2858D9A700E69B4D /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7E1F9C2858D9A700E69B4D /* UserProfile.swift */; };
 		2C8C980D27FA2A83003D9D68 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C980C27FA2A83003D9D68 /* OrderModel.swift */; };
 		2C8C981427FB695F003D9D68 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C981327FB695F003D9D68 /* ToastView.swift */; };
 		2C8C981627FB6DCE003D9D68 /* ToastViewShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C981527FB6DCE003D9D68 /* ToastViewShowable.swift */; };
@@ -123,6 +124,7 @@
 		2C7E1F962857563000E69B4D /* ApiValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiValue.swift; sourceTree = "<group>"; };
 		2C7E1F98285757E200E69B4D /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		2C7E1F9A2858CD2500E69B4D /* DropPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropPassword.swift; sourceTree = "<group>"; };
+		2C7E1F9C2858D9A700E69B4D /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		2C8C980C27FA2A83003D9D68 /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
 		2C8C981327FB695F003D9D68 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		2C8C981527FB6DCE003D9D68 /* ToastViewShowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastViewShowable.swift; sourceTree = "<group>"; };
@@ -392,6 +394,7 @@
 				2C7E1F962857563000E69B4D /* ApiValue.swift */,
 				2C7E1F98285757E200E69B4D /* AppError.swift */,
 				2C7E1F9A2858CD2500E69B4D /* DropPassword.swift */,
+				2C7E1F9C2858D9A700E69B4D /* UserProfile.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -748,6 +751,7 @@
 				2CA3511B2847CA3D003F2012 /* ChangePassword.swift in Sources */,
 				2C5FBB49280AFFEB00F81155 /* AgainConfirmCode.swift in Sources */,
 				2CC9AF8427C2BE690082D81C /* UIViewController+Extension.swift in Sources */,
+				2C7E1F9D2858D9A700E69B4D /* UserProfile.swift in Sources */,
 				2CCCA7E7283D66B60084055A /* ProfileSelectTableViewCell.swift in Sources */,
 				2C6E4DD327B9377E00FBE7E8 /* CalendarViewController.swift in Sources */,
 				2C6295BF27A499B8003521D9 /* LegalCollectionViewCell.swift in Sources */,

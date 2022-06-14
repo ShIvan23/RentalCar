@@ -19,6 +19,7 @@ protocol RequestManager {
     func postLogout() -> URLRequest?
     func postChangePassword(body: ChangePassword) -> URLRequest?
     func postDropPasswoed(body: DropPassword) -> URLRequest?
+    func getUserProfile() -> URLRequest?
 }
 
 final class RequestManagerImp: RequestManager {
@@ -38,6 +39,7 @@ final class RequestManagerImp: RequestManager {
         static let logout = "user/logout"
         static let changePassword = "user/change-password"
         static let dropPassword = "user/restore-password"
+        static let userProfile = "user/profile"
     }
 
     private lazy var defaultHeader = [
@@ -159,6 +161,13 @@ final class RequestManagerImp: RequestManager {
             fatalError("НЕ получилось закодировать структуру")
         }
         request.httpBody = data
+        return request
+    }
+    
+    func getUserProfile() -> URLRequest? {
+        guard let url = URL(string: baseUrlString + UrlStrings.userProfile) else { return nil }
+        var request = URLRequest(url: url)
+        request.allHTTPHeaderFields = logoutHeader
         return request
     }
 }

@@ -11,6 +11,7 @@ protocol AppStateProtocol {
     var wasSentRegisterCode: Bool { get }
     var wasFinishedRegistration: Bool { get }
     var userWasLogin: Bool { get }
+    var userWasConfirmed: Bool { get }
     
     var userEmail: String { get set }
     
@@ -26,6 +27,7 @@ enum AppStateKeys: String {
     case wasSentRegisterCodeKey
     case wasFinishedRegistration
     case userWasLogin
+    case userWasConfirmed
 }
 
 enum TokenKeys: String {
@@ -46,6 +48,7 @@ final class AppState: AppStateProtocol {
     var wasSentRegisterCode: Bool = false
     var wasFinishedRegistration: Bool = false
     var userWasLogin: Bool = false
+    var userWasConfirmed: Bool = false
     
     /// User email
     var userEmail: String = ""
@@ -84,6 +87,10 @@ final class AppState: AppStateProtocol {
         case .userWasLogin:
             userWasLogin = value
             userDefaults.set(value, forKey: AppStateKeys.userWasLogin.rawValue)
+            
+        case .userWasConfirmed:
+            userWasConfirmed = value
+            userDefaults.set(value, forKey: AppStateKeys.userWasConfirmed.rawValue)
         }
     }
     
@@ -108,6 +115,6 @@ final class AppState: AppStateProtocol {
     // For tests
     
     private func goToDefault() {
-        saveToUserDefaults(key: AppStateKeys.wasSentRegisterCodeKey, value: false)
+//        saveToUserDefaults(key: AppStateKeys.wasSentRegisterCodeKey, value: false)
     }
 }

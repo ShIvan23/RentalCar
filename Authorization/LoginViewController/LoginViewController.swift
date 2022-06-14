@@ -157,6 +157,7 @@ final class LoginViewController: UIViewController, ToastViewShowable {
             case.success(let model):
                 AppState.shared.saveTokens(model: model)
                 AppState.shared.saveToUserDefaults(key: AppStateKeys.userWasLogin, value: true)
+                self?.getUserProfile()
                 DispatchQueue.main.async {
                     self?.navigationController?.popViewController(animated: true)
                     self?.unlock()
@@ -207,6 +208,19 @@ final class LoginViewController: UIViewController, ToastViewShowable {
         let okAction = UIAlertAction(title: "Понятно", style: .default)
         alert.addAction(okAction)
         present(alert, animated: true)
+    }
+    
+    private func getUserProfile() {
+        rentalManager.getUserProfile { result in
+            switch result {
+            case .success(let model):
+                AppState.shared.saveToUserDefaults(key: .userWasConfirmed, value: model.isDocumentConfirm)
+                print("success")
+                print(" = \(model.isDocumentConfirm)")
+            case .failure(_):
+                debugPrint("Не удалось получить данные пользователя")
+            }
+        }
     }
     
     private func allLoginValidates() -> Bool {

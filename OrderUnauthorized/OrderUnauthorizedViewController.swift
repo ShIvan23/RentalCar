@@ -558,8 +558,7 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
                 make.bottom.equalTo(contentView.snp.bottom).inset(20)
             }
             /// Если пользователь залогинился и проверка пройдена, то кнопка оплаты
-            //  TODO: - Нужна проверка, что пользователю разрешили оплачивать в админке
-        } else {
+        } else if AppState.shared.userWasConfirmed {
             [
                 /// PayButton
                 payLabel,
