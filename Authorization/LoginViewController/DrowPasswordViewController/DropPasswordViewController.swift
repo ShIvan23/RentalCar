@@ -58,8 +58,7 @@ final class DropPasswordViewController: UIViewController, ToastViewShowable {
         
         rentalManager.postDropPassword(email: dropPassword) { [weak self] result in
             switch result {
-            case .success(let model):
-                print("success")
+            case .success(_):
                 self?.showSuccessToast(with: "Вам на почту отправлен новый пароль")
             case .failure(let error):
                 self?.showFailureToast(with: error.toString() ?? "")
