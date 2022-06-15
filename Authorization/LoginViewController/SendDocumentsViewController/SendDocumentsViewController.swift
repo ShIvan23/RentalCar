@@ -67,42 +67,40 @@ final class SendDocumentsViewController: UIViewController, ToastViewShowable {
     }
     
     @objc private func sendPhotos() {
-        var images = [UIImage]()
-        selectedAssets.forEach {
-            PHImageManager.default().requestImage(for: $0, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFit, options: nil) { image, _ in
-                guard let image = image else { return }
-                images.append(image)
-            }
-        }
-        print("images.count отдаем = \(images.count)")
-        print("картинки = \(images)")
-        rentalManager.postImages(images) { [weak self] result in
-            switch result.result {
-            case .success(let model):
-                print("model = \(model)")
-                print("Документы отправлены на сервер. Показать алерт")
+        let imageData = selectedPhotos.compactMap { $0.pngData() }
+        lockView()
+        rentalManager.postImages(imageData) { [weak self] result in
+            self?.unlock()
+            switch result {
+            case .success(_):
                 self?.showSuccessToast(with: "Фото отправлены")
             case .failure(let error):
-                print("error = \(error)")
-                print("error.localizedDescription = \(error.localizedDescription)")
-                self?.showErrorAlert()
+                self?.showErrorAlert(with: error.toString() ?? "")
             }
         }
     }
     
     private func convertAssets() {
+        let imageRequestOptions: PHImageRequestOptions = {
+            let options = PHImageRequestOptions()
+            options.deliveryMode = .highQualityFormat
+            return options
+        }()
+        
         selectedAssets.forEach {
-            PHImageManager.default().requestImage(for: $0, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFit, options: nil) { [weak self] image, _ in
+            PHImageManager.default().requestImage(for: $0, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFit, options: imageRequestOptions) { [weak self] image, _ in
                 guard let image = image else { return }
                 self?.selectedPhotos.append(image)
+                self?.photosCollectionView.reloadData()
             }
         }
     }
     
     private func showGallery() {
         presentImagePicker(imagePicker) {_ in} deselect: {_ in} cancel: {_ in} finish: { [weak self] assets in
+            self?.selectedAssets = []
+            self?.selectedPhotos = []
             self?.selectedAssets = assets
-            self?.photosCollectionView.reloadData()
         }
     }
     
@@ -140,7 +138,7 @@ extension SendDocumentsViewController: UICollectionViewDataSource {
         if selectedPhotos.isEmpty {
             return 4
         } else {
-            return selectedAssets.count + 1
+            return selectedPhotos.count + 1
         }
     }
     
@@ -161,7 +159,8 @@ extension SendDocumentsViewController: UICollectionViewDataSource {
                 cell.setupCellWith(image: UIImage(named: "plus")!)
                 return cell
             default :
-                cell.setupCellWith(asset: selectedAssets[indexPath.item - 1])
+                print("indexPath.item - 1 = \(indexPath.item - 1)")
+                cell.setupCellWith(image: selectedPhotos[indexPath.item - 1])
                 return cell
             }
         }
@@ -216,8 +215,8 @@ private extension SendDocumentsViewController {
         present(alert, animated: true)
     }
     
-    func showErrorAlert() {
-        let alert = UIAlertController(title: "Произошла ошибка", message: "Попробуйте ещё раз", preferredStyle: .alert)
+    func showErrorAlert(with text: String) {
+        let alert = UIAlertController(title: "Произошла ошибка", message: text, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Хорошо", style: .default)
         alert.addAction(okAction)
         present(alert, animated: true)

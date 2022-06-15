@@ -12,3 +12,5 @@ struct APIValue<T: Decodable>: Decodable {
     let message: String?
     var data: T?
 }
+
+struct APIDataMock: Decodable {}

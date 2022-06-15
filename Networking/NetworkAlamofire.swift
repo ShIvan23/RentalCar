@@ -31,4 +31,43 @@ final class NetworkAlamofire: NetworkManager {
             }
         }
     }
+    
+    func postImages<T>(_ images: [Data], stringUrl: String, completion: @escaping (Result<T, AppError>) -> Void) where T : Decodable {
+        let header: HTTPHeaders = [
+            "Content-Type" : "multipart/form-data",
+            "Accept" : "*/*",
+            "Authorization" : "Bearer \(AppState.shared.token)"
+        ]
+        
+        AF.upload(multipartFormData: { multipartFormData in
+            images.forEach { imageData in
+                multipartFormData.append(imageData, withName: "documents[]", fileName: "image.png", mimeType: "image/png")
+                
+            }
+        },
+                  to: stringUrl,
+                  method: .post,
+                  headers: header)
+        .responseDecodable(of: APIValue<T>.self) { response in
+            
+            guard let code = response.response?.statusCode else { return }
+            
+            switch code {
+            case 200...299:
+                guard let value = response.value?.data else { return }
+                completion(.success(value))
+            case 422:
+                let message = response.value?.message ?? "Текст ошибки пустой"
+                completion(.failure(AppError.error422(message: message)))
+            case 500:
+                let message = response.value?.message ?? "Текст ошибки пустой"
+                completion(.failure(AppError.error500(message: message)))
+            default:
+                // TODO: - Убрать из продакшена
+                print("Ошибка отличная от 422 и 500. Надо обработать")
+                fatalError()
+                // break
+            }
+        }
+    }
 }

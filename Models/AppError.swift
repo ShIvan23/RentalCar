@@ -9,12 +9,15 @@ import Foundation
 
 enum AppError: Error {
     case error422(message: String)
+    case error500(message: String)
 }
 
 extension AppError {
     func toString() -> String? {
         switch self {
         case .error422(let message):
+            return message
+        case .error500(let message):
             return message
         }
     }

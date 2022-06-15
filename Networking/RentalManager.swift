@@ -64,29 +64,9 @@ final class RentalManagerImp: RentalManager {
         networkManager.fetch(request: request, completion: completion)
     }
     
-    func postImages(_ images: [UIImage], completion: @escaping (DataResponse<PostImagesResult, AFError>) -> Void) {
+    func postImages(_ images: [Data], completion: @escaping (Result<APIDataMock, AppError>) -> Void) {
         let stringUrl = requestManager.postDocuments()
-        let header: HTTPHeaders = [
-            "Content-Type" : "multipart/form-data",
-            "Accept" : "*/*",
-            "Authorization" : "Bearer \(AppState.shared.token)"
-        ]
-        
-        AF.upload(multipartFormData: { multipartFormData in
-            images.forEach { image in
-                guard let imageData = image.jpegData(compressionQuality: 1.0) else { return }
-                multipartFormData.append(imageData, withName: "documents", fileName: "brbr.jpeg", mimeType: "image/jpeg")
-                
-            }
-        },
-                  to: stringUrl,
-                  usingThreshold: UInt64(),
-                  method: .post,
-                  headers: header)
-        .uploadProgress(queue: .main, closure: { progress in
-            print("Upload progress = \(progress.fractionCompleted)")
-        })
-        .responseDecodable(completionHandler: completion)
+        networkAlamofire.postImages(images, stringUrl: stringUrl, completion: completion)
     }
     
     func logout(completion: @escaping (Result<Logout, Error>) -> Void) {
