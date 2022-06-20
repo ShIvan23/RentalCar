@@ -74,8 +74,7 @@ extension PopoverTableViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: DescriptionTableViewCell = tableView.dequeueCell(for: indexPath)
-        let mutableArray = model.makeAttributedPlaceString(stringArray: model)
-        cell.setupCell(mutableArray[indexPath.row])
+        cell.setupCell(model[indexPath.row])
         return cell
     }
 }

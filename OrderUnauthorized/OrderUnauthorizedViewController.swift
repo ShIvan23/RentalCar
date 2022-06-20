@@ -186,7 +186,7 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
     private lazy var payLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.text = "Оплатить через Сбер Pay"
+        label.text = "Оплатить из приложения"
         return label
     }()
     
@@ -574,6 +574,11 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
                 make.top.equalTo(payLabel.snp.bottom).offset(8)
                 make.left.right.equalTo(contentView).inset(16)
                 make.height.equalTo(40)
+                make.bottom.equalTo(contentView.snp.bottom).inset(20)
+            }
+            /// Если залогинен, но еще не прошел проверку
+        } else {
+            orderButton.snp.makeConstraints { make in
                 make.bottom.equalTo(contentView.snp.bottom).inset(20)
             }
         }

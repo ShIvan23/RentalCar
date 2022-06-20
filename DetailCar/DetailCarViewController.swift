@@ -72,8 +72,6 @@ final class DetailCarViewController: UIViewController {
         stringArray.append("\(carModel.year ?? 0)")
         stringArray.append(carModel.gearboxType ?? "")
         stringArray.append("\(carModel.countDoors ?? 0)")
-        stringArray.append((carModel.conditioner ?? false) ? "Да" : "Нет")
-        stringArray.append((carModel.description?.html2String ?? ""))
         descriptions = stringArray.makeAttributedString(stringArray: stringArray)
     }
 }
@@ -116,10 +114,6 @@ extension DetailCarViewController: UITableViewDelegate {
         case 0:
             return view.frame.width + 26 + 8 + 50 // коллекция, pageControl, отступ, кнопка
             // на iOS 14 pageControl 27.5
-            
-            /// Большое описание машины
-        case descriptions.count:
-            return UITableView.automaticDimension
             
             /// Позвонить нам
         case descriptions.count + 1:

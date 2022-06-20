@@ -230,6 +230,7 @@
 		2C4AF0E728466CF600AA5100 /* SendDocumentsViewController */ = {
 			isa = PBXGroup;
 			children = (
+				2C7B4D27280318E8000EE39D /* RegisterViewController */,
 				2C4AF0E828466D1D00AA5100 /* SendDocumentsViewController.swift */,
 			);
 			path = SendDocumentsViewController;
@@ -463,7 +464,6 @@
 				2C925C792802F1630060C810 /* LoginViewController.swift */,
 				2C7B4D2A28032EBB000EE39D /* ProfileViewController */,
 				2C4AF0E728466CF600AA5100 /* SendDocumentsViewController */,
-				2C7B4D27280318E8000EE39D /* RegisterViewController */,
 				2C5FBB43280AF7E000F81155 /* EnterCodeViewController */,
 				2C4AF0EA2846708B00AA5100 /* ChangePasswordViewController */,
 				2C4AF0ED2846753200AA5100 /* DrowPasswordViewController */,

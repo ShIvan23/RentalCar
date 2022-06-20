@@ -55,6 +55,15 @@ final class SendDocumentsViewController: UIViewController, ToastViewShowable {
         return button
     }()
     
+    private let descriptionBottomLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 18)
+        label.text = "Проверка документов службой безопасности займет от 2 до 3 часов"
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         layout()
@@ -110,7 +119,7 @@ final class SendDocumentsViewController: UIViewController, ToastViewShowable {
     }
     
     private func layout() {
-        [descriptionLabel, photosCollectionView, sendButton].forEach { view.addSubview($0) }
+        [descriptionLabel, photosCollectionView, sendButton, descriptionBottomLabel].forEach { view.addSubview($0) }
         
         photosCollectionView.snp.makeConstraints { make in
             make.centerY.equalTo(view.snp.centerY)
@@ -127,6 +136,11 @@ final class SendDocumentsViewController: UIViewController, ToastViewShowable {
             make.top.equalTo(photosCollectionView.snp.bottom).offset(30)
             make.left.right.equalToSuperview().inset(16)
             make.height.equalTo(40)
+        }
+        
+        descriptionBottomLabel.snp.makeConstraints { make in
+            make.top.equalTo(sendButton.snp.bottom).offset(40)
+            make.left.right.equalToSuperview().inset(16)
         }
     }
 }
