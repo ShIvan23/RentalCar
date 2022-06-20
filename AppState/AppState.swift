@@ -107,6 +107,7 @@ final class AppState: AppStateProtocol {
         wasSentRegisterCode = userDefaults.bool(forKey: AppStateKeys.wasSentRegisterCodeKey.rawValue)
         wasFinishedRegistration = userDefaults.bool(forKey: AppStateKeys.wasFinishedRegistration.rawValue)
         userWasLogin = userDefaults.bool(forKey: AppStateKeys.userWasLogin.rawValue)
+        userWasConfirmed = userDefaults.bool(forKey: AppStateKeys.userWasConfirmed.rawValue)
         
         token = userDefaults.string(forKey: TokenKeys.token.rawValue) ?? ""
         refreshToken = userDefaults.string(forKey: TokenKeys.refreshToken.rawValue) ?? ""
