@@ -15,13 +15,13 @@ final class MainTabBarViewController: UITabBarController {
     }
     
     private let rentalManager: RentalManager = RentalManagerImp()
-    private var model: CarsModel? {
+    private var model: [CarClass2]? {
         didSet {
             setModelIntoControllers()
         }
     }
     
-    private var promoModel: Promos? {
+    private var promoModel: [PromoData]? {
         didSet {
             setPromoModelIntoController()
         }
@@ -74,9 +74,9 @@ final class MainTabBarViewController: UITabBarController {
             switch result {
             case .success(let model):
                 self?.model = model
-            case .failure(_):
+            case .failure(let error):
                 DispatchQueue.main.async {
-                    self?.showAlert(error: .cars)
+                    self?.showAlert(error: .cars, message: error.toString() ?? "")
                 }
             }
         }
@@ -87,30 +87,30 @@ final class MainTabBarViewController: UITabBarController {
             switch result {
             case .success(let promos):
                 self?.promoModel = promos
-            case .failure(_):
+            case .failure(let error):
                 DispatchQueue.main.async {
-                    self?.showAlert(error: .promo)
+                    self?.showAlert(error: .promo, message: error.toString() ?? "")
                 }
             }
         }
     }
     
     private func setModelIntoControllers() {
-        allCars.model = model?.data
+        allCars.model = model
         
-        legalEntity.model = CommercialModel.makeCommercialModel(cars: model?.data)
+        legalEntity.model = CommercialModel.makeCommercialModel(cars: model)
     }
     
     private func setPromoModelIntoController() {
-        promoVC.model = promoModel?.data
+        promoVC.model = promoModel
     }
     
     private func setConditionsModel() {
         rentalConditionsVC.model = ConditionsModel.makeConditionsModel()
     }
     
-    private func showAlert(error: FetchError) {
-        let alert = UIAlertController(title: "Не получилось загрузить данные", message: "Возможно, нет подключения к интернету. Попробуйте еще раз.", preferredStyle: .alert)
+    private func showAlert(error: FetchError, message: String) {
+        let alert = UIAlertController(title: "Не получилось загрузить данные", message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Обновить", style: .default) { [weak self] _ in
             switch error {
             case .cars:

@@ -11,10 +11,6 @@ protocol Model {}
 
 // Модель списка машин
 
-struct CarsModel: Decodable {
-    let data: [CarClass2]
-}
-
 struct CarClass2: Model, Decodable {
     let name: String?
     let image: String?

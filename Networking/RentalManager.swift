@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 protocol RentalManager {
-    func fetchCars(completion: @escaping (Result<CarsModel, Error>) -> Void)
+    func fetchCars(completion: @escaping (Result<[CarClass2], AppError>) -> Void)
     func postOrder(order: Order, completion: @escaping (Result<OrderResult, Error>) -> Void)
-    func fetchPromos(completion: @escaping (Result<Promos, Error>) -> Void)
+    func fetchPromos(completion: @escaping (Result<[PromoData], AppError>) -> Void)
     func postRegisterUser(user: UserRegister, completion: @escaping (Result<RegisterResult, Error>) -> Void)
     func postConfirmUser(user: UserConfirm, completion: @escaping (Result<UserConfirmResult, Error>) -> Void)
     func postAgainConfirmCode(user: AgainConfirmCode, completion: @escaping (Result<AgainConfirmCodeResult, Error>) -> Void)
@@ -29,9 +29,9 @@ final class RentalManagerImp: RentalManager {
     private let networkAlamofire: NetworkManager = NetworkAlamofire()
     private let requestManager: RequestManager = RequestManagerImp()
     
-    func fetchCars(completion: @escaping (Result<CarsModel, Error>) -> Void) {
+    func fetchCars(completion: @escaping (Result<[CarClass2], AppError>) -> Void) {
         guard let request = requestManager.getAllAuto() else { return }
-        networkManager.fetch(request: request, completion: completion)
+        networkAlamofire.fetch(request: request, completion: completion)
     }
     
     func postOrder(order: Order, completion: @escaping (Result<OrderResult, Error>) -> Void) {
@@ -39,9 +39,9 @@ final class RentalManagerImp: RentalManager {
         networkManager.fetch(request: request, completion: completion)
     }
     
-    func fetchPromos(completion: @escaping (Result<Promos, Error>) -> Void) {
+    func fetchPromos(completion: @escaping (Result<[PromoData], AppError>) -> Void) {
         guard let request = requestManager.getPromos() else { return }
-        networkManager.fetch(request: request, completion: completion)
+        networkAlamofire.fetch(request: request, completion: completion)
     }
     
     func postRegisterUser(user: UserRegister, completion: @escaping (Result<RegisterResult, Error>) -> Void) {

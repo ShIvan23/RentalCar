@@ -9,10 +9,6 @@ import Foundation
 
 // Модель акций
 
-struct Promos: Model, Decodable {
-    let data: [PromoData]
-}
-
 struct PromoData: Model, Decodable {
     let name: String
     let thumb: String
