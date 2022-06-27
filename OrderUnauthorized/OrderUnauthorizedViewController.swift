@@ -287,16 +287,18 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
     
     private func makeOneDayPrice() -> NSMutableAttributedString {
         let text = "Цена за сутки:"
-        let currentPrice = isNeedDriver ? currentCoast + (currentPrice?.priceDriver ?? 0) : currentCoast
-        let mutableText = NSMutableAttributedString(string: text + " " + "\(currentPrice) ₽")
+        // Убрал, когда попросили не делать перерачет для водителя
+//        let currentPrice = isNeedDriver ? currentCoast + (currentPrice?.priceDriver ?? 0) : currentCoast
+        let mutableText = NSMutableAttributedString(string: text + " " + "\(currentCoast) ₽")
         mutableText.setFont(font: .boldSystemFont(ofSize: 18), forText: text)
         return mutableText
     }
     
     private func makePeriodPrice(_ daysCount: Int = 1) -> NSMutableAttributedString {
         let text = "Цена за весь период:"
-        let price = isNeedDriver ? currentCoast + (currentPrice?.priceDriver ?? 0) : currentCoast
-        let sum = price * daysCount
+        // Убрал, когда попросили не делать перерачет для водителя
+//        let price = isNeedDriver ? currentCoast + (currentPrice?.priceDriver ?? 0) : currentCoast
+        let sum = currentCoast * daysCount
         let mutableText = NSMutableAttributedString(string: text + " " + "\(sum) ₽")
         mutableText.setFont(font: .boldSystemFont(ofSize: 18), forText: text)
         return mutableText

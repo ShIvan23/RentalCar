@@ -66,6 +66,7 @@ final class DetailCarViewController: UIViewController {
     func makeDescriptionArray() {
         var stringArray = [String]()
         stringArray.append("\(currentPrice?.price ?? 0)")
+        stringArray.append("\(currentPrice?.priceDriver ?? 0)")
         stringArray.append("\(carModel.engineVolume ?? 0)")
         stringArray.append("\(carModel.countSeats ?? 0)")
         stringArray.append(carModel.driveType ?? "")
