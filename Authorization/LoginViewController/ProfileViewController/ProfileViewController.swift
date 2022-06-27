@@ -18,6 +18,13 @@ final class ProfileViewController: UIViewController, ToastViewShowable {
     private lazy var rentalManager = RentalManagerImp()
     private let profileModel = ["Отправить документы", "Сменить пароль", "Сбросить пароль", "Удалить аккаунт", "Выйти"]
     
+    private let logoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(named: "logo")
+        return imageView
+    }()
+    
     private lazy var profileTableView: UITableView = {
         let tableView = UITableView()
         tableView.dataSource = self
@@ -57,7 +64,13 @@ final class ProfileViewController: UIViewController, ToastViewShowable {
     }
 
     private func layout() {
-        [profileTableView].forEach { view.addSubview($0) }
+        [logoImageView, profileTableView].forEach { view.addSubview($0) }
+        
+        logoImageView.snp.makeConstraints { make in
+            make.left.right.equalToSuperview().inset(16)
+            make.top.equalTo(view.snp.topMargin)
+            make.height.equalTo(120)
+        }
         
         profileTableView.snp.makeConstraints { make in
 //            make.top.equalTo(view.snp.topMargin)

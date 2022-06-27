@@ -65,6 +65,18 @@ final class LoginViewController: UIViewController, ToastViewShowable {
         return button
     }()
     
+    private let privacyLabel: UILabel = {
+        let label = UILabel()
+        let text = NSMutableAttributedString(string: "Нажимая зарегистрироваться, Вы подтверждаете политику конфиденциальности и пользовательское соглашение")
+        text.setColorForText("политику конфиденциальности и пользовательское соглашение", with: .blue)
+        label.attributedText = text
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 16)
+        label.numberOfLines = 0
+        label.isUserInteractionEnabled = true
+        return label
+    }()
+    
     private let registerLabel: UILabel = {
         let label = UILabel()
         label.text = "Если у Вас ещё нет профиля, то зарегистрируйтесь"
@@ -108,6 +120,7 @@ final class LoginViewController: UIViewController, ToastViewShowable {
         customize()
         addTextFieldsDelegate()
         addGestureToHideKeyboard()
+        addGestureForPrivacyLabel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -189,6 +202,11 @@ final class LoginViewController: UIViewController, ToastViewShowable {
         }
     }
     
+    @objc private func gestureForPrivacyLabelAction() {
+        let privacyViewController = PrivacyViewController()
+        navigationController?.pushViewController(privacyViewController, animated: true)
+    }
+    
     private func showAlert(event: AlertEvent) {
         var text = ""
         var message = "Попробуйте еще раз."
@@ -221,6 +239,11 @@ final class LoginViewController: UIViewController, ToastViewShowable {
                 debugPrint("Не удалось получить данные пользователя")
             }
         }
+    }
+    
+    private func addGestureForPrivacyLabel() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(gestureForPrivacyLabelAction))
+        privacyLabel.addGestureRecognizer(tapGesture)
     }
     
     private func allLoginValidates() -> Bool {
@@ -275,18 +298,18 @@ final class LoginViewController: UIViewController, ToastViewShowable {
             make.width.equalTo(scrollView)
         }
         
-        [logoImageView, loginLabel, loginTextField, passwordLabel, passwordTextField, loginButton, registerLabel, registerButton].forEach { contentView.addSubview($0) }
+        [logoImageView, loginLabel, loginTextField, passwordLabel, passwordTextField, loginButton, privacyLabel, registerLabel, registerButton].forEach { contentView.addSubview($0) }
         
         logoImageView.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(16)
-            make.top.equalToSuperview().offset(20)
-            make.height.equalTo(180)
+            make.top.equalToSuperview()
+            make.height.equalTo(120)
         }
         
         loginLabel.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(16)
             make.height.equalTo(20)
-            make.top.equalTo(logoImageView.snp.bottom).offset(20)
+            make.top.equalTo(logoImageView.snp.bottom)
         }
         
         loginTextField.snp.makeConstraints { make in
@@ -312,6 +335,11 @@ final class LoginViewController: UIViewController, ToastViewShowable {
             make.height.equalTo(40)
             make.top.equalTo(passwordTextField.snp.bottom).offset(16)
         }
+        
+        privacyLabel.snp.makeConstraints { make in
+            make.top.equalTo( loginButton.snp.bottom).offset(8)
+            make.left.right.equalToSuperview().inset(16)
+        }
 
         wasSentRegisterCodeKey ? layoutForNextRegister() : layoutForFirstRegister()
     }
@@ -321,7 +349,7 @@ final class LoginViewController: UIViewController, ToastViewShowable {
         [registerLabel, registerButton].forEach { contentView.addSubview($0) }
         
         registerLabel.snp.makeConstraints { make in
-            make.top.equalTo(loginButton.snp.bottom).offset(30)
+            make.top.equalTo(privacyLabel.snp.bottom).offset(30)
             make.left.right.equalToSuperview().inset(16)
         }
 
@@ -340,7 +368,7 @@ final class LoginViewController: UIViewController, ToastViewShowable {
         registerLabel.text = "Для регистрации с новой почты, нажмите 'Зарегистрироваться'"
         
         enterCodeLabel.snp.makeConstraints { make in
-            make.top.equalTo(loginButton.snp.bottom).offset(30)
+            make.top.equalTo(privacyLabel.snp.bottom).offset(30)
             make.left.right.equalToSuperview().inset(16)
         }
 
@@ -373,7 +401,7 @@ final class LoginViewController: UIViewController, ToastViewShowable {
             registerButton.snp.removeConstraints()
             
             enterCodeLabel.snp.makeConstraints { make in
-                make.top.equalTo(loginButton.snp.bottom).offset(30)
+                make.top.equalTo(privacyLabel.snp.bottom).offset(30)
                 make.left.right.equalToSuperview().inset(16)
             }
 
@@ -410,7 +438,7 @@ final class LoginViewController: UIViewController, ToastViewShowable {
         registerLabel.text = "Если у Вас ещё нет профиля, то зарегистрируйтесь"
         
         registerLabel.snp.makeConstraints { make in
-            make.top.equalTo(loginButton.snp.bottom).offset(30)
+            make.top.equalTo(privacyLabel.snp.bottom).offset(30)
             make.left.right.equalToSuperview().inset(16)
         }
 

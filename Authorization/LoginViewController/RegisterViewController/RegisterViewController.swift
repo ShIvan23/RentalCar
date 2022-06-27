@@ -94,6 +94,18 @@ final class RegisterViewController: UIViewController, ToastViewShowable {
         label.numberOfLines = 0
         return label
     }()
+    
+    private let privacyLabel: UILabel = {
+        let label = UILabel()
+        let text = NSMutableAttributedString(string: "Нажимая зарегистрироваться, Вы подтверждаете политику конфиденциальности и пользовательское соглашение")
+        text.setColorForText("политику конфиденциальности и пользовательское соглашение", with: .blue)
+        label.attributedText = text
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 16)
+        label.numberOfLines = 0
+        label.isUserInteractionEnabled = true
+        return label
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,6 +113,7 @@ final class RegisterViewController: UIViewController, ToastViewShowable {
         layout()
         addTextFieldsDelegate()
         addGestureToHideKeyboard()
+        addGestureForPrivacyLabel()
     }
     
     override func viewDidLayoutSubviews() {
@@ -154,6 +167,11 @@ final class RegisterViewController: UIViewController, ToastViewShowable {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             scrollView.contentInset.bottom = keyboardSize.height
         }
+    }
+    
+    @objc private func gestureForPrivacyLabelAction() {
+        let privacyViewController = PrivacyViewController()
+        navigationController?.pushViewController(privacyViewController, animated: true)
     }
     
     private func validateEmail() -> Bool {
@@ -235,6 +253,11 @@ final class RegisterViewController: UIViewController, ToastViewShowable {
         view.addTapGestureToHideKeyboard()
     }
     
+    private func addGestureForPrivacyLabel() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(gestureForPrivacyLabelAction))
+        privacyLabel.addGestureRecognizer(tapGesture)
+    }
+    
     private func layout() {
         view.addSubview(scrollView)
         
@@ -251,7 +274,7 @@ final class RegisterViewController: UIViewController, ToastViewShowable {
             make.width.equalTo(scrollView)
         }
         
-        [nameLabel, nameTextField, numberLabel, numberTextField, emailLabel, emailTextField, passwordLabel, passwordTextField, repeatPasswordLabel, repeatPasswordTextField, registerButton, codeLabel].forEach { contentView.addSubview($0) }
+        [nameLabel, nameTextField, numberLabel, numberTextField, emailLabel, emailTextField, passwordLabel, passwordTextField, repeatPasswordLabel, repeatPasswordTextField, codeLabel, registerButton, privacyLabel].forEach { contentView.addSubview($0) }
       
         nameLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(8)
@@ -308,14 +331,19 @@ final class RegisterViewController: UIViewController, ToastViewShowable {
             make.top.equalTo(repeatPasswordLabel.snp.bottom).offset(8)
         }
         
-        registerButton.snp.makeConstraints { make in
+        codeLabel.snp.makeConstraints { make in
             make.top.equalTo(repeatPasswordTextField.snp.bottom).offset(30)
+            make.left.right.equalToSuperview().inset(16)
+        }
+        
+        registerButton.snp.makeConstraints { make in
+            make.top.equalTo(codeLabel.snp.bottom).offset(16)
             make.left.right.equalToSuperview().inset(16)
             make.height.equalTo(40)
         }
         
-        codeLabel.snp.makeConstraints { make in
-            make.top.equalTo(registerButton.snp.bottom).offset(16)
+        privacyLabel.snp.makeConstraints { make in
+            make.top.equalTo(registerButton.snp.bottom).offset(8)
             make.left.right.equalToSuperview().inset(16)
             make.bottom.equalToSuperview().inset(20)
         }

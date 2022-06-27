@@ -75,6 +75,7 @@
 		2CF197EF27B41A4800E82C6C /* DescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF197EE27B41A4800E82C6C /* DescriptionTableViewCell.swift */; };
 		2CF197F127B5072600E82C6C /* NSMutableAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF197F027B5072600E82C6C /* NSMutableAttributedString+Extension.swift */; };
 		2CF197F427B5190100E82C6C /* OrderUnauthorizedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF197F327B5190100E82C6C /* OrderUnauthorizedViewController.swift */; };
+		2CFCCF24286A4F7F0026BF41 /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFCCF23286A4F7F0026BF41 /* PrivacyViewController.swift */; };
 		A1B504237C3861AE647A5F96 /* Pods_RentalCar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E948B7270624368EE75A7045 /* Pods_RentalCar.framework */; };
 /* End PBXBuildFile section */
 
@@ -149,6 +150,7 @@
 		2CF197EE27B41A4800E82C6C /* DescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		2CF197F027B5072600E82C6C /* NSMutableAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Extension.swift"; sourceTree = "<group>"; };
 		2CF197F327B5190100E82C6C /* OrderUnauthorizedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderUnauthorizedViewController.swift; sourceTree = "<group>"; };
+		2CFCCF23286A4F7F0026BF41 /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
 		4D1A142E6687753FDD74D20B /* Pods-RentalCar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RentalCar.release.xcconfig"; path = "Target Support Files/Pods-RentalCar/Pods-RentalCar.release.xcconfig"; sourceTree = "<group>"; };
 		E948B7270624368EE75A7045 /* Pods_RentalCar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RentalCar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEBD8E7AD4FB8D4CD8BC5B1B /* Pods-RentalCar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RentalCar.debug.xcconfig"; path = "Target Support Files/Pods-RentalCar/Pods-RentalCar.debug.xcconfig"; sourceTree = "<group>"; };
@@ -230,7 +232,6 @@
 		2C4AF0E728466CF600AA5100 /* SendDocumentsViewController */ = {
 			isa = PBXGroup;
 			children = (
-				2C7B4D27280318E8000EE39D /* RegisterViewController */,
 				2C4AF0E828466D1D00AA5100 /* SendDocumentsViewController.swift */,
 			);
 			path = SendDocumentsViewController;
@@ -462,7 +463,9 @@
 			isa = PBXGroup;
 			children = (
 				2C925C792802F1630060C810 /* LoginViewController.swift */,
+				2CFCCF22286A4F670026BF41 /* PrivacyViewController */,
 				2C7B4D2A28032EBB000EE39D /* ProfileViewController */,
+				2C7B4D27280318E8000EE39D /* RegisterViewController */,
 				2C4AF0E728466CF600AA5100 /* SendDocumentsViewController */,
 				2C5FBB43280AF7E000F81155 /* EnterCodeViewController */,
 				2C4AF0EA2846708B00AA5100 /* ChangePasswordViewController */,
@@ -570,6 +573,14 @@
 				2CA351172847C352003F2012 /* PayViewController */,
 			);
 			path = OrderUnauthorized;
+			sourceTree = "<group>";
+		};
+		2CFCCF22286A4F670026BF41 /* PrivacyViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2CFCCF23286A4F7F0026BF41 /* PrivacyViewController.swift */,
+			);
+			path = PrivacyViewController;
 			sourceTree = "<group>";
 		};
 		7664E417E84423DC46E93E2F /* Pods */ = {
@@ -734,6 +745,7 @@
 				2C6295BA27A48AB7003521D9 /* MainTabBarViewController.swift in Sources */,
 				2C549BD6281743E0008C8712 /* PermissionManager.swift in Sources */,
 				2C631E4C27A33213003753E1 /* BaseCollectionViewController.swift in Sources */,
+				2CFCCF24286A4F7F0026BF41 /* PrivacyViewController.swift in Sources */,
 				2C7E1F99285757E200E69B4D /* AppError.swift in Sources */,
 				2CF197F127B5072600E82C6C /* NSMutableAttributedString+Extension.swift in Sources */,
 				2C60AD0F28023CFB00C5A1A0 /* ConditionHeaderView.swift in Sources */,
