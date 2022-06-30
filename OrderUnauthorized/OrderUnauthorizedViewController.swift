@@ -10,6 +10,14 @@ import UIKit
 
 final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable {
     
+    private enum ValidationAlert {
+        case selectedOffice
+        case selectedLocation
+        case selectedDate
+        case name
+        case phoneNumber
+    }
+    
     var showingToast: ToastView?
     
     private lazy var rentalManager: RentalManager = RentalManagerImp()
@@ -259,10 +267,12 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
     }
     
     @objc private func orderButtonAction() {
-        // TODO: - Добавить офис и комментарий в модель
+        guard allValidations() else { return }
         let order = Order(autoId: carModel.id ?? 0,
                           name: nameTextField.text ?? "",
                           location: selectedLocation,
+                          city: selectedOffice,
+                          comment: commentTextField.text ?? "",
                           rentalDate: selectedDate,
                           phone: telephoneTextField.text ?? "",
                           needDriver: isNeedDriver,
@@ -280,6 +290,80 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
         navigationController?.pushViewController(payVC, animated: true)
     }
     
+    private func allValidations() -> Bool {
+        guard validateOffice(),
+              validateLocation(),
+              validateDate(),
+              validateName(),
+              validatePhoneNumber() else {
+            return false
+        }
+        return true
+    }
+    
+    private func validateOffice() -> Bool {
+        guard selectedOffice != "" else {
+            showValidationAlert(reason: .selectedOffice)
+            return false
+        }
+        return true
+    }
+    
+    private func validateLocation() -> Bool {
+        guard selectedLocation != "" else {
+            showValidationAlert(reason: .selectedLocation)
+            return false
+        }
+        return true
+    }
+    
+    private func validateDate() -> Bool {
+        guard selectedDate != "" else {
+            showValidationAlert(reason: .selectedDate)
+            return false
+        }
+        return true
+    }
+    
+    private func validateName() -> Bool {
+        guard !nameTextField.text!.isEmpty else {
+            showValidationAlert(reason: .name)
+            return false
+        }
+        return true
+    }
+    
+    private func validatePhoneNumber() -> Bool {
+        guard !telephoneTextField.text!.isEmpty && telephoneTextField.text!.count == 16 else {
+            showValidationAlert(reason: .phoneNumber)
+            return false
+        }
+        return true
+    }
+    
+    private func showValidationAlert(reason: ValidationAlert) {
+        var title = ""
+        let message = "Заполните все поля"
+        
+        switch reason {
+        case .selectedOffice:
+            title = "Вы не выбрали город"
+        case .selectedLocation:
+            title = "Вы не выбрали место подачи"
+        case .selectedDate:
+            title = "Вы не выбрали даты аренды"
+        case .name:
+            title = "Вы не ввели ФИО"
+        case .phoneNumber:
+            title = "Вы не верно ввели номер телефона"
+        }
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Понятно", style: .default)
+        alert.addAction(okAction)
+        present(alert, animated: true)
+    }
+    
     private func addTextFieldsDelegate() {
         nameTextField.delegate = self
         telephoneTextField.delegate = self
@@ -294,7 +378,7 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
         return mutableText
     }
     
-    private func makePeriodPrice(_ daysCount: Int = 1) -> NSMutableAttributedString {
+    private func makePeriodPrice(_ daysCount: Int = 0) -> NSMutableAttributedString {
         let text = "Цена за весь период:"
         // Убрал, когда попросили не делать перерачет для водителя
 //        let price = isNeedDriver ? currentCoast + (currentPrice?.priceDriver ?? 0) : currentCoast
@@ -321,7 +405,6 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
     }
     
     private func sendOrder(_ order: Order) {
-        // TODO: - Добавить валидацию отправки
         lockView()
         rentalManager.postOrder(order: order) { [weak self] result in
             switch result {

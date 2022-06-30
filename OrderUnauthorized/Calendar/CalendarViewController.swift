@@ -82,7 +82,7 @@ final class CalendarViewController: UIViewController {
         
         switch datesRange.count {
         case 0:
-            delegate?.dateSelected("", daysCount: 1)
+            delegate?.dateSelected("", daysCount: 0)
             return
         case 1:
             guard let firstDate = firstDate else { return }
@@ -93,7 +93,7 @@ final class CalendarViewController: UIViewController {
                   let lastDate = lastDate else { return }
             let firstDateString = dateFormatter.string(from: firstDate as Date)
             let lastDateString = dateFormatter.string(from: lastDate as Date)
-            delegate?.dateSelected("C " + firstDateString + " по " + lastDateString, daysCount: datesRange.count)
+            delegate?.dateSelected("C " + firstDateString + " по " + lastDateString, daysCount: datesRange.count - 1)
         }
     }
     

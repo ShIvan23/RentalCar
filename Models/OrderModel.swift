@@ -13,6 +13,8 @@ struct Order: Encodable {
     let autoId: Int
     let name: String
     let location: String
+    let city: String
+    let comment: String
     let rentalDate: String
     let email: String? = nil
     let phone: String
