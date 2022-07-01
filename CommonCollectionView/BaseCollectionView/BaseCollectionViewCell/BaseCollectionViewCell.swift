@@ -27,6 +27,19 @@ final class BaseCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
+    private let busyImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
+    private let busyLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 16)
+        label.textColor = .black
+        return label
+    }()
+    
     private let priceLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 18)
@@ -68,6 +81,10 @@ final class BaseCollectionViewCell: UICollectionViewCell {
         let urlImage = URL(string: model.thumb ?? "")
         carImage.kf.setImage(with: urlImage)
         
+        let carIsBusy = model.isBusy
+        busyImageView.image = carIsBusy ? UIImage(named: "failure") : UIImage(named: "success")
+        busyLabel.text = carIsBusy ? "Занята" : "Свободна"
+        
         switch categoryPrice {
         case .personPrice:
             priceLabel.text = "\(model.price?.withoutNDS?.price ?? 0) ₽ / сутки"
@@ -83,7 +100,7 @@ final class BaseCollectionViewCell: UICollectionViewCell {
     }
     
     private func setLayout() {
-        [nameCarLabel, carImage, priceLabel, gradientView, orderLabel].forEach { contentView.addSubview($0) }
+        [nameCarLabel, carImage, priceLabel, gradientView, orderLabel, busyImageView, busyLabel].forEach { contentView.addSubview($0) }
         
         gradientView.snp.makeConstraints { make in
             make.bottom.equalTo(contentView.snp.bottom).inset(16)
@@ -99,14 +116,25 @@ final class BaseCollectionViewCell: UICollectionViewCell {
         }
         
         priceLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(gradientView.snp.top).inset(-8)
+            make.bottom.equalTo(gradientView.snp.top).inset(-4)
             make.left.right.equalToSuperview().inset(16)
+        }
+        
+        busyLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(priceLabel.snp.top).inset(-4)
+            make.centerX.equalTo(contentView.snp.centerX).offset(16)
+        }
+        
+        busyImageView.snp.makeConstraints { make in
+            make.height.width.equalTo(20)
+            make.trailing.equalTo(busyLabel.snp.leading).inset(-8)
+            make.centerY.equalTo(busyLabel.snp.centerY)
         }
         
         carImage.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(8)
             make.height.equalTo(120)
-            make.bottom.equalTo(priceLabel.snp.top)
+            make.bottom.equalTo(busyLabel.snp.top)
         }
         
         nameCarLabel.snp.makeConstraints { make in

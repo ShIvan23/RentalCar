@@ -35,6 +35,7 @@ struct CarModel2: Model, Decodable {
     let countDoors: Int?
     let conditioner: Bool?
     let price: Prices?
+    let isBusy: Bool
     
     private enum CodingKeys: String, CodingKey {
         case id, name, thumb, images, description, model, brand, year, conditioner, price
@@ -45,6 +46,7 @@ struct CarModel2: Model, Decodable {
         case gearboxType = "gearbox_type"
         case countSeats = "count_seats"
         case countDoors = "count_doors"
+        case isBusy = "is_busy"
     }
 }
 
