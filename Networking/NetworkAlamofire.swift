@@ -20,14 +20,20 @@ final class NetworkAlamofire: NetworkManager {
             case 200...299:
                 guard let value = response.value?.data else { return }
                 completion(.success(value))
+            case 401:
+                let message = response.value?.message ?? "Текст ошибки пустой"
+                completion(.failure(AppError.error401(message: message)))
             case 422:
                 let message = response.value?.message ?? "Текст ошибки пустой"
                 completion(.failure(AppError.error422(message: message)))
             default:
                 // TODO: - Убрать из продакшена
+                #if DEBUG
                 print("Ошибка отличная от 422. Надо обработать")
-                fatalError()
-                // break
+                print("code = \(code)")
+                assertionFailure()
+                #endif
+                 break
             }
         }
     }
@@ -64,9 +70,11 @@ final class NetworkAlamofire: NetworkManager {
                 completion(.failure(AppError.error500(message: message)))
             default:
                 // TODO: - Убрать из продакшена
+                #if DEBUG
                 print("Ошибка отличная от 422 и 500. Надо обработать")
-                fatalError()
-                // break
+                assertionFailure()
+                #endif
+                 break
             }
         }
     }

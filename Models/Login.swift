@@ -12,11 +12,6 @@ struct Login: Encodable {
     let password: String
 }
 
-struct LoginResult: Decodable {
-    let success: Bool
-    let data: LoginResultData
-}
-
 struct LoginResultData: Decodable {
     let token: String
     let refreshToken: String

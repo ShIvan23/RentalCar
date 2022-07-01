@@ -16,11 +16,12 @@ protocol RentalManager {
     func postRegisterUser(user: UserRegister, completion: @escaping (Result<RegisterResult, Error>) -> Void)
     func postConfirmUser(user: UserConfirm, completion: @escaping (Result<UserConfirmResult, Error>) -> Void)
     func postAgainConfirmCode(user: AgainConfirmCode, completion: @escaping (Result<AgainConfirmCodeResult, Error>) -> Void)
-    func login(user: Login, completion: @escaping (Result<LoginResult, Error>) -> Void)
+    func login(user: Login, completion: @escaping (Result<LoginResultData, AppError>) -> Void)
     func logout(completion: @escaping (Result<Logout, Error>) -> Void)
     func postChangePwassword(password: ChangePassword, completion: @escaping (Result<ChangePasswordResult, AppError>) -> Void)
     func postDropPassword(email: DropPassword, completion: @escaping (Result<DropPasswordResult, AppError>) -> Void)
     func getUserProfile(completion: @escaping (Result<UserProfile, AppError>) -> Void)
+    func deleteUser(completion: @escaping (Result<UserDelete, AppError>) -> Void)
 }
 
 final class RentalManagerImp: RentalManager {
@@ -59,9 +60,9 @@ final class RentalManagerImp: RentalManager {
         networkManager.fetch(request: request, completion: completion)
     }
     
-    func login(user: Login, completion: @escaping (Result<LoginResult, Error>) -> Void) {
+    func login(user: Login, completion: @escaping (Result<LoginResultData, AppError>) -> Void) {
         guard let request = requestManager.postLogin(body: user) else { return }
-        networkManager.fetch(request: request, completion: completion)
+        networkAlamofire.fetch(request: request, completion: completion)
     }
     
     func postImages(_ images: [Data], completion: @escaping (Result<APIDataMock, AppError>) -> Void) {
@@ -86,6 +87,11 @@ final class RentalManagerImp: RentalManager {
     
     func getUserProfile(completion: @escaping (Result<UserProfile, AppError>) -> Void) {
         guard let request = requestManager.getUserProfile() else { return }
+        networkAlamofire.fetch(request: request, completion: completion)
+    }
+    
+    func deleteUser(completion: @escaping (Result<UserDelete, AppError>) -> Void) {
+        guard let request = requestManager.userDelete() else { return }
         networkAlamofire.fetch(request: request, completion: completion)
     }
 }

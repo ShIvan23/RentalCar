@@ -44,7 +44,7 @@ final class DeleteAccountViewController: UIViewController, ToastViewShowable {
     }
     
     @objc private func deleteButtonAction() {
-        print("Удалить аккаунт")
+        showDeleteAlert()
     }
     
     private func customize() {
@@ -64,6 +64,30 @@ final class DeleteAccountViewController: UIViewController, ToastViewShowable {
             make.bottom.equalTo(view.snp_bottomMargin).inset(30)
             make.left.right.equalToSuperview().inset(16)
             make.height.equalTo(40)
+        }
+    }
+    
+    private func showDeleteAlert() {
+        let alert = UIAlertController(title: "Удалить аккаунт?", message: "Вы уверены, что хотите удалить аккаунт?", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Отмена", style: .default)
+        let deleteAction = UIAlertAction(title: "Удалить", style: .destructive) { [weak self] _ in
+            self?.delete()
+        }
+        alert.addAction(cancelAction)
+        alert.addAction(deleteAction)
+        present(alert, animated: true)
+    }
+    
+    private func delete() {
+        rentalManager.deleteUser { [weak self] result in
+            switch result {
+            case .success(_):
+                self?.showSuccessToast(with: "Аккаунт удален")
+                AppState.shared.removeTokens()
+                self?.navigationController?.popToRootViewController(animated: true)
+            case .failure(let error):
+                self?.showFailureToast(with: error.toString() ?? "")
+            }
         }
     }
 }

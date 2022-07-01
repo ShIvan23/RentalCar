@@ -19,7 +19,7 @@ protocol AppStateProtocol {
     var refreshToken: String { get }
     
     func saveToUserDefaults(key: AppStateKeys, value: Bool)
-    func saveTokens(model: LoginResult)
+    func saveTokens(model: LoginResultData)
     func removeTokens()
 }
 
@@ -57,9 +57,9 @@ final class AppState: AppStateProtocol {
     var token: String = ""
     var refreshToken: String = ""
     
-    func saveTokens(model: LoginResult) {
-        token = model.data.token
-        refreshToken = model.data.refreshToken
+    func saveTokens(model: LoginResultData) {
+        token = model.token
+        refreshToken = model.refreshToken
         saveTokens()
     }
     

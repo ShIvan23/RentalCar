@@ -176,10 +176,10 @@ final class LoginViewController: UIViewController, ToastViewShowable {
                     self?.unlock()
                     self?.delegate?.userDidLogin()
                 }
-            case .failure(_):
+            case .failure(let error):
                 DispatchQueue.main.async {
                     self?.unlock()
-                    self?.showAlert(event: .failureLogin)
+                    self?.showAlert(event: .failureLogin, message: error.toString() ?? "")
                 }
             }
         }
@@ -207,7 +207,7 @@ final class LoginViewController: UIViewController, ToastViewShowable {
         navigationController?.pushViewController(privacyViewController, animated: true)
     }
     
-    private func showAlert(event: AlertEvent) {
+    private func showAlert(event: AlertEvent, message: String = "") {
         var text = ""
         var message = "Попробуйте еще раз."
         switch event {
@@ -220,7 +220,7 @@ final class LoginViewController: UIViewController, ToastViewShowable {
             message = "Войдите в профиль с Вашей почтой и паролем"
         case .failureLogin:
             text = "Ошибка"
-            message = "Проверьте почту и пароль"
+            message = message != "" ? message : "Проверьте почту и пароль"
         }
         let alert = UIAlertController(title: text, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Понятно", style: .default)
@@ -233,10 +233,8 @@ final class LoginViewController: UIViewController, ToastViewShowable {
             switch result {
             case .success(let model):
                 AppState.shared.saveToUserDefaults(key: .userWasConfirmed, value: model.isDocumentConfirm)
-                print("success")
-                print(" = \(model.isDocumentConfirm)")
-            case .failure(_):
-                debugPrint("Не удалось получить данные пользователя")
+            case .failure(let error):
+                debugPrint("error.toString() = \(error.toString())")
             }
         }
     }

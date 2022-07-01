@@ -11,8 +11,7 @@ import UIKit
 final class ProfileViewController: UIViewController, ToastViewShowable {
     
     var showingToast: ToastView?
-    
-    // TODO: - Здесь кнопка для смены пароля
+
     // TODO: - Обновление token по refreshToken
     
     private lazy var rentalManager = RentalManagerImp()
@@ -73,8 +72,6 @@ final class ProfileViewController: UIViewController, ToastViewShowable {
         }
         
         profileTableView.snp.makeConstraints { make in
-//            make.top.equalTo(view.snp.topMargin)
-//            make.bottom.equalTo(view.snp.bottomMargin)
             make.left.right.equalToSuperview()
             make.height.equalTo(profileModel.count * 60)
             make.centerY.equalTo(view.snp.centerY)
@@ -131,8 +128,6 @@ extension ProfileViewController: UITableViewDelegate {
         60
     }
 }
-
-
 
 // MARK: - Alert
 

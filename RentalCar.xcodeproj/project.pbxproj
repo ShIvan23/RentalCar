@@ -44,6 +44,7 @@
 		2C6E4DCD27B91F1E00FBE7E8 /* PopoverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6E4DCC27B91F1E00FBE7E8 /* PopoverTableViewController.swift */; };
 		2C6E4DD027B9349500FBE7E8 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6E4DCF27B9349500FBE7E8 /* ScreenSize.swift */; };
 		2C6E4DD327B9377E00FBE7E8 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6E4DD227B9377E00FBE7E8 /* CalendarViewController.swift */; };
+		2C721130286F0C9A00FD5631 /* UserDelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C72112F286F0C9A00FD5631 /* UserDelete.swift */; };
 		2C7B4D2928031901000EE39D /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7B4D2828031901000EE39D /* RegisterViewController.swift */; };
 		2C7B4D2C28032ED9000EE39D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7B4D2B28032ED9000EE39D /* ProfileViewController.swift */; };
 		2C7E1F95285755A400E69B4D /* NetworkAlamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7E1F94285755A300E69B4D /* NetworkAlamofire.swift */; };
@@ -119,6 +120,7 @@
 		2C6E4DCC27B91F1E00FBE7E8 /* PopoverTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverTableViewController.swift; sourceTree = "<group>"; };
 		2C6E4DCF27B9349500FBE7E8 /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
 		2C6E4DD227B9377E00FBE7E8 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		2C72112F286F0C9A00FD5631 /* UserDelete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDelete.swift; sourceTree = "<group>"; };
 		2C7B4D2828031901000EE39D /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		2C7B4D2B28032ED9000EE39D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		2C7E1F94285755A300E69B4D /* NetworkAlamofire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAlamofire.swift; sourceTree = "<group>"; };
@@ -397,6 +399,7 @@
 				2C7E1F98285757E200E69B4D /* AppError.swift */,
 				2C7E1F9A2858CD2500E69B4D /* DropPassword.swift */,
 				2C7E1F9C2858D9A700E69B4D /* UserProfile.swift */,
+				2C72112F286F0C9A00FD5631 /* UserDelete.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -781,6 +784,7 @@
 				2CF197F427B5190100E82C6C /* OrderUnauthorizedViewController.swift in Sources */,
 				2C4AF0E928466D1D00AA5100 /* SendDocumentsViewController.swift in Sources */,
 				2C1DDABD27A08574000B82C6 /* AppDelegate.swift in Sources */,
+				2C721130286F0C9A00FD5631 /* UserDelete.swift in Sources */,
 				2C5FBB45280AF81000F81155 /* EnterCodeViewController.swift in Sources */,
 				2C6295B727A465E3003521D9 /* UIColor+Extension.swift in Sources */,
 				2C60ACFE28019EAE00C5A1A0 /* FullImageViewController.swift in Sources */,

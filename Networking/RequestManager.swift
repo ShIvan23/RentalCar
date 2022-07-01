@@ -20,6 +20,7 @@ protocol RequestManager {
     func postChangePassword(body: ChangePassword) -> URLRequest?
     func postDropPasswoed(body: DropPassword) -> URLRequest?
     func getUserProfile() -> URLRequest?
+    func userDelete() -> URLRequest?
 }
 
 final class RequestManagerImp: RequestManager {
@@ -40,6 +41,7 @@ final class RequestManagerImp: RequestManager {
         static let changePassword = "user/change-password"
         static let dropPassword = "user/restore-password"
         static let userProfile = "user/profile"
+        static let userDelete = "user/delete"
     }
 
     private lazy var defaultHeader = [
@@ -166,6 +168,13 @@ final class RequestManagerImp: RequestManager {
     
     func getUserProfile() -> URLRequest? {
         guard let url = URL(string: baseUrlString + UrlStrings.userProfile) else { return nil }
+        var request = URLRequest(url: url)
+        request.allHTTPHeaderFields = logoutHeader
+        return request
+    }
+    
+    func userDelete() -> URLRequest? {
+        guard let url = URL(string: baseUrlString + UrlStrings.userDelete) else { return nil }
         var request = URLRequest(url: url)
         request.allHTTPHeaderFields = logoutHeader
         return request
