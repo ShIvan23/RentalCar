@@ -72,7 +72,7 @@ final class SendDocumentsViewController: UIViewController, ToastViewShowable {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        sendButton.setCustomGradient()
+        enableSendButton(false)
     }
     
     @objc private func sendPhotos() {
@@ -105,11 +105,17 @@ final class SendDocumentsViewController: UIViewController, ToastViewShowable {
         }
     }
     
+    private func enableSendButton(_ isEnable: Bool) {
+        isEnable ? sendButton.setCustomGradient() : sendButton.setEnableGradient()
+        sendButton.isEnabled = isEnable
+    }
+    
     private func showGallery() {
         presentImagePicker(imagePicker) {_ in} deselect: {_ in} cancel: {_ in} finish: { [weak self] assets in
             self?.selectedAssets = []
             self?.selectedPhotos = []
             self?.selectedAssets = assets
+            self?.enableSendButton(!assets.isEmpty)
         }
     }
     
@@ -173,7 +179,6 @@ extension SendDocumentsViewController: UICollectionViewDataSource {
                 cell.setupCellWith(image: UIImage(named: "plus")!)
                 return cell
             default :
-                print("indexPath.item - 1 = \(indexPath.item - 1)")
                 cell.setupCellWith(image: selectedPhotos[indexPath.item - 1])
                 return cell
             }

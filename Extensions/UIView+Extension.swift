@@ -55,6 +55,10 @@ extension UIView {
         applyGradient(colors: [UIColor(hexString: "#4ec378", alpha: 1.0), UIColor(hexString: "#0c8269", alpha: 1.0)], cornerRadius: 10)
     }
     
+    func setEnableGradient() {
+        applyGradient(colors: [UIColor(hexString: "#dcdcdc", alpha: 1.0), UIColor(hexString: "#c0c0c0", alpha: 1.0)], cornerRadius: 10)
+    }
+    
     func applyGradient(colors: [UIColor],
                        cornerRadius: CGFloat? = nil,
                        position: GradientPosition = .topToBottom) {

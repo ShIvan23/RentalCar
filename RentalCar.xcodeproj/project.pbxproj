@@ -940,9 +940,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RentalCar/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Прокат авто";
-				INFOPLIST_KEY_NSCameraUsageDescription = "Это нужно, чтобы сделать фото документов";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Это нужно, что отслеживать ваше местоположение";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Это нужно, чтобы выбрать фото документов из галерии";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
@@ -972,9 +970,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RentalCar/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Прокат авто";
-				INFOPLIST_KEY_NSCameraUsageDescription = "Это нужно, чтобы сделать фото документов";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Это нужно, что отслеживать ваше местоположение";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Это нужно, чтобы выбрать фото документов из галерии";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
