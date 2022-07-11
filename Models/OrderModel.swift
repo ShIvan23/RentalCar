@@ -22,7 +22,7 @@ struct Order: Encodable {
     let cost: Int
     
     private enum CodingKeys: String, CodingKey {
-        case name, location, phone, cost, email
+        case name, location, city, comment, phone, cost, email
         case autoId = "auto_id"
         case rentalDate = "rental_date"
         case needDriver = "need_driver"
