@@ -935,12 +935,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = YF7B94KF69;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RentalCar/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Прокат авто";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Доступ к камере необходим для того, чтобы у Вас была возможность сделать фото документов. В противном случае Вы не сможете сделать фото документов из приложения.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Это нужно, что отслеживать ваше местоположение";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Доступ к галерее необходим для того, чтобы у Вас была возможность прикрепить фото документов. В противном случае Вы не сможете выбрать фото документов из галереи.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
@@ -949,7 +951,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 0.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rentalCar.rus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -965,12 +967,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = YF7B94KF69;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RentalCar/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Прокат авто";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Доступ к камере необходим для того, чтобы у Вас была возможность сделать фото документов. В противном случае Вы не сможете сделать фото документов из приложения.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Это нужно, что отслеживать ваше местоположение";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Доступ к галерее необходим для того, чтобы у Вас была возможность прикрепить фото документов. В противном случае Вы не сможете выбрать фото документов из галереи.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
@@ -979,7 +983,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 0.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rentalCar.rus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
