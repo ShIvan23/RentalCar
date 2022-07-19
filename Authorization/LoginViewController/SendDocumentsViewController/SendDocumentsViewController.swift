@@ -233,11 +233,4 @@ private extension SendDocumentsViewController {
         
         present(alert, animated: true)
     }
-    
-    func showErrorAlert(with text: String) {
-        let alert = UIAlertController(title: "Произошла ошибка", message: text, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Хорошо", style: .default)
-        alert.addAction(okAction)
-        present(alert, animated: true)
-    }
 }

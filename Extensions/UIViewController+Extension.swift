@@ -27,6 +27,13 @@ extension UIViewController {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
+    
+    func showErrorAlert(with text: String) {
+        let alert = UIAlertController(title: "Произошла ошибка", message: text, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Хорошо", style: .default)
+        alert.addAction(okAction)
+        present(alert, animated: true)
+    }
 }
 
 let blackView = UIView(frame: CGRect(x: 0, y: 0, width: ScreenSize.width, height: ScreenSize.height))

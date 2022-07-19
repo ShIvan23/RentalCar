@@ -79,6 +79,7 @@ final class CalendarViewController: UIViewController {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMMM"
+        dateFormatter.locale = Locale(identifier: "ru_RU")
         
         switch datesRange.count {
         case 0:

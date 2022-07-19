@@ -16,7 +16,9 @@ final class ContactsViewController: UIViewController, ToastViewShowable {
     private let scrollView = UIScrollView()
     private let contentView = UIView()
     private let mapView = YMKMapView()
+    
     /// Для тестов на реальном устройстве
+    
 //    private let mapView: UIView = {
 //        let view = UIView()
 //        view.backgroundColor = .red

@@ -9,9 +9,10 @@ import Alamofire
 import Foundation
 import UIKit
 
+// TODO: - При переходе на networkAlamofire, нужно менять модель ответа на ResultData
 protocol RentalManager {
     func fetchCars(completion: @escaping (Result<[CarClass2], AppError>) -> Void)
-    func postOrder(order: Order, completion: @escaping (Result<OrderResult, Error>) -> Void)
+    func postOrder(order: Order, completion: @escaping (Result<OrderResultData, AppError>) -> Void)
     func fetchPromos(completion: @escaping (Result<[PromoData], AppError>) -> Void)
     func postRegisterUser(user: UserRegister, completion: @escaping (Result<RegisterResult, Error>) -> Void)
     func postConfirmUser(user: UserConfirm, completion: @escaping (Result<UserConfirmResult, Error>) -> Void)
@@ -35,9 +36,9 @@ final class RentalManagerImp: RentalManager {
         networkAlamofire.fetch(request: request, completion: completion)
     }
     
-    func postOrder(order: Order, completion: @escaping (Result<OrderResult, Error>) -> Void) {
+    func postOrder(order: Order, completion: @escaping (Result<OrderResultData, AppError>) -> Void) {
         guard let request = requestManager.postOrder(body: order) else { return }
-        networkManager.fetch(request: request, completion: completion)
+        networkAlamofire.fetch(request: request, completion: completion)
     }
     
     func fetchPromos(completion: @escaping (Result<[PromoData], AppError>) -> Void) {

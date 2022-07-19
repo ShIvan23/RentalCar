@@ -607,7 +607,7 @@
 				2C1DDAB627A08574000B82C6 /* Frameworks */,
 				2C1DDAB727A08574000B82C6 /* Resources */,
 				007F94DD80944E72AECE432E /* [CP] Embed Pods Frameworks */,
-				3028E49B584F194EEE9286F4 /* [CP] Copy Pods Resources */,
+				A47ADB72F70F507A7F69B426 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -681,23 +681,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RentalCar/Pods-RentalCar-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3028E49B584F194EEE9286F4 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RentalCar/Pods-RentalCar-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RentalCar/Pods-RentalCar-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RentalCar/Pods-RentalCar-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		600D2A010C2673824BBCB721 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -718,6 +701,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A47ADB72F70F507A7F69B426 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RentalCar/Pods-RentalCar-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RentalCar/Pods-RentalCar-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RentalCar/Pods-RentalCar-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

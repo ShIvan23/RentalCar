@@ -170,6 +170,7 @@ final class LoginViewController: UIViewController, ToastViewShowable {
             case.success(let model):
                 AppState.shared.saveTokens(model: model)
                 AppState.shared.saveToUserDefaults(key: AppStateKeys.userWasLogin, value: true)
+                AppState.shared.userEmail = self?.loginTextField.text! ?? ""
                 self?.getUserProfile()
                 DispatchQueue.main.async {
                     self?.navigationController?.popViewController(animated: true)

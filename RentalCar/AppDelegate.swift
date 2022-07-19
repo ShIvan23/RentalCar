@@ -18,7 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.overrideUserInterfaceStyle = .light
         window?.rootViewController = MainTabBarViewController()
-//        window?.rootViewController = LoginViewController()
         window?.makeKeyAndVisible()
         return true
     }

@@ -276,7 +276,7 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
                           rentalDate: selectedDate,
                           phone: telephoneTextField.text ?? "",
                           needDriver: isNeedDriver,
-                          cost: Int(pricePeriodLabel.text ?? "") ?? 0)
+                          cost: currentCoast * selectedDaysCount)
         sendOrder(order)
     }
     
@@ -413,10 +413,10 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
                     self?.unlock()
                     self?.showSuccessToast(with: "Ваш заказ отправлен.\nМенеджер Вам перезвонит.")
                 }
-            case .failure(_):
+            case .failure(let error):
                 DispatchQueue.main.async {
                     self?.unlock()
-                    self?.showFailureToast(with: "Произошла ошибка.\nПопробуйте отправить еще раз!")
+                    self?.showErrorAlert(with: error.toString() ?? "")
                 }
             }
         }
@@ -683,6 +683,12 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
     }
     
     @objc private func tapDateGestureAction() {
+        
+        /// 667 размер iPhone SE
+        if ScreenSize.height <= 667 && scrollView.contentOffset.y < 45 {
+            scrollView.setContentOffset(CGPoint(x: 0, y: 50), animated: true)
+        }
+        
         let calendarVC = CalendarViewController()
         calendarVC.modalPresentationStyle = .popover
         calendarVC.popoverPresentationController?.delegate = self
@@ -748,7 +754,7 @@ extension OrderUnauthorizedViewController: CalendarViewControllerDelegate {
             placeholderDateLabel.textColor = UIColor(hexString: "#C7C7CD")
             selectedDate = ""
             selectedDaysCount = daysCount
-            currentCoast =  makeCurrentPriceForDay(daysCount: daysCount)
+            currentCoast = makeCurrentPriceForDay(daysCount: daysCount)
             updateCoast()
         } else {
             placeholderDateLabel.textColor = .black

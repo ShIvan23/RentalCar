@@ -16,7 +16,7 @@ struct Order: Encodable {
     let city: String
     let comment: String
     let rentalDate: String
-    let email: String? = nil
+    let email: String = AppState.shared.userEmail
     let phone: String
     let needDriver: Bool
     let cost: Int
@@ -27,11 +27,6 @@ struct Order: Encodable {
         case rentalDate = "rental_date"
         case needDriver = "need_driver"
     }
-}
-
-struct OrderResult: Decodable {
-    let success: Bool
-    let data: OrderResultData
 }
 
 struct OrderResultData: Decodable {
