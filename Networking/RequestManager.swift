@@ -25,7 +25,10 @@ protocol RequestManager {
 
 final class RequestManagerImp: RequestManager {
     
-    private let baseUrlString = "https://api-prokat.tmweb.ru/"
+    /// Старая API
+//    private let baseUrlString = "https://api-prokat.tmweb.ru/"
+    
+    private let baseUrlString = "https://apiprokat.ru/"
     private lazy var encoder = JSONEncoder()
     
     private enum UrlStrings {
