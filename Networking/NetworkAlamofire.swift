@@ -70,11 +70,11 @@ final class NetworkAlamofire: NetworkManager {
                 completion(.failure(AppError.error500(message: message)))
             default:
                 // TODO: - Убрать из продакшена
-                #if DEBUG
+#if DEBUG
                 print("Ошибка отличная от 422 и 500. Надо обработать")
                 assertionFailure()
-                #endif
-                 break
+#endif
+                break
             }
         }
     }
