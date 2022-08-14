@@ -15,6 +15,7 @@ pod 'Kingfisher', '~> 7.0'
 pod 'YandexMapsMobile', '4.0.0-lite'
 pod "BSImagePicker", "~> 3.1"
 pod 'Alamofire'
+pod 'YandexMobileMetrica/Dynamic', '4.2.0'
 
 end
 

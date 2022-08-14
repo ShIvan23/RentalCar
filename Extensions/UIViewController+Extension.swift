@@ -25,6 +25,7 @@ extension UIViewController {
         guard let url = URL(string: "tel://\(number)") else { return }
         if UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            AnalyticEvent.callButtonTapped.send()
         }
     }
     

@@ -10,6 +10,15 @@
 		2C1DDABD27A08574000B82C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1DDABC27A08574000B82C6 /* AppDelegate.swift */; };
 		2C1DDAC627A08579000B82C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C1DDAC527A08579000B82C6 /* Assets.xcassets */; };
 		2C1DDAC927A08579000B82C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C1DDAC727A08579000B82C6 /* LaunchScreen.storyboard */; };
+		2C49190928A5155800EB8FEC /* UserId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C49190828A5155800EB8FEC /* UserId.swift */; };
+		2C49190C28A515A700EB8FEC /* AnalyticProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C49190B28A515A700EB8FEC /* AnalyticProtocol.swift */; };
+		2C49190F28A518BC00EB8FEC /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C49190E28A518BC00EB8FEC /* Logger.swift */; };
+		2C49191228A518FB00EB8FEC /* EventName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C49191128A518FB00EB8FEC /* EventName.swift */; };
+		2C49191428A51B3400EB8FEC /* AnalyticEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C49191328A51B3400EB8FEC /* AnalyticEvent.swift */; };
+		2C49191628A51C1100EB8FEC /* EventDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C49191528A51C1100EB8FEC /* EventDate.swift */; };
+		2C49191828A5269600EB8FEC /* CommentEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C49191728A5269600EB8FEC /* CommentEvent.swift */; };
+		2C49191A28A5284D00EB8FEC /* DateFormatters+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C49191928A5284D00EB8FEC /* DateFormatters+Extension.swift */; };
+		2C49192028A90DDF00EB8FEC /* CarNameEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C49191F28A90DDF00EB8FEC /* CarNameEvent.swift */; };
 		2C4AF0E928466D1D00AA5100 /* SendDocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4AF0E828466D1D00AA5100 /* SendDocumentsViewController.swift */; };
 		2C4AF0EC284670AE00AA5100 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4AF0EB284670AE00AA5100 /* ChangePasswordViewController.swift */; };
 		2C4AF0EF2846755800AA5100 /* DropPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4AF0EE2846755800AA5100 /* DropPasswordViewController.swift */; };
@@ -86,6 +95,15 @@
 		2C1DDAC527A08579000B82C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C1DDAC827A08579000B82C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C1DDACA27A08579000B82C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C49190828A5155800EB8FEC /* UserId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserId.swift; sourceTree = "<group>"; };
+		2C49190B28A515A700EB8FEC /* AnalyticProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticProtocol.swift; sourceTree = "<group>"; };
+		2C49190E28A518BC00EB8FEC /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		2C49191128A518FB00EB8FEC /* EventName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventName.swift; sourceTree = "<group>"; };
+		2C49191328A51B3400EB8FEC /* AnalyticEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticEvent.swift; sourceTree = "<group>"; };
+		2C49191528A51C1100EB8FEC /* EventDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDate.swift; sourceTree = "<group>"; };
+		2C49191728A5269600EB8FEC /* CommentEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentEvent.swift; sourceTree = "<group>"; };
+		2C49191928A5284D00EB8FEC /* DateFormatters+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatters+Extension.swift"; sourceTree = "<group>"; };
+		2C49191F28A90DDF00EB8FEC /* CarNameEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarNameEvent.swift; sourceTree = "<group>"; };
 		2C4AF0E828466D1D00AA5100 /* SendDocumentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDocumentsViewController.swift; sourceTree = "<group>"; };
 		2C4AF0EB284670AE00AA5100 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		2C4AF0EE2846755800AA5100 /* DropPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropPasswordViewController.swift; sourceTree = "<group>"; };
@@ -197,6 +215,7 @@
 				2C549BD228174205008C8712 /* Permissions */,
 				2CC9AF7E27C1889C0082D81C /* CustomViews */,
 				2C631E5027A3340D003753E1 /* Extensions */,
+				2C49190728A5154000EB8FEC /* Analytics */,
 				2C1DDABB27A08574000B82C6 /* RentalCar */,
 				2C1DDABA27A08574000B82C6 /* Products */,
 				7664E417E84423DC46E93E2F /* Pods */,
@@ -229,6 +248,45 @@
 				2CF197EE27B41A4800E82C6C /* DescriptionTableViewCell.swift */,
 			);
 			path = DescriptionCell;
+			sourceTree = "<group>";
+		};
+		2C49190728A5154000EB8FEC /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				2C49191328A51B3400EB8FEC /* AnalyticEvent.swift */,
+				2C49190D28A518AC00EB8FEC /* Logger */,
+				2C49190A28A5159300EB8FEC /* Protocol */,
+				2C49191028A518E300EB8FEC /* Events */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		2C49190A28A5159300EB8FEC /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				2C49190B28A515A700EB8FEC /* AnalyticProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		2C49190D28A518AC00EB8FEC /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				2C49190E28A518BC00EB8FEC /* Logger.swift */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
+		2C49191028A518E300EB8FEC /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				2C49190828A5155800EB8FEC /* UserId.swift */,
+				2C49191128A518FB00EB8FEC /* EventName.swift */,
+				2C49191528A51C1100EB8FEC /* EventDate.swift */,
+				2C49191728A5269600EB8FEC /* CommentEvent.swift */,
+				2C49191F28A90DDF00EB8FEC /* CarNameEvent.swift */,
+			);
+			path = Events;
 			sourceTree = "<group>";
 		};
 		2C4AF0E728466CF600AA5100 /* SendDocumentsViewController */ = {
@@ -376,6 +434,7 @@
 				2CF197F027B5072600E82C6C /* NSMutableAttributedString+Extension.swift */,
 				2CC9AF8327C2BE690082D81C /* UIViewController+Extension.swift */,
 				2C60AD042801F71000C5A1A0 /* String+Extension.swift */,
+				2C49191928A5284D00EB8FEC /* DateFormatters+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -457,6 +516,14 @@
 		2C925C772802F1170060C810 /* Authorization */ = {
 			isa = PBXGroup;
 			children = (
+				2CFCCF22286A4F670026BF41 /* PrivacyViewController */,
+				2C7B4D2A28032EBB000EE39D /* ProfileViewController */,
+				2C7B4D27280318E8000EE39D /* RegisterViewController */,
+				2C5FBB43280AF7E000F81155 /* EnterCodeViewController */,
+				2C4AF0E728466CF600AA5100 /* SendDocumentsViewController */,
+				2C4AF0EA2846708B00AA5100 /* ChangePasswordViewController */,
+				2C4AF0ED2846753200AA5100 /* DrowPasswordViewController */,
+				2C4AF0F02846784C00AA5100 /* DeleteAccountViewController */,
 				2C925C782802F14B0060C810 /* LoginViewController */,
 			);
 			path = Authorization;
@@ -466,14 +533,6 @@
 			isa = PBXGroup;
 			children = (
 				2C925C792802F1630060C810 /* LoginViewController.swift */,
-				2CFCCF22286A4F670026BF41 /* PrivacyViewController */,
-				2C7B4D2A28032EBB000EE39D /* ProfileViewController */,
-				2C7B4D27280318E8000EE39D /* RegisterViewController */,
-				2C4AF0E728466CF600AA5100 /* SendDocumentsViewController */,
-				2C5FBB43280AF7E000F81155 /* EnterCodeViewController */,
-				2C4AF0EA2846708B00AA5100 /* ChangePasswordViewController */,
-				2C4AF0ED2846753200AA5100 /* DrowPasswordViewController */,
-				2C4AF0F02846784C00AA5100 /* DeleteAccountViewController */,
 			);
 			path = LoginViewController;
 			sourceTree = "<group>";
@@ -732,10 +791,13 @@
 				2C631E5427A337EE003753E1 /* UIView+Extension.swift in Sources */,
 				2C925C7A2802F1630060C810 /* LoginViewController.swift in Sources */,
 				2C9DF80227DB5B9600C176AC /* ContactsViewController.swift in Sources */,
+				2C49190F28A518BC00EB8FEC /* Logger.swift in Sources */,
 				2C8C981427FB695F003D9D68 /* ToastView.swift in Sources */,
+				2C49190C28A515A700EB8FEC /* AnalyticProtocol.swift in Sources */,
 				2C5FBB3F280AD37900F81155 /* UserRegister.swift in Sources */,
 				2CC9AF8027C188D40082D81C /* TextField.swift in Sources */,
 				2C4AF0EF2846755800AA5100 /* DropPasswordViewController.swift in Sources */,
+				2C49191428A51B3400EB8FEC /* AnalyticEvent.swift in Sources */,
 				2C631E5727A33990003753E1 /* CarModel.swift in Sources */,
 				2CC9AF8927C2C9E20082D81C /* StockCollectionViewCell.swift in Sources */,
 				2C7E1F9B2858CD2500E69B4D /* DropPassword.swift in Sources */,
@@ -743,9 +805,11 @@
 				2C7B4D2928031901000EE39D /* RegisterViewController.swift in Sources */,
 				2C9DF80427DB95C600C176AC /* RequestManager.swift in Sources */,
 				2C60AD0D28023A6700C5A1A0 /* ConditionTableViewCell.swift in Sources */,
+				2C49191828A5269600EB8FEC /* CommentEvent.swift in Sources */,
 				2C631E5227A33419003753E1 /* UICollectionView_UITableView+Extension.swift in Sources */,
 				2CF197EC27B4180800E82C6C /* ImageAndButtonTableViewCell.swift in Sources */,
 				2C6295BA27A48AB7003521D9 /* MainTabBarViewController.swift in Sources */,
+				2C49192028A90DDF00EB8FEC /* CarNameEvent.swift in Sources */,
 				2C549BD6281743E0008C8712 /* PermissionManager.swift in Sources */,
 				2C631E4C27A33213003753E1 /* BaseCollectionViewController.swift in Sources */,
 				2CFCCF24286A4F7F0026BF41 /* PrivacyViewController.swift in Sources */,
@@ -762,6 +826,7 @@
 				2C549BD828187161008C8712 /* PostImages.swift in Sources */,
 				2C60AD072802093B00C5A1A0 /* ConditionModel.swift in Sources */,
 				2CA351192847C37F003F2012 /* PayViewController.swift in Sources */,
+				2C49191628A51C1100EB8FEC /* EventDate.swift in Sources */,
 				2C631E4F27A333C3003753E1 /* BaseCollectionViewCell.swift in Sources */,
 				2CA3511B2847CA3D003F2012 /* ChangePassword.swift in Sources */,
 				2C5FBB49280AFFEB00F81155 /* AgainConfirmCode.swift in Sources */,
@@ -770,6 +835,7 @@
 				2CCCA7E7283D66B60084055A /* ProfileSelectTableViewCell.swift in Sources */,
 				2C6E4DD327B9377E00FBE7E8 /* CalendarViewController.swift in Sources */,
 				2C6295BF27A499B8003521D9 /* LegalCollectionViewCell.swift in Sources */,
+				2C49191228A518FB00EB8FEC /* EventName.swift in Sources */,
 				2C4AF0F22846788A00AA5100 /* DeleteAccountViewController.swift in Sources */,
 				2C60AD032801CCFD00C5A1A0 /* ImageScrollView.swift in Sources */,
 				2C9DF80627DB98B300C176AC /* RentalManager.swift in Sources */,
@@ -779,6 +845,7 @@
 				2CB57CD0281C54F0001C0B87 /* Logout.swift in Sources */,
 				2C5FBB47280AFE4B00F81155 /* UserConfirm.swift in Sources */,
 				2C7E1F972857563000E69B4D /* ApiValue.swift in Sources */,
+				2C49191A28A5284D00EB8FEC /* DateFormatters+Extension.swift in Sources */,
 				2C6295C127A49C54003521D9 /* UICollectionViewCell+Extension.swift in Sources */,
 				2C60AD052801F71000C5A1A0 /* String+Extension.swift in Sources */,
 				2CF197F427B5190100E82C6C /* OrderUnauthorizedViewController.swift in Sources */,
@@ -788,6 +855,7 @@
 				2C5FBB45280AF81000F81155 /* EnterCodeViewController.swift in Sources */,
 				2C6295B727A465E3003521D9 /* UIColor+Extension.swift in Sources */,
 				2C60ACFE28019EAE00C5A1A0 /* FullImageViewController.swift in Sources */,
+				2C49190928A5155800EB8FEC /* UserId.swift in Sources */,
 				2C7E1F95285755A400E69B4D /* NetworkAlamofire.swift in Sources */,
 				2C60AD0A2802399600C5A1A0 /* ConditionViewController.swift in Sources */,
 				2C9DF7DF27D9F45A00C176AC /* NetworkManager.swift in Sources */,

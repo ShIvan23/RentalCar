@@ -99,6 +99,7 @@ final class EnterCodeViewController: UIViewController, ToastViewShowable {
                     self?.delegate?.changeLayout()
                     self?.navigationController?.popViewController(animated: true)
                     self?.delegate?.didFinishRegistration()
+                    AnalyticEvent.userHasConfirnedCode.send()
                 }
             case .failure(_):
                 DispatchQueue.main.async {

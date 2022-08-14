@@ -85,6 +85,7 @@ final class DeleteAccountViewController: UIViewController, ToastViewShowable {
                 self?.showSuccessToast(with: "Аккаунт удален")
                 AppState.shared.removeTokens()
                 self?.navigationController?.popToRootViewController(animated: true)
+                AnalyticEvent.userHasDeletedAccount.send()
             case .failure(let error):
                 self?.showFailureToast(with: error.toString() ?? "")
             }

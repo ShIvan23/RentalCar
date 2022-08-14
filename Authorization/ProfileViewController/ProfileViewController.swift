@@ -53,6 +53,7 @@ final class ProfileViewController: UIViewController, ToastViewShowable {
                     self?.navigationController?.popViewController(animated: true)
                     AppState.shared.saveToUserDefaults(key: .userWasLogin, value: false)
                     AppState.shared.removeTokens()
+                    AnalyticEvent.userHasLogout.send()
                 }
             case .failure(_):
                 DispatchQueue.main.async {

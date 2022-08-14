@@ -83,6 +83,7 @@ final class SendDocumentsViewController: UIViewController, ToastViewShowable {
             switch result {
             case .success(_):
                 self?.showSuccessToast(with: "Фото отправлены")
+                AnalyticEvent.userHasSentDocuments.send()
             case .failure(let error):
                 self?.showErrorAlert(with: error.toString() ?? "")
             }

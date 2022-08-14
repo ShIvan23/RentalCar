@@ -252,6 +252,7 @@ final class BaseCollectionViewController: UIViewController {
         popoverTableView.preferredContentSize = CGSize(width: ScreenSize.width, height: CGFloat(carBrands.count * 40))
         popoverTableView.delegate = self
         present(popoverTableView, animated: true)
+        AnalyticEvent.searchCarTapped.send()
     }
     
     @objc private func loginButtonAction() {
@@ -271,6 +272,21 @@ final class BaseCollectionViewController: UIViewController {
     private func showProfileViewController() {
         let profileViewController = ProfileViewController()
         navigationController?.pushViewController(profileViewController, animated: true)
+    }
+    
+    private func sendAnalyticEvent(indexPathItem: Int) {
+        switch indexPathItem {
+        case 0:
+            AnalyticEvent.vipTapped.send()
+        case 1:
+            AnalyticEvent.businessTapped.send()
+        case 2:
+            AnalyticEvent.comfortTapped.send()
+        case 3:
+            AnalyticEvent.standartTapped.send()
+        default:
+            break
+        }
     }
 }
 
@@ -396,6 +412,7 @@ extension BaseCollectionViewController: UICollectionViewDelegateFlowLayout {
                 collectionViewController.model = model[indexPath.item].auto
                 collectionViewController.title = model[indexPath.item].name
                 navigationController?.pushViewController(collectionViewController, animated: true)
+                sendAnalyticEvent(indexPathItem: indexPath.item)
                 return
             } else {
                 guard let model = model as? [CarModel2] else { fatalError() }
@@ -405,6 +422,7 @@ extension BaseCollectionViewController: UICollectionViewDelegateFlowLayout {
                 let detailViewController = DetailCarViewController(carModel: currentCar, categoryPrice: categoryPrice!)
                 detailViewController.title = currentCar.name
                 navigationController?.pushViewController(detailViewController, animated: true)
+                AnalyticEvent.userTappedCar(car: currentCar.name ?? "").send()
                 return
             }
 
@@ -415,6 +433,7 @@ extension BaseCollectionViewController: UICollectionViewDelegateFlowLayout {
                 collectionViewController.model = model[indexPath.item].carClass
                 collectionViewController.title = model[indexPath.item].name
                 navigationController?.pushViewController(collectionViewController, animated: true)
+                indexPath.item == 0 ? AnalyticEvent.withNDSTapped.send() : AnalyticEvent.withoutNDSTapped.send()
                 return
             } else {
                 guard let model = model as? [CarClass2] else { fatalError() }
@@ -434,10 +453,12 @@ extension BaseCollectionViewController: UICollectionViewDelegateFlowLayout {
                 collectionViewController.model = model[indexPath.item].promos
                 collectionViewController.title = model[indexPath.item].name
                 navigationController?.pushViewController(collectionViewController, animated: true)
+                indexPath.item == 0 ? AnalyticEvent.permanentPromo.send() : AnalyticEvent.promoOfMonth.send()
                 return
             } else {
                 print("Открыть детальный экран с акцией?")
                 print("Вроде не будет детального экрана")
+                AnalyticEvent.tappedDetailPromo.send()
             }
             
             /// Если выбирается условие проката, то показывает детальный экран с условиями
@@ -446,6 +467,7 @@ extension BaseCollectionViewController: UICollectionViewDelegateFlowLayout {
             let conditionVC = ConditionViewController(model: model[indexPath.item].conditions)
             conditionVC.title = model[indexPath.item].title
             navigationController?.pushViewController(conditionVC, animated: true)
+            indexPath.item == 0 ? AnalyticEvent.personCondition.send() : AnalyticEvent.commercialCondition.send()
             return
         }
     }
