@@ -38,7 +38,7 @@ final class NetworkAlamofire: NetworkManager {
         }
     }
     
-    func postImages<T>(_ images: [Data], stringUrl: String, completion: @escaping (Result<T, AppError>) -> Void) where T : Decodable {
+    func postImages<T>(_ images: [Data], stringUrl: String, progress: @escaping ((Double) -> Void), completion: @escaping (Result<T, AppError>) -> Void) where T : Decodable {
         let header: HTTPHeaders = [
             "Content-Type" : "multipart/form-data",
             "Accept" : "*/*",
@@ -54,6 +54,9 @@ final class NetworkAlamofire: NetworkManager {
                   to: stringUrl,
                   method: .post,
                   headers: header)
+        .uploadProgress(closure: { prog in
+            progress(prog.fractionCompleted)
+        })
         .responseDecodable(of: APIValue<T>.self) { response in
             
             guard let code = response.response?.statusCode else { return }

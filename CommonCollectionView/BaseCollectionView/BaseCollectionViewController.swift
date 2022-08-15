@@ -488,6 +488,7 @@ extension BaseCollectionViewController: PopoverTableViewControllerDelegate {
 
 extension BaseCollectionViewController: LoginViewControllerDelegate {
     func userDidLogin() {
-        showProfileViewController()
+        // TODO: - Переход на этот экран происходит с задержкой. Можно успеть самому нажать, потом он откроется второй раз
+//        showProfileViewController()
     }
 }

@@ -18,6 +18,7 @@ protocol RentalManager {
     func postConfirmUser(user: UserConfirm, completion: @escaping (Result<UserConfirmResult, Error>) -> Void)
     func postAgainConfirmCode(user: AgainConfirmCode, completion: @escaping (Result<AgainConfirmCodeResult, Error>) -> Void)
     func login(user: Login, completion: @escaping (Result<LoginResultData, AppError>) -> Void)
+    func postImages(_ images: [Data], progress: @escaping ((Double) -> Void), completion: @escaping (Result<APIDataMock, AppError>) -> Void)
     func logout(completion: @escaping (Result<Logout, Error>) -> Void)
     func postChangePwassword(password: ChangePassword, completion: @escaping (Result<ChangePasswordResult, AppError>) -> Void)
     func postDropPassword(email: DropPassword, completion: @escaping (Result<DropPasswordResult, AppError>) -> Void)
@@ -66,9 +67,9 @@ final class RentalManagerImp: RentalManager {
         networkAlamofire.fetch(request: request, completion: completion)
     }
     
-    func postImages(_ images: [Data], completion: @escaping (Result<APIDataMock, AppError>) -> Void) {
+    func postImages(_ images: [Data], progress: @escaping ((Double) -> Void), completion: @escaping (Result<APIDataMock, AppError>) -> Void) {
         let stringUrl = requestManager.postDocuments()
-        networkAlamofire.postImages(images, stringUrl: stringUrl, completion: completion)
+        networkAlamofire.postImages(images, stringUrl: stringUrl, progress: progress, completion: completion)
     }
     
     func logout(completion: @escaping (Result<Logout, Error>) -> Void) {

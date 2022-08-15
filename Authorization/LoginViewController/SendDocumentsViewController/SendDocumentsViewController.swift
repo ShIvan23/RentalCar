@@ -16,7 +16,7 @@ final class SendDocumentsViewController: UIViewController, ToastViewShowable {
     
     private lazy var imagePicker = ImagePickerController()
     private lazy var permissionManager = PermissionManager()
-    private lazy var rentalManager = RentalManagerImp()
+    private lazy var rentalManager: RentalManager = RentalManagerImp()
     private var selectedPhotos = [UIImage]()
     
     private var selectedAssets = [PHAsset]() {
@@ -77,8 +77,11 @@ final class SendDocumentsViewController: UIViewController, ToastViewShowable {
     
     @objc private func sendPhotos() {
         let imageData = selectedPhotos.compactMap { $0.pngData() }
-        lockView()
-        rentalManager.postImages(imageData) { [weak self] result in
+        lockView(progress: true)
+        rentalManager.postImages(imageData) { [weak self] progress in
+            progressView.progress = Float(progress)
+            progressLabel.text = self?.makePercent(progress)
+        } completion: { [weak self] result in
             self?.unlock()
             switch result {
             case .success(_):
@@ -103,6 +106,13 @@ final class SendDocumentsViewController: UIViewController, ToastViewShowable {
                 self?.photosCollectionView.reloadData()
             }
         }
+    }
+    
+    private func makePercent(_ number: Double) -> String {
+        let textNumber = String(format: "%.2f", number)
+        guard let doubleNumber = Double(textNumber) else { return "" }
+        let intNumber = Int(doubleNumber * 100)
+        return "\(intNumber) %"
     }
     
     private func enableSendButton(_ isEnable: Bool) {
