@@ -65,6 +65,23 @@ final class MainTabBarViewController: UITabBarController {
         setConditionsModel()
     }
     
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        switch item.title {
+        case "Физ лица":
+            AnalyticEvent.personTapped.send()
+        case "Юр лица":
+            AnalyticEvent.commercialTapped.send()
+        case "Акции":
+            AnalyticEvent.promoTapped.send()
+        case "Условия":
+            AnalyticEvent.conditionTapped.send()
+        case "Контакты":
+            AnalyticEvent.contactTapped.send()
+        default:
+            break
+        }
+    }
+    
     private func fetchCars() {
         allCars.lockView()
         rentalManager.fetchCars { [weak self] result in

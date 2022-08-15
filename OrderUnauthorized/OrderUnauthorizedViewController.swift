@@ -288,6 +288,7 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
     @objc private func payButtonAction() {
         let payVC = PayViewController()
         navigationController?.pushViewController(payVC, animated: true)
+        AnalyticEvent.paymentButtonTapped.send()
     }
     
     private func allValidations() -> Bool {
@@ -406,6 +407,7 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
     
     private func sendOrder(_ order: Order) {
         lockView()
+        sendAnalytics()
         rentalManager.postOrder(order: order) { [weak self] result in
             switch result {
             case .success(_):
@@ -420,6 +422,12 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
                 }
             }
         }
+    }
+    
+    private func sendAnalytics() {
+        AnalyticEvent.sendOrderButton.send()
+        guard commentTextField.text! != "" else { return }
+        AnalyticEvent.orderComment(comment: commentTextField.text!).send()
     }
     
     private func updateCoast() {
