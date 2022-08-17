@@ -139,7 +139,7 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
         return label
     }()
     
-    private let driverSwitcher: UISwitch = {
+    private lazy var driverSwitcher: UISwitch = {
         let switcher = UISwitch()
         switcher.addTarget(self, action: #selector(driverSwitcherAction), for: .valueChanged)
         return switcher
@@ -171,7 +171,7 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
         let attributedText = NSAttributedString(string: "Отправить заказ", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)])
         button.setAttributedTitle(attributedText, for: .normal)
         button.tintColor = .white
-        button.addTarget(self, action: #selector(orderButtonAction), for: .touchUpInside)
+        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         return button
     }()
     
@@ -203,7 +203,7 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
         let attributedText = NSAttributedString(string: "Оплатить", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)])
         button.setAttributedTitle(attributedText, for: .normal)
         button.tintColor = .white
-        button.addTarget(self, action: #selector(payButtonAction), for: .touchUpInside)
+        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         return button
     }()
     
@@ -266,7 +266,7 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
         }
     }
     
-    @objc private func orderButtonAction() {
+    @objc private func buttonAction(button: UIButton) {
         guard allValidations() else { return }
         let order = Order(autoId: carModel.id ?? 0,
                           name: nameTextField.text ?? "",
@@ -277,17 +277,22 @@ final class OrderUnauthorizedViewController: UIViewController, ToastViewShowable
                           phone: telephoneTextField.text ?? "",
                           needDriver: isNeedDriver,
                           cost: currentCoast * selectedDaysCount)
-        sendOrder(order)
+        
+        switch button {
+        case orderButton:
+            sendOrder(order)
+        case payButton:
+            let webViewController = WebViewController(order: order)
+            webViewController.delegate = self
+            navigationController?.pushViewController(webViewController, animated: true)
+        default:
+            break
+        }
     }
     
     @objc private func registerButtonAction() {
         let loginViewController = LoginViewController()
         navigationController?.pushViewController(loginViewController, animated: true)
-    }
-    
-    @objc private func payButtonAction() {
-        let payVC = PayViewController()
-        navigationController?.pushViewController(payVC, animated: true)
     }
     
     private func allValidations() -> Bool {
@@ -814,5 +819,13 @@ extension OrderUnauthorizedViewController: UITextFieldDelegate {
             }
         }
         return true
+    }
+}
+
+// MARK: - WebViewDelegate
+
+extension OrderUnauthorizedViewController: WebViewDelegate {
+    func successPayment() {
+        showSuccessToast(with: "Машина оплачена")
     }
 }
