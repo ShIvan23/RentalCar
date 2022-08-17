@@ -154,11 +154,13 @@ final class ContactsViewController: UIViewController, ToastViewShowable {
             if UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
+            AnalyticEvent.goToWhatsApp.send()
         case writeTelegramButton:
             guard let url = URL(string: "https://t.me/\(number)") else { return }
             if UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
+            AnalyticEvent.goToTelegramm.send()
         default:
             break
         }
@@ -170,10 +172,12 @@ final class ContactsViewController: UIViewController, ToastViewShowable {
             UIPasteboard.general.string = "Москва, Волгоградский проспект, д. 32, корпус 1"
             animate(copyButton: copyAddressButton)
             showSuccessToast(with: "Адрес скопирован")
+            AnalyticEvent.adressCopied.send()
         case copyEmailButton:
             UIPasteboard.general.string = emailLabel.text
             animate(copyButton: copyEmailButton)
             showSuccessToast(with: "Почта скопирована")
+            AnalyticEvent.emailCopied.send()
         default:
             break
         }

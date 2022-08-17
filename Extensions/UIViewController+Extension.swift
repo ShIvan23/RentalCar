@@ -25,6 +25,7 @@ extension UIViewController {
         guard let url = URL(string: "tel://\(number)") else { return }
         if UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            AnalyticEvent.callButtonTapped.send()
         }
     }
     
@@ -38,18 +39,40 @@ extension UIViewController {
 
 let blackView = UIView(frame: CGRect(x: 0, y: 0, width: ScreenSize.width, height: ScreenSize.height))
 let activityIndicator = UIActivityIndicatorView(style: .medium)
+let progressView = UIProgressView(progressViewStyle: .default)
+let progressLabel = UILabel(frame: CGRect(x: 0, y: 0, width: ScreenSize.width, height: 40))
 
 extension UIViewController {
-    func lockView() {
+    func lockView(progress: Bool = false) {
         view.addSubview(blackView)
         view.addSubview(activityIndicator)
+        if progress {
+            view.addSubview(progressLabel)
+            view.addSubview(progressView)
+            progressLabel.center = CGPoint(x: view.center.x, y: view.center.y + 30)
+            progressView.center = CGPoint(x: view.center.x, y: view.center.y + 50)
+        }
         blackView.backgroundColor = .black
         blackView.alpha = 0.0
+        
+        progressView.alpha = 0.0
+        progressView.progressTintColor = UIColor(hexString: "#4ec378")
+        
+        progressLabel.font = .systemFont(ofSize: 20)
+        progressLabel.textColor = .white
+        progressLabel.alpha = 0.0
+        progressLabel.textAlignment = .center
+        
         activityIndicator.center = view.center
         activityIndicator.color = .white
+        
         UIView.animate(withDuration: 0.25) {
             blackView.alpha = 0.75
             activityIndicator.startAnimating()
+            if progress {
+                progressView.alpha = 1.0
+                progressLabel.alpha = 1.0
+            }
         }
     }
     
@@ -57,9 +80,13 @@ extension UIViewController {
         UIView.animate(withDuration: 0.25) {
             blackView.alpha = 0.0
             activityIndicator.stopAnimating()
+            progressView.alpha = 0.0
+            progressLabel.alpha = 0.0
         } completion: { _ in
             blackView.removeFromSuperview()
             activityIndicator.removeFromSuperview()
+            progressView.removeFromSuperview()
+            progressLabel.removeFromSuperview()
         }
     }
 }

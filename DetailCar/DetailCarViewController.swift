@@ -138,6 +138,7 @@ extension DetailCarViewController: ImageAndButtonTableViewCellDelegate {
     func orderButtonTapped() {
         let orderUnauthorizesVC = OrderUnauthorizedViewController(carModel: carModel, categoryPrice: categoryPrice, currentPrice: currentPrice)
         navigationController?.pushViewController(orderUnauthorizesVC, animated: true)
+        AnalyticEvent.orderButtonTapped.send()
     }
 }
 

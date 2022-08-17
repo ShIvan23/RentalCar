@@ -149,6 +149,7 @@ final class RegisterViewController: UIViewController, ToastViewShowable {
                     AppState.shared.userEmail = user.email
                     self?.navigationController?.popViewController(animated: true)
                     self?.delegate?.completeRegister()
+                    AnalyticEvent.userHasRegistered.send()
                 }
             case .failure(_):
                 DispatchQueue.main.async {
