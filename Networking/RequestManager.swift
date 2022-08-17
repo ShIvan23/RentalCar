@@ -21,15 +21,18 @@ protocol RequestManager {
     func postDropPasswoed(body: DropPassword) -> URLRequest?
     func getUserProfile() -> URLRequest?
     func userDelete() -> URLRequest?
+    func payment(order: Order) -> URLRequest?
 }
 
 final class RequestManagerImp: RequestManager {
     
     /// Старая API
-//    private let baseUrlString = "https://api-prokat.tmweb.ru/"
+    //    private let baseUrlString = "https://api-prokat.tmweb.ru/"
     
     private let baseUrlString = "https://apiprokat.ru/"
     private lazy var encoder = JSONEncoder()
+    
+    private let paymentUrl = "https://prokatavto.server.paykeeper.ru/create/"
     
     private enum UrlStrings {
         static let auto = "auto"
@@ -46,7 +49,7 @@ final class RequestManagerImp: RequestManager {
         static let userProfile = "user/profile"
         static let userDelete = "user/delete"
     }
-
+    
     private lazy var defaultHeader = [
         "Content-Type" : "application/json",
         "Accept" : "*/*"
@@ -74,7 +77,8 @@ final class RequestManagerImp: RequestManager {
         request.httpMethod = "POST"
         request.allHTTPHeaderFields = defaultHeader
         guard let data = try? encoder.encode(body) else {
-            fatalError("НЕ получилось закодировать структуру")
+            assertionFailure()
+            return nil
         }
         request.httpBody = data
         return request
@@ -91,7 +95,8 @@ final class RequestManagerImp: RequestManager {
         request.httpMethod = "POST"
         request.allHTTPHeaderFields = defaultHeader
         guard let data = try? encoder.encode(body) else {
-            fatalError("НЕ получилось закодировать структуру")
+            assertionFailure()
+            return nil
         }
         request.httpBody = data
         return request
@@ -103,7 +108,8 @@ final class RequestManagerImp: RequestManager {
         request.httpMethod = "POST"
         request.allHTTPHeaderFields = defaultHeader
         guard let data = try? encoder.encode(body) else {
-            fatalError("НЕ получилось закодировать структуру")
+            assertionFailure()
+            return nil
         }
         request.httpBody = data
         return request
@@ -115,7 +121,8 @@ final class RequestManagerImp: RequestManager {
         request.httpMethod = "POST"
         request.allHTTPHeaderFields = defaultHeader
         guard let data = try? encoder.encode(body) else {
-            fatalError("НЕ получилось закодировать структуру")
+            assertionFailure()
+            return nil
         }
         request.httpBody = data
         return request
@@ -127,7 +134,8 @@ final class RequestManagerImp: RequestManager {
         request.httpMethod = "POST"
         request.allHTTPHeaderFields = defaultHeader
         guard let data = try? encoder.encode(body) else {
-            fatalError("НЕ получилось закодировать структуру")
+            assertionFailure()
+            return nil
         }
         request.httpBody = data
         return request
@@ -151,7 +159,8 @@ final class RequestManagerImp: RequestManager {
         request.httpMethod = "POST"
         request.allHTTPHeaderFields = changePasswordHeader
         guard let data = try? encoder.encode(body) else {
-            fatalError("НЕ получилось закодировать структуру")
+            assertionFailure()
+            return nil
         }
         request.httpBody = data
         return request
@@ -163,7 +172,8 @@ final class RequestManagerImp: RequestManager {
         request.httpMethod = "POST"
         request.allHTTPHeaderFields = changePasswordHeader
         guard let data = try? encoder.encode(body) else {
-            fatalError("НЕ получилось закодировать структуру")
+            assertionFailure()
+            return nil
         }
         request.httpBody = data
         return request
@@ -180,6 +190,21 @@ final class RequestManagerImp: RequestManager {
         guard let url = URL(string: baseUrlString + UrlStrings.userDelete) else { return nil }
         var request = URLRequest(url: url)
         request.allHTTPHeaderFields = logoutHeader
+        return request
+    }
+    
+    func payment(order: Order) -> URLRequest? {
+        let boundary = "Boundary-\(UUID().uuidString)"
+        let body = "--\(boundary)\nContent-Disposition:form-data; name=\"sum\"\n\(order.cost)"
+        let postData = body.data(using: .utf8)
+        let header = [
+            "Content-Type" : "multipart/form-data; boundary=\(boundary)"
+        ]
+        guard let url = URL(string: paymentUrl) else { return nil }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.allHTTPHeaderFields = header
+        request.httpBody = postData
         return request
     }
 }

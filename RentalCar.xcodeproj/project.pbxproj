@@ -71,8 +71,8 @@
 		2C9DF80427DB95C600C176AC /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9DF80327DB95C600C176AC /* RequestManager.swift */; };
 		2C9DF80627DB98B300C176AC /* RentalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9DF80527DB98B300C176AC /* RentalManager.swift */; };
 		2C9DF85227DCD5F000C176AC /* CallUsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9DF85127DCD5F000C176AC /* CallUsTableViewCell.swift */; };
-		2CA351192847C37F003F2012 /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA351182847C37F003F2012 /* PayViewController.swift */; };
 		2CA3511B2847CA3D003F2012 /* ChangePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA3511A2847CA3D003F2012 /* ChangePassword.swift */; };
+		2CB154C9289ABA8F00A36C06 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB154C8289ABA8F00A36C06 /* WebViewController.swift */; };
 		2CB57CD0281C54F0001C0B87 /* Logout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB57CCF281C54F0001C0B87 /* Logout.swift */; };
 		2CC9AF8027C188D40082D81C /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC9AF7F27C188D40082D81C /* TextField.swift */; };
 		2CC9AF8427C2BE690082D81C /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC9AF8327C2BE690082D81C /* UIViewController+Extension.swift */; };
@@ -156,8 +156,8 @@
 		2C9DF80327DB95C600C176AC /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		2C9DF80527DB98B300C176AC /* RentalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentalManager.swift; sourceTree = "<group>"; };
 		2C9DF85127DCD5F000C176AC /* CallUsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallUsTableViewCell.swift; sourceTree = "<group>"; };
-		2CA351182847C37F003F2012 /* PayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
 		2CA3511A2847CA3D003F2012 /* ChangePassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePassword.swift; sourceTree = "<group>"; };
+		2CB154C8289ABA8F00A36C06 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		2CB57CCF281C54F0001C0B87 /* Logout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logout.swift; sourceTree = "<group>"; };
 		2CC9AF7F27C188D40082D81C /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextField.swift; path = ../../../Documents/TextField.swift; sourceTree = "<group>"; };
 		2CC9AF8327C2BE690082D81C /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -564,12 +564,12 @@
 			path = CallUsCell;
 			sourceTree = "<group>";
 		};
-		2CA351172847C352003F2012 /* PayViewController */ = {
+		2CA351172847C352003F2012 /* WebViewController */ = {
 			isa = PBXGroup;
 			children = (
-				2CA351182847C37F003F2012 /* PayViewController.swift */,
+				2CB154C8289ABA8F00A36C06 /* WebViewController.swift */,
 			);
-			path = PayViewController;
+			path = WebViewController;
 			sourceTree = "<group>";
 		};
 		2CC9AF7E27C1889C0082D81C /* CustomViews */ = {
@@ -632,7 +632,7 @@
 				2CF197F327B5190100E82C6C /* OrderUnauthorizedViewController.swift */,
 				2C6E4DCB27B91EE700FBE7E8 /* PopoverLocation */,
 				2C6E4DD127B9375400FBE7E8 /* Calendar */,
-				2CA351172847C352003F2012 /* PayViewController */,
+				2CA351172847C352003F2012 /* WebViewController */,
 			);
 			path = OrderUnauthorized;
 			sourceTree = "<group>";
@@ -825,10 +825,10 @@
 				2C6E4DD027B9349500FBE7E8 /* ScreenSize.swift in Sources */,
 				2C549BD828187161008C8712 /* PostImages.swift in Sources */,
 				2C60AD072802093B00C5A1A0 /* ConditionModel.swift in Sources */,
-				2CA351192847C37F003F2012 /* PayViewController.swift in Sources */,
 				2C49191628A51C1100EB8FEC /* EventDate.swift in Sources */,
 				2C631E4F27A333C3003753E1 /* BaseCollectionViewCell.swift in Sources */,
 				2CA3511B2847CA3D003F2012 /* ChangePassword.swift in Sources */,
+				2CB154C9289ABA8F00A36C06 /* WebViewController.swift in Sources */,
 				2C5FBB49280AFFEB00F81155 /* AgainConfirmCode.swift in Sources */,
 				2CC9AF8427C2BE690082D81C /* UIViewController+Extension.swift in Sources */,
 				2C7E1F9D2858D9A700E69B4D /* UserProfile.swift in Sources */,
