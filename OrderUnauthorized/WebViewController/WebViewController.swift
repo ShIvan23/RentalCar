@@ -28,7 +28,6 @@ final class WebViewController: UIViewController {
         webConfiguration.websiteDataStore = WKWebsiteDataStore.nonPersistent()
         
         let webView = WKWebView(frame: .zero, configuration: webConfiguration)
-//        webView.uiDelegate = self
         webView.navigationDelegate = self
         return webView
     }()
@@ -75,7 +74,6 @@ extension WebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
         if let absoluteString = navigationResponse.response.url?.absoluteString {
             if absoluteString.contains("success") {
-                print("absoluteString = \(absoluteString)")
                 navigationController?.popViewController(animated: true)
                 rentalManager.postOrder(order: order) { _ in }
                 delegate?.successPayment()
