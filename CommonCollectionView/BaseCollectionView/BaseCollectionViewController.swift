@@ -456,8 +456,6 @@ extension BaseCollectionViewController: UICollectionViewDelegateFlowLayout {
                 indexPath.item == 0 ? AnalyticEvent.permanentPromo.send() : AnalyticEvent.promoOfMonth.send()
                 return
             } else {
-                print("Открыть детальный экран с акцией?")
-                print("Вроде не будет детального экрана")
                 AnalyticEvent.tappedDetailPromo.send()
             }
             

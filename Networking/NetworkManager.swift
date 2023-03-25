@@ -62,7 +62,7 @@ final class NetworkManagerImp: NetworkManager {
             case 200:
                 completion(data, HTTPResponse, nil)
             case 422:
-                print("error = \(error)")
+                debugPrint("error = \(error)")
                 completion(data, HTTPResponse, error)
             default:
                 completion(data, HTTPResponse, error)
@@ -83,15 +83,15 @@ final class NetworkManagerImp: NetworkManager {
         }
         
         catch DecodingError.dataCorrupted(let context) {
-            print(DecodingError.dataCorrupted(context))
+            debugPrint(DecodingError.dataCorrupted(context))
         } catch DecodingError.keyNotFound(let key, let context) {
-            print(DecodingError.keyNotFound(key,context))
+            debugPrint(DecodingError.keyNotFound(key,context))
         } catch DecodingError.typeMismatch(let type, let context) {
-            print(DecodingError.typeMismatch(type,context))
+            debugPrint(DecodingError.typeMismatch(type,context))
         } catch DecodingError.valueNotFound(let value, let context) {
-            print(DecodingError.valueNotFound(value,context))
+            debugPrint(DecodingError.valueNotFound(value,context))
         } catch let error{
-            print(error)
+            debugPrint(error)
         }
         return nil
     }

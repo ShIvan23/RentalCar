@@ -29,8 +29,8 @@ final class NetworkAlamofire: NetworkManager {
             default:
                 // TODO: - Убрать из продакшена
                 #if DEBUG
-                print("Ошибка отличная от 422. Надо обработать")
-                print("code = \(code)")
+                debugPrint("Ошибка отличная от 422. Надо обработать")
+                debugPrint("code = \(code)")
                 assertionFailure()
                 #endif
                  break
@@ -74,7 +74,7 @@ final class NetworkAlamofire: NetworkManager {
             default:
                 // TODO: - Убрать из продакшена
 #if DEBUG
-                print("Ошибка отличная от 422 и 500. Надо обработать")
+                debugPrint("Ошибка отличная от 422 и 500. Надо обработать")
                 assertionFailure()
 #endif
                 break
