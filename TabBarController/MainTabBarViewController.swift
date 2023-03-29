@@ -12,9 +12,11 @@ final class MainTabBarViewController: UITabBarController {
     private enum FetchError {
         case cars
         case promo
+        case city
     }
     
     private let rentalManager: RentalManager = RentalManagerImp()
+    private let builder: IBuilder = Builder()
     private var model: [CarClass2]? {
         didSet {
             setModelIntoControllers()
@@ -27,13 +29,17 @@ final class MainTabBarViewController: UITabBarController {
         }
     }
     
+    private lazy var allCars2 = builder.buildCarCategoryCollection()
+    
+    private lazy var cityViewController = builder.buildCityCollection()
+    
     /// Физ лица
-    private lazy var allCars = BaseCollectionViewController(
-        collectionStyle: .personal,
-        categoryPrice: .personPrice,
-        isChoose: true,
-        isNeedSearchBar: true
-    )
+//    private lazy var allCars = BaseCollectionViewController(
+//        collectionStyle: .personal,
+//        categoryPrice: .personPrice,
+//        isChoose: true,
+//        isNeedSearchBar: true
+//    )
     
     /// Юр лица
     private lazy var legalEntity = BaseCollectionViewController(
@@ -60,6 +66,7 @@ final class MainTabBarViewController: UITabBarController {
         super.viewDidLoad()
         setupTabBar()
         setControllers()
+        fetchCities()
         fetchCars()
         fetchPromos()
         setConditionsModel()
@@ -83,14 +90,20 @@ final class MainTabBarViewController: UITabBarController {
     }
     
     private func fetchCars() {
-        allCars.lockView()
+//        allCars.lockView()
+//        allCars2.lockView()
         rentalManager.fetchCars { [weak self] result in
-            DispatchQueue.main.async {
-                self?.allCars.unlock()
-            }
+//            DispatchQueue.main.async {
+////                self?.allCars.unlock()
+//                self?.allCars2.unlock()
+//                print("+++ unlock")
+//            }
             switch result {
             case .success(let model):
                 self?.model = model
+//                self?.allCars2.dataSource.setupModel(model)
+//                print("+++ Достал модель model = \(model)")
+                self?.allCars2.reloadData(with: model)
             case .failure(let error):
                 DispatchQueue.main.async {
                     self?.showAlert(error: .cars, message: error.toString() ?? "")
@@ -112,8 +125,25 @@ final class MainTabBarViewController: UITabBarController {
         }
     }
     
+    private func fetchCities() {
+        cityViewController.lockView()
+        rentalManager.fetchCities { [weak self] result in
+            DispatchQueue.main.async {
+                self?.cityViewController.unlock()
+            }
+            switch result {
+            case .success(let model):
+                self?.cityViewController.reloadData(with: model)
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self?.showAlert(error: .city, message: error.toString() ?? "")
+                }
+            }
+        }
+    }
+    
     private func setModelIntoControllers() {
-        allCars.model = model
+//        allCars.model = model
         
         legalEntity.model = CommercialModel.makeCommercialModel(cars: model)
     }
@@ -134,6 +164,8 @@ final class MainTabBarViewController: UITabBarController {
                 self?.fetchCars()
             case .promo:
                 self?.fetchPromos()
+            case .city:
+                self?.fetchCities()
             }
         }
         alert.addAction(okAction)
@@ -149,7 +181,8 @@ final class MainTabBarViewController: UITabBarController {
     
     private func setControllers() {
         viewControllers = [
-            createNavController(for: allCars, title: "Физ лица", image: UIImage(named: "car2")!),
+//            createNavController(for: allCars, title: "Физ лица", image: UIImage(named: "car2")!),
+            createNavController(for: cityViewController, title: "Физ лица", image: UIImage(named: "car2")!),
             createNavController(for: legalEntity, title: "Юр лица", image:  UIImage(named: "car2")!),
             createNavController(for: promoVC, title: "Акции", image: UIImage(named: "stock")!),
             createNavController(for: rentalConditionsVC, title: "Условия", image: UIImage(named: "accept")!),

@@ -235,7 +235,7 @@ final class LoginViewController: UIViewController, ToastViewShowable {
             case .success(let model):
                 AppState.shared.saveToUserDefaults(key: .userWasConfirmed, value: model.isDocumentConfirm)
             case .failure(let error):
-                debugPrint("error.toString() = \(error.toString())")
+                debugPrint("error.toString() = \(error.toString() ?? "")")
             }
         }
     }

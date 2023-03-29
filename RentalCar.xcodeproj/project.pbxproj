@@ -23,6 +23,10 @@
 		2C4AF0EC284670AE00AA5100 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4AF0EB284670AE00AA5100 /* ChangePasswordViewController.swift */; };
 		2C4AF0EF2846755800AA5100 /* DropPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4AF0EE2846755800AA5100 /* DropPasswordViewController.swift */; };
 		2C4AF0F22846788A00AA5100 /* DeleteAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4AF0F12846788A00AA5100 /* DeleteAccountViewController.swift */; };
+		2C4B088429D35AC100A7A60D /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4B088329D35AC100A7A60D /* City.swift */; };
+		2C4B088629D35EC800A7A60D /* CityDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4B088529D35EC800A7A60D /* CityDataSource.swift */; };
+		2C4B088829D35FAE00A7A60D /* CityDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4B088729D35FAE00A7A60D /* CityDelegate.swift */; };
+		2C4B088B29D36E0400A7A60D /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4B088A29D36E0400A7A60D /* Coordinator.swift */; };
 		2C549BD428174225008C8712 /* PermissionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C549BD328174225008C8712 /* PermissionStatus.swift */; };
 		2C549BD6281743E0008C8712 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C549BD5281743E0008C8712 /* PermissionManager.swift */; };
 		2C549BD828187161008C8712 /* PostImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C549BD728187161008C8712 /* PostImages.swift */; };
@@ -42,7 +46,7 @@
 		2C60AD0F28023CFB00C5A1A0 /* ConditionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AD0E28023CFB00C5A1A0 /* ConditionHeaderView.swift */; };
 		2C6295B727A465E3003521D9 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6295B627A465E3003521D9 /* UIColor+Extension.swift */; };
 		2C6295BA27A48AB7003521D9 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6295B927A48AB7003521D9 /* MainTabBarViewController.swift */; };
-		2C6295BF27A499B8003521D9 /* LegalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6295BE27A499B8003521D9 /* LegalCollectionViewCell.swift */; };
+		2C6295BF27A499B8003521D9 /* ChooseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6295BE27A499B8003521D9 /* ChooseCollectionViewCell.swift */; };
 		2C6295C127A49C54003521D9 /* UICollectionViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6295C027A49C54003521D9 /* UICollectionViewCell+Extension.swift */; };
 		2C6295C327ABBADC003521D9 /* CategoryPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6295C227ABBADC003521D9 /* CategoryPrice.swift */; };
 		2C631E4C27A33213003753E1 /* BaseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C631E4B27A33213003753E1 /* BaseCollectionViewController.swift */; };
@@ -61,6 +65,18 @@
 		2C7E1F99285757E200E69B4D /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7E1F98285757E200E69B4D /* AppError.swift */; };
 		2C7E1F9B2858CD2500E69B4D /* DropPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7E1F9A2858CD2500E69B4D /* DropPassword.swift */; };
 		2C7E1F9D2858D9A700E69B4D /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7E1F9C2858D9A700E69B4D /* UserProfile.swift */; };
+		2C868EF129CF0E160055729A /* BaseCollectionViewControllerV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C868EF029CF0E160055729A /* BaseCollectionViewControllerV2.swift */; };
+		2C868EF429CF0FF00055729A /* BaseDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C868EF329CF0FF00055729A /* BaseDataSource.swift */; };
+		2C868EF629CF1E2E0055729A /* BaseFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C868EF529CF1E2E0055729A /* BaseFlowLayout.swift */; };
+		2C868EFB29CF22BD0055729A /* VerticalFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C868EFA29CF22BD0055729A /* VerticalFlowLayout.swift */; };
+		2C868EFD29CF235C0055729A /* VerticalFlowLayoutForTwoItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C868EFC29CF235C0055729A /* VerticalFlowLayoutForTwoItems.swift */; };
+		2C868F0029CF240F0055729A /* HorizontalFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C868EFF29CF240F0055729A /* HorizontalFlowLayout.swift */; };
+		2C868F0429CF26B20055729A /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C868F0329CF26B20055729A /* CollectionViewController.swift */; };
+		2C868F0729CF2CA60055729A /* CollectionAndSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C868F0629CF2CA60055729A /* CollectionAndSearchViewController.swift */; };
+		2C868F0929CF2ED00055729A /* CGFloat+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C868F0829CF2ED00055729A /* CGFloat+Extension.swift */; };
+		2C868F0C29CF329A0055729A /* CarCategoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C868F0B29CF329A0055729A /* CarCategoryDataSource.swift */; };
+		2C868F0F29D06CEA0055729A /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C868F0E29D06CEA0055729A /* Builder.swift */; };
+		2C868F1229D071810055729A /* CarCategoryDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C868F1129D071810055729A /* CarCategoryDelegate.swift */; };
 		2C8C980D27FA2A83003D9D68 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C980C27FA2A83003D9D68 /* OrderModel.swift */; };
 		2C8C981427FB695F003D9D68 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C981327FB695F003D9D68 /* ToastView.swift */; };
 		2C8C981627FB6DCE003D9D68 /* ToastViewShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C981527FB6DCE003D9D68 /* ToastViewShowable.swift */; };
@@ -108,6 +124,10 @@
 		2C4AF0EB284670AE00AA5100 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		2C4AF0EE2846755800AA5100 /* DropPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropPasswordViewController.swift; sourceTree = "<group>"; };
 		2C4AF0F12846788A00AA5100 /* DeleteAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountViewController.swift; sourceTree = "<group>"; };
+		2C4B088329D35AC100A7A60D /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		2C4B088529D35EC800A7A60D /* CityDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDataSource.swift; sourceTree = "<group>"; };
+		2C4B088729D35FAE00A7A60D /* CityDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDelegate.swift; sourceTree = "<group>"; };
+		2C4B088A29D36E0400A7A60D /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		2C549BD328174225008C8712 /* PermissionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionStatus.swift; sourceTree = "<group>"; };
 		2C549BD5281743E0008C8712 /* PermissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
 		2C549BD728187161008C8712 /* PostImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImages.swift; sourceTree = "<group>"; };
@@ -127,7 +147,7 @@
 		2C60AD0E28023CFB00C5A1A0 /* ConditionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionHeaderView.swift; sourceTree = "<group>"; };
 		2C6295B627A465E3003521D9 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		2C6295B927A48AB7003521D9 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
-		2C6295BE27A499B8003521D9 /* LegalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalCollectionViewCell.swift; sourceTree = "<group>"; };
+		2C6295BE27A499B8003521D9 /* ChooseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCollectionViewCell.swift; sourceTree = "<group>"; };
 		2C6295C027A49C54003521D9 /* UICollectionViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+Extension.swift"; sourceTree = "<group>"; };
 		2C6295C227ABBADC003521D9 /* CategoryPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPrice.swift; sourceTree = "<group>"; };
 		2C631E4B27A33213003753E1 /* BaseCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewController.swift; sourceTree = "<group>"; };
@@ -146,6 +166,18 @@
 		2C7E1F98285757E200E69B4D /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		2C7E1F9A2858CD2500E69B4D /* DropPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropPassword.swift; sourceTree = "<group>"; };
 		2C7E1F9C2858D9A700E69B4D /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		2C868EF029CF0E160055729A /* BaseCollectionViewControllerV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewControllerV2.swift; sourceTree = "<group>"; };
+		2C868EF329CF0FF00055729A /* BaseDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDataSource.swift; sourceTree = "<group>"; };
+		2C868EF529CF1E2E0055729A /* BaseFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFlowLayout.swift; sourceTree = "<group>"; };
+		2C868EFA29CF22BD0055729A /* VerticalFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalFlowLayout.swift; sourceTree = "<group>"; };
+		2C868EFC29CF235C0055729A /* VerticalFlowLayoutForTwoItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalFlowLayoutForTwoItems.swift; sourceTree = "<group>"; };
+		2C868EFF29CF240F0055729A /* HorizontalFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalFlowLayout.swift; sourceTree = "<group>"; };
+		2C868F0329CF26B20055729A /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		2C868F0629CF2CA60055729A /* CollectionAndSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionAndSearchViewController.swift; sourceTree = "<group>"; };
+		2C868F0829CF2ED00055729A /* CGFloat+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extension.swift"; sourceTree = "<group>"; };
+		2C868F0B29CF329A0055729A /* CarCategoryDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCategoryDataSource.swift; sourceTree = "<group>"; };
+		2C868F0E29D06CEA0055729A /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
+		2C868F1129D071810055729A /* CarCategoryDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCategoryDelegate.swift; sourceTree = "<group>"; };
 		2C8C980C27FA2A83003D9D68 /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
 		2C8C981327FB695F003D9D68 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		2C8C981527FB6DCE003D9D68 /* ToastViewShowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastViewShowable.swift; sourceTree = "<group>"; };
@@ -199,6 +231,8 @@
 		2C1DDAB027A08574000B82C6 = {
 			isa = PBXGroup;
 			children = (
+				2C4B088929D36DE800A7A60D /* Coordinator */,
+				2C868F0D29D06CC50055729A /* Builder */,
 				2C925C772802F1170060C810 /* Authorization */,
 				2C6295B827A48A73003521D9 /* TabBarController */,
 				2C631E4927A33190003753E1 /* CommonCollectionView */,
@@ -321,6 +355,14 @@
 			path = DeleteAccountViewController;
 			sourceTree = "<group>";
 		};
+		2C4B088929D36DE800A7A60D /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				2C4B088A29D36E0400A7A60D /* Coordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 		2C549BD228174205008C8712 /* Permissions */ = {
 			isa = PBXGroup;
 			children = (
@@ -392,7 +434,7 @@
 		2C6295BD27A4999F003521D9 /* LegalCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				2C6295BE27A499B8003521D9 /* LegalCollectionViewCell.swift */,
+				2C6295BE27A499B8003521D9 /* ChooseCollectionViewCell.swift */,
 			);
 			path = LegalCollectionViewCell;
 			sourceTree = "<group>";
@@ -408,6 +450,7 @@
 		2C631E4A27A3319A003753E1 /* BaseCollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				2C868EF229CF0FA40055729A /* V2 */,
 				2C631E4B27A33213003753E1 /* BaseCollectionViewController.swift */,
 				2CC9AF8727C2C9BC0082D81C /* StockCollectionViewCell */,
 				2C631E4D27A333A3003753E1 /* BaseCollectionViewCell */,
@@ -435,6 +478,7 @@
 				2CC9AF8327C2BE690082D81C /* UIViewController+Extension.swift */,
 				2C60AD042801F71000C5A1A0 /* String+Extension.swift */,
 				2C49191928A5284D00EB8FEC /* DateFormatters+Extension.swift */,
+				2C868F0829CF2ED00055729A /* CGFloat+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -459,6 +503,7 @@
 				2C7E1F9A2858CD2500E69B4D /* DropPassword.swift */,
 				2C7E1F9C2858D9A700E69B4D /* UserProfile.swift */,
 				2C72112F286F0C9A00FD5631 /* UserDelete.swift */,
+				2C4B088329D35AC100A7A60D /* City.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -502,6 +547,81 @@
 				2CCCA7E5283D63220084055A /* Cells */,
 			);
 			path = ProfileViewController;
+			sourceTree = "<group>";
+		};
+		2C868EF229CF0FA40055729A /* V2 */ = {
+			isa = PBXGroup;
+			children = (
+				2C868F1029D0716A0055729A /* Delegates */,
+				2C868F0A29CF32840055729A /* DataSources */,
+				2C868F0229CF269E0055729A /* Collections */,
+				2C868F0129CF25950055729A /* Base */,
+				2C868EFE29CF23F70055729A /* HorizontalFlowLayout */,
+				2C868EF929CF229B0055729A /* VerticalFlowLayouts */,
+			);
+			path = V2;
+			sourceTree = "<group>";
+		};
+		2C868EF929CF229B0055729A /* VerticalFlowLayouts */ = {
+			isa = PBXGroup;
+			children = (
+				2C868EFA29CF22BD0055729A /* VerticalFlowLayout.swift */,
+				2C868EFC29CF235C0055729A /* VerticalFlowLayoutForTwoItems.swift */,
+			);
+			path = VerticalFlowLayouts;
+			sourceTree = "<group>";
+		};
+		2C868EFE29CF23F70055729A /* HorizontalFlowLayout */ = {
+			isa = PBXGroup;
+			children = (
+				2C868EFF29CF240F0055729A /* HorizontalFlowLayout.swift */,
+			);
+			path = HorizontalFlowLayout;
+			sourceTree = "<group>";
+		};
+		2C868F0129CF25950055729A /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				2C868EF029CF0E160055729A /* BaseCollectionViewControllerV2.swift */,
+				2C868EF329CF0FF00055729A /* BaseDataSource.swift */,
+				2C868EF529CF1E2E0055729A /* BaseFlowLayout.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		2C868F0229CF269E0055729A /* Collections */ = {
+			isa = PBXGroup;
+			children = (
+				2C868F0329CF26B20055729A /* CollectionViewController.swift */,
+				2C868F0629CF2CA60055729A /* CollectionAndSearchViewController.swift */,
+			);
+			path = Collections;
+			sourceTree = "<group>";
+		};
+		2C868F0A29CF32840055729A /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				2C868F0B29CF329A0055729A /* CarCategoryDataSource.swift */,
+				2C4B088529D35EC800A7A60D /* CityDataSource.swift */,
+			);
+			path = DataSources;
+			sourceTree = "<group>";
+		};
+		2C868F0D29D06CC50055729A /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				2C868F0E29D06CEA0055729A /* Builder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
+		2C868F1029D0716A0055729A /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				2C868F1129D071810055729A /* CarCategoryDelegate.swift */,
+				2C4B088729D35FAE00A7A60D /* CityDelegate.swift */,
+			);
+			path = Delegates;
 			sourceTree = "<group>";
 		};
 		2C8C981227FB6891003D9D68 /* ToastToast */ = {
@@ -787,18 +907,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C5FBB4B280C893C00F81155 /* Login.swift in Sources */,
+				2C868EF629CF1E2E0055729A /* BaseFlowLayout.swift in Sources */,
 				2C8C981827FB7DF4003D9D68 /* PromoModel.swift in Sources */,
 				2C631E5427A337EE003753E1 /* UIView+Extension.swift in Sources */,
+				2C868EF129CF0E160055729A /* BaseCollectionViewControllerV2.swift in Sources */,
 				2C925C7A2802F1630060C810 /* LoginViewController.swift in Sources */,
 				2C9DF80227DB5B9600C176AC /* ContactsViewController.swift in Sources */,
 				2C49190F28A518BC00EB8FEC /* Logger.swift in Sources */,
 				2C8C981427FB695F003D9D68 /* ToastView.swift in Sources */,
 				2C49190C28A515A700EB8FEC /* AnalyticProtocol.swift in Sources */,
+				2C868EF429CF0FF00055729A /* BaseDataSource.swift in Sources */,
 				2C5FBB3F280AD37900F81155 /* UserRegister.swift in Sources */,
 				2CC9AF8027C188D40082D81C /* TextField.swift in Sources */,
 				2C4AF0EF2846755800AA5100 /* DropPasswordViewController.swift in Sources */,
 				2C49191428A51B3400EB8FEC /* AnalyticEvent.swift in Sources */,
 				2C631E5727A33990003753E1 /* CarModel.swift in Sources */,
+				2C868EFB29CF22BD0055729A /* VerticalFlowLayout.swift in Sources */,
 				2CC9AF8927C2C9E20082D81C /* StockCollectionViewCell.swift in Sources */,
 				2C7E1F9B2858CD2500E69B4D /* DropPassword.swift in Sources */,
 				2CF197EF27B41A4800E82C6C /* DescriptionTableViewCell.swift in Sources */,
@@ -810,6 +934,7 @@
 				2CF197EC27B4180800E82C6C /* ImageAndButtonTableViewCell.swift in Sources */,
 				2C6295BA27A48AB7003521D9 /* MainTabBarViewController.swift in Sources */,
 				2C49192028A90DDF00EB8FEC /* CarNameEvent.swift in Sources */,
+				2C868F0929CF2ED00055729A /* CGFloat+Extension.swift in Sources */,
 				2C549BD6281743E0008C8712 /* PermissionManager.swift in Sources */,
 				2C631E4C27A33213003753E1 /* BaseCollectionViewController.swift in Sources */,
 				2CFCCF24286A4F7F0026BF41 /* PrivacyViewController.swift in Sources */,
@@ -818,6 +943,7 @@
 				2C60AD0F28023CFB00C5A1A0 /* ConditionHeaderView.swift in Sources */,
 				2C549BD428174225008C8712 /* PermissionStatus.swift in Sources */,
 				2C8C981627FB6DCE003D9D68 /* ToastViewShowable.swift in Sources */,
+				2C868F0C29CF329A0055729A /* CarCategoryDataSource.swift in Sources */,
 				2CF197E927AE88E800E82C6C /* ImageCollectionViewCell.swift in Sources */,
 				2C4AF0EC284670AE00AA5100 /* ChangePasswordViewController.swift in Sources */,
 				2C5FBB42280ADEAA00F81155 /* AppState.swift in Sources */,
@@ -827,22 +953,30 @@
 				2C60AD072802093B00C5A1A0 /* ConditionModel.swift in Sources */,
 				2C49191628A51C1100EB8FEC /* EventDate.swift in Sources */,
 				2C631E4F27A333C3003753E1 /* BaseCollectionViewCell.swift in Sources */,
+				2C868F0F29D06CEA0055729A /* Builder.swift in Sources */,
 				2CA3511B2847CA3D003F2012 /* ChangePassword.swift in Sources */,
 				2CB154C9289ABA8F00A36C06 /* WebViewController.swift in Sources */,
 				2C5FBB49280AFFEB00F81155 /* AgainConfirmCode.swift in Sources */,
 				2CC9AF8427C2BE690082D81C /* UIViewController+Extension.swift in Sources */,
 				2C7E1F9D2858D9A700E69B4D /* UserProfile.swift in Sources */,
 				2CCCA7E7283D66B60084055A /* ProfileSelectTableViewCell.swift in Sources */,
+				2C868EFD29CF235C0055729A /* VerticalFlowLayoutForTwoItems.swift in Sources */,
 				2C6E4DD327B9377E00FBE7E8 /* CalendarViewController.swift in Sources */,
-				2C6295BF27A499B8003521D9 /* LegalCollectionViewCell.swift in Sources */,
+				2C4B088429D35AC100A7A60D /* City.swift in Sources */,
+				2C6295BF27A499B8003521D9 /* ChooseCollectionViewCell.swift in Sources */,
 				2C49191228A518FB00EB8FEC /* EventName.swift in Sources */,
 				2C4AF0F22846788A00AA5100 /* DeleteAccountViewController.swift in Sources */,
 				2C60AD032801CCFD00C5A1A0 /* ImageScrollView.swift in Sources */,
+				2C4B088829D35FAE00A7A60D /* CityDelegate.swift in Sources */,
 				2C9DF80627DB98B300C176AC /* RentalManager.swift in Sources */,
 				2C9DF85227DCD5F000C176AC /* CallUsTableViewCell.swift in Sources */,
 				2C6E4DCD27B91F1E00FBE7E8 /* PopoverTableViewController.swift in Sources */,
+				2C868F0429CF26B20055729A /* CollectionViewController.swift in Sources */,
 				2C8C980D27FA2A83003D9D68 /* OrderModel.swift in Sources */,
 				2CB57CD0281C54F0001C0B87 /* Logout.swift in Sources */,
+				2C868F1229D071810055729A /* CarCategoryDelegate.swift in Sources */,
+				2C4B088629D35EC800A7A60D /* CityDataSource.swift in Sources */,
+				2C868F0729CF2CA60055729A /* CollectionAndSearchViewController.swift in Sources */,
 				2C5FBB47280AFE4B00F81155 /* UserConfirm.swift in Sources */,
 				2C7E1F972857563000E69B4D /* ApiValue.swift in Sources */,
 				2C49191A28A5284D00EB8FEC /* DateFormatters+Extension.swift in Sources */,
@@ -856,7 +990,9 @@
 				2C6295B727A465E3003521D9 /* UIColor+Extension.swift in Sources */,
 				2C60ACFE28019EAE00C5A1A0 /* FullImageViewController.swift in Sources */,
 				2C49190928A5155800EB8FEC /* UserId.swift in Sources */,
+				2C868F0029CF240F0055729A /* HorizontalFlowLayout.swift in Sources */,
 				2C7E1F95285755A400E69B4D /* NetworkAlamofire.swift in Sources */,
+				2C4B088B29D36E0400A7A60D /* Coordinator.swift in Sources */,
 				2C60AD0A2802399600C5A1A0 /* ConditionViewController.swift in Sources */,
 				2C9DF7DF27D9F45A00C176AC /* NetworkManager.swift in Sources */,
 				2C7B4D2C28032ED9000EE39D /* ProfileViewController.swift in Sources */,

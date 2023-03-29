@@ -49,7 +49,7 @@ final class BaseCollectionViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(cell: BaseCollectionViewCell.self)
-        collectionView.register(cell: LegalCollectionViewCell.self)
+        collectionView.register(cell: ChooseCollectionViewCell.self)
         collectionView.register(cell: StockCollectionViewCell.self)
         collectionView.backgroundColor = .white
         return collectionView
@@ -304,7 +304,7 @@ extension BaseCollectionViewController: UICollectionViewDataSource {
             
             if isChoose {
                 guard let model = model as? [CarClass2] else { fatalError() }
-                let cell: LegalCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+                let cell: ChooseCollectionViewCell = collectionView.dequeueCell(for: indexPath)
                 cell.setupCell(model: model[indexPath.item])
                 return cell
             } else {
@@ -317,12 +317,12 @@ extension BaseCollectionViewController: UICollectionViewDataSource {
         case .commercial:
             if isChoose {
                 guard let model = model as? [CommercialModel] else { fatalError() }
-                let cell: LegalCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+                let cell: ChooseCollectionViewCell = collectionView.dequeueCell(for: indexPath)
                 cell.setupCell(model: model[indexPath.item])
                 return cell
             } else {
                 guard let model = model as? [CarClass2] else { fatalError() }
-                let cell: LegalCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+                let cell: ChooseCollectionViewCell = collectionView.dequeueCell(for: indexPath)
                 cell.setupCell(model: model[indexPath.item])
                 return cell
             }
@@ -332,7 +332,7 @@ extension BaseCollectionViewController: UICollectionViewDataSource {
             // если выбор акции
             if isChoose {
                 guard let model = model as? [PromoData] else { fatalError() }
-                let cell: LegalCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+                let cell: ChooseCollectionViewCell = collectionView.dequeueCell(for: indexPath)
                 cell.setupCell(model: model[indexPath.item])
                 return cell
             } else {
@@ -345,7 +345,7 @@ extension BaseCollectionViewController: UICollectionViewDataSource {
             /// Ячейка для отображения условий проката
         case .conditions:
             guard let model = model as? [ConditionsModel] else { fatalError() }
-            let cell: LegalCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+            let cell: ChooseCollectionViewCell = collectionView.dequeueCell(for: indexPath)
             cell.setupCell(model: model[indexPath.item])
             return cell
         }

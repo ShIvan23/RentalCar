@@ -24,6 +24,7 @@ protocol RentalManager {
     func postDropPassword(email: DropPassword, completion: @escaping (Result<DropPasswordResult, AppError>) -> Void)
     func getUserProfile(completion: @escaping (Result<UserProfile, AppError>) -> Void)
     func deleteUser(completion: @escaping (Result<UserDelete, AppError>) -> Void)
+    func fetchCities(completion: @escaping (Result<[City], AppError>) -> Void)
 }
 
 final class RentalManagerImp: RentalManager {
@@ -94,6 +95,11 @@ final class RentalManagerImp: RentalManager {
     
     func deleteUser(completion: @escaping (Result<UserDelete, AppError>) -> Void) {
         guard let request = requestManager.userDelete() else { return }
+        networkAlamofire.fetch(request: request, completion: completion)
+    }
+    
+    func fetchCities(completion: @escaping (Result<[City], AppError>) -> Void) {
+        guard let request = requestManager.getCities() else { return }
         networkAlamofire.fetch(request: request, completion: completion)
     }
 }

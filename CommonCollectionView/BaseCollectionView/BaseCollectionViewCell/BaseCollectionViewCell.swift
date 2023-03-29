@@ -9,8 +9,16 @@ import Kingfisher
 import SnapKit
 import UIKit
 
+protocol BaseCollectionCell where Self: UICollectionViewCell {
+    func setupCell(model: Model)
+}
+
 /// Ячейка для отображения всех машин
-final class BaseCollectionViewCell: UICollectionViewCell {
+final class BaseCollectionViewCell: UICollectionViewCell, BaseCollectionCell {
+    func setupCell(model: Model) {
+        print("+++ ty ty")
+    }
+    
     
     private let nameCarLabel: UILabel = {
         let label = UILabel()

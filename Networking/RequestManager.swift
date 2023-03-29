@@ -22,6 +22,7 @@ protocol RequestManager {
     func getUserProfile() -> URLRequest?
     func userDelete() -> URLRequest?
     func payment(order: Order) -> URLRequest?
+    func getCities() -> URLRequest?
 }
 
 final class RequestManagerImp: RequestManager {
@@ -48,6 +49,7 @@ final class RequestManagerImp: RequestManager {
         static let dropPassword = "user/restore-password"
         static let userProfile = "user/profile"
         static let userDelete = "user/delete"
+        static let city = "city"
     }
     
     private lazy var defaultHeader = [
@@ -206,5 +208,10 @@ final class RequestManagerImp: RequestManager {
         request.allHTTPHeaderFields = header
         request.httpBody = postData
         return request
+    }
+    
+    func getCities() -> URLRequest? {
+        guard let url = URL(string: baseUrlString + UrlStrings.city) else { return nil }
+        return URLRequest(url: url)
     }
 }

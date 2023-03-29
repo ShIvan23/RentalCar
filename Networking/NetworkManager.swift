@@ -62,7 +62,6 @@ final class NetworkManagerImp: NetworkManager {
             case 200:
                 completion(data, HTTPResponse, nil)
             case 422:
-                debugPrint("error = \(error)")
                 completion(data, HTTPResponse, error)
             default:
                 completion(data, HTTPResponse, error)

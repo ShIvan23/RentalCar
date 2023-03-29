@@ -6,10 +6,9 @@
 //
 
 import Kingfisher
-import UIKit
 
 /// Ячейка для отображения категорий юр лица и категорий машин
-final class LegalCollectionViewCell: UICollectionViewCell {
+final class ChooseCollectionViewCell: UICollectionViewCell, BaseCollectionCell {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -55,6 +54,22 @@ final class LegalCollectionViewCell: UICollectionViewCell {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         gradientView.setCustomGradient()
+    }
+    
+    func setupCell(model: Model) {
+        switch model {
+        case let carModel as CarClass2:
+            titleLabel.text = carModel.name
+            let urlImage = URL(string: carModel.image ?? "")
+            legalImage.kf.setImage(with: urlImage)
+        case let cityModel as City:
+            titleLabel.text = cityModel.name
+            let urlImage = URL(string: cityModel.image)
+            legalImage.kf.setImage(with: urlImage)
+        default:
+            assertionFailure("Новый тип модели")
+            break
+        }
     }
     
     func setupCell(model: CarClass2) {
