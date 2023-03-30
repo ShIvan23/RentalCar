@@ -90,7 +90,6 @@
 		2CA3511B2847CA3D003F2012 /* ChangePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA3511A2847CA3D003F2012 /* ChangePassword.swift */; };
 		2CB154C9289ABA8F00A36C06 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB154C8289ABA8F00A36C06 /* WebViewController.swift */; };
 		2CB57CD0281C54F0001C0B87 /* Logout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB57CCF281C54F0001C0B87 /* Logout.swift */; };
-		2CC9AF8027C188D40082D81C /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC9AF7F27C188D40082D81C /* TextField.swift */; };
 		2CC9AF8427C2BE690082D81C /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC9AF8327C2BE690082D81C /* UIViewController+Extension.swift */; };
 		2CC9AF8927C2C9E20082D81C /* StockCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC9AF8827C2C9E20082D81C /* StockCollectionViewCell.swift */; };
 		2CCCA7E7283D66B60084055A /* ProfileSelectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCCA7E6283D66B60084055A /* ProfileSelectTableViewCell.swift */; };
@@ -102,6 +101,7 @@
 		2CF197F127B5072600E82C6C /* NSMutableAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF197F027B5072600E82C6C /* NSMutableAttributedString+Extension.swift */; };
 		2CF197F427B5190100E82C6C /* OrderUnauthorizedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF197F327B5190100E82C6C /* OrderUnauthorizedViewController.swift */; };
 		2CFCCF24286A4F7F0026BF41 /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFCCF23286A4F7F0026BF41 /* PrivacyViewController.swift */; };
+		7156E4B529D5D5EB00E10F58 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7156E4B429D5D5EB00E10F58 /* TextField.swift */; };
 		A1B504237C3861AE647A5F96 /* Pods_RentalCar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E948B7270624368EE75A7045 /* Pods_RentalCar.framework */; };
 /* End PBXBuildFile section */
 
@@ -191,7 +191,6 @@
 		2CA3511A2847CA3D003F2012 /* ChangePassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePassword.swift; sourceTree = "<group>"; };
 		2CB154C8289ABA8F00A36C06 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		2CB57CCF281C54F0001C0B87 /* Logout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logout.swift; sourceTree = "<group>"; };
-		2CC9AF7F27C188D40082D81C /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextField.swift; path = ../../../Documents/TextField.swift; sourceTree = "<group>"; };
 		2CC9AF8327C2BE690082D81C /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		2CC9AF8827C2C9E20082D81C /* StockCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockCollectionViewCell.swift; sourceTree = "<group>"; };
 		2CCCA7E6283D66B60084055A /* ProfileSelectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSelectTableViewCell.swift; sourceTree = "<group>"; };
@@ -204,6 +203,7 @@
 		2CF197F327B5190100E82C6C /* OrderUnauthorizedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderUnauthorizedViewController.swift; sourceTree = "<group>"; };
 		2CFCCF23286A4F7F0026BF41 /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
 		4D1A142E6687753FDD74D20B /* Pods-RentalCar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RentalCar.release.xcconfig"; path = "Target Support Files/Pods-RentalCar/Pods-RentalCar.release.xcconfig"; sourceTree = "<group>"; };
+		7156E4B429D5D5EB00E10F58 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		E948B7270624368EE75A7045 /* Pods_RentalCar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RentalCar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEBD8E7AD4FB8D4CD8BC5B1B /* Pods-RentalCar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RentalCar.debug.xcconfig"; path = "Target Support Files/Pods-RentalCar/Pods-RentalCar.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -247,8 +247,8 @@
 				2C60ACFF2801A25F00C5A1A0 /* ImageTransition */,
 				2C9DF7DD27D9F42C00C176AC /* Networking */,
 				2C549BD228174205008C8712 /* Permissions */,
-				2CC9AF7E27C1889C0082D81C /* CustomViews */,
 				2C631E5027A3340D003753E1 /* Extensions */,
+				7156E4B329D5D4F600E10F58 /* CustomTextField */,
 				2C49190728A5154000EB8FEC /* Analytics */,
 				2C1DDABB27A08574000B82C6 /* RentalCar */,
 				2C1DDABA27A08574000B82C6 /* Products */,
@@ -692,14 +692,6 @@
 			path = WebViewController;
 			sourceTree = "<group>";
 		};
-		2CC9AF7E27C1889C0082D81C /* CustomViews */ = {
-			isa = PBXGroup;
-			children = (
-				2CC9AF7F27C188D40082D81C /* TextField.swift */,
-			);
-			path = CustomViews;
-			sourceTree = "<group>";
-		};
 		2CC9AF8727C2C9BC0082D81C /* StockCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -763,6 +755,14 @@
 				2CFCCF23286A4F7F0026BF41 /* PrivacyViewController.swift */,
 			);
 			path = PrivacyViewController;
+			sourceTree = "<group>";
+		};
+		7156E4B329D5D4F600E10F58 /* CustomTextField */ = {
+			isa = PBXGroup;
+			children = (
+				7156E4B429D5D5EB00E10F58 /* TextField.swift */,
+			);
+			path = CustomTextField;
 			sourceTree = "<group>";
 		};
 		7664E417E84423DC46E93E2F /* Pods */ = {
@@ -918,7 +918,6 @@
 				2C49190C28A515A700EB8FEC /* AnalyticProtocol.swift in Sources */,
 				2C868EF429CF0FF00055729A /* BaseDataSource.swift in Sources */,
 				2C5FBB3F280AD37900F81155 /* UserRegister.swift in Sources */,
-				2CC9AF8027C188D40082D81C /* TextField.swift in Sources */,
 				2C4AF0EF2846755800AA5100 /* DropPasswordViewController.swift in Sources */,
 				2C49191428A51B3400EB8FEC /* AnalyticEvent.swift in Sources */,
 				2C631E5727A33990003753E1 /* CarModel.swift in Sources */,
@@ -928,6 +927,7 @@
 				2CF197EF27B41A4800E82C6C /* DescriptionTableViewCell.swift in Sources */,
 				2C7B4D2928031901000EE39D /* RegisterViewController.swift in Sources */,
 				2C9DF80427DB95C600C176AC /* RequestManager.swift in Sources */,
+				7156E4B529D5D5EB00E10F58 /* TextField.swift in Sources */,
 				2C60AD0D28023A6700C5A1A0 /* ConditionTableViewCell.swift in Sources */,
 				2C49191828A5269600EB8FEC /* CommentEvent.swift in Sources */,
 				2C631E5227A33419003753E1 /* UICollectionView_UITableView+Extension.swift in Sources */,
