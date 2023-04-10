@@ -16,51 +16,21 @@ final class MainTabBarViewController: UITabBarController {
     }
     
     private let rentalManager: RentalManager = RentalManagerImp()
-    private let builder: IBuilder = Builder()
-    private var model: [CarClass2]? {
-        didSet {
-            setModelIntoControllers()
-        }
-    }
-    
-    private var promoModel: [PromoData]? {
-        didSet {
-            setPromoModelIntoController()
-        }
-    }
-    
-    private lazy var allCars2 = builder.buildCarCategoryCollection()
-    
-    private lazy var cityViewController = builder.buildCityCollection()
-    
+
     /// Физ лица
-//    private lazy var allCars = BaseCollectionViewController(
-//        collectionStyle: .personal,
-//        categoryPrice: .personPrice,
-//        isChoose: true,
-//        isNeedSearchBar: true
-//    )
+    private lazy var cityViewController = Builder.buildCityCollection(coordinator: Coordinator.firstFlow)
     
     /// Юр лица
-    private lazy var legalEntity = BaseCollectionViewController(
-        collectionStyle: .commercial,
-        isChoose: true
-    )
+    private lazy var chooseLegalViewController = Builder.buildChoseLegalCollection(coordinator: Coordinator.secondFlow, city: CityNumber.moscow)
     
     /// Акции
-    private lazy var promoVC = BaseCollectionViewController(
-        collectionStyle: .promo,
-        isChoose: true
-    )
+    private lazy var promoViewController = Builder.buildAllPromosCollection(coordinator: Coordinator.promoFlow)
     
     /// Условия
-    private lazy var rentalConditionsVC = BaseCollectionViewController(
-        collectionStyle: .conditions,
-        isChoose: true
-    )
+    private lazy var conditionsViewController = Builder.buildConditionsCollection(coordinator: Coordinator.conditionsFlow)
     
     /// Контакты
-    private lazy var contactsVC = ContactsViewController()
+    private lazy var cityContactsViewController = Builder.buildCityContactsCollection(coordinator: Coordinator.contactsFlow)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,7 +39,6 @@ final class MainTabBarViewController: UITabBarController {
         fetchCities()
         fetchCars()
         fetchPromos()
-        setConditionsModel()
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
@@ -90,20 +59,12 @@ final class MainTabBarViewController: UITabBarController {
     }
     
     private func fetchCars() {
-//        allCars.lockView()
-//        allCars2.lockView()
         rentalManager.fetchCars { [weak self] result in
-//            DispatchQueue.main.async {
-////                self?.allCars.unlock()
-//                self?.allCars2.unlock()
-//                print("+++ unlock")
-//            }
             switch result {
             case .success(let model):
-                self?.model = model
-//                self?.allCars2.dataSource.setupModel(model)
-//                print("+++ Достал модель model = \(model)")
-                self?.allCars2.reloadData(with: model)
+                AppStorage.shared.updateClasses(model)
+                let legalModel = AppStorage.shared.legal
+                self?.chooseLegalViewController.reloadData(with: legalModel)
             case .failure(let error):
                 DispatchQueue.main.async {
                     self?.showAlert(error: .cars, message: error.toString() ?? "")
@@ -116,7 +77,8 @@ final class MainTabBarViewController: UITabBarController {
         rentalManager.fetchPromos { [weak self] result in
             switch result {
             case .success(let promos):
-                self?.promoModel = promos
+                AppStorage.shared.updatePromo(promos)
+                self?.promoViewController.reloadData(with: promos)
             case .failure(let error):
                 DispatchQueue.main.async {
                     self?.showAlert(error: .promo, message: error.toString() ?? "")
@@ -133,27 +95,15 @@ final class MainTabBarViewController: UITabBarController {
             }
             switch result {
             case .success(let model):
+                AppStorage.shared.updateCities(model)
                 self?.cityViewController.reloadData(with: model)
+                self?.cityContactsViewController.reloadData(with: model)
             case .failure(let error):
                 DispatchQueue.main.async {
                     self?.showAlert(error: .city, message: error.toString() ?? "")
                 }
             }
         }
-    }
-    
-    private func setModelIntoControllers() {
-//        allCars.model = model
-        
-        legalEntity.model = CommercialModel.makeCommercialModel(cars: model)
-    }
-    
-    private func setPromoModelIntoController() {
-        promoVC.model = promoModel
-    }
-    
-    private func setConditionsModel() {
-        rentalConditionsVC.model = ConditionsModel.makeConditionsModel()
     }
     
     private func showAlert(error: FetchError, message: String) {
@@ -181,22 +131,20 @@ final class MainTabBarViewController: UITabBarController {
     
     private func setControllers() {
         viewControllers = [
-//            createNavController(for: allCars, title: "Физ лица", image: UIImage(named: "car2")!),
             createNavController(for: cityViewController, title: "Физ лица", image: UIImage(named: "car2")!),
-            createNavController(for: legalEntity, title: "Юр лица", image:  UIImage(named: "car2")!),
-            createNavController(for: promoVC, title: "Акции", image: UIImage(named: "stock")!),
-            createNavController(for: rentalConditionsVC, title: "Условия", image: UIImage(named: "accept")!),
-            createNavController(for: contactsVC, title: "Контакты", image: UIImage(named: "phone")!)
+            createNavController(for: chooseLegalViewController, title: "Юр лица", image: UIImage(named: "car2")!),
+            createNavController(for: promoViewController, title: "Акции", image: UIImage(named: "stock")!),
+            createNavController(for: conditionsViewController, title: "Условия", image: UIImage(named: "accept")!),
+            createNavController(for: cityContactsViewController, title: "Контакты", image: UIImage(named: "phone")!)
         ]
     }
     
-    private func createNavController(for rootViewController: UIViewController, title: String, image: UIImage) -> UIViewController {
+    private func createNavController(for rootViewController: IBaseCollectionViewControllerV2, title: String, image: UIImage) -> UIViewController {
         let navController = UINavigationController(rootViewController: rootViewController)
         navController.tabBarItem.title = title
         navController.tabBarItem.image = image
-//        navController.navigationBar.prefersLargeTitles = true
         rootViewController.navigationItem.title = title
+        rootViewController.delegate.navigationController = navController
         return navController
     }
-
 }

@@ -10,7 +10,8 @@ import UIKit
 final class DetailCarViewController: UIViewController {
     
     private let carModel: CarModel2
-    private var categoryPrice: CategoryPrice 
+    private var categoryPrice: CategoryPrice
+    private let city: CityNumber
     private var currentPrice: Price?
     private var descriptions = [NSMutableAttributedString]()
     private lazy var transition = ImageTransition()
@@ -30,9 +31,10 @@ final class DetailCarViewController: UIViewController {
         return tableView
     }()
     
-    init(carModel: CarModel2, categoryPrice: CategoryPrice) {
+    init(carModel: CarModel2, categoryPrice: CategoryPrice, city: CityNumber) {
         self.carModel = carModel
         self.categoryPrice = categoryPrice
+        self.city = city
         super.init(nibName: nil, bundle: nil)
         currentPrice = makeCurrentPriceWith(categoryPrice, car: carModel)
         makeDescriptionArray()
@@ -146,7 +148,7 @@ extension DetailCarViewController: ImageAndButtonTableViewCellDelegate {
 
 extension DetailCarViewController: CallUsDelegate {
     func callUs() {
-        call()
+        call(city: city)
     }
 }
 

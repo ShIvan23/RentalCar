@@ -266,7 +266,7 @@ final class BaseCollectionViewController: UIViewController {
     }
     
     @objc private func callUsButtonAction() {
-        call()
+        call(city: CityNumber.moscow)
     }
     
     private func showProfileViewController() {
@@ -310,7 +310,7 @@ extension BaseCollectionViewController: UICollectionViewDataSource {
             } else {
                 guard let model = model as? [CarModel2] else { fatalError() }
                 let cell: BaseCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-                cell.setupCell(model: model[indexPath.item],categoryPrice: categoryPrice!)
+                cell.setupCell(model: model[indexPath.item],categoryPrice: categoryPrice!, city: .moscow)
                 return cell
             }
             
@@ -338,7 +338,7 @@ extension BaseCollectionViewController: UICollectionViewDataSource {
             } else {
                 guard let model = model as? [Promo] else { fatalError() }
                 let cell: StockCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-                cell.setupCell(promoModel: model[indexPath.item])
+//                cell.setupCell(promoModel: model[indexPath.item])
                 return cell
             }
             
@@ -419,7 +419,7 @@ extension BaseCollectionViewController: UICollectionViewDelegateFlowLayout {
                 /// Экран с детальной информацией
                 let currentCar = model[indexPath.item]
                 // TODO: - убрать force unwrap
-                let detailViewController = DetailCarViewController(carModel: currentCar, categoryPrice: categoryPrice!)
+                let detailViewController = DetailCarViewController(carModel: currentCar, categoryPrice: categoryPrice!, city: CityNumber.moscow)
                 detailViewController.title = currentCar.name
                 navigationController?.pushViewController(detailViewController, animated: true)
                 AnalyticEvent.userTappedCar(car: currentCar.name ?? "").send()

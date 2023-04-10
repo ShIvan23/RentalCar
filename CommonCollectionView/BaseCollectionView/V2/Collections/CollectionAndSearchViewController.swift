@@ -9,10 +9,6 @@ import SnapKit
 
 final class CollectionAndSearchViewController: BaseCollectionViewControllerV2 {
     
-    // MARK: - Properties
-    
-    private var carBrands = [String]()
-    
     // MARK: - UI
     
     private lazy var scrollView = UIScrollView()
@@ -67,26 +63,43 @@ final class CollectionAndSearchViewController: BaseCollectionViewControllerV2 {
         addSearchGesture()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        checkIsLoginUser()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        loginButton.setCustomGradient()
+        callUsButton.setCustomGradient()
+    }
+    
     // MARK: - Private
     
     @objc private func loginButtonAction() {
         if AppState.shared.userWasLogin {
-            showProfileViewController()
+            coordinator.openProfile()
         } else {
-            let loginViewController = LoginViewController()
-            // TODO: - Зачем делегат?
-//            loginViewController.delegate = self
-            navigationController?.pushViewController(loginViewController, animated: true)
+            coordinator.openLogin()
         }
     }
     
     @objc private func callUsButtonAction() {
-        call()
+        guard let city else {
+            assertionFailure("Нет города")
+            return
+        }
+        call(city: city)
     }
     
-    private func showProfileViewController() {
-        let profileViewController = ProfileViewController()
-        navigationController?.pushViewController(profileViewController, animated: true)
+    private func checkIsLoginUser() {
+        if AppState.shared.userWasLogin {
+            let attributedText = NSAttributedString(string: "Профиль", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)])
+            loginButton.setAttributedTitle(attributedText, for: .normal)
+        } else {
+            let attributedText = NSAttributedString(string: "Войти", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)])
+            loginButton.setAttributedTitle(attributedText, for: .normal)
+        }
     }
     
     private func addSearchGesture() {
@@ -95,6 +108,7 @@ final class CollectionAndSearchViewController: BaseCollectionViewControllerV2 {
     }
     
     @objc private func searchTapGesture() {
+        let carBrands = AppStorage.shared.carBrands
         let popoverTableView = PopoverTableViewController(model: carBrands, popoverType: .searchCar)
         popoverTableView.modalPresentationStyle = .popover
         popoverTableView.popoverPresentationController?.delegate = self
@@ -175,6 +189,24 @@ extension CollectionAndSearchViewController: UIPopoverPresentationControllerDele
 
 extension CollectionAndSearchViewController: PopoverTableViewControllerDelegate {
     func selectedValue(type: PopoverType, text: String) {
-        print("ty ty")
+        let allCars = AppStorage.shared.carClasses
+        var filteredCars = [CarModel2]()
+        allCars.forEach { carClass in
+            let filteredBrands = carClass.auto?.filter { car in
+                car.brand == text
+            }
+            guard let filteredBrands = filteredBrands else { return }
+            filteredCars.append(contentsOf: filteredBrands)
+        }
+        guard let city else {
+            assertionFailure("Нет города")
+            return
+        }
+        coordinator.openCarCategory(
+            with: filteredCars,
+            title: text,
+            coordinator: coordinator,
+            categoryPrice: categoryPrice,
+            city: city)
     }
 }

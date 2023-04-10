@@ -9,18 +9,18 @@ import UIKit
 
 protocol IBaseFlowLayout where Self: UICollectionViewDelegateFlowLayout {
     var model: [Model] { get set }
+    var navigationController: UINavigationController? { get set }
     func setupModel(_: [Model])
 }
 
 extension IBaseFlowLayout {
     func setupModel(_ model: [Model]) {
-//        assertionFailure("Попал в протокол, а не в реализацию")
-        print("+++ Попал в протокол, а не в реализацию")
         self.model = model
     }
 }
 
 class BaseFlowLayout: NSObject, IBaseFlowLayout {
+    var navigationController: UINavigationController?
    
     var model: [Model] = []
 

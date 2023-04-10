@@ -5,29 +5,27 @@
 //  Created by Ivan on 25.03.2023.
 //
 
-import SnapKit
+import UIKit
 
 protocol IBaseCollectionViewControllerV2 where Self: UIViewController {
     var collectionView: UICollectionView { get }
     var dataSource: IBaseDataSource { get }
-    var delegate: IBaseFlowLayout{ get }
+    var delegate: IBaseFlowLayout { get }
+    var coordinator: ICoordinator { get }
+    var categoryPrice: CategoryPrice { get }
+    var city: CityNumber? { get set }
     func reloadData(with model: [Model])
 }
-
-extension IBaseCollectionViewControllerV2 {
-    func reloadData(with model: [Model]) {
-        dataSource.setupModel(model)
-        delegate.setupModel(model)
-        collectionView.reloadData()
-    }
-}
-
-class BaseCollectionViewControllerV2: UIViewController, IBaseCollectionViewControllerV2 {
+ 
+class BaseCollectionViewControllerV2: UIViewController {
     
     // MARK: - Properties
     
-    var dataSource: any IBaseDataSource
+    var dataSource: IBaseDataSource
     var delegate: IBaseFlowLayout
+    var coordinator: ICoordinator
+    var city: CityNumber?
+    var categoryPrice: CategoryPrice
     
     // MARK: - UI
     
@@ -40,6 +38,7 @@ class BaseCollectionViewControllerV2: UIViewController, IBaseCollectionViewContr
         collectionView.register(cell: BaseCollectionViewCell.self)
         collectionView.register(cell: ChooseCollectionViewCell.self)
         collectionView.register(cell: StockCollectionViewCell.self)
+        collectionView.register(cell: EmptyStockCollectionViewCell.self)
         collectionView.backgroundColor = .white
         return collectionView
     }()
@@ -47,11 +46,15 @@ class BaseCollectionViewControllerV2: UIViewController, IBaseCollectionViewContr
     // MARK: - Init
     
     init(
-        dataSource: any IBaseDataSource,
-        delegate: IBaseFlowLayout
+        dataSource: IBaseDataSource,
+        delegate: IBaseFlowLayout,
+        coordinator: ICoordinator,
+        categoryPrice: CategoryPrice = .personPrice
     ) {
         self.dataSource = dataSource
         self.delegate = delegate
+        self.coordinator = coordinator
+        self.categoryPrice = categoryPrice
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -73,10 +76,13 @@ class BaseCollectionViewControllerV2: UIViewController, IBaseCollectionViewContr
     }
 }
 
-//// MARK: - IBaseCollectionViewControllerV2
-//
-//extension BaseCollectionViewControllerV2: IBaseCollectionViewControllerV2 {
-//    func reloadData() {
-//        collectionView.reloadData()
-//    }
-//}
+// MARK: - IBaseCollectionViewControllerV2
+
+extension BaseCollectionViewControllerV2: IBaseCollectionViewControllerV2 {
+    
+    func reloadData(with model: [Model]) {
+        dataSource.setupModel(model)
+        delegate.setupModel(model)
+        collectionView.reloadData()
+    }
+}

@@ -8,7 +8,7 @@
 import Kingfisher
 
 /// Ячейка для отображения категорий юр лица и категорий машин
-final class ChooseCollectionViewCell: UICollectionViewCell, BaseCollectionCell {
+final class ChooseCollectionViewCell: UICollectionViewCell {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -66,32 +66,20 @@ final class ChooseCollectionViewCell: UICollectionViewCell, BaseCollectionCell {
             titleLabel.text = cityModel.name
             let urlImage = URL(string: cityModel.image)
             legalImage.kf.setImage(with: urlImage)
+        case let legalModel as CommercialModel:
+            titleLabel.text = legalModel.name
+            legalImage.image = legalModel.image
+        case let promoModel as PromoData:
+            titleLabel.text = promoModel.name
+            let urlImage = URL(string: promoModel.thumb)
+            legalImage.kf.setImage(with: urlImage)
+        case let conditionsModel as ConditionsModel:
+            titleLabel.text = conditionsModel.title
+            legalImage.image = conditionsModel.image
         default:
             assertionFailure("Новый тип модели")
             break
         }
-    }
-    
-    func setupCell(model: CarClass2) {
-        titleLabel.text = model.name
-        let urlImage = URL(string: model.image ?? "")
-        legalImage.kf.setImage(with: urlImage)
-    }
-    
-    func setupCell(model: CommercialModel) {
-        titleLabel.text = model.name
-        legalImage.image = model.image
-    }
-    
-    func setupCell(model: PromoData) {
-        titleLabel.text = model.name
-        let urlImage = URL(string: model.thumb)
-        legalImage.kf.setImage(with: urlImage)
-    }
-    
-    func setupCell(model: ConditionsModel) {
-        titleLabel.text = model.title
-        legalImage.image = model.image
     }
     
     private func setupLayout() {

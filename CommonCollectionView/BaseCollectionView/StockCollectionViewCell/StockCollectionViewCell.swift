@@ -7,7 +7,6 @@
 
 import Kingfisher
 import SnapKit
-import UIKit
 
 /// Ячейка для акций
 final class StockCollectionViewCell: UICollectionViewCell {
@@ -51,7 +50,11 @@ final class StockCollectionViewCell: UICollectionViewCell {
         
     }
     
-    func setupCell(promoModel: Promo) {
+    func setupCell(model: Model) {
+        guard let promoModel = model as? Promo else {
+            assertionFailure("Не тот тип модели")
+            return
+        }
         nameStockLabel.text = promoModel.title
         let urlImage = URL(string: promoModel.thumb)
         stockImageView.kf.setImage(with: urlImage)

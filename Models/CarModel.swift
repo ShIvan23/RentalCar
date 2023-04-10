@@ -30,6 +30,7 @@ struct CarModel2: Model, Decodable {
     let enginePower: Int?
 //    let engineType: Bool
     let driveType: String?
+    let city: String?
     let gearboxType: String?
     let countSeats: Int?
     let countDoors: Int?
@@ -38,7 +39,7 @@ struct CarModel2: Model, Decodable {
     let isBusy: Bool
     
     private enum CodingKeys: String, CodingKey {
-        case id, name, thumb, images, description, model, brand, year, conditioner, price
+        case id, name, thumb, images, description, model, brand, year, conditioner, price, city
         case engineVolume = "engine_volume"
         case enginePower = "engine_power"
 //        case engineType = "engine_type"

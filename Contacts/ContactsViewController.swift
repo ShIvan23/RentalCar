@@ -13,6 +13,8 @@ final class ContactsViewController: UIViewController, ToastViewShowable {
    
     var showingToast: ToastView?
     
+    private let contactModel: ContactModel
+    
     private let scrollView = UIScrollView()
     private let contentView = UIView()
 //    private let mapView = YMKMapView()
@@ -33,7 +35,6 @@ final class ContactsViewController: UIViewController, ToastViewShowable {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = .systemFont(ofSize: 18)
-        label.text = "Москва, Волгоградский проспект, д. 32, корпус 1, ТЦ Фэвори, 1-й этаж"
         return label
     }()
     
@@ -55,7 +56,6 @@ final class ContactsViewController: UIViewController, ToastViewShowable {
     
     private let telephoneLabel: UILabel = {
         let label = UILabel()
-        label.text = "+7 (495) 431-11-11"
         label.textAlignment = .center
         label.font = .boldSystemFont(ofSize: 22)
         return label
@@ -104,7 +104,6 @@ final class ContactsViewController: UIViewController, ToastViewShowable {
     
     private let emailLabel: UILabel = {
         let label = UILabel()
-        label.text = "prokaavto@mail.ru"
         label.font = .systemFont(ofSize: 20)
         return label
     }()
@@ -127,11 +126,21 @@ final class ContactsViewController: UIViewController, ToastViewShowable {
         imageView.layer.borderWidth = 1.5
         return imageView
     }()
-
+    
+    init(contactModel: ContactModel) {
+        self.contactModel = contactModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         customizeView()
         layout()
+        setupLabels()
         setupMap()
     }
     
@@ -143,11 +152,11 @@ final class ContactsViewController: UIViewController, ToastViewShowable {
     }
     
     @objc private func callUsButtonAction() {
-        call()
+        call(city: contactModel.phoneNumberForCalling)
     }
     
     @objc private func openMessenger(button: UIButton) {
-        let number = "+79163864866"
+        let number = contactModel.phoneNumberForMessangers
         switch button {
         case writeWhatsAppButton:
             guard let url = URL(string: "https://api.whatsapp.com/send?phone=\(number)") else { return }
@@ -169,7 +178,7 @@ final class ContactsViewController: UIViewController, ToastViewShowable {
     @objc private func copyAction(button: UIButton) {
         switch button {
         case copyAddressButton:
-            UIPasteboard.general.string = "Москва, Волгоградский проспект, д. 32, корпус 1"
+            UIPasteboard.general.string = contactModel.address
             animate(copyButton: copyAddressButton)
             showSuccessToast(with: "Адрес скопирован")
             AnalyticEvent.adressCopied.send()
@@ -183,6 +192,12 @@ final class ContactsViewController: UIViewController, ToastViewShowable {
         }
     }
     
+    private func setupLabels() {
+        addressLabel.text = contactModel.address
+        telephoneLabel.text = contactModel.phoneNumber
+        emailLabel.text = contactModel.email
+    }
+    
     private func animate(copyButton: UIButton) {
         UIView.animate(withDuration: 0.1) {
             copyButton.alpha = 0.3
@@ -194,7 +209,7 @@ final class ContactsViewController: UIViewController, ToastViewShowable {
     }
     
     private func setupMap() {
-//        let point = YMKPoint(latitude: 55.723828, longitude: 37.688591)
+//        let point = YMKPoint(latitude: contactModel.latitude, longitude: contactModel.longitude)
 //        mapView.mapWindow.map.move(with: YMKCameraPosition(target: point, zoom: 15.5, azimuth: 0, tilt: 0))
 //
 //        mapObjects.addPlacemark(with: point, view: YRTViewProvider(uiView: mapImageView))

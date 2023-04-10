@@ -9,5 +9,5 @@ import UIKit
 
 protocol IBaseDataSource: UICollectionViewDataSource {
     var model: [Model] { get }
-    func setupModel(_: [Model])
+    func setupModel(_ model: [Model])
 }

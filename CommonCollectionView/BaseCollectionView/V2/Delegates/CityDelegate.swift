@@ -18,9 +18,31 @@ final class CityDelegate: VerticalFlowLayoutForTwoItems {
     }
     
     private var cityModel: [City] = []
+    private var coordinator: ICoordinator
+    
+    init(coordinator: ICoordinator) {
+        self.coordinator = coordinator
+    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("+++ select indexPath.item", indexPath.item)
-        print("+++ model = \(model)")
+        coordinator.navigationController = navigationController
+        let currentCityNumber = setCurrentCityNumber(cityModel[indexPath.item].name)
+        coordinator.openCarCategories(
+            with: AppStorage.shared.carClasses,
+            title: cityModel[indexPath.item].name,
+            coordinator: coordinator,
+            categoryPrice: .personPrice,
+            city: currentCityNumber)
+    }
+    
+    private func setCurrentCityNumber(_ city: String) -> CityNumber {
+        switch city {
+        case "Москва":
+            return CityNumber.moscow
+        case "Казань":
+            return CityNumber.kazan
+        default:
+            return CityNumber.moscow
+        }
     }
 }

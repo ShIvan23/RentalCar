@@ -1,8 +1,8 @@
 //
-//  AllCarsFlowLayout.swift
+//  CarCategoryDelegate.swift
 //  RentalCar
 //
-//  Created by Ivan on 26.03.2023.
+//  Created by Shishkin Ivan Sergeevich on 03.04.2023.
 //
 
 import UIKit
@@ -10,16 +10,28 @@ import UIKit
 final class CarCategoryDelegate: VerticalFlowLayout {
     
     override var model: [Model] {
-        get { return categoryModel }
+        get { return carModel }
         set {
-            guard let categoryModel = newValue as? [CarClass2] else { return }
-            self.categoryModel = categoryModel
+            guard let carModel = newValue as? [CarModel2] else { return }
+            self.carModel = carModel
         }
     }
     
-    private var categoryModel: [CarClass2] = []
+    private var carModel: [CarModel2] = []
+    private var coordinator: ICoordinator
+    private let city: CityNumber
+    
+    init(coordinator: ICoordinator,
+         city: CityNumber) {
+        self.coordinator = coordinator
+        self.city = city
+    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("select", categoryModel[indexPath.item].name)
+        coordinator.openDetailCar(
+            with: carModel[indexPath.item],
+            coordinator: coordinator,
+            city: city)
+        AnalyticEvent.userTappedCar(car: carModel[indexPath.item].name ?? "").send()
     }
 }

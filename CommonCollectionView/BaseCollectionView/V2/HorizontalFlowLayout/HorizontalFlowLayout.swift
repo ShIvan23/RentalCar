@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class HorizontalFlowLayout: BaseFlowLayout {
+class HorizontalFlowLayout: BaseFlowLayout {
 
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.bounds.width - CGFloat.sideInset * 2

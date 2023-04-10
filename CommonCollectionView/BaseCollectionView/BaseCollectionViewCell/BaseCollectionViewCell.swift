@@ -7,18 +7,9 @@
 
 import Kingfisher
 import SnapKit
-import UIKit
-
-protocol BaseCollectionCell where Self: UICollectionViewCell {
-    func setupCell(model: Model)
-}
 
 /// Ячейка для отображения всех машин
-final class BaseCollectionViewCell: UICollectionViewCell, BaseCollectionCell {
-    func setupCell(model: Model) {
-        print("+++ ty ty")
-    }
-    
+final class BaseCollectionViewCell: UICollectionViewCell {
     
     private let nameCarLabel: UILabel = {
         let label = UILabel()
@@ -84,27 +75,39 @@ final class BaseCollectionViewCell: UICollectionViewCell, BaseCollectionCell {
         gradientView.setCustomGradient()
     }
     
-    func setupCell(model: CarModel2, categoryPrice: CategoryPrice) {
+    func setupCell(model: Model, categoryPrice: CategoryPrice, city: CityNumber) {
+        guard let model = model as? CarModel2 else {
+            assertionFailure("Не та модель")
+            return
+        }
         nameCarLabel.text = model.name
         let urlImage = URL(string: model.thumb ?? "")
         carImage.kf.setImage(with: urlImage)
         
-        let carIsBusy = model.isBusy
+        let currentCityString = getCityString(city: city)
+        let carIsBusy = model.isBusy || currentCityString != model.city ?? ""
         busyImageView.image = carIsBusy ? UIImage(named: "failure") : UIImage(named: "success")
         busyLabel.text = carIsBusy ? "Занята" : "Свободна"
         
         switch categoryPrice {
         case .personPrice:
             priceLabel.text = "\(model.price?.withoutNDS?.price ?? 0) ₽ / сутки"
-            
             // TODO: - Поменять здесь цены на коммерческие
         case .commercialPriceWithNDS:
             priceLabel.text = "\(model.price?.withNDS?.price ?? 0) ₽ / сутки"
-            
         case .commercialPriceWithoutNDS:
             priceLabel.text = "\(model.price?.withoutNDS?.price ?? 0) ₽ / сутки"
         }
         
+    }
+    
+    private func getCityString(city: CityNumber) -> String {
+        switch city {
+        case .moscow:
+            return "Москва"
+        case .kazan:
+            return "Казань"
+        }
     }
     
     private func setLayout() {

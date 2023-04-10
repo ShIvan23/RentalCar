@@ -20,9 +20,8 @@ extension UIViewController {
         }
     }
     
-    func call() {
-        let number = "+74954311111"
-        guard let url = URL(string: "tel://\(number)") else { return }
+    func call(city: CityNumber) {
+        guard let url = URL(string: "tel://\(city.rawValue)") else { return }
         if UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
             AnalyticEvent.callButtonTapped.send()
