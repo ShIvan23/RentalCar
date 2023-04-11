@@ -148,7 +148,7 @@ extension DetailCarViewController: ImageAndButtonTableViewCellDelegate {
 
 extension DetailCarViewController: CallUsDelegate {
     func callUs() {
-        call(city: city)
+        call(city: city, categoryPrice: categoryPrice)
     }
 }
 

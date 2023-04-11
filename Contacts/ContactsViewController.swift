@@ -152,7 +152,7 @@ final class ContactsViewController: UIViewController, ToastViewShowable {
     }
     
     @objc private func callUsButtonAction() {
-        call(city: contactModel.phoneNumberForCalling)
+        call(city: contactModel.phoneNumberForCalling, categoryPrice: .personPrice)
     }
     
     @objc private func openMessenger(button: UIButton) {

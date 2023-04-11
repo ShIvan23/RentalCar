@@ -21,7 +21,9 @@ final class MainTabBarViewController: UITabBarController {
     private lazy var cityViewController = Builder.buildCityCollection(coordinator: Coordinator.firstFlow)
     
     /// Юр лица
-    private lazy var chooseLegalViewController = Builder.buildChoseLegalCollection(coordinator: Coordinator.secondFlow, city: CityNumber.moscow)
+    private lazy var chooseLegalViewController = Builder.buildChoseLegalCollection(coordinator: Coordinator.secondFlow,
+                                                                                   city: CityNumber.moscow,
+                                                                                   categoryPrice: .commercialPriceWithNDS)
     
     /// Акции
     private lazy var promoViewController = Builder.buildAllPromosCollection(coordinator: Coordinator.promoFlow)

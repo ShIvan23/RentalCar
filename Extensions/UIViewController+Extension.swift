@@ -20,11 +20,19 @@ extension UIViewController {
         }
     }
     
-    func call(city: CityNumber) {
-        guard let url = URL(string: "tel://\(city.rawValue)") else { return }
-        if UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            AnalyticEvent.callButtonTapped.send()
+    func call(city: CityNumber, categoryPrice: CategoryPrice) {
+        AnalyticEvent.callButtonTapped.send()
+        switch categoryPrice {
+        case .personPrice:
+            guard let url = URL(string: "tel://\(city.rawValue)") else { return }
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        default:
+            guard let url = URL(string: "tel://+79250709779") else { return }
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
         }
     }
     

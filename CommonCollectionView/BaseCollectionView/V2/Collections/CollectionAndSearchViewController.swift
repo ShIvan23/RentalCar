@@ -89,7 +89,7 @@ final class CollectionAndSearchViewController: BaseCollectionViewControllerV2 {
             assertionFailure("Нет города")
             return
         }
-        call(city: city)
+        call(city: city, categoryPrice: categoryPrice)
     }
     
     private func checkIsLoginUser() {

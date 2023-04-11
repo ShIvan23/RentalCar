@@ -28,7 +28,8 @@ final class Builder {
         let allCategoryViewController: IBaseCollectionViewControllerV2 = CollectionAndSearchViewController(
             dataSource: dataSource,
             delegate: delegate,
-            coordinator: coordinator)
+            coordinator: coordinator,
+            categoryPrice: categoryPrice)
         
         allCategoryViewController.city = city
         
@@ -43,19 +44,21 @@ final class Builder {
         let carCategoryViewController: IBaseCollectionViewControllerV2 = CollectionViewController(
             dataSource: dataSource,
             delegate: delegate,
-            coordinator: coordinator)
+            coordinator: coordinator,
+            categoryPrice: categoryPrice)
         
         return carCategoryViewController
     }
     
-    static func buildChoseLegalCollection(coordinator: ICoordinator, city: CityNumber) -> IBaseCollectionViewControllerV2 {
+    static func buildChoseLegalCollection(coordinator: ICoordinator, city: CityNumber, categoryPrice: CategoryPrice) -> IBaseCollectionViewControllerV2 {
         let dataSource: IBaseDataSource = LegalDataSource()
         let delegate: IBaseFlowLayout = LegalDelegate(coordinator: coordinator,
                                                       city: city)
         let chooseLegalViewController: IBaseCollectionViewControllerV2 = CollectionViewController(
             dataSource: dataSource,
             delegate: delegate,
-            coordinator: coordinator)
+            coordinator: coordinator,
+            categoryPrice: categoryPrice)
         
         return chooseLegalViewController
     }
