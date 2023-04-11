@@ -193,7 +193,7 @@ final class ContactsViewController: UIViewController, ToastViewShowable {
     
     private func setupLabels() {
         addressLabel.text = cityModel.address
-        telephoneLabel.text = cityModel.phoneNumber
+        telephoneLabel.text = format(with: "+X (XXX) XXX-XX-XX", phone: cityModel.phoneNumber)
         emailLabel.text = cityModel.email
     }
     
@@ -212,6 +212,22 @@ final class ContactsViewController: UIViewController, ToastViewShowable {
         mapView.mapWindow.map.move(with: YMKCameraPosition(target: point, zoom: 15.5, azimuth: 0, tilt: 0))
 
         mapObjects.addPlacemark(with: point, view: YRTViewProvider(uiView: mapImageView))
+    }
+    
+    private func format(with mask: String, phone: String) -> String {
+        let numbers = phone.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
+        var result = ""
+        var index = numbers.startIndex
+
+        for ch in mask where index < numbers.endIndex {
+            if ch == "X" {
+                result.append(numbers[index])
+                index = numbers.index(after: index)
+            } else {
+                result.append(ch) // just append a mask character
+            }
+        }
+        return result
     }
     
     private func customizeView() {
