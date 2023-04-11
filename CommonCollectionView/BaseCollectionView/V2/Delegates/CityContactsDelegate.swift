@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class CityContactsDelegate: VerticalFlowLayoutForTwoItems {
+final class CityContactsDelegate: VerticalFlowLayout {
     
     override var model: [Model] {
         get { return cityModel }
