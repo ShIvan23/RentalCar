@@ -224,7 +224,7 @@ final class ContactsViewController: UIViewController, ToastViewShowable {
                 result.append(numbers[index])
                 index = numbers.index(after: index)
             } else {
-                result.append(ch) // just append a mask character
+                result.append(ch)
             }
         }
         return result
