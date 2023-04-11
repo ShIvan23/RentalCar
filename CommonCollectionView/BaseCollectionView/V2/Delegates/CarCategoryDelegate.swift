@@ -19,19 +19,20 @@ final class CarCategoryDelegate: VerticalFlowLayout {
     
     private var carModel: [CarModel2] = []
     private var coordinator: ICoordinator
-    private let city: CityNumber
+    private let cityNumber: String
     
     init(coordinator: ICoordinator,
-         city: CityNumber) {
+         cityNumber: String
+    ) {
         self.coordinator = coordinator
-        self.city = city
+        self.cityNumber = cityNumber
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         coordinator.openDetailCar(
             with: carModel[indexPath.item],
             coordinator: coordinator,
-            city: city)
+            cityNumber: cityNumber)
         AnalyticEvent.userTappedCar(car: carModel[indexPath.item].name ?? "").send()
     }
 }

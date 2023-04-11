@@ -22,7 +22,7 @@ final class MainTabBarViewController: UITabBarController {
     
     /// Юр лица
     private lazy var chooseLegalViewController = Builder.buildChoseLegalCollection(coordinator: Coordinator.secondFlow,
-                                                                                   city: CityNumber.moscow,
+                                                                                   city: City.mockCityForLegal(),
                                                                                    categoryPrice: .commercialPriceWithNDS)
     
     /// Акции

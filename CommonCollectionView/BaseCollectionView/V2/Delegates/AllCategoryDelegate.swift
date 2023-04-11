@@ -19,13 +19,13 @@ final class AllCategoryDelegate: VerticalFlowLayout {
     
     private var categoryModel: [CarClass2] = []
     private var coordinator: ICoordinator
-    private let city: CityNumber
+    private let city: City
     private let categoryPrice: CategoryPrice
     
     init(
         coordinator: ICoordinator,
         categoryPrice: CategoryPrice,
-        city: CityNumber
+        city: City
     ) {
         self.coordinator = coordinator
         self.categoryPrice = categoryPrice

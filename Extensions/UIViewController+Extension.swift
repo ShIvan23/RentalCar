@@ -20,16 +20,16 @@ extension UIViewController {
         }
     }
     
-    func call(city: CityNumber, categoryPrice: CategoryPrice) {
+    func call(number: String, categoryPrice: CategoryPrice) {
         AnalyticEvent.callButtonTapped.send()
         switch categoryPrice {
         case .personPrice:
-            guard let url = URL(string: "tel://\(city.rawValue)") else { return }
+            guard let url = URL(string: "tel://\(number)") else { return }
             if UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         default:
-            guard let url = URL(string: "tel://+79250709779") else { return }
+            guard let url = URL(string: "tel://\(number)") else { return }
             if UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }

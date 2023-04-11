@@ -26,6 +26,6 @@ final class CityContactsDelegate: VerticalFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         coordinator.navigationController = navigationController
-        coordinator.openContact(with: AppStorage.shared.contacts[indexPath.item])
+        coordinator.openContact(with: AppStorage.shared.cities[indexPath.item])
     }
 }

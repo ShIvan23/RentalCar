@@ -11,14 +11,14 @@ final class CarCategoryDataSource: NSObject, IBaseDataSource {
     
     private(set) var model: [Model] = []
     private let categoryPrice: CategoryPrice
-    private let city: CityNumber
+    private let cityName: String
     
     init(
         categoryPrice: CategoryPrice,
-        city: CityNumber
+        cityName: String
     ) {
         self.categoryPrice = categoryPrice
-        self.city = city
+        self.cityName = cityName
     }
     
     func setupModel(_ model: [Model]) {
@@ -37,7 +37,7 @@ final class CarCategoryDataSource: NSObject, IBaseDataSource {
         let cell: BaseCollectionViewCell = collectionView.dequeueCell(for: indexPath)
         cell.setupCell(model: model[indexPath.item],
                        categoryPrice: categoryPrice,
-                       city: city)
+                       cityName: cityName)
         return cell
     }
 }

@@ -10,14 +10,14 @@ import UIKit
 protocol ICoordinator: AnyObject {
     var navigationController: UINavigationController? { get set }
     
-    func openCarCategories(with model: [Model], title: String, coordinator: ICoordinator, categoryPrice: CategoryPrice, city: CityNumber)
-    func openCarCategory(with model: [Model], title: String, coordinator: ICoordinator, categoryPrice: CategoryPrice, city: CityNumber)
+    func openCarCategories(with model: [Model], title: String, coordinator: ICoordinator, categoryPrice: CategoryPrice, city: City)
+    func openCarCategory(with model: [Model], title: String, coordinator: ICoordinator, categoryPrice: CategoryPrice, city: City)
     func openProfile()
     func openLogin()
-    func openDetailCar(with model: CarModel2, coordinator: ICoordinator, city: CityNumber)
+    func openDetailCar(with model: CarModel2, coordinator: ICoordinator, cityNumber: String)
     func openPromo(with model: [Model], title: String, coordinator: ICoordinator)
     func openCondition(with model: ConditionsModel)
-    func openContact(with model: ContactModel)
+    func openContact(with model: City)
 }
 
 final class Coordinator: ICoordinator {
@@ -32,7 +32,7 @@ final class Coordinator: ICoordinator {
     
     var navigationController: UINavigationController?
     
-    func openCarCategories(with model: [Model], title: String, coordinator: ICoordinator, categoryPrice: CategoryPrice, city: CityNumber) {
+    func openCarCategories(with model: [Model], title: String, coordinator: ICoordinator, categoryPrice: CategoryPrice, city: City) {
         let categoriesCollection = Builder.buildAllCategoriesCollection(coordinator: coordinator,
                                                                         categoryPrice: categoryPrice,
                                                                         city: city)
@@ -41,8 +41,11 @@ final class Coordinator: ICoordinator {
         navigationController?.pushViewController(categoriesCollection, animated: true)
     }
     
-    func openCarCategory(with model: [Model], title: String, coordinator: ICoordinator, categoryPrice: CategoryPrice, city: CityNumber) {
-        let categoryCollection = Builder.buildCategoryCollection(coordinator: coordinator, categoryPrice: categoryPrice, city: city)
+    func openCarCategory(with model: [Model], title: String, coordinator: ICoordinator, categoryPrice: CategoryPrice, city: City) {
+        let categoryCollection = Builder.buildCategoryCollection(coordinator: coordinator,
+                                                                 categoryPrice: categoryPrice,
+                                                                 cityName: city.name,
+                                                                 cityNumber: city.phoneNumber)
         categoryCollection.title = title
         categoryCollection.reloadData(with: model)
         navigationController?.pushViewController(categoryCollection, animated: true)
@@ -58,8 +61,10 @@ final class Coordinator: ICoordinator {
         navigationController?.pushViewController(loginViewController, animated: true)
     }
     
-    func openDetailCar(with model: CarModel2, coordinator: ICoordinator, city: CityNumber) {
-        let detailViewController = DetailCarViewController(carModel: model, categoryPrice: .personPrice, city: city)
+    func openDetailCar(with model: CarModel2, coordinator: ICoordinator, cityNumber: String) {
+        let detailViewController = DetailCarViewController(carModel: model,
+                                                           categoryPrice: .personPrice,
+                                                           cityNumber: cityNumber)
         detailViewController.title = model.name
         navigationController?.pushViewController(detailViewController, animated: true)
     }
@@ -77,9 +82,9 @@ final class Coordinator: ICoordinator {
         navigationController?.pushViewController(conditionViewController, animated: true)
     }
     
-    func openContact(with model: ContactModel) {
-        let contactViewController = ContactsViewController(contactModel: model)
-        contactViewController.title = model.city
+    func openContact(with model: City) {
+        let contactViewController = ContactsViewController(cityModel: model)
+        contactViewController.title = model.name
         navigationController?.pushViewController(contactViewController, animated: true)
     }
 }

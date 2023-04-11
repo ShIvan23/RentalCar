@@ -19,11 +19,11 @@ final class LegalDelegate: VerticalFlowLayoutForTwoItems {
     
     private var legalModel: [CommercialModel] = []
     private var coordinator: ICoordinator
-    private let city: CityNumber
+    private let city: City
     
     init(
         coordinator: ICoordinator,
-        city: CityNumber
+        city: City
     ) {
         self.coordinator = coordinator
         self.city = city

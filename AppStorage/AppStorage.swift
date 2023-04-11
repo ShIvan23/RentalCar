@@ -14,7 +14,6 @@ final class AppStorage {
     
     private init() {
         makeConditions()
-        makeContacts()
     }
     
     private(set) var cities = [City]()
@@ -23,7 +22,6 @@ final class AppStorage {
     private(set) var legal = [CommercialModel]()
     private(set) var promo = [PromoData]()
     private(set) var conditions = [ConditionsModel]()
-    private(set) var contacts = [ContactModel]()
     
     func updateCities(_ cities: [City]) {
         self.cities = cities
@@ -55,9 +53,5 @@ final class AppStorage {
     
     private func makeConditions() {
         conditions = ConditionsModel.makeConditionsModel()
-    }
-    
-    private func makeContacts() {
-        contacts = ContactModel.makeContactsModel()
     }
 }

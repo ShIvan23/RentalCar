@@ -26,23 +26,11 @@ final class CityDelegate: VerticalFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         coordinator.navigationController = navigationController
-        let currentCityNumber = setCurrentCityNumber(cityModel[indexPath.item].name)
         coordinator.openCarCategories(
             with: AppStorage.shared.carClasses,
             title: cityModel[indexPath.item].name,
             coordinator: coordinator,
             categoryPrice: .personPrice,
-            city: currentCityNumber)
-    }
-    
-    private func setCurrentCityNumber(_ city: String) -> CityNumber {
-        switch city {
-        case "Москва":
-            return CityNumber.moscow
-        case "Казань":
-            return CityNumber.kazan
-        default:
-            return CityNumber.moscow
-        }
+            city: cityModel[indexPath.item])
     }
 }

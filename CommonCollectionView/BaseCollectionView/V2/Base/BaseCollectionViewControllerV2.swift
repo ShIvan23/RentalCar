@@ -13,7 +13,7 @@ protocol IBaseCollectionViewControllerV2 where Self: UIViewController {
     var delegate: IBaseFlowLayout { get }
     var coordinator: ICoordinator { get }
     var categoryPrice: CategoryPrice { get }
-    var city: CityNumber? { get set }
+    var city: City? { get set }
     func reloadData(with model: [Model])
 }
  
@@ -24,7 +24,7 @@ class BaseCollectionViewControllerV2: UIViewController {
     var dataSource: IBaseDataSource
     var delegate: IBaseFlowLayout
     var coordinator: ICoordinator
-    var city: CityNumber?
+    var city: City?
     var categoryPrice: CategoryPrice
     
     // MARK: - UI

@@ -20,7 +20,7 @@ final class Builder {
         return cityViewController
     }
     
-    static func buildAllCategoriesCollection(coordinator: ICoordinator, categoryPrice: CategoryPrice, city: CityNumber) -> IBaseCollectionViewControllerV2 {
+    static func buildAllCategoriesCollection(coordinator: ICoordinator, categoryPrice: CategoryPrice, city: City) -> IBaseCollectionViewControllerV2 {
         let dataSource: IBaseDataSource = AllCategoryDataSource()
         let delegate: IBaseFlowLayout = AllCategoryDelegate(coordinator: coordinator,
                                                             categoryPrice: categoryPrice,
@@ -36,11 +36,11 @@ final class Builder {
         return allCategoryViewController
     }
     
-    static func buildCategoryCollection(coordinator: ICoordinator, categoryPrice: CategoryPrice, city: CityNumber) -> IBaseCollectionViewControllerV2 {
+    static func buildCategoryCollection(coordinator: ICoordinator, categoryPrice: CategoryPrice, cityName: String, cityNumber: String) -> IBaseCollectionViewControllerV2 {
         let dataSource: IBaseDataSource = CarCategoryDataSource(categoryPrice: categoryPrice,
-                                                                city: city)
+                                                                cityName: cityName)
         let delegate: IBaseFlowLayout = CarCategoryDelegate(coordinator: coordinator,
-                                                            city: city)
+                                                            cityNumber: cityNumber)
         let carCategoryViewController: IBaseCollectionViewControllerV2 = CollectionViewController(
             dataSource: dataSource,
             delegate: delegate,
@@ -50,7 +50,7 @@ final class Builder {
         return carCategoryViewController
     }
     
-    static func buildChoseLegalCollection(coordinator: ICoordinator, city: CityNumber, categoryPrice: CategoryPrice) -> IBaseCollectionViewControllerV2 {
+    static func buildChoseLegalCollection(coordinator: ICoordinator, city: City, categoryPrice: CategoryPrice) -> IBaseCollectionViewControllerV2 {
         let dataSource: IBaseDataSource = LegalDataSource()
         let delegate: IBaseFlowLayout = LegalDelegate(coordinator: coordinator,
                                                       city: city)

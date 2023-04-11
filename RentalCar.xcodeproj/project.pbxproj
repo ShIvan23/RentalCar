@@ -113,7 +113,6 @@
 		716C61DF29DCAF1400A68217 /* ConditionsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716C61DE29DCAF1400A68217 /* ConditionsDataSource.swift */; };
 		716C61E129DCB36B00A68217 /* CityContactsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716C61E029DCB36B00A68217 /* CityContactsDelegate.swift */; };
 		716C61E329DCB3B600A68217 /* CityContactsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716C61E229DCB3B600A68217 /* CityContactsDataSource.swift */; };
-		716C61E529DCB5F000A68217 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716C61E429DCB5F000A68217 /* ContactModel.swift */; };
 		716C61E829DDA42A00A68217 /* EmptyStockCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716C61E729DDA42A00A68217 /* EmptyStockCollectionViewCell.swift */; };
 		71CBBA4D29D715B100AC2A11 /* AppStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CBBA4C29D715B100AC2A11 /* AppStorage.swift */; };
 		A1B504237C3861AE647A5F96 /* Pods_RentalCar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E948B7270624368EE75A7045 /* Pods_RentalCar.framework */; };
@@ -229,7 +228,6 @@
 		716C61DE29DCAF1400A68217 /* ConditionsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionsDataSource.swift; sourceTree = "<group>"; };
 		716C61E029DCB36B00A68217 /* CityContactsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityContactsDelegate.swift; sourceTree = "<group>"; };
 		716C61E229DCB3B600A68217 /* CityContactsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityContactsDataSource.swift; sourceTree = "<group>"; };
-		716C61E429DCB5F000A68217 /* ContactModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
 		716C61E729DDA42A00A68217 /* EmptyStockCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStockCollectionViewCell.swift; sourceTree = "<group>"; };
 		71CBBA4C29D715B100AC2A11 /* AppStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStorage.swift; sourceTree = "<group>"; };
 		E948B7270624368EE75A7045 /* Pods_RentalCar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RentalCar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -533,7 +531,6 @@
 				2C7E1F9C2858D9A700E69B4D /* UserProfile.swift */,
 				2C72112F286F0C9A00FD5631 /* UserDelete.swift */,
 				2C4B088329D35AC100A7A60D /* City.swift */,
-				716C61E429DCB5F000A68217 /* ContactModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -844,6 +841,7 @@
 				2C1DDAB627A08574000B82C6 /* Frameworks */,
 				2C1DDAB727A08574000B82C6 /* Resources */,
 				007F94DD80944E72AECE432E /* [CP] Embed Pods Frameworks */,
+				E9A89B0226D34E4091515F7A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -939,6 +937,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E9A89B0226D34E4091515F7A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RentalCar/Pods-RentalCar-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RentalCar/Pods-RentalCar-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RentalCar/Pods-RentalCar-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1002,7 +1017,6 @@
 				2C49191628A51C1100EB8FEC /* EventDate.swift in Sources */,
 				2C631E4F27A333C3003753E1 /* BaseCollectionViewCell.swift in Sources */,
 				2C868F0F29D06CEA0055729A /* Builder.swift in Sources */,
-				716C61E529DCB5F000A68217 /* ContactModel.swift in Sources */,
 				2CA3511B2847CA3D003F2012 /* ChangePassword.swift in Sources */,
 				2CB154C9289ABA8F00A36C06 /* WebViewController.swift in Sources */,
 				2C5FBB49280AFFEB00F81155 /* AgainConfirmCode.swift in Sources */,

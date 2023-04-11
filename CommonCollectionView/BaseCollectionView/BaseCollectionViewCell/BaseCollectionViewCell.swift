@@ -75,7 +75,7 @@ final class BaseCollectionViewCell: UICollectionViewCell {
         gradientView.setCustomGradient()
     }
     
-    func setupCell(model: Model, categoryPrice: CategoryPrice, city: CityNumber) {
+    func setupCell(model: Model, categoryPrice: CategoryPrice, cityName: String) {
         guard let model = model as? CarModel2 else {
             assertionFailure("Не та модель")
             return
@@ -84,30 +84,23 @@ final class BaseCollectionViewCell: UICollectionViewCell {
         let urlImage = URL(string: model.thumb ?? "")
         carImage.kf.setImage(with: urlImage)
         
-        let currentCityString = getCityString(city: city)
-        let carIsBusy = model.isBusy || currentCityString != model.city ?? ""
-        busyImageView.image = carIsBusy ? UIImage(named: "failure") : UIImage(named: "success")
-        busyLabel.text = carIsBusy ? "Занята" : "Свободна"
+        var carIsBusy: Bool = false
         
         switch categoryPrice {
         case .personPrice:
             priceLabel.text = "\(model.price?.withoutNDS?.price ?? 0) ₽ / сутки"
+            carIsBusy = model.isBusy || cityName != model.city ?? ""
             // TODO: - Поменять здесь цены на коммерческие
         case .commercialPriceWithNDS:
             priceLabel.text = "\(model.price?.withNDS?.price ?? 0) ₽ / сутки"
+            carIsBusy = model.isBusy
         case .commercialPriceWithoutNDS:
             priceLabel.text = "\(model.price?.withoutNDS?.price ?? 0) ₽ / сутки"
+            carIsBusy = model.isBusy
         }
         
-    }
-    
-    private func getCityString(city: CityNumber) -> String {
-        switch city {
-        case .moscow:
-            return "Москва"
-        case .kazan:
-            return "Казань"
-        }
+        busyImageView.image = carIsBusy ? UIImage(named: "failure") : UIImage(named: "success")
+        busyLabel.text = carIsBusy ? "Занята" : "Свободна"
     }
     
     private func setLayout() {
