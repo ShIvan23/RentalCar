@@ -85,7 +85,7 @@ final class CollectionAndSearchViewController: BaseCollectionViewControllerV2 {
     }
     
     @objc private func callUsButtonAction() {
-        guard let city else {
+        guard let city = city else {
             assertionFailure("Нет города")
             return
         }
@@ -198,7 +198,7 @@ extension CollectionAndSearchViewController: PopoverTableViewControllerDelegate 
             guard let filteredBrands = filteredBrands else { return }
             filteredCars.append(contentsOf: filteredBrands)
         }
-        guard let city else {
+        guard let city = city else {
             assertionFailure("Нет города")
             return
         }
